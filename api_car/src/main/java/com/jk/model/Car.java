@@ -11,8 +11,9 @@ carbrandid;
     private Date 
 cardate;
 
-    private String 
-carlc;
+    private String carlc;
+    private String
+            carimg;
 
     private Integer 
 carareaid;
