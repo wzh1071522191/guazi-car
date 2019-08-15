@@ -2,8 +2,6 @@ package com.jk.model;
 
 
 
-
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
