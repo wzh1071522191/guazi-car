@@ -1,6 +1,30 @@
 package com.jk.service;
 
-public class UserServiceImpl {
+import com.alibaba.dubbo.config.annotation.Service;
+import com.jk.dao.UserMapper;
+import com.jk.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Service
+public class UserServiceImpl implements  UserService{
+    @Autowired
+    private UserMapper userMapper;
+    @Override
+    public int queryPhone(String phone) {
+       User reuser= userMapper.queryPhone(phone);
+       if(reuser==null){
+
+           return 0;
+       }else{
+           return 1;
+       }
+
+    }
+
+    @Override
+    public void addUser(User user) {
+        userMapper.addUser(user);
+    }
 /**
  * Copyright (C), 2015-2019, jk
  * FileName: UserServiceImpl

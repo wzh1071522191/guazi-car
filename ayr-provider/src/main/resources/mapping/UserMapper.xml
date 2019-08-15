@@ -2,55 +2,89 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="com.jk.model.User" >
-    <id column="userid" property="userid" jdbcType="INTEGER" />
-    <result column="userphone" property="userphone" jdbcType="VARCHAR" />
-    <result column="gwcid" property="gwcid" jdbcType="INTEGER" />
+    <id column="
+userid" property="
+userid" jdbcType="INTEGER" />
+    <result column="
+userphone" property="
+userphone" jdbcType="VARCHAR" />
+    <result column="
+gwcid" property="
+gwcid" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
   </resultMap>
+    <select id="queryPhone" resultMap="BaseResultMap">
+        select  * from t_user where userphone =#{userphone}
+    </select>
   <sql id="Base_Column_List" >
-    userid, userphone, gwcid, username
+    
+userid, 
+userphone, 
+gwcid, username
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from t_user
-    where userid = #{userid,jdbcType=INTEGER}
+    where 
+userid = #{
+userid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_user
-    where userid = #{userid,jdbcType=INTEGER}
+    where 
+userid = #{
+userid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jk.model.User" >
-    insert into t_user (userid, userphone, gwcid, 
+    insert into t_user (
+userid, 
+userphone, 
+gwcid, 
       username)
-    values (#{userid,jdbcType=INTEGER}, #{userphone,jdbcType=VARCHAR}, #{gwcid,jdbcType=INTEGER}, 
+    values (#{
+userid,jdbcType=INTEGER}, #{
+userphone,jdbcType=VARCHAR}, #{
+gwcid,jdbcType=INTEGER}, 
       #{username,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jk.model.User" >
+  <insert id="addUser" parameterType="com.jk.model.User" >
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        userid,
+      <if test="
+userid != null" >
+        
+userid,
       </if>
-      <if test="userphone != null" >
-        userphone,
+      <if test="
+userphone != null" >
+        
+userphone,
       </if>
-      <if test="gwcid != null" >
-        gwcid,
+      <if test="
+gwcid != null" >
+        
+gwcid,
       </if>
       <if test="username != null" >
         username,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        #{userid,jdbcType=INTEGER},
+      <if test="
+userid != null" >
+        #{
+userid,jdbcType=INTEGER},
       </if>
-      <if test="userphone != null" >
-        #{userphone,jdbcType=VARCHAR},
+      <if test="
+userphone != null" >
+        #{
+userphone,jdbcType=VARCHAR},
       </if>
-      <if test="gwcid != null" >
-        #{gwcid,jdbcType=INTEGER},
+      <if test="
+gwcid != null" >
+        #{
+gwcid,jdbcType=INTEGER},
       </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
@@ -60,23 +94,37 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.User" >
     update t_user
     <set >
-      <if test="userphone != null" >
-        userphone = #{userphone,jdbcType=VARCHAR},
+      <if test="
+userphone != null" >
+        
+userphone = #{
+userphone,jdbcType=VARCHAR},
       </if>
-      <if test="gwcid != null" >
-        gwcid = #{gwcid,jdbcType=INTEGER},
+      <if test="
+gwcid != null" >
+        
+gwcid = #{
+gwcid,jdbcType=INTEGER},
       </if>
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},
       </if>
     </set>
-    where userid = #{userid,jdbcType=INTEGER}
+    where 
+userid = #{
+userid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jk.model.User" >
     update t_user
-    set userphone = #{userphone,jdbcType=VARCHAR},
-      gwcid = #{gwcid,jdbcType=INTEGER},
+    set 
+userphone = #{
+userphone,jdbcType=VARCHAR},
+      
+gwcid = #{
+gwcid,jdbcType=INTEGER},
       username = #{username,jdbcType=VARCHAR}
-    where userid = #{userid,jdbcType=INTEGER}
+    where 
+userid = #{
+userid,jdbcType=INTEGER}
   </update>
 </mapper>
