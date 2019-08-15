@@ -20,6 +20,8 @@ public class Mqccontroller {
      @RequestMapping("querycar")
      public Map<String,Object> querycar(Integer page ,Integer rows){
          Map map=new HashMap();
+
+
          return map;
      }
 
