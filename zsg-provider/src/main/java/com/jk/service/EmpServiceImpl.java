@@ -2,6 +2,9 @@ package com.jk.service;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.jk.dao.EmpDao;
+import com.jk.model.Strator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,4 +17,14 @@ import org.springframework.stereotype.Component;
 @Service(version = "1.0")
 @Component
 public class EmpServiceImpl implements EmpService {
+
+    @Autowired
+    private EmpDao empDao;
+
+
+    @Override
+    public Strator queryUserName(String username) {
+        Strator st=empDao.queryUserName(username);
+        return st;
+    }
 }

@@ -87,8 +87,7 @@ public class Strator implements Serializable {
         return userstatus;
     }
 
-    public void setuserstatus(String
-                       userstatus) {
+    public void setuserstatus(String userstatus) {
         this.userstatus = userstatus == null ? null : userstatus.trim();
     }
 }
