@@ -22,6 +22,12 @@
             <version>2.9.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.jk</groupId>
+            <artifactId>car-consumer</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
     <artifactId>api_car</artifactId>
 
