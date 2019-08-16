@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>汽车名称</td>
+        <td>单价</td>
+        <td>数量</td>
+        <td>快递费</td>
+        <td>商品总价</td>
+        <td>优惠</td>
+        <td>实收金额</td>
+    </tr>
+    <tr th:each="book:${s}">
+        <td th:text="${book.typename}">汽车名称</td>
+        <td th:text="${book.guige}">单价</td>
+        <td th:text="${book.cunmber}">数量</td>
+        <td th:text="${book.kuaidifei}">快递费</td>
+        <td th:text="${book.spprice}">商品总价</td>
+        <td th:text="${book.yuhui}">优惠</td>
+        <td th:text="${book.shprice}">实收金额</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -13,7 +13,8 @@ public class Order implements Serializable {
     private Integer  status;//交易状态
     private Integer  shprice;//实收金额
     private Integer  dataid;//订单详情id
-
+    private String  username;//用户名称临时字段
+    private String   typename;//汽车名称临时字段
     public Integer getId() {
         return id;
     }
@@ -86,5 +87,21 @@ public class Order implements Serializable {
 
     public void setXdtime(String xdtime) {
         this.xdtime = xdtime;
+    }
+
+    public String getTypename() {
+        return typename;
+    }
+
+    public void setTypename(String typename) {
+        this.typename = typename;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

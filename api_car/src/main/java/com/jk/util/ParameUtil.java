@@ -1,10 +1,16 @@
 package com.jk.util;
 
-public class ParameUtil {
+import java.io.Serializable;
+
+public class ParameUtil implements Serializable {
     private Integer pageNumber;
     private Integer pageSize;
+	private String sortName;      //排序字段
+	private String sortOrder;    //正序或倒序
     private String qian;
-    private String hou;
+    private String ho;
+    private Integer id;
+
     private Integer ordername;
 	public Integer getPageNumber() {
 		return pageNumber;
@@ -28,13 +34,6 @@ public class ParameUtil {
 	}
 
 
-	public String getHou() {
-		return hou;
-	}
-
-	public void setHou(String hou) {
-		this.hou = hou;
-	}
 
 	public Integer getOrdername() {
 		return ordername;
@@ -43,4 +42,36 @@ public class ParameUtil {
 	public void setOrdername(Integer ordername) {
 		this.ordername = ordername;
 	}
+
+	public String getHo() {
+		return ho;
+	}
+
+	public void setHo(String ho) {
+		this.ho = ho;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getSortName() {
+		return sortName;
+	}
+
+	public void setSortName(String sortName) {
+		this.sortName = sortName;
+	}
+
+	public String getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(String sortOrder) {
+		this.sortOrder = sortOrder;
+	}
+
 }

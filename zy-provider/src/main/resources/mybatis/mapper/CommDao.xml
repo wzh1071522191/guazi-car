@@ -1,8 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.CommDao" >
-   <select id="cha" parameterType="ParameUtil" resultType="Order">
-
-
+ <select id="cha" resultType="com.jk.model.Order">
+     select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid
+     <if test="qian!=null and qian !=''">
+         and o.xdtime >=#{qian}
+     </if>
+     <if test="ho !=null and ho !=''">
+         and o.xdtime &lt;=#{ho}
+     </if>
+     order by o.${sortName} ${sortOrder}
    </select>
+    <select id="dai" resultType="com.jk.model.Order">
+    select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=1
+    <if test="qian!=null and qian !=''">
+        and o.xdtime >=#{qian}
+    </if>
+    <if test="ho !=null and ho !=''">
+        and o.xdtime &lt;=#{ho}
+    </if>
+</select>
+    <select id="fa" resultType="com.jk.model.Order">
+        select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=2
+        <if test="qian!=null and qian !=''">
+            and o.xdtime >=#{qian}
+        </if>
+        <if test="ho !=null and ho !=''">
+            and o.xdtime &lt;=#{ho}
+        </if>
+    </select>
+    <select id="yi" resultType="com.jk.model.Order">
+        select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=3
+        <if test="qian!=null and qian !=''">
+            and o.xdtime >=#{qian}
+        </if>
+        <if test="ho !=null and ho !=''">
+            and o.xdtime &lt;=#{ho}
+        </if>
+    </select>
+    <select id="wan" resultType="com.jk.model.Order">
+        select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=4
+        <if test="qian!=null and qian !=''">
+            and o.xdtime >=#{qian}
+        </if>
+        <if test="ho !=null and ho !=''">
+            and o.xdtime &lt;=#{ho}
+        </if>
+    </select>
+    <select id="guan" resultType="com.jk.model.Order">
+        select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=5
+        <if test="qian!=null and qian !=''">
+            and o.xdtime >=#{qian}
+        </if>
+        <if test="ho !=null and ho !=''">
+            and o.xdtime &lt;=#{ho}
+        </if>
+    </select>
+    <select id="tui" resultType="com.jk.model.Order">
+        select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=6
+        <if test="qian!=null and qian !=''">
+            and o.xdtime >=#{qian}
+        </if>
+        <if test="ho !=null and ho !=''">
+            and o.xdtime &lt;=#{ho}
+        </if>
+    </select>
+    <select id="xiang" resultType="com.jk.model.Details" >
+        select * from car_type a,details d,orders o where a.id=o.carid and o.detaid=d.oid  and o.id=#{id}
+    </select>
+
+    <select id="kuan" resultType="com.jk.model.Refund" >
+    select * from refund r,car_type t,orders o where r.oid=o.id and r.carid=t.typename
+    <if test=""></if>
+
+    </select>
 </mapper>
