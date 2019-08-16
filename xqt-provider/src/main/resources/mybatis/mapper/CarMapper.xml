@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jk.dao.CarMapper" >
-<select id="queryCarAnalysiCount" parameterType="com.jk.model.Car" resultType="com.jk.model.Car">
-    select * from t_car
-</select>
-</mapper>

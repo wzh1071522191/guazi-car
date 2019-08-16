@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jk.dao.CommDao" >
-   <select id="cha" parameterType="com.jk.util.ParameUtil " resultType="com.jk.model.Order">
+<mapper namespace="com.jk.dao.AlyMapper" >
+
+	<select id="queryCarAnalysiCount" resultType="com.jk.model.Car">
+		select * from t_car tc
+	</select>
 
 
-   </select>
+
 </mapper>

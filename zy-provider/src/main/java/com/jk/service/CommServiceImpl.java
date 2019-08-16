@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 @Component
 public class CommServiceImpl implements CommService {
-@Autowired
+    @Autowired
     private CommDao da;
 
     @Override
