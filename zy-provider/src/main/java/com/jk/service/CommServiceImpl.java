@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.awt.*;
 import java.util.List;
 
-@Service(version = "1.0")
+@Service
 @Component
 public class CommServiceImpl implements CommService {
 @Autowired
