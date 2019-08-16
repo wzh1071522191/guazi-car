@@ -1,10 +1,11 @@
 package com.jk.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jk.dao.Mdao;
+
+
 import com.jk.model.Car;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
@@ -23,13 +24,9 @@ public class MserviceImpl implements Mservice {
 
     @Override
     public PageUtil querycar(ParameUtil parm) {
-         PageHelper.startPage(parm.getPageNumber(), parm.getPageSize());
-          Integer sum=mdao.querysum();
-
-        List<Car> list = mdao.querycar(sum,parm.getPageNumber());
-
+        PageHelper.startPage(parm.getPageNumber(), parm.getPageSize());
+        List<Car> list= mdao.querycar(parm);
         PageInfo<Car> pageInfo = new PageInfo<>(list);
-
         PageUtil page= new PageUtil((int)pageInfo.getTotal(),parm.getPageNumber(), parm.getPageSize());
         page.setList(list);
         return page;

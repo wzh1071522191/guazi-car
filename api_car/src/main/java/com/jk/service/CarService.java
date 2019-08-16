@@ -4,4 +4,5 @@ import com.jk.model.Car;
 
 public interface CarService {
    void addCar(Car car);
+   Double testCarPrice(Car car);
 }

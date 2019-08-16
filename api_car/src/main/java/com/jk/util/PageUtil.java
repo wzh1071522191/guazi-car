@@ -1,5 +1,6 @@
 package com.jk.util;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  *
  * @author yaoli
  */
-public class PageUtil {
+public class PageUtil implements Serializable {
 
     // 每页多少条
     private Integer pageCount = 2;

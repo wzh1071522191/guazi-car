@@ -1,12 +1,13 @@
 package com.jk.dao;
 
 import com.jk.model.Car;
+import com.jk.util.ParameUtil;
 
 import java.util.List;
 
 public interface Mdao {
 
-    List<Car> querycar(Integer sum, Integer pageNumber);
+    List<Car> querycar(ParameUtil parm);
 
-    Integer querysum();
+
 }

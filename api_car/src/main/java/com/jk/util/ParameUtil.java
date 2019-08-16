@@ -1,6 +1,8 @@
 package com.jk.util;
 
-public class ParameUtil {
+import java.io.Serializable;
+
+public class ParameUtil implements Serializable {
     private Integer pageNumber;
     private Integer pageSize;
     private String qian;

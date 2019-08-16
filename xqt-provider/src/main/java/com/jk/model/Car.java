@@ -23,7 +23,7 @@ carck;
     private Integer 
 cartypeid;
 
-    private String 
+    private Integer 
 carcolor;
 
     private Integer 
@@ -43,7 +43,7 @@ createdate;
 
     private Integer carranyou;
 
-    private Integer sellcarcount;
+    private Integer sellcarstatu;
 
     private Integer expocarstatu;
 
@@ -53,12 +53,6 @@ createdate;
 
     private Integer visitcarstatu;
 
-    private String carimg;
-
-    private Integer cartypesonid;
-
-    private Integer carvolume;
-
     public Integer getCarid() {
         return carid;
     }
@@ -67,84 +61,125 @@ createdate;
         this.carid = carid;
     }
 
-    public Integer getCarbrandid() {
-        return carbrandid;
+    public Integer getcarbrandid() {
+        return 
+carbrandid;
     }
 
-    public void setCarbrandid(Integer carbrandid) {
-        this.carbrandid = carbrandid;
+    public void setcarbrandid(Integer
+carbrandid) {
+        this.
+carbrandid = 
+carbrandid;
     }
 
-    public Date getCardate() {
-        return cardate;
+    public Date getcardate() {
+        return 
+cardate;
     }
 
-    public void setCardate(Date cardate) {
-        this.cardate = cardate;
+    public void setcardate(Date
+cardate) {
+        this.
+cardate = 
+cardate;
     }
 
-    public String getCarlc() {
-        return carlc;
+    public String getcarlc() {
+        return 
+carlc;
     }
 
-    public void setCarlc(String carlc) {
-        this.carlc = carlc;
+    public void setcarlc(String
+carlc) {
+        this.
+carlc = 
+carlc == null ? null : 
+carlc.trim();
     }
 
-    public Integer getCarareaid() {
-        return carareaid;
+    public Integer getcarareaid() {
+        return 
+carareaid;
     }
 
-    public void setCarareaid(Integer carareaid) {
-        this.carareaid = carareaid;
+    public void setcarareaid(Integer
+carareaid) {
+        this.
+carareaid = 
+carareaid;
     }
 
-    public Integer getCarck() {
-        return carck;
+    public Integer getcarck() {
+        return 
+carck;
     }
 
-    public void setCarck(Integer carck) {
-        this.carck = carck;
+    public void setcarck(Integer
+carck) {
+        this.
+carck = 
+carck;
     }
 
-    public Integer getCartypeid() {
-        return cartypeid;
+    public Integer getcartypeid() {
+        return 
+cartypeid;
     }
 
-    public void setCartypeid(Integer cartypeid) {
-        this.cartypeid = cartypeid;
+    public void setcartypeid(Integer
+cartypeid) {
+        this.
+cartypeid = 
+cartypeid;
     }
 
-    public String getCarcolor() {
-        return carcolor;
+    public Integer getcarcolor() {
+        return 
+carcolor;
     }
 
-    public void setCarcolor(String carcolor) {
-        this.carcolor = carcolor;
+    public void setcarcolor(Integer
+carcolor) {
+        this.
+carcolor = 
+carcolor;
     }
 
-    public Integer getCarstatus() {
-        return carstatus;
+    public Integer getcarstatus() {
+        return 
+carstatus;
     }
 
-    public void setCarstatus(Integer carstatus) {
-        this.carstatus = carstatus;
+    public void setcarstatus(Integer
+carstatus) {
+        this.
+carstatus = 
+carstatus;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getuserid() {
+        return 
+userid;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setuserid(Integer
+userid) {
+        this.
+userid = 
+userid;
     }
 
-    public Date getCreatedate() {
-        return createdate;
+    public Date getcreatedate() {
+        return 
+createdate;
     }
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
+    public void setcreatedate(Date
+createdate) {
+        this.
+createdate = 
+createdate;
     }
 
     public Integer getCarage() {
@@ -179,12 +214,12 @@ createdate;
         this.carranyou = carranyou;
     }
 
-    public Integer getSellcarcount() {
-        return sellcarcount;
+    public Integer getSellcarstatu() {
+        return sellcarstatu;
     }
 
-    public void setSellcarcount(Integer sellcarcount) {
-        this.sellcarcount = sellcarcount;
+    public void setSellcarstatu(Integer sellcarstatu) {
+        this.sellcarstatu = sellcarstatu;
     }
 
     public Integer getExpocarstatu() {
@@ -217,29 +252,5 @@ createdate;
 
     public void setVisitcarstatu(Integer visitcarstatu) {
         this.visitcarstatu = visitcarstatu;
-    }
-
-    public String getCarimg() {
-        return carimg;
-    }
-
-    public void setCarimg(String carimg) {
-        this.carimg = carimg;
-    }
-
-    public Integer getCartypesonid() {
-        return cartypesonid;
-    }
-
-    public void setCartypesonid(Integer cartypesonid) {
-        this.cartypesonid = cartypesonid;
-    }
-
-    public Integer getCarvolume() {
-        return carvolume;
-    }
-
-    public void setCarvolume(Integer carvolume) {
-        this.carvolume = carvolume;
     }
 }
