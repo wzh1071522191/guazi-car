@@ -3,6 +3,5 @@
 <mapper namespace="com.jk.dao.CarMapper" >
 <select id="queryCarAnalysiCount" parameterType="com.jk.model.Car" resultType="com.jk.model.Car">
     select * from t_car
-
 </select>
 </mapper>
