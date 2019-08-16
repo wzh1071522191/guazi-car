@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.EmpDao" >
+  <!--Strator queryUserName(String username)-->
+    <select id="queryUserName" parameterType="String" resultType="Emp">
+        select * from t_str e where e.username=#{username}
+    </select>
+
+    <!--List<Menu> getTreeAll(Integer id)-->
+    <select id="getTreeAll" parameterType="int" resultType="Menu">
+        SELECT m.* FROM t_str u,userrole ur,role r,rolemenu rm,menu m WHERE
+        u.id=ur.uid AND
+        ur.rid=r.id AND
+        r.id=rm.rid AND
+        rm.mid=m.id AND
+        u.id=#{id} GROUP BY m.name
+    </select>
+    <!--void register(Emp emp)-->
+    <insert id="register" parameterType="Emp">
+        insert into t_str(userName,userPwd,createDate,userStatus) values(#{userName},#{userPwd},now(),#{userStatus})
+    </insert>
+</mapper>
