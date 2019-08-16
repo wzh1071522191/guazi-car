@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入my97 -->
+    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+</head>
+<body>
+    <form style="margin-left:750px;margin-top:300px;" id="updateEmp" method="post">
+        <div class="form-group">
+            <label >请输入申诉账户:</label>
+            <input type="text" class="form-control" name="userName" style="display:inline;width:200px;"/>
+            <span id="msg1"></span>
+        </div>
+        <div class="form-group">
+            <label >请输入新的密码:</label>
+            <input type="password" class="form-control" name="userPwd" id="newPw"  style="display:inline;width:200px;"/>
+        </div>
+        <div class="form-group">
+            <label >请重新输入密码:</label>
+
+            <input type="password" id="checkNewPw"  class="form-control" onblur="checkNewPassword()" style="display:inline;width:200px;">
+            <span id="msg"></span>
+        </div>
+
+        <button type="button" class="btn btn-info" onclick="updateEmp()">提交</button>
+        <button type="reset" class="btn btn-info" >取消</button>
+
+    </form>
+</body>
+<script>
+
+    function checkNewPassword(){
+        var p1=$("#newPw").val();
+        var p2=$("#checkNewPw").val();
+        if (p1!=p2){
+            $("#msg").html("<font color='red'>密码不一致</font>");
+            return false;
+        }else if(p1==p2){
+            $("#msg").html("<font color='green'>√</font>");
+            return true;
+        }
+
+    }
+
+    updateEmp=function () {
+        if(checkNewPassword()){
+            $.ajax({
+                url:"../emp/updateEmp",
+                type:"post",
+                data:$("#updateEmp").serialize(),
+                success:function (data) {
+                    if(data==1){
+                        $("#msg1").html("<font color='red'>用户不存在</font>");
+                    }
+                    if(data==0){
+                        $("#msg1").html("");
+                        location.href="../emp/toEmpLogin";
+                        alert("已提交申述,请等待审核");
+                    }
+                }
+
+
+            })
+        }else {
+            alert(1)
+        }
+
+    }
+</script>
+</html>

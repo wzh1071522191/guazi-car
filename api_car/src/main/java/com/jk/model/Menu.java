@@ -1,6 +1,9 @@
 package com.jk.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author ： 张松光
@@ -11,6 +14,7 @@ import java.io.Serializable;
  */
 public class Menu implements Serializable {
 
+    private static final long serialVersionUID = 8565943964608152437L;
     private Integer id;
 
     private String name;
@@ -21,11 +25,15 @@ public class Menu implements Serializable {
 
     private String url;
 
-    private String status;
+    //private String status;
 
-    private String checked;
+    //private String checked;
 
-    private Integer nodes;
+    private List<Menu> nodes;
+
+    private String description;
+
+    private Map<String, Object> attributes = new HashMap<String, Object>();
 
     public Integer getId() {
         return id;
@@ -40,7 +48,7 @@ public class Menu implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public Integer getPid() {
@@ -56,7 +64,7 @@ public class Menu implements Serializable {
     }
 
     public void setText(String text) {
-        this.text = text == null ? null : text.trim();
+        this.text = text;
     }
 
     public String getUrl() {
@@ -64,30 +72,30 @@ public class Menu implements Serializable {
     }
 
     public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
+        this.url = url;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
-    }
-
-    public String getChecked() {
-        return checked;
-    }
-
-    public void setChecked(String checked) {
-        this.checked = checked == null ? null : checked.trim();
-    }
-
-    public Integer getNodes() {
+    public List<Menu> getNodes() {
         return nodes;
     }
 
-    public void setNodes(Integer nodes) {
+    public void setNodes(List<Menu> nodes) {
         this.nodes = nodes;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, Object> attributes) {
+        this.attributes = attributes;
     }
 }
