@@ -1,8 +1,9 @@
 package com.jk.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Car {
+public class Car implements Serializable {
     private Integer carid;
 
     private Integer 
@@ -11,7 +12,7 @@ carbrandid;
     private Date 
 cardate;
 
-    private String 
+    private Double
 carlc;
 
     private Integer 
@@ -53,6 +54,16 @@ createdate;
 
     private Integer visitcarstatu;
 
+    public Integer getCartypesonid() {
+        return cartypesonid;
+    }
+
+    public void setCartypesonid(Integer cartypesonid) {
+        this.cartypesonid = cartypesonid;
+    }
+
+    private Integer cartypesonid;
+
     public Integer getCarid() {
         return carid;
     }
@@ -85,17 +96,13 @@ cardate =
 cardate;
     }
 
-    public String getcarlc() {
+    public Double getcarlc() {
         return 
 carlc;
     }
 
-    public void setcarlc(String
-carlc) {
-        this.
-carlc = 
-carlc == null ? null : 
-carlc.trim();
+    public void setCarlc(Double carlc) {
+        this.carlc = carlc;
     }
 
     public Integer getcarareaid() {
