@@ -11,6 +11,7 @@ import java.io.Serializable;
  */
 public class Rolemenu implements Serializable {
 
+    private static final long serialVersionUID = -7797415867126069944L;
     private Integer id;
 
     private Integer rid;

@@ -1,13 +1,16 @@
 package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jk.model.Strator;
+import com.jk.model.Emp;
+import com.jk.model.Menu;
 import com.jk.service.EmpService;
+import com.jk.util.TreeNoteUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author ： 张松光
@@ -30,8 +33,8 @@ public class EmpController {
 
     @RequestMapping("loginUser")
     @ResponseBody
-    public Integer loginUser(Strator user, HttpServletRequest request) {
-        Strator loginUser=empService.queryUserName(user.getUsername());
+    public Integer loginUser(Emp emp, HttpServletRequest request) {
+        Emp loginUser=empService.queryUserName(emp.getUserName());
         if (loginUser==null) {
             return 3;
         }
@@ -44,7 +47,7 @@ public class EmpController {
                 return 0;
             }
         }*/
-        if (!loginUser.getuserpwd().equals(user.getuserpwd())) {
+        if (!loginUser.getUserPwd().equals(emp.getUserPwd())) {
             /*if (!redisTemplate.hasKey(key)) {
                 redisTemplate.opsForValue().set(key, "1");
                 redisTemplate.expire(key, 5, TimeUnit.MINUTES);
@@ -59,6 +62,54 @@ public class EmpController {
         //redisTemplate.delete(key);
         request.getSession().setAttribute("u", loginUser);
         return 2;
+    }
+
+    @RequestMapping("toTreePage")
+    public String toTreePage(){
+        return "tree";
+    }
+
+    @RequestMapping("getAllTree")
+    @ResponseBody
+    public List<Menu> getAllTree(HttpServletRequest request){
+        Emp user = (Emp) request.getSession().getAttribute("u");
+
+        List<Menu> list = empService.getTreeAll(user.getId());
+        list = TreeNoteUtil.getFatherNode(list);
+        return list;
+    }
+
+    @RequestMapping("toEmp")
+    public String toEmp(){
+        return "emp";
+    }
+
+    @RequestMapping("toRegistery")
+    public String toRegistery(){
+        return "empRegistery";
+    }
+
+    @RequestMapping("checkName")
+    @ResponseBody
+    public String checkName(String userName){
+        return empService.checkName(userName);
+    }
+
+    @RequestMapping("register")
+    @ResponseBody
+    public String register(Emp emp){
+       return empService.register(emp);
+    }
+
+    @RequestMapping("toUpdate")
+    public String toUpdate(){
+        return "updateEmp";
+    }
+
+    @RequestMapping("updateEmp")
+    @ResponseBody
+    public String updateEmp(Emp emp){
+        return empService.updateEmp(emp);
     }
 
 
