@@ -2,6 +2,7 @@ package com.jk.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.jk.dao.CarMapper;
+import com.jk.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

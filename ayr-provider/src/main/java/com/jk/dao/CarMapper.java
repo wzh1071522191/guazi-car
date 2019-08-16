@@ -1,5 +1,7 @@
 package com.jk.dao;
 
+import com.jk.model.Car;
+
 public interface CarMapper {
     int deleteByPrimaryKey(Integer carid);
 

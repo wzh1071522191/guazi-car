@@ -1,6 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
 
 
-<html>
 <head>
     <base href="<%=basePath%>">
     <title>标题</title>
@@ -44,7 +45,7 @@
     <!-- 引入fileinput的js -->
     <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
     <!--  引入fileinput的js -->
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
 
 
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
@@ -56,8 +57,28 @@
     <div class="form-group">
         <label>汽车名字</label>
         <br>
-        <input type="text" class="form-control" name = "cartypeid" id="userName" placeholder="汽车名称">
+       <select name="carbrandid"   class="vv">
+           <option value="0" >请选择</option>
+          <option value="1">福特</option>
+           <option value="2">大众</option>
+           <option value="3">现代</option>
+           <option value="4">别克</option>
+           <option value="5">奥迪</option>
+           <option value="6">雪佛兰</option>
+           <option value="7">丰田</option>
+
+
+        </select>
     </div>
+    <div class="form-group">
+        <label>汽车状态</label>
+        <br>
+        <input type="radio" class="form-control" value="1"  name = "carstatus"   placeholder="状态" >已售出
+        <input type="radio" class="form-control" value="2" name = "carstatus"  placeholder="状态">未售出
+
+
+    </div>
+
     <br>
     <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
 </form>
@@ -93,7 +114,7 @@
             toolbar: '#tabToolBar',   //  工具定义位置
             sidePagination: 'server',
             toolbar: '#toolbar',
-            pagination: true, //是否展示分页
+            pagination:true, //是否展示分页
             pageList: [2, 4, 8, 10],//分页组件
             pageNumber: 1,
             pageSize: 2,//默认每页条数
@@ -115,14 +136,17 @@
                     pageSize: params.pageSize,
                     sortName: params.sortName,
                     sortOrder: params.sortOrder,
-                    userName: $("#userName").val()
+                   // carstatus: $("#carstatus").val(),
+                    carstatus: $("input[name='carstatus']:checked").val(),
+                    carbrandid: $(".vv").val(),
+
 
                 };
                 return param;
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'carid', title: '用户id', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'carid', title: '汽车id', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'carbrandid', title: '汽车品牌', width: 300,
                     formatter: function (value,row,index){
                         if(value=="1"){
@@ -231,18 +255,34 @@
                         }
                     }
                 },
-                {field: 'carcolor', title: '汽车颜色', width: 300},
+                {field: 'carcolor', title: '汽车颜色', width: 300,
+                    formatter: function (value,row,index) {
+                        if (value == "1") {
+                            return "红色";
+                        }
+                        if (value == "2") {
+                            return "蓝色";
+                        }
+                        if (value == "3") {
+                            return "白色";
+                        }
+                        if (value == "4") {
+                            return "黑色";
+                        }
+                    }
+
+                },
                 {field: 'carck', title: '车况', width: 300,
                     formatter: function (value,row,index) {
                         if (value == "1") {
                             return "好";
                         }
-                        if (value == "1") {
+                        if (value == "2") {
                             return "正常";
                         }
-                        if (value == "1") {
+                        if (value == "3") {
                             return "一般";
-                        }if (value == "1") {
+                        }if (value == "4") {
                             return "事故车";
                         }
 
@@ -266,10 +306,14 @@
         });
     }
     function queryData(){
+       alert($(".vv").val())
+
         $("#dataGrid").bootstrapTable("refresh", {
             "query": {
 
-                "userName": $("#userName").val()
+                "carbrandid": $(".vv").val(),
+                "carstatus": $("input[name='carstatus']:checked").val()
+
             }
         });
 
@@ -296,7 +340,7 @@
         //打开新增弹框
         bootbox.dialog({
             title: '新增用户',
-            message: createAddContent("<%=basePath%>/user/toAddUserPage.do"),
+            message: createAddContent("../user/toAddUserPage.do"),
             closeButton: true,//是否显示关闭按钮
             buttons: {
                 "success": {
@@ -305,7 +349,7 @@
                     "callback": function () {
 
                         $.ajax({
-                            url: '<%=basePath%>/user/addUser.do',
+                            url: '../user/addUser.do',
                             type: 'post',
                             data: $("#formId").serialize(),
                             success: function () {

@@ -1,8 +1,9 @@
 package com.jk.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Car {
+public class Car implements Serializable {
     private Integer carid;
 
     private Integer 
@@ -23,7 +24,7 @@ carck;
     private Integer 
 cartypeid;
 
-    private String 
+    private Integer
 carcolor;
 
     private Integer 
@@ -115,11 +116,11 @@ createdate;
         this.cartypeid = cartypeid;
     }
 
-    public String getCarcolor() {
+    public Integer getCarcolor() {
         return carcolor;
     }
 
-    public void setCarcolor(String carcolor) {
+    public void setCarcolor(Integer carcolor) {
         this.carcolor = carcolor;
     }
 
