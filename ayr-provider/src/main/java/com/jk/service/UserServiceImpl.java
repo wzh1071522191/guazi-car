@@ -13,7 +13,6 @@ public class UserServiceImpl implements  UserService{
     public int queryPhone(String phone) {
        User reuser= userMapper.queryPhone(phone);
        if(reuser==null){
-
            return 0;
        }else{
            return 1;
