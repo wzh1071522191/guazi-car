@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.Mdao" >
+
+
+    <select id="querycar" resultType="Car"   parameterType="com.jk.util.ParameUtil" >
+        select *  from   t_car <include refid="ii"/>   limit #{pageNumber},#{pageSize}
+
+        <!--// c,car_type t where c.cartypeid=t.id and t.id=t.pid  -->
+
+     </select>
+
+    <select id="sumcount"  resultType="Integer"   >
+        select count(*) from  t_car  <include refid="ii"/>
+
+    </select>
+
+
+
+   <sql id="ii">
+<where>
+ 1=1
+<if test="carstatus!=null and carstatus!=0 ">
+    and carstatus=#{carstatus}
+</if>
+
+<if test="carbrandid!=null and carbrandid!=0 ">
+        and carbrandid=#{carbrandid}
+    </if>
+
+</where>
+   </sql>
+
+</mapper>
