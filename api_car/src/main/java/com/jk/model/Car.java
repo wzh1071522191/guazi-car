@@ -1,8 +1,9 @@
 package com.jk.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Car {
+public class Car implements Serializable {
     private Integer carid;
 
     private Integer 
