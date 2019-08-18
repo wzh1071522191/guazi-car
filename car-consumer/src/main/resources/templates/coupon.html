@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <!-- 引入bootstrap的css -->
     <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
@@ -15,7 +14,6 @@
     <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
     <!-- 引入fileinput的css -->
     <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
-
     <!-- 引入my97 -->
     <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
     <!-- 引入bootstrap的js-->
@@ -37,18 +35,15 @@
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 </head>
 <body>
+    <button type="button" class="btn btn-Warning btn-lg" onclick="addCoupon()">新增</button>
     <!--  表格 -->
-    <table id="dataGrid"></table>
+    <table id="dataTable"></table>
 </body>
 <script>
-    $(function(){
 
-        initDataGrid();
-    });
-    function initDataGrid() {
-        //创建bootstrapTable
-        $("#dataGrid").bootstrapTable({
-            url: "../emp/queryEmp",
+    $(function () {
+        $("#dataTable").bootstrapTable({
+            url: "../coupon/queryCoupon",
             method: 'post',
             striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
@@ -87,7 +82,7 @@
                     pageSize: params.pageSize,
                     sortName: params.sortName,
                     sortOrder: params.sortOrder
-                   // name: $("#name").val()
+                    // name: $("#name").val()
 
                 };
                 return param;
@@ -95,38 +90,67 @@
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
                 {field: 'id', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
-                {field: 'userName', title: '用户名', width: 300},
-                {field: 'userPwd', title: '密码', width: 300},
-                {field: 'createDate', title: '注册日期', width: 300},
-                {field: 'userStatus', title: '状态', width: 300,
-                    formatter:function (value, row, index) {
-                        if(value==0||value==null){return "正常";}
-                        if(value==1){return "异常";}
-                        if(value==2){return "申诉中,待审核";}
-                    }
-
-                },
+                {field: 'name', title: '优惠券名称', width: 300},
+                {field: 'startDate', title: '优惠起始日期', width: 300},
+                {field: 'endDate', title: '优惠结束日期', width: 300},
+                {field: 'cCount', title: '优惠券可用数量(单位:张)', width: 300},
                 {field: 'xxxx', title: '操作', width: 300,
                     formatter:function(value,row,index){
-                        //var id = JSON.stringify(row.id);
-                        return row.userStatus==2?"<button type='button' class='btn btn-info btn-lg' onmouseup='updateStatus("+row.id+")'>审核通过</button>":"";
-                        //return "<button type='button' class='btn btn-info btn-lg' onmouseup='updateDog("+row.id+")'>审核通过</button>";
+
                     }
                 }
 
             ]
         });
-    }
-    updateStatus=function (id) {
-        $.ajax({
-            url:"../emp/updateEmpStatus?id="+id,
-            type:"post",
-            success:function () {
-                location.href=location;
-                alert("审核已通过");
-            }
-        })
+    })
 
+    addCoupon=function(){
+        bootbox.dialog({
+            title: '新增',
+            message:createAddContent("../coupon/toAddCoupon"),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+
+
+                        $.ajax({
+                            url: '../coupon/addCoupon',
+                            type: 'post',
+                            data: $("#addForm").serialize(),
+                            success: function () {
+                                alert("新增成功");
+                                $('#dataGrid').bootstrapTable("refresh");
+                                //刷新表格
+                            }, error: function () {
+                                alert("新增失败");
+                            }
+                        });
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+
+                    }
+                }
+            }
+
+        });
+    }
+    var res;
+    createAddContent=function(url){
+        $.ajax({
+            url: url,
+            async: false,
+            success: function (data) {
+                res = data;
+            }
+        });
+        return res;
     }
 </script>
 </html>
