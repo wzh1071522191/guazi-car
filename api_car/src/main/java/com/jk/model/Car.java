@@ -1,5 +1,8 @@
 package com.jk.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,7 +28,10 @@ public class Car implements Serializable {
     //对应的客户id
     private Integer userid;
     //发布日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date createdate;
+    private Integer carsxj;
 
     private Integer carage;
 
@@ -52,6 +58,14 @@ public class Car implements Serializable {
     private Integer visitcarstatu;
     //仓库总数量临时
     private Integer cangkusum;
+
+    public Integer getCarsxj() {
+        return carsxj;
+    }
+
+    public void setCarsxj(Integer carsxj) {
+        this.carsxj = carsxj;
+    }
 
     public Integer getCangkusum() {
         return cangkusum;
