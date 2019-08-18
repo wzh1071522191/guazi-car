@@ -2,7 +2,7 @@ package com.jk.model;
 
 import java.io.Serializable;
 
-public class CarType implements Serializable {
+public class CarType  implements Serializable {
     private Integer id;
 
     private String typename;

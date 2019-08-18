@@ -4,37 +4,28 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Car implements Serializable {
+    //id
     private Integer carid;
-
-    private Integer 
-carbrandid;
-
-    private Date 
-cardate;
-
-    private Double
-carlc;
-
-    private Integer 
-carareaid;
-
-    private Integer 
-carck;
-
-    private Integer 
-cartypeid;
-
-    private Integer 
-carcolor;
-
-    private Integer 
-carstatus;
-
-    private Integer 
-userid;
-
-    private Date 
-createdate;
+    //品牌id
+    private Integer carbrandid;
+    //上牌时间
+    private Date cardate;
+    //汽车里程
+    private String carlc;
+    //汽车牌照地
+    private Integer carareaid;
+    //车况 一共有四种：1.好 2.正常 3.一般 4.事故车
+    private Integer carck;
+    //类型id
+    private Integer cartypeid;
+    // 颜色
+    private Integer carcolor;
+    //状态
+    private Integer carstatus;
+    //对应的客户id
+    private Integer userid;
+    //发布日期
+    private Date createdate;
 
     private Integer carage;
 
@@ -43,26 +34,32 @@ createdate;
     private Integer carpl;
 
     private Integer carranyou;
-
-    private Integer sellcarstatu;
-
+    //出售数量，下单成功后自动加所下单数量
+    private Integer sellcarcount;
+    //商品浏览量
+    private Integer carvolume;
+    //商品访客数
+    private Integer visitorsum;
+    //加购件数
+    private Integer purchasesum;
+    //1:已曝光 2:未曝光
     private Integer expocarstatu;
-
+   //1:已下单 2:未下单
     private Integer placecarstatu;
-
+   //1:已支付 3:支付中 2:未支付   默认是2未支付
     private Integer mentcarstatu;
-
+   //1:未访问 2:已访问   默认是1未访问
     private Integer visitcarstatu;
+    //仓库总数量临时
+    private Integer cangkusum;
 
-    public Integer getCartypesonid() {
-        return cartypesonid;
+    public Integer getCangkusum() {
+        return cangkusum;
     }
 
-    public void setCartypesonid(Integer cartypesonid) {
-        this.cartypesonid = cartypesonid;
+    public void setCangkusum(Integer cangkusum) {
+        this.cangkusum = cangkusum;
     }
-
-    private Integer cartypesonid;
 
     public Integer getCarid() {
         return carid;
@@ -72,121 +69,84 @@ createdate;
         this.carid = carid;
     }
 
-    public Integer getcarbrandid() {
-        return 
-carbrandid;
+    public Integer getCarbrandid() {
+        return carbrandid;
     }
 
-    public void setcarbrandid(Integer
-carbrandid) {
-        this.
-carbrandid = 
-carbrandid;
+    public void setCarbrandid(Integer carbrandid) {
+        this.carbrandid = carbrandid;
     }
 
-    public Date getcardate() {
-        return 
-cardate;
+    public Date getCardate() {
+        return cardate;
     }
 
-    public void setcardate(Date
-cardate) {
-        this.
-cardate = 
-cardate;
+    public void setCardate(Date cardate) {
+        this.cardate = cardate;
     }
 
-    public Double getcarlc() {
-        return 
-carlc;
+    public String getCarlc() {
+        return carlc;
     }
 
-    public void setCarlc(Double carlc) {
+    public void setCarlc(String carlc) {
         this.carlc = carlc;
     }
 
-    public Integer getcarareaid() {
-        return 
-carareaid;
+    public Integer getCarareaid() {
+        return carareaid;
     }
 
-    public void setcarareaid(Integer
-carareaid) {
-        this.
-carareaid = 
-carareaid;
+    public void setCarareaid(Integer carareaid) {
+        this.carareaid = carareaid;
     }
 
-    public Integer getcarck() {
-        return 
-carck;
+    public Integer getCarck() {
+        return carck;
     }
 
-    public void setcarck(Integer
-carck) {
-        this.
-carck = 
-carck;
+    public void setCarck(Integer carck) {
+        this.carck = carck;
     }
 
-    public Integer getcartypeid() {
-        return 
-cartypeid;
+    public Integer getCartypeid() {
+        return cartypeid;
     }
 
-    public void setcartypeid(Integer
-cartypeid) {
-        this.
-cartypeid = 
-cartypeid;
+    public void setCartypeid(Integer cartypeid) {
+        this.cartypeid = cartypeid;
     }
 
-    public Integer getcarcolor() {
-        return 
-carcolor;
+    public Integer getCarcolor() {
+        return carcolor;
     }
 
-    public void setcarcolor(Integer
-carcolor) {
-        this.
-carcolor = 
-carcolor;
+    public void setCarcolor(Integer carcolor) {
+        this.carcolor = carcolor;
     }
 
-    public Integer getcarstatus() {
-        return 
-carstatus;
+    public Integer getCarstatus() {
+        return carstatus;
     }
 
-    public void setcarstatus(Integer
-carstatus) {
-        this.
-carstatus = 
-carstatus;
+    public void setCarstatus(Integer carstatus) {
+        this.carstatus = carstatus;
     }
 
-    public Integer getuserid() {
-        return 
-userid;
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setuserid(Integer
-userid) {
-        this.
-userid = 
-userid;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
-    public Date getcreatedate() {
-        return 
-createdate;
+    public Date getCreatedate() {
+        return createdate;
     }
 
-    public void setcreatedate(Date
-createdate) {
-        this.
-createdate = 
-createdate;
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
     }
 
     public Integer getCarage() {
@@ -221,12 +181,36 @@ createdate;
         this.carranyou = carranyou;
     }
 
-    public Integer getSellcarstatu() {
-        return sellcarstatu;
+    public Integer getSellcarcount() {
+        return sellcarcount;
     }
 
-    public void setSellcarstatu(Integer sellcarstatu) {
-        this.sellcarstatu = sellcarstatu;
+    public void setSellcarcount(Integer sellcarcount) {
+        this.sellcarcount = sellcarcount;
+    }
+
+    public Integer getCarvolume() {
+        return carvolume;
+    }
+
+    public void setCarvolume(Integer carvolume) {
+        this.carvolume = carvolume;
+    }
+
+    public Integer getVisitorsum() {
+        return visitorsum;
+    }
+
+    public void setVisitorsum(Integer visitorsum) {
+        this.visitorsum = visitorsum;
+    }
+
+    public Integer getPurchasesum() {
+        return purchasesum;
+    }
+
+    public void setPurchasesum(Integer purchasesum) {
+        this.purchasesum = purchasesum;
     }
 
     public Integer getExpocarstatu() {
@@ -259,5 +243,35 @@ createdate;
 
     public void setVisitcarstatu(Integer visitcarstatu) {
         this.visitcarstatu = visitcarstatu;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carid=" + carid +
+                ", carbrandid=" + carbrandid +
+                ", cardate=" + cardate +
+                ", carlc='" + carlc + '\'' +
+                ", carareaid=" + carareaid +
+                ", carck=" + carck +
+                ", cartypeid=" + cartypeid +
+                ", carcolor=" + carcolor +
+                ", carstatus=" + carstatus +
+                ", userid=" + userid +
+                ", createdate=" + createdate +
+                ", carage=" + carage +
+                ", carlocation=" + carlocation +
+                ", carpl=" + carpl +
+                ", carranyou=" + carranyou +
+                ", sellcarcount=" + sellcarcount +
+                ", carvolume=" + carvolume +
+                ", visitorsum=" + visitorsum +
+                ", purchasesum=" + purchasesum +
+                ", expocarstatu=" + expocarstatu +
+                ", placecarstatu=" + placecarstatu +
+                ", mentcarstatu=" + mentcarstatu +
+                ", visitcarstatu=" + visitcarstatu +
+                ", cangkusum=" + cangkusum +
+                '}';
     }
 }

@@ -2,7 +2,7 @@ package com.jk.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User  implements Serializable {
     private Integer 
 userid;
 
