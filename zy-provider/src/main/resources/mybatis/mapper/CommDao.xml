@@ -2,76 +2,126 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.CommDao" >
  <select id="cha" resultType="com.jk.model.Order">
-     select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid
-     <if test="qian!=null and qian !=''">
-         and o.xdtime >=#{qian}
+     select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid
+     <if test="p.qian!=null and p.qian !=''">
+         and o.xdtime >=#{p.qian}
      </if>
-     <if test="ho !=null and ho !=''">
-         and o.xdtime &lt;=#{ho}
+     <if test="p.ho !=null and p.ho !=''">
+         and o.xdtime &lt;=#{p.ho}
      </if>
-     order by o.${sortName} ${sortOrder}
+          limit #{page},#{pageSize}
    </select>
     <select id="dai" resultType="com.jk.model.Order">
-    select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=1
-    <if test="qian!=null and qian !=''">
-        and o.xdtime >=#{qian}
-    </if>
-    <if test="ho !=null and ho !=''">
-        and o.xdtime &lt;=#{ho}
-    </if>
+    select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=1
+
+        limit #{page},#{pageSize}
 </select>
     <select id="fa" resultType="com.jk.model.Order">
-        select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=2
-        <if test="qian!=null and qian !=''">
-            and o.xdtime >=#{qian}
-        </if>
-        <if test="ho !=null and ho !=''">
-            and o.xdtime &lt;=#{ho}
-        </if>
+        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=2
+
+        limit #{page},#{pageSize}
     </select>
     <select id="yi" resultType="com.jk.model.Order">
-        select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=3
-        <if test="qian!=null and qian !=''">
-            and o.xdtime >=#{qian}
-        </if>
-        <if test="ho !=null and ho !=''">
-            and o.xdtime &lt;=#{ho}
-        </if>
+        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=3
+
+        limit #{page},#{pageSize}
     </select>
     <select id="wan" resultType="com.jk.model.Order">
-        select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=4
-        <if test="qian!=null and qian !=''">
-            and o.xdtime >=#{qian}
-        </if>
-        <if test="ho !=null and ho !=''">
-            and o.xdtime &lt;=#{ho}
-        </if>
+        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=4
+
+        limit #{page},#{pageSize}
     </select>
     <select id="guan" resultType="com.jk.model.Order">
-        select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=5
-        <if test="qian!=null and qian !=''">
-            and o.xdtime >=#{qian}
-        </if>
-        <if test="ho !=null and ho !=''">
-            and o.xdtime &lt;=#{ho}
-        </if>
+        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=5
+
+        limit #{page},#{pageSize}
     </select>
     <select id="tui" resultType="com.jk.model.Order">
-        select * from car_type a,t_str s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.id=o.userid and o.status=6
-        <if test="qian!=null and qian !=''">
-            and o.xdtime >=#{qian}
-        </if>
-        <if test="ho !=null and ho !=''">
-            and o.xdtime &lt;=#{ho}
-        </if>
+        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=6
+
+        limit #{page},#{pageSize}
     </select>
     <select id="xiang" resultType="com.jk.model.Details" >
         select * from car_type a,details d,orders o where a.id=o.carid and o.detaid=d.oid  and o.id=#{id}
     </select>
 
     <select id="kuan" resultType="com.jk.model.Refund" >
-    select * from refund r,car_type t,orders o where r.oid=o.id and r.carid=t.typename
-    <if test=""></if>
+        select * from refund r,car_type t where  r.carid=t.id
+
+    <if test="s.qian!=null and s.qian !=''">
+        and r.dtime >=#{s.qian}
+    </if>
+    <if test="s.ho!=null and s.ho!=''">
+        and r.dtime &lt;=#{s.ho}
+    </if>
+    <if test="s.fang!=null and s.fang!=0">
+
+        and r.fangshi=#{s.fang}
+    </if>
+    <if test="s.zhuang!=null and s.zhuang!=0">
+
+        and r.status=#{s.zhuang}
+    </if>
+   <if test="s.kuan!=null and s.kuan!=0">
+       and r.zhuangtai=#{s.kuan}
+   </if>
+   <if test="s.re!=null and s.re!=0">
+       and r.reason=#{s.re}
+   </if>
+        limit #{page},#{pageSize}
+    </select>
+    <select id="czong" resultType="java.lang.Integer">
+  select count(1) from  car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid
+    </select>
+    <select id="dzong" resultType="java.lang.Integer">
+         select count(1) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=1
+    </select>
+    <select id="fzong" resultType="java.lang.Integer">
+
+             select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=2
+    </select>
+    <select id="yzong" resultType="java.lang.Integer">
+
+         select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=3
+    </select>
+    <select id="wzong" resultType="java.lang.Integer">
+            select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=4
+    </select>
+    <select id="gzong" resultType="java.lang.Integer">
+           select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=5
+    </select>
+    <select id="tzong" resultType="java.lang.Integer">
+
+          select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=6
+    </select>
+    <select id="kzong"  resultType="java.lang.Integer">
+     select count(*) from refund r,car_type t where  r.carid=t.id
 
     </select>
+  <update id="tong" parameterType="java.lang.Integer">
+    update refund  set zhuangtai=5 where id=#{id}
+  </update>
+    <update id="jj" parameterType="java.lang.Integer">
+        update refund  set zhuangtai=6 where id=#{id}
+    </update>
+    <select id="pzong" resultType="java.lang.Integer">
+    select count(*) from t_user u,comment c,car_type t where c.userid=u.userid  and c.carid=t.id
+    </select>
+    <select id="ping" resultType="com.jk.model.Comment">
+        select * from t_user u,comment c,car_type t where c.userid=u.userid  and c.carid=t.id
+
+        <if test="a.qian!=null and a.qian !=''">
+            and c.ptime >=#{a.qian}
+        </if>
+        <if test="a.ho !=null and a.ho !=''">
+            and c.ptime &lt;=#{a.ho}
+        </if>
+        <if test="a.kuan!=null and a.kuan!=0">
+            and c.status=#{a.kuan}
+        </if>
+     limit #{page},#{pageSize}
+    </select>
+    <insert id="xin" parameterType="com.jk.model.Order">
+         insert  into orders(id,price,cunmber,xdtime,status,shprice) values(#{id},#{carid},#{price},#{cunmber},#{xdtime},#{userid},#{status},#{shprice},#{detaid})
+    </insert>
 </mapper>

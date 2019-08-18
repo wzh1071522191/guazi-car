@@ -6,12 +6,51 @@ public class ParameUtil implements Serializable {
     private Integer pageNumber;
     private Integer pageSize;
 	private String sortName;      //排序字段
-	private String sortOrder;    //正序或倒序
+	private String sortOrder;    //正序或倒,+-序
     private String qian;
     private String ho;
     private Integer id;
+    private Integer fang;
+	private Integer zhuang;
+	private Integer kuan;
+	private Integer re;
+
+
 
     private Integer ordername;
+
+	public Integer getFang() {
+		return fang;
+	}
+
+	public void setFang(Integer fang) {
+		this.fang = fang;
+	}
+
+	public Integer getZhuang() {
+		return zhuang;
+	}
+
+	public void setZhuang(Integer zhuang) {
+		this.zhuang = zhuang;
+	}
+
+	public Integer getKuan() {
+		return kuan;
+	}
+
+	public void setKuan(Integer kuan) {
+		this.kuan = kuan;
+	}
+
+	public Integer getRe() {
+		return re;
+	}
+
+	public void setRe(Integer re) {
+		this.re = re;
+	}
+
 	public Integer getPageNumber() {
 		return pageNumber;
 	}

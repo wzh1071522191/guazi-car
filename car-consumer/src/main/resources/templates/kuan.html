@@ -45,40 +45,50 @@
 </head>
 <body>
 <form id="tjfrom" class="form-inline">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <label>日期区间</label>
-                <!--指定 date标记-->
 
-                <input type='date' name="qian" id="qian" class="form-control" />---<input type='date' name="ho" id="ho" class="form-control" />
 
-                <!--  <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>-->
-                <!--</span>-->
+    申请时间<input type='date' name="qian" id="qian" class="form-control" />---<input type='date' name="ho" id="ho" class="form-control" />
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 退款方式<select class="form-control" name="fangshi" id="fang">
+        <option value="0">请选择</option>
+        <option value="1">仅退款</option>
+        <option value="2">退货退款</option>
+    </select>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;发货状态<select class="form-control" name="status" id="zhuang">
+    <option value="0">请选择</option>
+    <option value="1">已发货</option>
+    <option value="2">未发货</option>
 
-            </div>
-        </div>
-    </div>
-    <!-- <div class="row">
-         <div class='col-sm-6'>
-             <div class="form-group">
-                 <label></label>
-                 &lt;!&ndash;指定 date标记&ndash;&gt;
-                 <div class='input-group date' id='datetimepicker1'>
+</select>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;退款状态<select class="form-control" name="zhuangtai" id="kuan">
+    <option value="0">请选择</option>
+    <option value="1">退款待处理</option>
+    <option value="2">已拒绝退款</option>
+    <option value="3">待买家发货</option>
+    <option value="4">待卖家收货</option>
+    <option value="5">退款成功</option>
+    <option value="6">退款关闭</option>
 
-                  &lt;!&ndash;   <span class="input-group-addon">
-                     <span class="glyphicon glyphicon-calendar"></span>
-                 </span>&ndash;&gt;
-                 </div>
-             </div>
-         </div>
-     </div>-->
+
+</select>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  原因<select class="form-control" name="reason" id="re">
+    <option value="0">请选择</option>
+    <option value="1">不喜欢/不想要</option>
+    <option value="2">未按约定时间发货</option>
+    <option value="3">包装/商品破损</option>
+    <option value="4">快递/物流无跟踪记录</option>
+    <option value="5">退运费</option>
+    <option value="6">货物破损已拒签</option>
+    <option value="7">快递/物流一直未送到</option>
+
+</select>
+
+
+
     <button type="button" class="btn btn-success" onclick="sousuo()">搜索</button>
 </form>
 <table id="dataGrid"></table>
 </body>
-<script type="text/javascript">
+<script>
 
     $(function(){
 
@@ -129,22 +139,103 @@
                     pageSize: params.pageSize,
                     qian: $("#qian").val(),
                     ho: $("#ho").val(),
+                    fang:$("#fang").val(),
+                    zhuang:$("#zhuang").val(),
+                     kuan:$("#kuan").val(),
+                    re:$("re").val(),
                 };
                 return param;
             },
-            columns: [
+            columns:[
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'id', title: '退款编号', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'typename', title: '汽车名称', width: 300},
-                {field: 'price', title: '单价', width: 300},
-                {field: 'cunmber', title: '数量', width: 300,},
-                {field: 'xdtime', title: '下单时间', width: 300},
-                {field: 'username', title: '买家', width: 300},
-                {field: 'status', title: '交易状态', width: 300},
-                {field: 'shprice', title: '实收金额', width: 300},
+                {field: 'tkprice', title: '退款金额', width: 300},
+                {field: 'status', title: '发货状态', width: 300,formatter:function(value,row,indes){
+                        if(value==1){
+                            return "已发货";
+                        }else if(value==2){
+                            return "未发货";
+                        }
+
+                    }},
+                {field: 'fangshi', title: '退款方式', width: 300,formatter:function(value,row,indes){
+                        if(value==1){
+                            return "仅退款";
+                        }else if(value==2){
+                            return "退货退款";
+                        }
+
+                    }},
+                {field: 'reason', title: '原因', width: 300,formatter:function(value,row,indes){
+                        if(value==1){
+                            return "不喜欢/不想要";
+                        }else if(value==2){
+                            return "未按约定时间发货";
+                        }
+                        else if(value==3){
+                            return "包装/商品破损";
+                        }
+                        else if(value==4){
+                            return "快递/物流无跟踪记录";
+                        }
+                        else if(value==5){
+                            return "退运费";
+                        }
+                        else if(value==6){
+                            return "货物破损已拒签";
+                        }
+                        else if(value==7){
+                            return "快递/物流一直未送到";
+                        }
+
+                    }},
+                {field: 'dtime', title: '申请时间', width: 300},
+                {field: 'zhuangtai', title: '退款状态', width: 300,formatter:function(value,row,indes){
+                        if(value==1){
+                            return "退款待处理";
+                        }else if(value==2){
+                            return "已拒绝退款";
+                        }
+                        else if(value==3){
+                            return "待买家发货";
+                        }
+                        else if(value==4){
+                            return "待卖家收货";
+                        }
+                        else if(value==5){
+                            return "退款成功";
+                        }
+                        else if(value==6){
+                            return "退款关闭";
+                        }
+
+
+                    }},
+                {field: 'ss', title: '操作', width: 300,
+                    formatter:function(value,row,index){
+                    if (row.zhuangtai==1){
+                        var  st = '<button type="button" class="btn btn-warning" onclick="tongyi(1,'+row.id+')" >同意</button> &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-warning" onclick="tongyi(2,'+row.id+')" >拒绝</button>';
+                        return  st;
+                    }
+                    else if(row.zhuangtai==6){
+                        return  "已拒绝";
+                    }else if(row.zhuangtai==5){
+                        return  "已同意";
+
+                    }else if(row.zhuangtai==3){
+                        return  "已同意1";
+                    }
+                    else if(row.zhuangtai==4){
+                        return  "已收货";
+                    }else if(row.zhuangtai==2){
+                        return  "已拒绝1";
+                    }
 
 
 
+                    }
+                    },
             ]
         });
 
@@ -164,5 +255,39 @@
             });
         });*/
 </script>
+  <script>
+      function tongyi(sum,id){
+          alert(sum);
+          alert(id);
 
+        $.ajax({
+            url:"../comm/tong",
+            type:"post",
+            data:{sum:sum,id:id},
+        success:function(){
+
+         location.href=location;
+        },
+            error:function(){
+                alert("c")
+            }
+        })
+      }
+
+      //条件查询
+      function sousuo() {
+
+          $("#dataGrid").bootstrapTable("refresh", {
+              "query" : {
+                  "qian" : $("#qian").val(),
+                  "ho" : $("#ho").val(),
+                  "fang":$("#fang").val(),
+                  "zhuang":$("#zhuang").val(),
+                  "kuan":$("#kuan").val(),
+                  "re":$("re").val(),
+              }
+          });
+
+      }
+  </script>
 </html>
