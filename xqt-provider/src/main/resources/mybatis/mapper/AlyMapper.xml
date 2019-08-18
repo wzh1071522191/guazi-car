@@ -1,22 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.AlyMapper" >
+<!--查询所有商品分析的数据带时间区间条查-->
+<select id="findAnaList" resultType="com.jk.model.Car" parameterType="com.jk.model.Car">
+    select
+		group_concat(tc.sellcarcount) as sellcarcount,
+		tc.carvolume as carvolume,
+		tc.visitorsum as visitorsum,
+		tc.purchasesum as purchasesum,
+		(select count(tc.carstatus) from t_car tc) as cangkucount,
+		(select count(tc.visitcarstatu) from t_car tc where tc.visitcarstatu = 1) as visitcount,
+		(select count(tc.expocarstatu) from t_car tc where tc.expocarstatu = 1) as expocarcount,
+		(select count(tc.placecarstatu) from t_car tc where tc.placecarstatu = 1) as placecarcount,
+		(select count(tc.mentcarstatu) from t_car tc where tc.mentcarstatu = 1) as mentcarcount
 
-	<select id="queryCarAnalysiCount" resultType="com.jk.model.Car">
-	select
-		tc.sellcarcount  sellcarcount,
-		tc.carvolume   carvolume,
-		tc.visitorsum  visitorsum,
-		tc.purchasesum  purchasesum,
+    from t_car tc
+</select>
+<!--查询今天商品分析的数据-->
+	<select id="queryTodayAnaList" resultType="com.jk.model.Car" parameterType="com.jk.model.Car">
+    select
+		group_concat(tc.sellcarcount) as sellcarcount,
+		tc.carvolume carvolume,
+		tc.visitorsum visitorsum,
+		tc.purchasesum purchasesum,
+		(select count(tc.carstatus) from t_car tc)  cangkucount,
+		(select count(tc.visitcarstatu) from t_car tc where tc.visitcarstatu = 1)  visitcount,
+		(select count(tc.expocarstatu) from t_car tc where tc.expocarstatu = 1)  expocarcount,
+		(select count(tc.placecarstatu) from t_car tc where tc.placecarstatu = 1)  placecarcount,
+		(select count(tc.mentcarstatu) from t_car tc where tc.mentcarstatu = 1)  mentcarcount
+    from t_car tc where to_days(tc.cardate) = to_days(now())
+	</select>
+<!--查询今天商品分析的数据-->
+	<select id="queryYesterdayAnaList" resultType="com.jk.model.Car" parameterType="com.jk.model.Car">
+    select
+
+		group_concat(tc.sellcarcount) as sellcarcount,
+		tc.carvolume carvolume,
+		tc.visitorsum visitorsum,
+		tc.purchasesum purchasesum,
 		(select count(tc.carstatus) from t_car tc)  cangkucount,
 		(select count(tc.visitcarstatu) from t_car tc where tc.visitcarstatu = 1)  visitcount,
 		(select count(tc.expocarstatu) from t_car tc where tc.expocarstatu = 1)  expocarcount,
 		(select count(tc.placecarstatu) from t_car tc where tc.placecarstatu = 1)  placecarcount,
 		(select count(tc.mentcarstatu) from t_car tc where tc.mentcarstatu = 1)  mentcarcount
 
-    from t_car tc
+    from t_car tc where TO_DAYS(NOW()) - TO_DAYS(tc.cardate) = 1
+	</select>
+	<!--最近7天-->
+	<select id="querySevendaysAnaList" resultType="com.jk.model.Car" parameterType="com.jk.model.Car">
+		select
+		group_concat(tc.sellcarcount) as sellcarcount,
+		tc.carvolume carvolume,
+		tc.visitorsum visitorsum,
+		tc.purchasesum purchasesum,
+		(select count(tc.carstatus) from t_car tc)  cangkucount,
+		(select count(tc.visitcarstatu) from t_car tc where tc.visitcarstatu = 1)  visitcount,
+		(select count(tc.expocarstatu) from t_car tc where tc.expocarstatu = 1)  expocarcount,
+		(select count(tc.placecarstatu) from t_car tc where tc.placecarstatu = 1)  placecarcount,
+		(select count(tc.mentcarstatu) from t_car tc where tc.mentcarstatu = 1)  mentcarcount
+
+		from t_car tc where DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt; date(tc.cardate)
+	</select>
+	<!--最近30天-->
+	<select id="queryThirtyAnaList" resultType="com.jk.model.Car" parameterType="com.jk.model.Car">
+		select
+		group_concat(tc.sellcarcount) as sellcarcount,
+		tc.carvolume carvolume,
+		tc.visitorsum visitorsum,
+		tc.purchasesum purchasesum,
+		(select count(tc.carstatus) from t_car tc)  cangkucount,
+		(select count(tc.visitcarstatu) from t_car tc where tc.visitcarstatu = 1)  visitcount,
+		(select count(tc.expocarstatu) from t_car tc where tc.expocarstatu = 1)  expocarcount,
+		(select count(tc.placecarstatu) from t_car tc where tc.placecarstatu = 1)  placecarcount,
+		(select count(tc.mentcarstatu) from t_car tc where tc.mentcarstatu = 1)  mentcarcount
+
+		from t_car tc where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt; date(tc.cardate)
 	</select>
 
-
-
+	<select id="queryAnalyXian" resultType="java.util.Map">
+      select count(*) 数量,DATE_FORMAT(cardate,'%Y') 年份 from t_car GROUP BY DATE_FORMAT(cardate,'%Y')
+    </select>
 </mapper>

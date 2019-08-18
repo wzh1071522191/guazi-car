@@ -7,5 +7,15 @@ import java.util.Map;
 
 public interface AlyMapper {
 
-    List<Car> queryCarAnalysiCount();
+    List<Car> findAnaList(Car car);
+
+    List<Car> queryTodayAnaList(Car car);
+
+    List<Car> queryYesterdayAnaList(Car car);
+
+    List<Car> querySevendaysAnaList(Car car);
+
+    List<Car> queryThirtyAnaList(Car car);
+
+    List<Map<String, Object>> queryAnalyXian();
 }

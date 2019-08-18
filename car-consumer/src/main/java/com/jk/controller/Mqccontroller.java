@@ -1,18 +1,13 @@
 package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jk.model.Car;
 import com.jk.service.Mservice;
-import com.jk.util.DataGridResult;
-import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
