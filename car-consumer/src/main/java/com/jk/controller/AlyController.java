@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/analysis")
@@ -19,7 +20,7 @@ public class AlyController {
     // 求出出售的商品数 仓库的商品数量  被访问的商品数 商品的曝光数 商品浏览量 商品数访客数 加购件数 下单数  支付数
     @RequestMapping("queryCarAnalysiCount")
     @ResponseBody
-    public List<Car> queryCarAnalysiCount(){
+    public Map queryCarAnalysiCount(){
 
         return alyService.queryCarAnalysiCount();
     }

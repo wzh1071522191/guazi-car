@@ -3,7 +3,18 @@
 <mapper namespace="com.jk.dao.AlyMapper" >
 
 	<select id="queryCarAnalysiCount" resultType="com.jk.model.Car">
-		select * from t_car tc
+	select
+		tc.sellcarcount  sellcarcount,
+		tc.carvolume   carvolume,
+		tc.visitorsum  visitorsum,
+		tc.purchasesum  purchasesum,
+		(select count(tc.carstatus) from t_car tc)  cangkucount,
+		(select count(tc.visitcarstatu) from t_car tc where tc.visitcarstatu = 1)  visitcount,
+		(select count(tc.expocarstatu) from t_car tc where tc.expocarstatu = 1)  expocarcount,
+		(select count(tc.placecarstatu) from t_car tc where tc.placecarstatu = 1)  placecarcount,
+		(select count(tc.mentcarstatu) from t_car tc where tc.mentcarstatu = 1)  mentcarcount
+
+    from t_car tc
 	</select>
 
 

@@ -53,13 +53,16 @@ public class Car implements Serializable {
     //仓库总数量临时
     private Integer cangkusum;
 
-    public Integer getCangkusum() {
-        return cangkusum;
-    }
+    private Integer cangkucount;
 
-    public void setCangkusum(Integer cangkusum) {
-        this.cangkusum = cangkusum;
-    }
+    private Integer visitcount;
+
+    private Integer expocarcount;
+
+    private Integer placecarcount;
+
+    private Integer mentcarcount;
+
 
     public Integer getCarid() {
         return carid;
@@ -245,6 +248,54 @@ public class Car implements Serializable {
         this.visitcarstatu = visitcarstatu;
     }
 
+    public Integer getCangkusum() {
+        return cangkusum;
+    }
+
+    public void setCangkusum(Integer cangkusum) {
+        this.cangkusum = cangkusum;
+    }
+
+    public Integer getCangkucount() {
+        return cangkucount;
+    }
+
+    public void setCangkucount(Integer cangkucount) {
+        this.cangkucount = cangkucount;
+    }
+
+    public Integer getVisitcount() {
+        return visitcount;
+    }
+
+    public void setVisitcount(Integer visitcount) {
+        this.visitcount = visitcount;
+    }
+
+    public Integer getExpocarcount() {
+        return expocarcount;
+    }
+
+    public void setExpocarcount(Integer expocarcount) {
+        this.expocarcount = expocarcount;
+    }
+
+    public Integer getPlacecarcount() {
+        return placecarcount;
+    }
+
+    public void setPlacecarcount(Integer placecarcount) {
+        this.placecarcount = placecarcount;
+    }
+
+    public Integer getMentcarcount() {
+        return mentcarcount;
+    }
+
+    public void setMentcarcount(Integer mentcarcount) {
+        this.mentcarcount = mentcarcount;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
@@ -272,6 +323,11 @@ public class Car implements Serializable {
                 ", mentcarstatu=" + mentcarstatu +
                 ", visitcarstatu=" + visitcarstatu +
                 ", cangkusum=" + cangkusum +
+                ", cangkucount=" + cangkucount +
+                ", visitcount=" + visitcount +
+                ", expocarcount=" + expocarcount +
+                ", placecarcount=" + placecarcount +
+                ", mentcarcount=" + mentcarcount +
                 '}';
     }
 }

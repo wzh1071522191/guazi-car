@@ -5,7 +5,9 @@ import com.jk.dao.AlyMapper;
 import com.jk.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AlyServiceImpl implements AlyService{
@@ -13,7 +15,11 @@ public class AlyServiceImpl implements AlyService{
     private AlyMapper alyMapper;
 
     @Override
-    public List<Car> queryCarAnalysiCount() {
-        return alyMapper.queryCarAnalysiCount();
+    public Map queryCarAnalysiCount() {
+        Map<String, Object> map = new HashMap<>();
+        List<Car> cars = alyMapper.queryCarAnalysiCount();
+        map.put("total",cars);
+        System.out.println(map);
+        return map;
     }
 }
