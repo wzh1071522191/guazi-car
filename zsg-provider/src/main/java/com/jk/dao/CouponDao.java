@@ -16,15 +16,15 @@ import java.util.List;
  */
 public interface CouponDao {
 
-    @Select("select count(*) from coupon ")
+    @Select("SELECT  COUNT(*) FROM (select * from coupon c GROUP BY c.name, c.startDate) a")
     Integer queryCountCoupon();
 
-    @Select("select * from coupon limit #{pageNumber},#{pageSize}")
+    @Select("SELECT a.name,COUNT(*) cCount,a.startDate,a.endDate FROM (select * from coupon c) a GROUP BY a.startDate,a.name limit #{pageNumber},#{pageSize}")
     List<Coupon> queryListCoupon(ParameUtil pu);
 
-    @Select("select * from coupon")
+    @Select("select * from coupon GROUP BY name")
     List<Coupon> queryType();
 
-    @Insert("insert into coupon(name,startDate,endDate,cCount) values(#{name},#{startDate},#{endDate},#{cCount})")
-    void addCoupon(Coupon c);
+
+    void addCoupon(List<Coupon> list);
 }

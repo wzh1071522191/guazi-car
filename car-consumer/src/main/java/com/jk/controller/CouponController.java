@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -76,6 +77,11 @@ public class CouponController {
     @RequestMapping("addCoupon")
     @ResponseBody
     public void addCoupon(Coupon c){
-        couponService.addCoupon(c);
+        List<Coupon> list=new ArrayList<Coupon>();
+        for (int i = 0; i < c.getcCount(); i++) {
+            System.out.println("线程名"+i+":"+Thread.currentThread().getName());
+            list.add(c);
+        }
+        couponService.addCoupon(list);
     }
 }
