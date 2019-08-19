@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.text.Format;
 import java.util.Date;
 
 public class Car implements Serializable {
@@ -13,7 +12,6 @@ public class Car implements Serializable {
     //品牌id
     private Integer carbrandid;
     //上牌时间
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date cardate;
     //汽车里程
     private String carlc;
@@ -30,7 +28,10 @@ public class Car implements Serializable {
     //对应的客户id
     private Integer userid;
     //发布日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date createdate;
+    private Integer carsxj;
 
     private Integer carage;
 
@@ -39,88 +40,39 @@ public class Car implements Serializable {
     private Integer carpl;
 
     private Integer carranyou;
+    //出售数量，下单成功后自动加所下单数量
+    private Integer sellcarcount;
+    //商品浏览量
+    private Integer carvolume;
+    //商品访客数
+    private Integer visitorsum;
+    //加购件数
+    private Integer purchasesum;
+    //1:已曝光 2:未曝光
+    private Integer expocarstatu;
+   //1:已下单 2:未下单
+    private Integer placecarstatu;
+   //1:已支付 3:支付中 2:未支付   默认是2未支付
+    private Integer mentcarstatu;
+   //1:未访问 2:已访问   默认是1未访问
+    private Integer visitcarstatu;
+    //仓库总数量临时
+    private Integer cangkusum;
 
-
-    //商品分析
-    private Integer expocarstatu;//1:已曝光 2:未曝光
-    private Integer placecarstatu;//1:已下单 2:未下单
-    private Integer mentcarstatu;//1:已支付 3:支付中 2:未支付   默认是2未支付
-    private Integer visitcarstatu;// 1:未访问 2:已访问   默认是1未访问
-    private Integer sellcarcount;//出售数量，下单成功后自动加所下单数量
-    private Integer carvolume;// 商品浏览量
-    private Integer visitorsum;//商品访客数
-    private Integer purchasesum;//加购件数
-    //临时字段--
-    private Integer cangkucount;//仓库商品数
-    private Integer visitcount;//被访问总数
-    private Integer expocarcount;//曝光总数
-    private Integer placecarcount;//下单总数
-    private Integer mentcarcount;//支付总数
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "carid=" + carid +
-                ", carbrandid=" + carbrandid +
-                ", cardate=" + cardate +
-                ", carlc='" + carlc + '\'' +
-                ", carareaid=" + carareaid +
-                ", carck=" + carck +
-                ", cartypeid=" + cartypeid +
-                ", carcolor=" + carcolor +
-                ", carstatus=" + carstatus +
-                ", userid=" + userid +
-                ", createdate=" + createdate +
-                ", carage=" + carage +
-                ", carlocation=" + carlocation +
-                ", carpl=" + carpl +
-                ", carranyou=" + carranyou +
-                ", expocarstatu=" + expocarstatu +
-                ", placecarstatu=" + placecarstatu +
-                ", mentcarstatu=" + mentcarstatu +
-                ", visitcarstatu=" + visitcarstatu +
-                ", sellcarcount=" + sellcarcount +
-                ", carvolume=" + carvolume +
-                ", visitorsum=" + visitorsum +
-                ", purchasesum=" + purchasesum +
-                ", cangkucount=" + cangkucount +
-                ", visitcount=" + visitcount +
-                ", expocarcount=" + expocarcount +
-                ", placecarcount=" + placecarcount +
-                ", mentcarcount=" + mentcarcount +
-                '}';
+    public Integer getCarsxj() {
+        return carsxj;
     }
 
-    public Integer getVisitcount() {
-        return visitcount;
+    public void setCarsxj(Integer carsxj) {
+        this.carsxj = carsxj;
     }
 
-    public void setVisitcount(Integer visitcount) {
-        this.visitcount = visitcount;
+    public Integer getCangkusum() {
+        return cangkusum;
     }
 
-    public Integer getExpocarcount() {
-        return expocarcount;
-    }
-
-    public void setExpocarcount(Integer expocarcount) {
-        this.expocarcount = expocarcount;
-    }
-
-    public Integer getPlacecarcount() {
-        return placecarcount;
-    }
-
-    public void setPlacecarcount(Integer placecarcount) {
-        this.placecarcount = placecarcount;
-    }
-
-    public Integer getMentcarcount() {
-        return mentcarcount;
-    }
-
-    public void setMentcarcount(Integer mentcarcount) {
-        this.mentcarcount = mentcarcount;
+    public void setCangkusum(Integer cangkusum) {
+        this.cangkusum = cangkusum;
     }
 
     public Integer getCarid() {
@@ -243,38 +195,6 @@ public class Car implements Serializable {
         this.carranyou = carranyou;
     }
 
-    public Integer getExpocarstatu() {
-        return expocarstatu;
-    }
-
-    public void setExpocarstatu(Integer expocarstatu) {
-        this.expocarstatu = expocarstatu;
-    }
-
-    public Integer getPlacecarstatu() {
-        return placecarstatu;
-    }
-
-    public void setPlacecarstatu(Integer placecarstatu) {
-        this.placecarstatu = placecarstatu;
-    }
-
-    public Integer getMentcarstatu() {
-        return mentcarstatu;
-    }
-
-    public void setMentcarstatu(Integer mentcarstatu) {
-        this.mentcarstatu = mentcarstatu;
-    }
-
-    public Integer getVisitcarstatu() {
-        return visitcarstatu;
-    }
-
-    public void setVisitcarstatu(Integer visitcarstatu) {
-        this.visitcarstatu = visitcarstatu;
-    }
-
     public Integer getSellcarcount() {
         return sellcarcount;
     }
@@ -307,12 +227,65 @@ public class Car implements Serializable {
         this.purchasesum = purchasesum;
     }
 
-    public Integer getCangkucount() {
-        return cangkucount;
+    public Integer getExpocarstatu() {
+        return expocarstatu;
     }
 
-    public void setCangkucount(Integer cangkucount) {
-        this.cangkucount = cangkucount;
+    public void setExpocarstatu(Integer expocarstatu) {
+        this.expocarstatu = expocarstatu;
     }
 
+    public Integer getPlacecarstatu() {
+        return placecarstatu;
+    }
+
+    public void setPlacecarstatu(Integer placecarstatu) {
+        this.placecarstatu = placecarstatu;
+    }
+
+    public Integer getMentcarstatu() {
+        return mentcarstatu;
+    }
+
+    public void setMentcarstatu(Integer mentcarstatu) {
+        this.mentcarstatu = mentcarstatu;
+    }
+
+    public Integer getVisitcarstatu() {
+        return visitcarstatu;
+    }
+
+    public void setVisitcarstatu(Integer visitcarstatu) {
+        this.visitcarstatu = visitcarstatu;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carid=" + carid +
+                ", carbrandid=" + carbrandid +
+                ", cardate=" + cardate +
+                ", carlc='" + carlc + '\'' +
+                ", carareaid=" + carareaid +
+                ", carck=" + carck +
+                ", cartypeid=" + cartypeid +
+                ", carcolor=" + carcolor +
+                ", carstatus=" + carstatus +
+                ", userid=" + userid +
+                ", createdate=" + createdate +
+                ", carage=" + carage +
+                ", carlocation=" + carlocation +
+                ", carpl=" + carpl +
+                ", carranyou=" + carranyou +
+                ", sellcarcount=" + sellcarcount +
+                ", carvolume=" + carvolume +
+                ", visitorsum=" + visitorsum +
+                ", purchasesum=" + purchasesum +
+                ", expocarstatu=" + expocarstatu +
+                ", placecarstatu=" + placecarstatu +
+                ", mentcarstatu=" + mentcarstatu +
+                ", visitcarstatu=" + visitcarstatu +
+                ", cangkusum=" + cangkusum +
+                '}';
+    }
 }

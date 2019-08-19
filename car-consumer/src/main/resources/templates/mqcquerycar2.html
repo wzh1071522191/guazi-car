@@ -53,9 +53,7 @@
 
 </head>
 <body>
-<button type="button"  class="btn btn-info btn-lg" onclick="addcar()">发布商品</button>
-
-<button type="button"  class="btn btn-info btn-lg" onclick="kc()">库存</button>
+<button type="button"  class="btn btn-info btn-lg" onclick="kc()">商品展示</button>
 
 <button type="button"  class="btn btn-info btn-lg" onclick="deleteUserById()">批量删除</button>
 
@@ -63,7 +61,7 @@
     <div class="form-group">
         <label>汽车名字</label>
         <br>
-       <select name="id"   id="carbrandid" class="vv"></select>
+        <select name="id"   id="carbrandid" class="vv"></select>
 
 
     </div>
@@ -86,7 +84,7 @@
 <script type="text/javascript">
     //库存
     function kc(){
-     location.href="../mqc/ck";
+        location.href="../mqc/query";
 
     }
 
@@ -100,18 +98,18 @@
     //查类
     function  querytype(){
         $.ajax({
-          url:"../mqc/querytype",
+            url:"../mqc/querytype",
             success:function (data){
 
-              var op="<option value='0'>请选择</option>";
-              for(var i=0;i<data.length;i++){
-                  op+="<option value='"+data[i].id+"'>"+data[i].typename+"</option>";
-              }
+                var op="<option value='0'>请选择</option>";
+                for(var i=0;i<data.length;i++){
+                    op+="<option value='"+data[i].id+"'>"+data[i].typename+"</option>";
+                }
 
-              $("#carbrandid").html(op)
+                $("#carbrandid").html(op)
             },
             error:function(){
-              alert("抓紧找后台")
+                alert("抓紧找后台")
             }
         })
 
@@ -130,7 +128,7 @@
 
 
         $("#dataGrid").bootstrapTable({
-            url: "../mqc/querycar",
+            url: "../mqc/querycar2",
             method: 'post',
             striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
@@ -169,7 +167,7 @@
                     pageSize: params.pageSize,
                     sortName: params.sortName,
                     sortOrder: params.sortOrder,
-                   // carstatus: $("#carstatus").val(),
+                    // carstatus: $("#carstatus").val(),
                     carstatus: $("input[name='carstatus']:checked").val(),
                     carbrandid: $(".vv").val(),
 
@@ -251,8 +249,7 @@
                         }
 
                     }
-            },
-
+                },
                 {field: 'carstatus', title: '状态', width: 300,
                     formatter: function (value,row,index) {
                         if (value == "1") {
@@ -265,14 +262,13 @@
                 },
 
 
-
                 {field: 'createdate', title: '出厂日期', width: 300},
                 {
                     field: 'XXX', title: '操作', width: 300,
                     formatter: function (value, row, index) {
 
-                        return  "<a href='javascript:updatee(&quot;" + row.carid + "&quot;)'>下架</a>";
-//+"      "+"<a href='javascript:updatecar(&quot;" + row.carid + "&quot;)'>修改</a>"
+                        return  "<a href='javascript:updatee(&quot;" + row.carid + "&quot;)'>上架</a>";
+
                     }
 
 
@@ -280,65 +276,6 @@
             ]
         });
     }
-
-
-    //修改
-
-    function updatecar(id){
-        //打开新增弹框
-        bootbox.dialog({
-            title: '修改用户',
-            message: createAddContent("../mqc/toup?id="+id),
-            closeButton: true,//是否显示关闭按钮
-            buttons: {
-                "success": {
-                    "label": "<i class='icon-ok'></i> 保存",
-                    "className": "btn-sm btn-success",
-                    "callback": function () {
-
-                        $.ajax({
-                            url: '../mqc/updatecar',
-                            type: 'post',
-                            cache:false,
-                            data: $("#formId").serialize(),
-                            success: function () {
-                                location.href=location;
-
-                            }, error: function () {
-                                alert("失败");
-                            }
-                        });
-                    }
-                },
-                "cancel": {
-                    "label": "<i class='icon-info'></i> 取消",
-                    "className": "btn-sm btn-danger",
-                    "callback": function () {
-
-                    }
-                }
-            }
-
-        });
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     function queryData(){
 
 
@@ -361,7 +298,7 @@
 
 
     function createAddContent(url) {
-
+        alert(url);
         $.ajax({
             url: url,
             async: false,
@@ -373,19 +310,19 @@
     }
 
     //
-function updatee(id){
+    function updatee(id){
         $.ajax({
-            url:"../mqc/upx",
+            url:"../mqc/ups",
             data:{id:id},
             success:function(){
-                alert("下架成功");
+                alert("上架成功");
                 location.href=location;
             },
             error:function(){
                 alert("后台")
             }
         })
-}
+    }
 
 
 
@@ -393,12 +330,12 @@ function updatee(id){
 
 
 
-    function addcar(){
+    function addUser(){
 
         //打开新增弹框
         bootbox.dialog({
             title: '新增用户',
-            message: createAddContent("../mqc/toAddUserPage"),
+            message: createAddContent("../user/toAddUserPage.do"),
             closeButton: true,//是否显示关闭按钮
             buttons: {
                 "success": {
@@ -407,7 +344,7 @@ function updatee(id){
                     "callback": function () {
 
                         $.ajax({
-                            url: '../mqc/addcar',
+                            url: '../user/addUser.do',
                             type: 'post',
                             data: $("#formId").serialize(),
                             success: function () {
@@ -447,7 +384,7 @@ function updatee(id){
         } else {
             var ids = "";
             for (var i = 0; i < arr.length; i++) {
-                ids += arr[i].carid + ",";
+                ids += arr[i].id + ",";
             }
             ids = ids.substring(0, ids.length - 1);
 
