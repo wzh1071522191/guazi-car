@@ -4,9 +4,12 @@ package com.jk.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.jk.dao.EmpDao;
 import com.jk.model.Emp;
+import com.jk.model.LogBean;
 import com.jk.model.Menu;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -25,6 +28,9 @@ public class EmpServiceImpl implements EmpService {
 
     @Autowired
     private EmpDao empDao;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
 
     @Override
@@ -98,5 +104,19 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public void updateEmpStatus(Integer id) {
         empDao.updateEmpStatus(id);
+    }
+
+    @Override
+    public HashMap<String, Object> queryEmpLog(ParameUtil pu) {
+        Query query=new Query();
+        Integer total=(int) mongoTemplate.count(query, LogBean.class, "log");
+
+        query.skip((pu.getPageNumber()-1)*pu.getPageSize());
+        query.limit(pu.getPageSize());
+        List<LogBean> find = mongoTemplate.find(query, LogBean.class, "log");
+        HashMap<String, Object> hashMap=new HashMap<String, Object>();
+        hashMap.put("total", total);
+        hashMap.put("rows", find);
+        return hashMap;
     }
 }

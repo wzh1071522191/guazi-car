@@ -5,26 +5,34 @@ import java.io.Serializable;
 public class ParameUtil implements Serializable {
     private Integer pageNumber;
     private Integer pageSize;
-    private Integer carstatus;
-	private Integer carbrandid;
+	private String sortName;      //排序字段
+	private String sortOrder;    //正序或倒,+-序
     private String qian;
-    private String hou;
-    private Integer ordername;
+    private String ho;
+    private Integer id;
+    private Integer fang;
+	private Integer zhuang;
+	private Integer kuan;
+	private Integer re;
+    private Integer carstatus;
+    private Integer carbrandid;
+    private String typename;
+	private String carareaid;
 
-	public Integer getPageNumber() {
-		return pageNumber;
+	public String getCarareaid() {
+		return carareaid;
 	}
 
-	public void setPageNumber(Integer pageNumber) {
-		this.pageNumber = pageNumber;
+	public void setCarareaid(String carareaid) {
+		this.carareaid = carareaid;
 	}
 
-	public Integer getPageSize() {
-		return pageSize;
+	public String getTypename() {
+		return typename;
 	}
 
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
+	public void setTypename(String typename) {
+		this.typename = typename;
 	}
 
 	public Integer getCarstatus() {
@@ -43,6 +51,53 @@ public class ParameUtil implements Serializable {
 		this.carbrandid = carbrandid;
 	}
 
+	private Integer ordername;
+
+	public Integer getFang() {
+		return fang;
+	}
+
+	public void setFang(Integer fang) {
+		this.fang = fang;
+	}
+
+	public Integer getZhuang() {
+		return zhuang;
+	}
+
+	public void setZhuang(Integer zhuang) {
+		this.zhuang = zhuang;
+	}
+
+	public Integer getKuan() {
+		return kuan;
+	}
+
+	public void setKuan(Integer kuan) {
+		this.kuan = kuan;
+	}
+
+	public Integer getRe() {
+		return re;
+	}
+
+	public void setRe(Integer re) {
+		this.re = re;
+	}
+
+	public Integer getPageNumber() {
+		return pageNumber;
+	}
+	public void setPageNumber(Integer pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+	public Integer getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+
 	public String getQian() {
 		return qian;
 	}
@@ -51,13 +106,7 @@ public class ParameUtil implements Serializable {
 		this.qian = qian;
 	}
 
-	public String getHou() {
-		return hou;
-	}
 
-	public void setHou(String hou) {
-		this.hou = hou;
-	}
 
 	public Integer getOrdername() {
 		return ordername;
@@ -66,4 +115,36 @@ public class ParameUtil implements Serializable {
 	public void setOrdername(Integer ordername) {
 		this.ordername = ordername;
 	}
+
+	public String getHo() {
+		return ho;
+	}
+
+	public void setHo(String ho) {
+		this.ho = ho;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getSortName() {
+		return sortName;
+	}
+
+	public void setSortName(String sortName) {
+		this.sortName = sortName;
+	}
+
+	public String getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(String sortOrder) {
+		this.sortOrder = sortOrder;
+	}
+
 }

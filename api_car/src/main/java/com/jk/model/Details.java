@@ -9,7 +9,12 @@ public class Details implements Serializable {
     private String guige;//规格
     private Integer kuaidifei;//快递费
     private Integer yuhui;//优惠
-    private Integer sprice;//实付款
+    private Integer spprice;//商品总价
+    private String   typename;//汽车名称临时字段
+    private Integer  price;//单价临时字段
+    private Integer  cunmber;//数量临时字段
+
+    private Integer  shprice;//实收金额临时字段
 
     public Integer getId() {
         return id;
@@ -21,6 +26,30 @@ public class Details implements Serializable {
 
     public Integer getOid() {
         return oid;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public Integer getCunmber() {
+        return cunmber;
+    }
+
+    public void setCunmber(Integer cunmber) {
+        this.cunmber = cunmber;
+    }
+
+    public Integer getShprice() {
+        return shprice;
+    }
+
+    public void setShprice(Integer shprice) {
+        this.shprice = shprice;
     }
 
     public void setOid(Integer oid) {
@@ -51,11 +80,20 @@ public class Details implements Serializable {
         this.yuhui = yuhui;
     }
 
-    public Integer getSprice() {
-        return sprice;
+
+    public String getTypename() {
+        return typename;
     }
 
-    public void setSprice(Integer sprice) {
-        this.sprice = sprice;
+    public void setTypename(String typename) {
+        this.typename = typename;
+    }
+
+    public Integer getSpprice() {
+        return spprice;
+    }
+
+    public void setSpprice(Integer spprice) {
+        this.spprice = spprice;
     }
 }
