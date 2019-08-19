@@ -59,15 +59,22 @@
 
 <form id="pro_from" class="form-inline">
     <div class="form-group">
-        <label>汽车名字</label>
-        <br>
-        <select name="id"   id="carbrandid" class="vv"></select>
+        <label>地区</label>
+
+        <select    name="carareaid"  class="vv">
+            <option value="0">请选择</option>
+            <option value="1">北京</option>
+            <option value="2">上海</option>
+            <option value="3">西安</option>
+
+        </select>
 
 
     </div>
+    <br>
     <div class="form-group">
         <label>汽车状态</label>
-        <br>
+
         <input type="radio" class="form-control" value="1"  name = "carstatus"   placeholder="状态" >已售出
         <input type="radio" class="form-control" value="2" name = "carstatus"  placeholder="状态">未售出
 
@@ -120,7 +127,7 @@
 
 
     $(function(){
-        querytype();
+
         initDataGrid();
     });
     function initDataGrid() {
@@ -169,7 +176,7 @@
                     sortOrder: params.sortOrder,
                     // carstatus: $("#carstatus").val(),
                     carstatus: $("input[name='carstatus']:checked").val(),
-                    carbrandid: $(".vv").val(),
+                    carareaid: $(".vv").val(),
 
 
                 };
@@ -178,31 +185,9 @@
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
                 {field: 'carid', title: '汽车id', width: 300},      //  列    field   代表是 后台  传过来的值
-                {field: 'carbrandid', title: '汽车品牌', width: 300,
-                    formatter: function (value,row,index){
-                        if(value=="1"){
-                            return "福特";
-                        }
-                        if(value=="2"){
-                            return "大众";
-                        }
-                        if(value=="3"){
-                            return "现代";
-                        }
-                        if(value=="4"){
-                            return "别克";
-                        }
-                        if(value=="5"){
-                            return "奥迪";
-                        }
-                        if(value=="6"){
-                            return "雪佛兰";
-                        }
-                        if(value=="7"){
-                            return "丰田";
-                        }
-                    }
-                },
+                {field: 'typename', title: '汽车品牌', width: 300},
+
+
 
                 {field: 'carareaid', title: '原产地', width: 300,
                     formatter: function (value,row,index) {
@@ -282,7 +267,7 @@
         $("#dataGrid").bootstrapTable("refresh", {
             "query": {
 
-                "carbrandid": $(".vv").val(),
+                "carareaid": $(".vv").val(),
                 "carstatus": $("input[name='carstatus']:checked").val()
 
             }

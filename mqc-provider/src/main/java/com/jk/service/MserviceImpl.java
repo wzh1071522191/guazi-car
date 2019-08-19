@@ -60,6 +60,8 @@ public class MserviceImpl implements Mservice {
     @Override
     public Map querycartype(ParameUtil parm) {
         int sum=mdao.sumcount2();
+        String name = parm.getTypename();
+        parm.setTypename("%"+(name)+"%");
         Integer page=parm.getPageNumber();
         parm.setPageNumber((page-1)*parm.getPageSize());
 
@@ -107,6 +109,14 @@ public class MserviceImpl implements Mservice {
     @Override
     public void upcar(Car c) {
         mdao.upcar(c);
+    }
+
+    @Override
+    public void deleteUser2(String ids) {
+        String[] split = ids.split(",");
+        for (String id:split) {
+            mdao.deleteUser2(id);
+        }
     }
 
 
