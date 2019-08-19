@@ -53,21 +53,35 @@
 
 </head>
 <body>
+<input type="button" value="福特" class="btn btn-warning">
+<input type="button" value="大众" class="btn btn-warning">
+<input type="button" value="现代" class="btn btn-warning">
+<input type="button" value="别克" class="btn btn-warning">
+<input type="button" value="奥迪" class="btn btn-warning">
+<input type="button" value="雪佛兰" class="btn btn-warning">
+<br>
+<br>
+<input type="button" value="请按上方提示模糊查询" class="btn btn-danger">
+
+<br>
+
+<form id="pro_from" class="form-inline">
+    名字<input name="typename" id="typename">
+    <br>
 
 
-<button type="button"  class="btn btn-info btn-lg" onclick="deleteUserById()">批量删除</button>
-<!--  表格 -->
+    <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
+</form>
+<input type="button" value="删除" class="btn btn-danger" onclick="deleteUserById()">
+
 <table id="dataGrid"></table>
 </body>
 <script type="text/javascript">
-    //查类
-
-
-
     $(function(){
-      //  querytype();
+
         initDataGrid();
     });
+
     function initDataGrid() {
         //创建bootstrapTable
 
@@ -113,130 +127,42 @@
                     sortName: params.sortName,
                     sortOrder: params.sortOrder,
                     // carstatus: $("#carstatus").val(),
-                    carstatus: $("input[name='carstatus']:checked").val(),
-                    carbrandid: $(".vv").val(),
 
+                    typename:$("#typename").val()
                 };
                 return param;
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
                 {field: 'id', title: '汽车id', width: 300},
-                {field: 'typename', title: '品牌系列', width: 300},
-                {field: 'pid', title: '品牌', width: 300,
-                    formatter: function (value,row,index){
-                        if(value=="0"){
-                            return "福特";
-                        }
-                    if(value=="1"){
-                            return "福特";
-                        }
-                        if(value=="2"){
-                            return "大众";
-                        }
-                        if(value=="3"){
-                            return "现代";
-                        }
-                        if(value=="4"){
-                            return "别克";
-                        }
-                        if(value=="5"){
-                            return "奥迪";
-                        }
-                        if(value=="6"){
-                            return "雪佛兰";
-                        }
-                        if(value=="7"){
-                            return "丰田";
-                        }
-                    }
-                },
+                {field: 'typename', title: '品牌系列', width: 300}
 
-               // {field: 'createdate', title: '出厂日期', width: 300},
-                {
+                /*{
                     field: 'XXX', title: '操作', width: 300,
                     formatter: function (value, row, index) {
-                        var content = "    <a href='javascript:update(&quot;" + row.id + "&quot;)'>修改</a>";
+                        var content = "    <a href='javascript:deleteUserById(&quot;" + row.id + "&quot;)'>刪除</a>";
 
                         return content;
 
                     }
 
 
-                }
+                }*/
             ]
         });
     }
+
+
     function queryData(){
-
-
         $("#dataGrid").bootstrapTable("refresh", {
             "query": {
-
-                "carbrandid": $(".vv").val(),
-                "carstatus": $("input[name='carstatus']:checked").val()
-
+                "typename":$("#typename").val()
             }
         });
 
     }
 
-    var res;
 
-    function createAddContent(url) {
-        alert(url);
-        $.ajax({
-            url: url,
-            async: false,
-            success: function (data) {
-                res = data;
-            }
-        });
-        return res;
-    }
-
-    //新增
-
-    function addUser(){
-
-        //打开新增弹框
-        bootbox.dialog({
-            title: '新增用户',
-            message: createAddContent("../user/toAddUserPage"),
-            closeButton: true,//是否显示关闭按钮
-            buttons: {
-                "success": {
-                    "label": "<i class='icon-ok'></i> 保存",
-                    "className": "btn-sm btn-success",
-                    "callback": function () {
-
-                        $.ajax({
-                            url: '../user/addUser.do',
-                            type: 'post',
-                            data: $("#formId").serialize(),
-                            success: function () {
-                                alert("新增成功");
-                                $('#dataGrid').bootstrapTable("refresh");
-                                //刷新表格
-                            }, error: function () {
-                                alert("新增失败");
-                            }
-                        });
-                    }
-                },
-                "cancel": {
-                    "label": "<i class='icon-info'></i> 取消",
-                    "className": "btn-sm btn-danger",
-                    "callback": function () {
-
-                    }
-                }
-            }
-
-        });
-
-
-    }
 
 
     //批量删除
@@ -259,7 +185,7 @@
 
 
             $.ajax({
-                url: "../mqc/deleteUser",
+                url: "../mqc/deletecartype",
                 data: {ids: ids},
                 type: "post",
                 success: function () {

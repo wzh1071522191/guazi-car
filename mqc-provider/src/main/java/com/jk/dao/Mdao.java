@@ -21,10 +21,13 @@ public interface Mdao {
     void deleteUser(String id);
 
 
-
+   // @Select(" select count(*) from car_type")
     int sumcount2();
 
-    List<CarType> querycartype(ParameUtil parm);
+    //@Select("  select *  from  car_type where typename=#{p.typename}  limit #{pageNumber},#{pageSize}")
+    List<CarType> querycartype( ParameUtil parm);
+
+
     @Update("update t_car set carsxj=2 where carid=#{id}")
     void upx(Integer id);
 
@@ -42,4 +45,6 @@ public interface Mdao {
     Car toup(Integer id);
    @Update("update t_car set carbrandid=#{carbrandid},carareaid=#{carareaid},carcolor=#{carcolor},carck=#{carck},carstatus=#{carstatus} where carid=#{carid}")
     void upcar(Car c);
+     @Delete("delete from car_type where id=#{id}")
+     void deleteUser2(String id);
 }

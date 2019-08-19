@@ -3,23 +3,23 @@
 <mapper namespace="com.jk.dao.Mdao" >
 
 
-    <select id="querycar" resultType="com.jk.model.Car">
-     select *  from  t_car  <include refid="ii"/> and carsxj=1
+    <select id="querycar" resultType="com.jk.model.Car" >
+     select *  from  t_car c,car_type t <include refid="ii"/> and c.carsxj=1
        limit #{pageNumber},#{pageSize}
      </select>
     <select id="sumcount"  resultType="int"   >
-        select count(*) from  t_car  <include refid="ii"/>  and carsxj=1
+        select count(*) from  t_car c,car_type t  <include refid="ii"/>  and c.carsxj=1
 
     </select>
 
 
     <select id="querycar2" resultType="com.jk.model.Car">
-        select *  from  t_car  <include refid="ii"/> and carsxj=2
+        select *  from  t_car c,car_type t  <include refid="ii"/> and c.carsxj=2
         limit #{pageNumber},#{pageSize}
     </select>
 
     <select id="sumcount12"  resultType="int"   >
-        select count(*) from  t_car  <include refid="ii"/>  and carsxj=2
+        select count(*) from  t_car c,car_type t  <include refid="ii"/>  and c.carsxj=2
 
     </select>
 
@@ -33,32 +33,48 @@
 
 
 <select id="querytye" resultType="com.jk.model.CarType">
-    select  *  from  car_type   where pid=0
+    select  *  from  car_type
 </select>
 
 
     <sql id="ii">
 <where>
-1=1
+c.carbrandid=t.id
 <if test="carstatus!=null and carstatus!=0 ">
     and carstatus=#{carstatus}
 </if>
 
-<if test="carbrandid!=null and carbrandid!=0 ">
-        and carbrandid=#{carbrandid}
+<if test="carareaid!=null and carareaid!=0 ">
+        and carareaid=#{carareaid}
     </if>
+
 
 </where>
    </sql>
 
-    <select id="querycartype" resultType="com.jk.model.CarType">
-     select * from  car_type
-      limit #{pageNumber},#{pageSize}
+
+
+<sql id="i">
+    <where>
+        1=1
+        <if test="typename!=null and typename!=''">
+            and typename like #{typename}
+        </if>
+    </where>
+
+
+</sql>
+
+
+
+    <select id="querycartype" resultType="com.jk.model.CarType" >
+     select *  from  car_type <include refid="i"/>  limit #{pageNumber},#{pageSize}
+
 
     </select>
 
 <select id="sumcount2"  resultType="int" >
-    select count(*) from car_type
+    select count(*) from car_type <include refid="i"/>
 
 </select>
 

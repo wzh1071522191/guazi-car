@@ -14,10 +14,44 @@ public class ParameUtil implements Serializable {
 	private Integer zhuang;
 	private Integer kuan;
 	private Integer re;
+    private Integer carstatus;
+    private Integer carbrandid;
+    private String typename;
+	private String carareaid;
 
+	public String getCarareaid() {
+		return carareaid;
+	}
 
+	public void setCarareaid(String carareaid) {
+		this.carareaid = carareaid;
+	}
 
-    private Integer ordername;
+	public String getTypename() {
+		return typename;
+	}
+
+	public void setTypename(String typename) {
+		this.typename = typename;
+	}
+
+	public Integer getCarstatus() {
+		return carstatus;
+	}
+
+	public void setCarstatus(Integer carstatus) {
+		this.carstatus = carstatus;
+	}
+
+	public Integer getCarbrandid() {
+		return carbrandid;
+	}
+
+	public void setCarbrandid(Integer carbrandid) {
+		this.carbrandid = carbrandid;
+	}
+
+	private Integer ordername;
 
 	public Integer getFang() {
 		return fang;

@@ -27,6 +27,7 @@ public class Car implements Serializable {
     private Integer carstatus;
     //对应的客户id
     private Integer userid;
+    private String typename;
     //发布日期
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
@@ -58,6 +59,14 @@ public class Car implements Serializable {
     private Integer visitcarstatu;
     //仓库总数量临时
     private Integer cangkusum;
+
+    public String getTypename() {
+        return typename;
+    }
+
+    public void setTypename(String typename) {
+        this.typename = typename;
+    }
 
     public Integer getCarsxj() {
         return carsxj;

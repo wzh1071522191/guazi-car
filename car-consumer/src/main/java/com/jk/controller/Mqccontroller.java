@@ -42,7 +42,6 @@ public class Mqccontroller {
     @RequestMapping("querytype")
     @ResponseBody
    public List<CarType> querytype(){
-
          return Mservice.querytype();
     }
 
@@ -51,7 +50,16 @@ public class Mqccontroller {
 public  void shan(String ids){
     Mservice.deleteUser(ids);
 
+}
+    //
+
+    @RequestMapping("deletecartype")
+    @ResponseBody
+    public  void shan2(String ids){
+        Mservice.deleteUser2(ids);
+
     }
+
 
 //分类
 
@@ -114,17 +122,7 @@ public  void shan(String ids){
 
       Mservice.addcar(c);
     }
-//修改
-    /* @RequestMapping("toup")
-    @ResponseBody
-   public ModelAndView toup(Integer id){
-    Car c=Mservice.toup(id);
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("addcarpage");
-        mv.addObject("c", c);
-        return mv;
-    }*/
-//updatecar
+
 
     @RequestMapping("toup")
     @ResponseBody

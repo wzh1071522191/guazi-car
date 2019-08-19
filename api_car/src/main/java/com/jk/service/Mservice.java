@@ -32,4 +32,6 @@ public interface Mservice {
     Car toup(Integer id);
 
     void upcar(Car c);
+
+    void deleteUser2(String ids);
 }
