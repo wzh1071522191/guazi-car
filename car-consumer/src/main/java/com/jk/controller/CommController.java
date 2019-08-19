@@ -139,7 +139,8 @@ public class CommController {
           o.setStatus(1);
           o.setShprice(1000);
           se.dindanxin(o,color);
-
+        System.out.println("666666666666");
     }
+
 }
 
