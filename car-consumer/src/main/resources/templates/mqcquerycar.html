@@ -51,20 +51,27 @@
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 
 
+
+
+
 </head>
 <body>
+<center>
 <button type="button"  class="btn btn-info btn-lg" onclick="addcar()">发布商品</button>
 
 <button type="button"  class="btn btn-info btn-lg" onclick="kc()">库存</button>
 
 <button type="button"  class="btn btn-info btn-lg" onclick="deleteUserById()">批量删除</button>
+<br>
+<br>
+<br>
 
 <form id="pro_from" class="form-inline">
     <div class="form-group">
 
         <label>地区</label>
 
-       <select    name="carareaid"  class="vv">
+       <select    name="carareaid"  class="vv" >
            <option value="0">请选择</option>
            <option value="1">北京</option>
            <option value="2">上海</option>
@@ -87,7 +94,7 @@
     <br>
     <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
 </form>
-
+</center>
 <!--  表格 -->
 <table id="dataGrid"></table>
 </body>
