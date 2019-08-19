@@ -165,6 +165,16 @@ public class EmpController {
 
     }
 
+    @RequestMapping("toEmpLog")
+    public String toEmpLog(){
+        return "empLog";
+    }
+    @RequestMapping("queryEmpLog")
+    @ResponseBody
+    public HashMap<String,Object>  queryEmpLog(@RequestBody ParameUtil pu){
+        return empService.queryEmpLog(pu);
+    }
+
 
 
 

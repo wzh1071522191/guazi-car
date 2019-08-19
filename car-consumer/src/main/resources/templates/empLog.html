@@ -14,6 +14,7 @@
     <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
     <!-- 引入fileinput的css -->
     <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
     <!-- 引入my97 -->
     <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
     <!-- 引入bootstrap的js-->
@@ -35,15 +36,18 @@
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 </head>
 <body>
-    <button type="button" class="btn btn-Warning btn-lg" onclick="addCoupon()">新增</button>
     <!--  表格 -->
-    <table id="dataTable"></table>
+    <table id="dataGrid"></table>
 </body>
 <script>
+    $(function(){
 
-    $(function () {
-        $("#dataTable").bootstrapTable({
-            url: "../coupon/queryCoupon",
+        initDataGrid();
+    });
+    function initDataGrid() {
+        //创建bootstrapTable
+        $("#dataGrid").bootstrapTable({
+            url: "../emp/queryEmpLog",
             method: 'post',
             striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
@@ -89,63 +93,13 @@
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                      //  列    field   代表是 后台  传过来的值
-                {field: 'name', title: '优惠券名称', width: 300},
-                {field: 'startDate', title: '优惠起始日期', width: 300},
-                {field: 'endDate', title: '优惠结束日期', width: 300},
-                {field: 'cCount', title: '优惠券可用数量(单位:张)', width: 300}
-
+                {field: 'id', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'logname', title: '日志名称', width: 300},
+                {field: 'logip', title: 'ip地址', width: 300},
+                {field: 'logtime', title: '登录时间', width: 300},
+                {field: 'userId', title: '登录用户', width: 300}
             ]
         });
-    })
-
-    addCoupon=function(){
-        bootbox.dialog({
-            title: '新增',
-            message:createAddContent("../coupon/toAddCoupon"),
-            closeButton: true,//是否显示关闭按钮
-            buttons: {
-                "success": {
-                    "label": "<i class='icon-ok'></i> 保存",
-                    "className": "btn-sm btn-success",
-                    "callback": function () {
-
-
-                        $.ajax({
-                            url: '../coupon/addCoupon',
-                            type: 'post',
-                            data: $("#addForm").serialize(),
-                            success: function () {
-                                alert("新增成功");
-                                $('#dataGrid').bootstrapTable("refresh");
-                                //刷新表格
-                            }, error: function () {
-                                alert("新增失败");
-                            }
-                        });
-                    }
-                },
-                "cancel": {
-                    "label": "<i class='icon-info'></i> 取消",
-                    "className": "btn-sm btn-danger",
-                    "callback": function () {
-
-                    }
-                }
-            }
-
-        });
-    }
-    var res;
-    createAddContent=function(url){
-        $.ajax({
-            url: url,
-            async: false,
-            success: function (data) {
-                res = data;
-            }
-        });
-        return res;
     }
 </script>
 </html>

@@ -18,4 +18,8 @@ public interface AlyMapper {
     List<Car> queryThirtyAnaList(Car car);
 
     List<Map<String, Object>> queryAnalyXian();
+
+    List<Map<String, Object>> queryBingZhuang();
+
+    List<Map<String, Object>> queryZhuzhuang();
 }
