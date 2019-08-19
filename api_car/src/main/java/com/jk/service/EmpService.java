@@ -4,6 +4,7 @@ import com.jk.model.Emp;
 import com.jk.model.Menu;
 import com.jk.util.ParameUtil;
 
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface EmpService {
     HashMap<String, Object> queryEmp(ParameUtil pu);
 
     void updateEmpStatus(Integer id);
+
+    HashMap<String, Object> queryEmpLog(ParameUtil pu);
 }
