@@ -37,4 +37,9 @@ public interface Mdao {
 
     @Update("update t_car set carsxj=1 where carid=#{id}")
     void ups(Integer id);
+
+    @Select("select * from t_car where carid=#{id}")
+    Car toup(Integer id);
+   @Update("update t_car set carbrandid=#{carbrandid},carareaid=#{carareaid},carcolor=#{carcolor},carck=#{carck},carstatus=#{carstatus} where carid=#{carid}")
+    void upcar(Car c);
 }

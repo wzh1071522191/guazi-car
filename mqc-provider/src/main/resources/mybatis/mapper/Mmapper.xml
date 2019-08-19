@@ -35,7 +35,9 @@
 <select id="querytye" resultType="com.jk.model.CarType">
     select  *  from  car_type   where pid=0
 </select>
-   <sql id="ii">
+
+
+    <sql id="ii">
 <where>
 1=1
 <if test="carstatus!=null and carstatus!=0 ">

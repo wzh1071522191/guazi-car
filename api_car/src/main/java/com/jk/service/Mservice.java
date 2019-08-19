@@ -28,4 +28,8 @@ public interface Mservice {
   void addcar(Car c);
 
   void ups(Integer id);
+
+    Car toup(Integer id);
+
+    void upcar(Car c);
 }

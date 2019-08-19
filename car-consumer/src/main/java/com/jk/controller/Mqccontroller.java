@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -113,6 +114,25 @@ public  void shan(String ids){
 
       Mservice.addcar(c);
     }
+//修改
+    /* @RequestMapping("toup")
+    @ResponseBody
+   public ModelAndView toup(Integer id){
+    Car c=Mservice.toup(id);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("addcarpage");
+        mv.addObject("c", c);
+        return mv;
+    }*/
+//updatecar
+
+    @RequestMapping("toup")
+    @ResponseBody
+    public void upcar(Car c){
+        Mservice.upcar(c);
+
+    }
+
 
 
 }

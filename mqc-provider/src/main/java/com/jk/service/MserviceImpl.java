@@ -98,5 +98,16 @@ public class MserviceImpl implements Mservice {
         mdao.ups(id);
     }
 
+    @Override
+    public Car toup(Integer id) {
+
+        return mdao.toup(id);
+    }
+
+    @Override
+    public void upcar(Car c) {
+        mdao.upcar(c);
+    }
+
 
 }

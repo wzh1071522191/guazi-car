@@ -272,7 +272,7 @@
                     formatter: function (value, row, index) {
 
                         return  "<a href='javascript:updatee(&quot;" + row.carid + "&quot;)'>下架</a>";
-
+//+"      "+"<a href='javascript:updatecar(&quot;" + row.carid + "&quot;)'>修改</a>"
                     }
 
 
@@ -280,6 +280,65 @@
             ]
         });
     }
+
+
+    //修改
+
+    function updatecar(id){
+        //打开新增弹框
+        bootbox.dialog({
+            title: '修改用户',
+            message: createAddContent("../mqc/toup?id="+id),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+
+                        $.ajax({
+                            url: '../mqc/updatecar',
+                            type: 'post',
+                            cache:false,
+                            data: $("#formId").serialize(),
+                            success: function () {
+                                location.href=location;
+
+                            }, error: function () {
+                                alert("失败");
+                            }
+                        });
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+
+                    }
+                }
+            }
+
+        });
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function queryData(){
 
 

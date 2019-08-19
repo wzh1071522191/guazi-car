@@ -156,7 +156,7 @@
                 {
                     field: 'XXX', title: '操作', width: 300,
                     formatter: function (value, row, index) {
-                        var content = "    <a href='javascript:update(&quot;" + row.carid + "&quot;)'>修改</a>";
+                        var content = "    <a href='javascript:update(&quot;" + row.id + "&quot;)'>修改</a>";
 
                         return content;
 
@@ -202,7 +202,7 @@
         //打开新增弹框
         bootbox.dialog({
             title: '新增用户',
-            message: createAddContent("../user/toAddUserPage.do"),
+            message: createAddContent("../user/toAddUserPage"),
             closeButton: true,//是否显示关闭按钮
             buttons: {
                 "success": {
