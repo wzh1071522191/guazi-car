@@ -99,6 +99,149 @@
         binzhuangtu();
         zhuzhuang();
     });
+
+
+    //所有
+    function initDataAna(){
+        $('#AnaTable').bootstrapTable({
+            url:'../analysis/queryAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+
+            columns:[
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'},
+                {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
+
+            ]
+        });
+
+
+    }
+    //今天
+    function initDataAnaToday(){
+        $('#AnaTodayTable').bootstrapTable({
+            url:'../analysis/queryTodayAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+
+            columns:[
+
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'},
+                {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
+
+            ]
+        });
+
+    }
+//昨天
+    function initDataAnaYester(){
+        $('#AnaYesterTable').bootstrapTable({
+            url:'../analysis/queryYesterdayAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+
+            columns:[
+
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'},
+                {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
+
+            ]
+        });
+
+    }
+    //最近7天
+    function initDataAnaSeven(){
+        $('#AnaSevenTable').bootstrapTable({
+            url:'../analysis/querySevendaysAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+
+            columns:[
+
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'},
+                {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
+
+            ]
+        });
+
+    }
+    //最近30天
+    function initDataAnaThirty(){
+        $('#AnaThirtyTable').bootstrapTable({
+            url:'../analysis/queryThirtyAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+
+            columns:[
+
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'},
+                {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
+
+            ]
+        });
+
+    }
+
     function xian(){
         $.ajax({
             url:"../analysis/queryAnalyXian",
@@ -264,149 +407,5 @@
         })
 
     }
-
-
-    //所有
-    function initDataAna(){
-        $('#AnaTable').bootstrapTable({
-            url:'../analysis/queryAnaList',
-            toolbar:'#toolbar',
-            pagination:false, //是否展示分页
-            pageList:[2, 4, 6, 50],//分页组件
-            pageNumber:1,
-            pageSize:2,//默认每页条数
-            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
-            striped:true,//斑马线
-
-            columns:[
-                {field:'sellcarcount',title:'出售商品数',align:'center'},
-                {field:'cangkucount',title:'仓库商品数',align:'center'},
-                {field:'visitcount',title:'被访问商品数',align:'center'},
-                {field:'expocarcount',title:'商品曝光数',align:'center'},
-                {field:'carvolume',title:'商品浏览量',align:'center'},
-                {field:'visitorsum',title:'商品数访客数',align:'center'},
-                {field:'purchasesum',title:'加购件数',align:'center'},
-                {field:'placecarcount',title:'下单总数',align:'center'},
-                {field:'mentcarcount',title:'支付总数',align:'center'}
-
-            ]
-        });
-
-
-    }
-    //今天
-    function initDataAnaToday(){
-        $('#AnaTodayTable').bootstrapTable({
-            url:'../analysis/queryTodayAnaList',
-            toolbar:'#toolbar',
-            pagination:false, //是否展示分页
-            pageList:[2, 4, 6, 50],//分页组件
-            pageNumber:1,
-            pageSize:2,//默认每页条数
-            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
-            striped:true,//斑马线
-
-            columns:[
-
-                {field:'sellcarcount',title:'出售商品数',align:'center'},
-                {field:'cangkucount',title:'仓库商品数',align:'center'},
-                {field:'visitcount',title:'被访问商品数',align:'center'},
-                {field:'expocarcount',title:'商品曝光数',align:'center'},
-                {field:'carvolume',title:'商品浏览量',align:'center'},
-                {field:'visitorsum',title:'商品数访客数',align:'center'},
-                {field:'purchasesum',title:'加购件数',align:'center'},
-                {field:'placecarcount',title:'下单总数',align:'center'},
-                {field:'mentcarcount',title:'支付总数',align:'center'}
-
-            ]
-        });
-
-    }
-//昨天
-    function initDataAnaYester(){
-        $('#AnaYesterTable').bootstrapTable({
-            url:'../analysis/queryYesterdayAnaList',
-            toolbar:'#toolbar',
-            pagination:false, //是否展示分页
-            pageList:[2, 4, 6, 50],//分页组件
-            pageNumber:1,
-            pageSize:2,//默认每页条数
-            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
-            striped:true,//斑马线
-
-            columns:[
-
-                {field:'sellcarcount',title:'出售商品数',align:'center'},
-                {field:'cangkucount',title:'仓库商品数',align:'center'},
-                {field:'visitcount',title:'被访问商品数',align:'center'},
-                {field:'expocarcount',title:'商品曝光数',align:'center'},
-                {field:'carvolume',title:'商品浏览量',align:'center'},
-                {field:'visitorsum',title:'商品数访客数',align:'center'},
-                {field:'purchasesum',title:'加购件数',align:'center'},
-                {field:'placecarcount',title:'下单总数',align:'center'},
-                {field:'mentcarcount',title:'支付总数',align:'center'}
-
-            ]
-        });
-
-    }
-    //最近7天
-    function initDataAnaSeven(){
-        $('#AnaSevenTable').bootstrapTable({
-            url:'../analysis/querySevendaysAnaList',
-            toolbar:'#toolbar',
-            pagination:false, //是否展示分页
-            pageList:[2, 4, 6, 50],//分页组件
-            pageNumber:1,
-            pageSize:2,//默认每页条数
-            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
-            striped:true,//斑马线
-
-            columns:[
-
-                {field:'sellcarcount',title:'出售商品数',align:'center'},
-                {field:'cangkucount',title:'仓库商品数',align:'center'},
-                {field:'visitcount',title:'被访问商品数',align:'center'},
-                {field:'expocarcount',title:'商品曝光数',align:'center'},
-                {field:'carvolume',title:'商品浏览量',align:'center'},
-                {field:'visitorsum',title:'商品数访客数',align:'center'},
-                {field:'purchasesum',title:'加购件数',align:'center'},
-                {field:'placecarcount',title:'下单总数',align:'center'},
-                {field:'mentcarcount',title:'支付总数',align:'center'}
-
-            ]
-        });
-
-    }
-    //最近30天
-    function initDataAnaThirty(){
-        $('#AnaThirtyTable').bootstrapTable({
-            url:'../analysis/queryThirtyAnaList',
-            toolbar:'#toolbar',
-            pagination:false, //是否展示分页
-            pageList:[2, 4, 6, 50],//分页组件
-            pageNumber:1,
-            pageSize:2,//默认每页条数
-            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
-            striped:true,//斑马线
-
-            columns:[
-
-                {field:'sellcarcount',title:'出售商品数',align:'center'},
-                {field:'cangkucount',title:'仓库商品数',align:'center'},
-                {field:'visitcount',title:'被访问商品数',align:'center'},
-                {field:'expocarcount',title:'商品曝光数',align:'center'},
-                {field:'carvolume',title:'商品浏览量',align:'center'},
-                {field:'visitorsum',title:'商品数访客数',align:'center'},
-                {field:'purchasesum',title:'加购件数',align:'center'},
-                {field:'placecarcount',title:'下单总数',align:'center'},
-                {field:'mentcarcount',title:'支付总数',align:'center'}
-
-            ]
-        });
-
-    }
-
-
 </script>
 </html>

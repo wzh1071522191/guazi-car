@@ -41,6 +41,9 @@ public class Car implements Serializable {
     private Integer carpl;
 
     private Integer carranyou;
+
+
+
     //出售数量，下单成功后自动加所下单数量
     private Integer sellcarcount;
     //商品浏览量
@@ -58,30 +61,50 @@ public class Car implements Serializable {
    //1:未访问 2:已访问   默认是1未访问
     private Integer visitcarstatu;
     //仓库总数量临时
-    private Integer cangkusum;
+    private Integer cangkucount;
 
-    public String getTypename() {
-        return typename;
-    }
+    private Integer visitcount;
 
-    public void setTypename(String typename) {
-        this.typename = typename;
-    }
+    private Integer expocarcount;
 
-    public Integer getCarsxj() {
-        return carsxj;
-    }
+    private Integer placecarcount;
 
-    public void setCarsxj(Integer carsxj) {
-        this.carsxj = carsxj;
-    }
+    private Integer mentcarcount;
 
-    public Integer getCangkusum() {
-        return cangkusum;
-    }
-
-    public void setCangkusum(Integer cangkusum) {
-        this.cangkusum = cangkusum;
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carid=" + carid +
+                ", carbrandid=" + carbrandid +
+                ", cardate=" + cardate +
+                ", carlc='" + carlc + '\'' +
+                ", carareaid=" + carareaid +
+                ", carck=" + carck +
+                ", cartypeid=" + cartypeid +
+                ", carcolor=" + carcolor +
+                ", carstatus=" + carstatus +
+                ", userid=" + userid +
+                ", typename='" + typename + '\'' +
+                ", createdate=" + createdate +
+                ", carsxj=" + carsxj +
+                ", carage=" + carage +
+                ", carlocation=" + carlocation +
+                ", carpl=" + carpl +
+                ", carranyou=" + carranyou +
+                ", sellcarcount=" + sellcarcount +
+                ", carvolume=" + carvolume +
+                ", visitorsum=" + visitorsum +
+                ", purchasesum=" + purchasesum +
+                ", expocarstatu=" + expocarstatu +
+                ", placecarstatu=" + placecarstatu +
+                ", mentcarstatu=" + mentcarstatu +
+                ", visitcarstatu=" + visitcarstatu +
+                ", cangkucount=" + cangkucount +
+                ", visitcount=" + visitcount +
+                ", expocarcount=" + expocarcount +
+                ", placecarcount=" + placecarcount +
+                ", mentcarcount=" + mentcarcount +
+                '}';
     }
 
     public Integer getCarid() {
@@ -164,12 +187,28 @@ public class Car implements Serializable {
         this.userid = userid;
     }
 
+    public String getTypename() {
+        return typename;
+    }
+
+    public void setTypename(String typename) {
+        this.typename = typename;
+    }
+
     public Date getCreatedate() {
         return createdate;
     }
 
     public void setCreatedate(Date createdate) {
         this.createdate = createdate;
+    }
+
+    public Integer getCarsxj() {
+        return carsxj;
+    }
+
+    public void setCarsxj(Integer carsxj) {
+        this.carsxj = carsxj;
     }
 
     public Integer getCarage() {
@@ -268,33 +307,43 @@ public class Car implements Serializable {
         this.visitcarstatu = visitcarstatu;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "carid=" + carid +
-                ", carbrandid=" + carbrandid +
-                ", cardate=" + cardate +
-                ", carlc='" + carlc + '\'' +
-                ", carareaid=" + carareaid +
-                ", carck=" + carck +
-                ", cartypeid=" + cartypeid +
-                ", carcolor=" + carcolor +
-                ", carstatus=" + carstatus +
-                ", userid=" + userid +
-                ", createdate=" + createdate +
-                ", carage=" + carage +
-                ", carlocation=" + carlocation +
-                ", carpl=" + carpl +
-                ", carranyou=" + carranyou +
-                ", sellcarcount=" + sellcarcount +
-                ", carvolume=" + carvolume +
-                ", visitorsum=" + visitorsum +
-                ", purchasesum=" + purchasesum +
-                ", expocarstatu=" + expocarstatu +
-                ", placecarstatu=" + placecarstatu +
-                ", mentcarstatu=" + mentcarstatu +
-                ", visitcarstatu=" + visitcarstatu +
-                ", cangkusum=" + cangkusum +
-                '}';
+    public Integer getCangkucount() {
+        return cangkucount;
+    }
+
+    public void setCangkucount(Integer cangkucount) {
+        this.cangkucount = cangkucount;
+    }
+
+    public Integer getVisitcount() {
+        return visitcount;
+    }
+
+    public void setVisitcount(Integer visitcount) {
+        this.visitcount = visitcount;
+    }
+
+    public Integer getExpocarcount() {
+        return expocarcount;
+    }
+
+    public void setExpocarcount(Integer expocarcount) {
+        this.expocarcount = expocarcount;
+    }
+
+    public Integer getPlacecarcount() {
+        return placecarcount;
+    }
+
+    public void setPlacecarcount(Integer placecarcount) {
+        this.placecarcount = placecarcount;
+    }
+
+    public Integer getMentcarcount() {
+        return mentcarcount;
+    }
+
+    public void setMentcarcount(Integer mentcarcount) {
+        this.mentcarcount = mentcarcount;
     }
 }
