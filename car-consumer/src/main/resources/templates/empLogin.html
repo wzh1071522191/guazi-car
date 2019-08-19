@@ -61,7 +61,10 @@
             url:"../emp/loginUser",
             data:$("#loginUser").serialize(),
             success:function(data){
-                alert(data);
+
+                if(data==4){
+                    alert("账户异常无法登录");
+                }
                 if (data==0) {
                     alert("锁定");
                 }else

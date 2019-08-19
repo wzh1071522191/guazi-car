@@ -12,8 +12,10 @@ public class Refund implements Serializable {
     private  Integer status;//发货状态
     private  Integer fangshi;//退款方式
     private  Integer reason;//原因
-    private  Integer dtime;//申请时间
+    private  String dtime;//申请时间
     private  Integer zhuangtai;//退款状态
+
+    private String   typename;//汽车名称临时字段
 
     public Integer getId() {
         return id;
@@ -79,13 +81,7 @@ public class Refund implements Serializable {
         this.reason = reason;
     }
 
-    public Integer getDtime() {
-        return dtime;
-    }
 
-    public void setDtime(Integer dtime) {
-        this.dtime = dtime;
-    }
 
     public Integer getZhuangtai() {
         return zhuangtai;
@@ -93,5 +89,22 @@ public class Refund implements Serializable {
 
     public void setZhuangtai(Integer zhuangtai) {
         this.zhuangtai = zhuangtai;
+    }
+
+    public String getTypename() {
+        return typename;
+    }
+
+    public void setTypename(String typename) {
+        this.typename = typename;
+    }
+
+
+    public String getDtime() {
+        return dtime;
+    }
+
+    public void setDtime(String dtime) {
+        this.dtime = dtime;
     }
 }

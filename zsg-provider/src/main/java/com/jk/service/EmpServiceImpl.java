@@ -5,9 +5,11 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.jk.dao.EmpDao;
 import com.jk.model.Emp;
 import com.jk.model.Menu;
+import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -70,5 +72,31 @@ public class EmpServiceImpl implements EmpService {
             return "1";
         }
 
+    }
+
+    /**
+     * @author :张松光
+     * @method : queryEmp
+     * @description : 描述一下方法的作用
+     * @date: 2019/8/18 9:13
+     * @param: [pu]
+     * @return java.util.HashMap<java.lang.String,java.lang.Object>
+     */
+    @Override
+    public HashMap<String, Object> queryEmp(ParameUtil pu) {
+        Integer total=empDao.queryEmpCount();
+        Integer page = pu.getPageNumber();
+        pu.setPageNumber((page-1)*pu.getPageSize());
+        List<Emp> queryList = empDao.queryEmpList(pu);
+        HashMap<String,Object> hashMap =new HashMap<String,Object>();
+        hashMap.put("total",total);
+        hashMap.put("rows",queryList);
+        return hashMap;
+
+    }
+
+    @Override
+    public void updateEmpStatus(Integer id) {
+        empDao.updateEmpStatus(id);
     }
 }

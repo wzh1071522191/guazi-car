@@ -5,42 +5,63 @@ import java.io.Serializable;
 public class ParameUtil implements Serializable {
     private Integer pageNumber;
     private Integer pageSize;
-    private Integer carstatus;
-	private Integer carbrandid;
+	private String sortName;      //排序字段
+	private String sortOrder;    //正序或倒,+-序
     private String qian;
-    private String hou;
+    private String ho;
+    private Integer id;
+    private Integer fang;
+	private Integer zhuang;
+	private Integer kuan;
+	private Integer re;
+
+
+
     private Integer ordername;
+
+	public Integer getFang() {
+		return fang;
+	}
+
+	public void setFang(Integer fang) {
+		this.fang = fang;
+	}
+
+	public Integer getZhuang() {
+		return zhuang;
+	}
+
+	public void setZhuang(Integer zhuang) {
+		this.zhuang = zhuang;
+	}
+
+	public Integer getKuan() {
+		return kuan;
+	}
+
+	public void setKuan(Integer kuan) {
+		this.kuan = kuan;
+	}
+
+	public Integer getRe() {
+		return re;
+	}
+
+	public void setRe(Integer re) {
+		this.re = re;
+	}
 
 	public Integer getPageNumber() {
 		return pageNumber;
 	}
-
 	public void setPageNumber(Integer pageNumber) {
 		this.pageNumber = pageNumber;
 	}
-
 	public Integer getPageSize() {
 		return pageSize;
 	}
-
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
-	}
-
-	public Integer getCarstatus() {
-		return carstatus;
-	}
-
-	public void setCarstatus(Integer carstatus) {
-		this.carstatus = carstatus;
-	}
-
-	public Integer getCarbrandid() {
-		return carbrandid;
-	}
-
-	public void setCarbrandid(Integer carbrandid) {
-		this.carbrandid = carbrandid;
 	}
 
 	public String getQian() {
@@ -51,13 +72,7 @@ public class ParameUtil implements Serializable {
 		this.qian = qian;
 	}
 
-	public String getHou() {
-		return hou;
-	}
 
-	public void setHou(String hou) {
-		this.hou = hou;
-	}
 
 	public Integer getOrdername() {
 		return ordername;
@@ -66,4 +81,36 @@ public class ParameUtil implements Serializable {
 	public void setOrdername(Integer ordername) {
 		this.ordername = ordername;
 	}
+
+	public String getHo() {
+		return ho;
+	}
+
+	public void setHo(String ho) {
+		this.ho = ho;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getSortName() {
+		return sortName;
+	}
+
+	public void setSortName(String sortName) {
+		this.sortName = sortName;
+	}
+
+	public String getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(String sortOrder) {
+		this.sortOrder = sortOrder;
+	}
+
 }

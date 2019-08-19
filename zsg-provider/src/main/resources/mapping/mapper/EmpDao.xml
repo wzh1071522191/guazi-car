@@ -19,4 +19,13 @@
     <insert id="register" parameterType="Emp">
         insert into t_str(userName,userPwd,createDate,userStatus) values(#{userName},#{userPwd},now(),#{userStatus})
     </insert>
+
+    <!--Integer queryEmpCount()-->
+    <select id="queryEmpCount" resultType="int">
+        select count(*) from t_str
+     </select>
+    <!--List<Emp> queryEmpList(ParameUtil pu)-->
+    <select id="queryEmpList"  resultType="Emp">
+        select * from t_str limit #{pageNumber},#{pageSize}
+    </select>
 </mapper>

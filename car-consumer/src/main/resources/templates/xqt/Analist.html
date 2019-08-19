@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <base href="<%=basePath%>">
+    <title>标题</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+
     <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <script src="../Highcharts/code/highcharts.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <!-- 引入bootstrap的css -->
     <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
     <!-- 引入bootstrap-treeview的css -->
@@ -14,6 +25,7 @@
     <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
     <!-- 引入fileinput的css -->
     <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
     <!-- 引入my97 -->
     <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
     <!-- 引入bootstrap的js-->
@@ -33,34 +45,236 @@
     <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
 
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+    <script src="../js/highcharts/code/highcharts.js"></script>
 </head>
 <body>
-<div id="toolbar"></div>
-<table id="AllTable"></table>
+<!--  表格 -->
+<div id="toolbar">
+</div>
+<div id="container" style="min-width: 510px; height: 200px; max-width: 1700px; margin: 0 auto"></div>
+<table id="AnaTable">
+    <center><font color="red" size="5px">商品分析数据---全部概览</font></center>
+</table>
+<table id="AnaTodayTable">
+    <center><font color="green" size="4px">商品分析今日数据全部概览</font></center>
+</table>
+<table id="AnaYesterTable">
+    <center><font color="green" size="4px">商品分析昨日数据全部概览</font></center>
+</table>
+<table id="AnaSevenTable">
+    <center><font color="green" size="4px">商品分析最近7日数据全部概览</font></center>
+</table>
+<table id="AnaThirtyTable">
+    <center><font color="green" size="4px">商品分析最近30日数据全部概览</font></center>
+</table>
+
 </body>
-
-<script>
-$(function(){
-    initAnaTable();
-})
-
-function initAnaTable(){
-    $('#AllTable').bootstrapTable({
-        url:'../analysis/queryCarAnalysiCount',
-        toolbar:'#toolbar',
-
-        striped:true,//斑马线
-
-        columns:[
-
-            {field:"checkbox",checkbox:true},
-            {field:'sellcarcount',title:'出售总数量',align:'center'}
-
-
-        ]
+<script type="text/javascript">
+    $(function(){
+        initDataAna();
+        initDataAnaToday();
+        initDataAnaYester();
+        initDataAnaSeven();
+        initDataAnaThirty();
+        xian();
     });
+    //所有
+    function initDataAna(){
+        $('#AnaTable').bootstrapTable({
+            url:'../analysis/queryAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
 
-}
+            columns:[
+                {field:"checkbox",checkbox:true},
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'},
+                {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
 
+            ]
+        });
+
+    }
+    //今天
+    function initDataAnaToday(){
+        $('#AnaTodayTable').bootstrapTable({
+            url:'../analysis/queryTodayAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+
+            columns:[
+
+                {field:"checkbox",checkbox:true},
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'},
+                {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
+
+            ]
+        });
+
+    }
+//昨天
+    function initDataAnaYester(){
+        $('#AnaYesterTable').bootstrapTable({
+            url:'../analysis/queryYesterdayAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+
+            columns:[
+
+                {field:"checkbox",checkbox:true},
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'},
+                {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
+
+            ]
+        });
+
+    }
+    //最近7天
+    function initDataAnaSeven(){
+        $('#AnaSevenTable').bootstrapTable({
+            url:'../analysis/querySevendaysAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+
+            columns:[
+
+                {field:"checkbox",checkbox:true},
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'},
+                {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
+
+            ]
+        });
+
+    }
+    //最近30天
+    function initDataAnaThirty(){
+        $('#AnaThirtyTable').bootstrapTable({
+            url:'../analysis/queryThirtyAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+
+            columns:[
+
+                {field:"checkbox",checkbox:true},
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'},
+                {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
+
+            ]
+        });
+
+    }
+
+    function xian(){
+        $.ajax({
+            url:"../analysis/queryAnalyXian",
+            type:"post",
+            dataType:"json",
+            success:function (data) {
+                var chart = Highcharts.chart('container', {
+                    title: {
+                        text: '2017 -~-2019 年商品趋势'
+                    },
+                    subtitle: {
+                        text: '商品趋势'
+                    },
+                    yAxis: {
+                        title: {
+                            text: '总商品数'
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle'
+                    },
+                    plotOptions: {
+                        series: {
+                            label: {
+                                connectorAllowed: false
+                            },
+                            pointStart: 2017
+                        }
+                    },
+                    series: data,
+                    responsive: {
+                        rules: [{
+                            condition: {
+                                maxWidth: 600
+                            },
+                            chartOptions: {
+                                legend: {
+                                    layout: 'horizontal',
+                                    align: 'center',
+                                    verticalAlign: 'bottom'
+                                }
+                            }
+                        }]
+                    }
+                });
+            },error:function () {
+                alert("查询失败")
+            }
+        })
+
+    }
 </script>
 </html>
