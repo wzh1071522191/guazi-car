@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.CommDao" >
  <select id="cha" resultType="com.jk.model.Order">
-     select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid
+     select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid
      <if test="p.qian!=null and p.qian !=''">
          and o.xdtime >=#{p.qian}
      </if>
@@ -12,37 +12,37 @@
           limit #{page},#{pageSize}
    </select>
     <select id="dai" resultType="com.jk.model.Order">
-    select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=1
+    select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=1
 
         limit #{page},#{pageSize}
 </select>
     <select id="fa" resultType="com.jk.model.Order">
-        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=2
+        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=2
 
         limit #{page},#{pageSize}
     </select>
     <select id="yi" resultType="com.jk.model.Order">
-        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=3
+        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=3
 
         limit #{page},#{pageSize}
     </select>
     <select id="wan" resultType="com.jk.model.Order">
-        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=4
+        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=4
 
         limit #{page},#{pageSize}
     </select>
     <select id="guan" resultType="com.jk.model.Order">
-        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=5
+        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=5
 
         limit #{page},#{pageSize}
     </select>
     <select id="tui" resultType="com.jk.model.Order">
-        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=6
+        select * from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=6
 
         limit #{page},#{pageSize}
     </select>
     <select id="xiang" resultType="com.jk.model.Details" >
-        select * from car_type a,details d,orders o where a.id=o.carid and o.detaid=d.oid  and o.id=#{id}
+        select * from car_type a,details d,orders o where a.id=o.carid and o.detaid=d.id  and o.id=#{id}
     </select>
 
     <select id="kuan" resultType="com.jk.model.Refund" >
@@ -71,28 +71,28 @@
         limit #{page},#{pageSize}
     </select>
     <select id="czong" resultType="java.lang.Integer">
-  select count(1) from  car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid
+  select count(1) from  car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid
     </select>
     <select id="dzong" resultType="java.lang.Integer">
-         select count(1) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=1
+         select count(1) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=1
     </select>
     <select id="fzong" resultType="java.lang.Integer">
 
-             select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=2
+             select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=2
     </select>
     <select id="yzong" resultType="java.lang.Integer">
 
-         select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=3
+         select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=3
     </select>
     <select id="wzong" resultType="java.lang.Integer">
-            select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=4
+            select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=4
     </select>
     <select id="gzong" resultType="java.lang.Integer">
-           select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=5
+           select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=5
     </select>
     <select id="tzong" resultType="java.lang.Integer">
 
-          select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.oid and s.userid=o.userid and o.status=6
+          select count(*) from car_type a,t_user s,details d,orders o where a.id=o.carid and o.detaid=d.id and s.userid=o.userid and o.status=6
     </select>
     <select id="kzong"  resultType="java.lang.Integer">
      select count(*) from refund r,car_type t where  r.carid=t.id
@@ -121,7 +121,10 @@
         </if>
      limit #{page},#{pageSize}
     </select>
-    <insert id="xin" parameterType="com.jk.model.Order">
-         insert  into orders(id,price,cunmber,xdtime,status,shprice) values(#{id},#{carid},#{price},#{cunmber},#{xdtime},#{userid},#{status},#{shprice},#{detaid})
+ <insert id="dindanxin" parameterType="com.jk.model.Order">
+     insert  into orders values(#{carid},#{price},#{cunmber},#{xdtime},#{userid},#{status},#{shprice},#{detaid})
+ </insert>
+    <insert id="xiangqing" parameterType="com.jk.model.Details">
+  insert  into details values(#{guige},#{kuaidifei},#{yuhui},#{spprice})
     </insert>
 </mapper>

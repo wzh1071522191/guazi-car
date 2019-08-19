@@ -58,5 +58,8 @@ public interface CommDao {
 
     List<Comment> ping(@Param("page")Integer page, @Param("pageSize")Integer pageSize, @Param("a") ParameUtil param);
 
-    void dindanxin(Order o);
+    void didanxin(Order o);
+
+
+    void xiangqing(Details s);
 }

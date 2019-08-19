@@ -3,6 +3,7 @@ package com.jk.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.model.Details;
 import com.jk.model.Order;
+import com.jk.model.User;
 import com.jk.service.CommService;
 import com.jk.util.DataGridResult;
 import com.jk.util.PageUtil;
@@ -14,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import sun.net.httpserver.HttpsServerImpl;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -123,8 +128,19 @@ public class CommController {
     //订单新增
     @RequestMapping("dindanxin")
     @ResponseBody
-    public void  dindanxin(Order o, Integer uid, Integer cid){
-        se.dindanxin(o,uid,cid);
+    public void  dindanxin(String color,Integer cid, HttpServletRequest request){
+        Order o=new Order();
+        User loginUserid = (User) request.getSession().getAttribute("LoginUserid");
+          o.setCarid(cid);
+          o.setUserid(loginUserid.getuserid());
+          o.setPrice(1000);
+          o.setCunmber(1);
+          o.setXdtime(new Date());
+          o.setStatus(1);
+          o.setShprice(1000);
+          se.dindanxin(o,color);
+        System.out.println("666666666666");
     }
+
 }
 
