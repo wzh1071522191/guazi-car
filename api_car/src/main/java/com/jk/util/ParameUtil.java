@@ -14,6 +14,8 @@ public class ParameUtil implements Serializable {
 	private Integer zhuang;
 	private Integer kuan;
 	private Integer re;
+	private Integer carstatus;
+	private Integer carbrandid;
 
 
 
@@ -113,4 +115,19 @@ public class ParameUtil implements Serializable {
 		this.sortOrder = sortOrder;
 	}
 
+	public Integer getCarstatus() {
+		return carstatus;
+	}
+
+	public void setCarstatus(Integer carstatus) {
+		this.carstatus = carstatus;
+	}
+
+	public Integer getCarbrandid() {
+		return carbrandid;
+	}
+
+	public void setCarbrandid(Integer carbrandid) {
+		this.carbrandid = carbrandid;
+	}
 }
