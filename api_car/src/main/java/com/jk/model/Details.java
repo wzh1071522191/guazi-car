@@ -5,7 +5,7 @@ import java.io.Serializable;
 //订单详情表
 public class Details implements Serializable {
   private Integer id;//详情id
-    private Integer oid;//订单管理id
+
     private String guige;//规格
     private Integer kuaidifei;//快递费
     private Integer yuhui;//优惠
@@ -24,9 +24,6 @@ public class Details implements Serializable {
         this.id = id;
     }
 
-    public Integer getOid() {
-        return oid;
-    }
 
     public Integer getPrice() {
         return price;
@@ -52,9 +49,6 @@ public class Details implements Serializable {
         this.shprice = shprice;
     }
 
-    public void setOid(Integer oid) {
-        this.oid = oid;
-    }
 
     public String getGuige() {
         return guige;

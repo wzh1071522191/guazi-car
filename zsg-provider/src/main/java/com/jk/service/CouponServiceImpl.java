@@ -5,6 +5,7 @@ import com.jk.dao.CouponDao;
 import com.jk.model.Coupon;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -43,8 +44,9 @@ public class CouponServiceImpl implements CouponService{
     }
 
     @Override
-    public void addCoupon(Coupon c) {
-        couponDao.addCoupon(c);
+    @Async
+    public void addCoupon(List<Coupon> list) {
+        couponDao.addCoupon(list);
     }
 
 }

@@ -18,5 +18,5 @@ public interface CouponService {
 
     List<Coupon> queryType();
 
-    void addCoupon(Coupon c);
+    void addCoupon(List<Coupon> list);
 }
