@@ -143,12 +143,19 @@ public class CommServiceImpl implements CommService {
     }
 
     @Override
-    public void dindanxin(Order o, Integer uid, Integer cid) {
-             o.setUserid(uid);
-             o.setCarid(cid);
-             o.setDataid(1);
-             da.dindanxin(o);
+    public void dindanxin(Order o,String color) {
+       Details s=new Details();
+       s.setKuaidifei(30);
+       s.setGuige(color);
+       s.setSpprice(1200);
+       s.setYuhui(200);
+        da.xiangqing(s);
+        System.err.println(s.getId());
+  /*      o.setDataid(d.getId());*/
+         da.didanxin(o);
+
     }
+
 
     @Override
     public List<Details> xiang(Integer id) {

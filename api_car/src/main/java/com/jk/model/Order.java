@@ -1,6 +1,10 @@
 package com.jk.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 
 //订单管理表
 public class Order implements Serializable {
@@ -8,7 +12,9 @@ public class Order implements Serializable {
     private Integer  carid;//汽车id
     private Integer  price;//单价
     private Integer  cunmber;//数量
-    private String  xdtime;//下单时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
+    private Date xdtime;//下单时间
     private Integer  userid;//买家id
     private Integer  status;//交易状态
     private Integer  shprice;//实收金额
@@ -81,13 +87,7 @@ public class Order implements Serializable {
         this.dataid = dataid;
     }
 
-    public String getXdtime() {
-        return xdtime;
-    }
 
-    public void setXdtime(String xdtime) {
-        this.xdtime = xdtime;
-    }
 
     public String getTypename() {
         return typename;
@@ -103,5 +103,13 @@ public class Order implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Date getXdtime() {
+        return xdtime;
+    }
+
+    public void setXdtime(Date xdtime) {
+        this.xdtime = xdtime;
     }
 }
