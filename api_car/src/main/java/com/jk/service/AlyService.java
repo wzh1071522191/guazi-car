@@ -18,6 +18,10 @@ public interface AlyService {
     HashMap<String, Object> querySevendaysAnaList(Car car);
 //近30天数据
     HashMap<String, Object> queryThirtyAnaList(Car car);
-//图表
+//折线图
     List<Map<String, Object>> queryAnalyXian();
+//饼状图
+    List<Map<String, Object>> queryBingZhuang();
+//柱状图
+    List<Map<String, Object>> queryZhuzhuang();
 }

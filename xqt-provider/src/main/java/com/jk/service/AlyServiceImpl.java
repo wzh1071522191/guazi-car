@@ -62,7 +62,20 @@ public class AlyServiceImpl implements AlyService{
 
     @Override
     public List<Map<String, Object>> queryAnalyXian() {
+
         return alyMapper.queryAnalyXian();
+    }
+
+
+
+    @Override
+    public List<Map<String, Object>> queryBingZhuang() {
+        return alyMapper.queryBingZhuang();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryZhuzhuang() {
+        return alyMapper.queryZhuzhuang();
     }
 
 

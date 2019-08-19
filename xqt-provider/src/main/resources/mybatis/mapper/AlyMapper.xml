@@ -76,8 +76,16 @@
 
 		from t_car tc where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt; date(tc.cardate)
 	</select>
-
+<!--折线图-->
 	<select id="queryAnalyXian" resultType="java.util.Map">
       select count(*) 数量,DATE_FORMAT(cardate,'%Y') 年份 from t_car GROUP BY DATE_FORMAT(cardate,'%Y')
     </select>
+<!--饼状图-->
+	<select id="queryBingZhuang" resultType="java.util.Map">
+    select count(*) 数量,mentcarstatu 支付状态 from t_car group by mentcarstatu
+   </select>
+	<!--柱状图-->
+	<select id="queryZhuzhuang" resultType="java.util.Map">
+		select count(*) 数量,carck 车况 from t_car group by carck
+ 	</select>
 </mapper>
