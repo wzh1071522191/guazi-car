@@ -37,5 +37,8 @@ public interface CommService {
 
     Map ping(ParameUtil param);
 
-    void dindanxin(Order o, Integer uid, Integer cid);
+
+    void dindanxin(Order o,String color);
+
+
 }
