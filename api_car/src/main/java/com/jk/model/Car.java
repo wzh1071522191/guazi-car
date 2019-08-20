@@ -44,7 +44,7 @@ public class Car implements Serializable {
 
 
 
-    //出售数量，下单成功后自动加所下单数量
+    //出售数量，下单成功后自动加所下单数量----商品分析
     private Integer sellcarcount;
     //商品浏览量
     private Integer carvolume;
