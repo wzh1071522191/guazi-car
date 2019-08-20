@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <!-- 引入bootstrap的css -->
     <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
@@ -15,7 +14,6 @@
     <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
     <!-- 引入fileinput的css -->
     <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
-
     <!-- 引入my97 -->
     <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
     <!-- 引入bootstrap的js-->
@@ -40,39 +38,16 @@
     <!--  表格 -->
     <table id="dataGrid"></table>
 
-    <!--修改 权限 -->
-    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel" aria-hidden="true">
-
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- 头部 -->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">&times;</button>  <!-- X号关闭 -->
-                    <h4 class="modal-title" id="myModalLabel">菜单信息</h4>
-                </div>
-                <!-- 中部   form内容设置  -->
-                <div  id="yonghu">
-                </div>
-                <!-- 尾部 （按扭）-->
-                <div class="modal-footer">
-                    <button type="button" onclick="tijiao()" class="btn btn-primary"> 提交更改</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
-            </div> <!-- /.modal-content -->
-        </div> <!-- /.modal-dialog -->
-    </div>
 </body>
 <script>
-    $(function(){
-
+    $(function () {
         initDataGrid();
-    });
+    })
+
     function initDataGrid() {
         //创建bootstrapTable
         $("#dataGrid").bootstrapTable({
-            url: "../emp/queryEmp",
+            url: "../audit/queryAuditCar",
             method: 'post',
             striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
@@ -111,7 +86,7 @@
                     pageSize: params.pageSize,
                     sortName: params.sortName,
                     sortOrder: params.sortOrder
-                   // name: $("#name").val()
+                    // name: $("#name").val()
 
                 };
                 return param;
@@ -119,22 +94,68 @@
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
                 {field: 'id', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
-                {field: 'userName', title: '用户名', width: 300},
-                {field: 'userPwd', title: '密码', width: 300},
-                {field: 'createDate', title: '注册日期', width: 300},
-                {field: 'userStatus', title: '状态', width: 300,
+                {field: 'userid', title: '出售方', width: 300},
+                {field: 'carname', title: '汽车品牌', width: 300},
+                {field: 'carimg', title: '汽车图片', width: 300},
+                {field: 'auditdate', title: '审核日期', width: 300},
+                {field: 'isshiigu', title: '是否为事故车', width: 300,
                     formatter:function (value, row, index) {
-                        if(value==0||value==null){return "正常";}
-                        if(value==1){return "异常";}
-                        if(value==2){return "申诉中,待审核";}
+                        return value==0?"否":"是";
                     }
-
+                },
+                {field: 'shiguimg', title: '事故车图片', width: 300,
+                    formatter:function (value, row, index) {
+                        return row.isshiigu==0?"无事故图片":"<img src='../upload/"+value+"' style='width: 80px;height: 50px'>";
+                    }
+                },
+                {field: 'iswaiguan', title: '汽车外观是否良好', width: 300,
+                    formatter:function (value, row, index) {
+                        return value==0?"否":"是";
+                    }
+                },
+                {field: 'waiguanimg', title: '汽车外观图片', width: 300,
+                    formatter:function (value, row, index) {
+                        return "<img src='../upload/"+value+"' style='width: 80px;height: 50px'>";
+                    }
+                },
+                {field: 'isbujian', title: '部件是否良好', width: 300,
+                    formatter:function (value, row, index) {
+                        return value==0?"否":"是";
+                    }
+                },
+                {field: 'bujianimg', title: '问题部件图', width: 300,
+                    formatter:function (value, row, index) {
+                        return row.isbujian==0?"无问题部件图'":"<img src='../upload/"+value+"' style='width:80px;height:50px'>";
+                    }
+                },
+                {field: 'ischangyong', title: '功能是否良好', width: 300,
+                    formatter:function (value, row, index) {
+                        return value==0?"否":"是";
+                    }
+                },
+                {field: 'changyongimg', title: '功能故障图', width: 300,
+                    formatter:function (value, row, index) {
+                        return row.ischangyong==0?"无功能故障图":"<img src='../upload/"+value+"' style='width:80px;height:50px'>";
+                    }
+                },
+                {field: 'status', title: '审核状态', width: 300,
+                    formatter:function (value, row, index) {
+                        if(value==1){
+                            return "待审核";
+                        }
+                        if(value==2){
+                            return "审核已通过";
+                        }
+                        if(value==3){
+                            return "审核不通过";
+                        }
+                    }
                 },
                 {field: 'xxxx', title: '操作', width: 300,
                     formatter:function(value,row,index){
                         //var id = JSON.stringify(row.id);
-                        return row.userStatus==2?"<button type='button' class='btn btn-info' onmouseup='updateStatus("+row.id+")'>审核通过</button>":""+
-                            "<button type='button' class='btn btn-info' onmouseup='setDeparent("+row.id+")'>岗位绑定</button>";
+                        return "<button type='button' class='btn btn-info' onclick='updateStatus("+row.id+",0)'>审核通过</button>"+
+                            "<button type='button' class='btn btn-info' onclick='updateStatus("+row.id+",1)'>审核不通过</button>";
 
                     }
                 }
@@ -142,78 +163,18 @@
             ]
         });
     }
-    updateStatus=function (id) {
+
+    updateStatus=function (id,flag) {
         $.ajax({
-            url:"../emp/updateEmpStatus?id="+id,
+            url:"../audit/updateStatus",
             type:"post",
+            data:{"id":id,"flag":flag},
             success:function () {
-                location.href=location;
-                alert("审核已通过");
+                $('#dataGrid').bootstrapTable("refresh");
+
             }
         })
 
-    }
-
-    var res;
-    function createAddContent(url) {
-        $.ajax({
-            url: url,
-            async: false,
-            success: function (data) {
-                res = data;
-            }
-        });
-        return res;
-    }
-
-    setDeparent=function (id) {
-        bootbox.dialog({
-            title: '绑定角色',
-            message: createAddContent("../emp/setRole?id="+id),
-            closeButton: true,//是否显示关闭按钮
-            buttons: {
-                "success": {
-                    "label": "<i class='icon-ok'></i> 保存",
-                    "className": "btn-sm btn-success",
-                    "callback": function () {
-                        var rid=$("input[name='role']:checked").val();
-                        alert(rid);
-                        $.ajax({
-                            url:"../emp/updateRole",
-                            type:"post",
-                            data:{"uid":$("#uid").val(),"rid":rid},
-                            success:function(){
-                                $('#myModal3').modal('hide'); //成功后关闭弹框
-                                $('#dataGrid').bootstrapTable("refresh");
-                            }
-                        })
-                    }
-                },
-                "cancel": {
-                    "label": "<i class='icon-info'></i> 取消",
-                    "className": "btn-sm btn-danger",
-                    "callback": function () {
-                    }
-                }
-            }
-        });
-
-    }
-    function showleag(){
-        $.ajax({
-            url:"../emp/queryRole",
-            type:"post",
-            success:function(data){
-                var thtml='';
-                for (var i = 0; i < data.length; i++) {
-                    thtml+='<input type="checkbox" value="'+data[i].roleid+'" name="role">'+data[i].rolename+''
-                }
-                $("#leagid").html(thtml);
-            },
-            error:function(){
-                alert("后台错误，请使用debug调试");
-            }
-        })
     }
 </script>
 </html>

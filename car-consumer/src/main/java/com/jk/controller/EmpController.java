@@ -4,19 +4,23 @@ package com.jk.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.model.Emp;
 import com.jk.model.Menu;
+import com.jk.model.Role;
 import com.jk.service.EmpService;
 import com.jk.util.ParameUtil;
 import com.jk.util.TreeNoteUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -91,10 +95,22 @@ public class EmpController {
     @ResponseBody
     public List<Menu> getAllTree(HttpServletRequest request){
         Emp user = (Emp) request.getSession().getAttribute("u");
-
-        List<Menu> list = empService.getTreeAll(user.getId());
+        List<Menu> listTree=new ArrayList<Menu>();
+        String key ="treeAll"+user.getId();
+        if (redisTemplate.hasKey(key)) {
+            listTree=(List<Menu>) redisTemplate.opsForValue().get(key);
+            System.out.println("缓存");
+        }else {
+            listTree=empService.getTreeAll(user.getId());
+            listTree = TreeNoteUtil.getFatherNode(listTree);
+            redisTemplate.opsForValue().set(key, listTree);
+            redisTemplate.expire(key, 1, TimeUnit.MINUTES);
+            System.out.println("数据库");
+        }
+        return listTree;
+       /* List<Menu> list = empService.getTreeAll(user.getId());
         list = TreeNoteUtil.getFatherNode(list);
-        return list;
+        return list;*/
     }
 
     //用户页面
@@ -174,6 +190,70 @@ public class EmpController {
     public HashMap<String,Object>  queryEmpLog(@RequestBody ParameUtil pu){
         return empService.queryEmpLog(pu);
     }
+
+    @RequestMapping("setDep")
+    @ResponseBody
+    public  List<Role>  setDep(Integer id){
+        List<Role> list = empService.setDep(id);
+        return list;
+    }
+
+    @RequestMapping("setRole")
+    public String  setRole(Integer id, Model model, HttpServletRequest request){
+        List<Role> list = empService.setDep(id);
+       // List<Integer> list1 = empService.queryRoleById(id);
+       // request.getSession().setAttribute("roleId",list1.get(0));
+        model.addAttribute("id",id);
+        model.addAttribute("list",list);
+        return "updateRole";
+    }
+
+    @RequestMapping("queryRole")
+    @ResponseBody
+    public List<Role> queryRole(){
+        return empService.queryRole();
+    }
+    @RequestMapping("updateRole")
+    @ResponseBody
+    public void updateRole(Integer uid,Integer rid,HttpServletRequest request) {
+       // Integer i = (Integer)request.getSession().getAttribute("roleId");
+        empService.updatero(uid,rid);
+    }
+
+    @RequestMapping("toEmpPost")
+    public String toEmpPost(){
+        return "postEmp";
+    }
+    @RequestMapping("queryRoleAll")
+    @ResponseBody
+    public HashMap<String,Object> queryRoleAll(@RequestBody ParameUtil parameUtil){
+        return empService.queryRoleAll(parameUtil);
+    }
+
+    @RequestMapping("toUpdateMenu")
+    public String toUpdateMenu(Integer id ,Model model){
+        model.addAttribute("id",id);
+        return "updateMenu";
+    }
+
+    @RequestMapping("queryMenuByRid")
+    @ResponseBody
+    public List<Menu> queryMenuByRid(Integer id){
+        Integer pid=0;
+        return empService.queryMenuByRid(id,pid);
+    }
+
+    //绑定权限
+    @RequestMapping("updateMenu")
+    @ResponseBody
+    public void updateMenu(Integer[] ids,Integer roleid){
+        empService.updateMenu(ids,roleid);
+    }
+
+
+
+
+
 
 
 

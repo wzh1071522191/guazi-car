@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.AuditDao" >
+    <!--Integer queryAuditCarCount()
+    <select id="queryAuditCarCount" resultType="int">
+        SELECT COUNT(*) FROM t_audit
+    </select>-->
+
+    <!--List<Audit> queryListAuditCar(ParameUtil parameUtil)
+
+    <select id="queryListAuditCar" resultType="Audit">
+        SELECT * FROM t_audit LIMIT #{pageNumber},#{pageSize}
+    </select>-->
+
+    <!--void updateStatus(HashMap<String, Object> hashMap)-->
+    <update id="updateStatus" parameterType="HashMap">
+        UPDATE t_audit
+        <if test="flag==0">SET status=2</if>
+        <if test="flag==1">SET status=3</if>
+        WHERE id = #{id}
+    </update>
+
+</mapper>
