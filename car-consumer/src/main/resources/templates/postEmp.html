@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <!-- 引入bootstrap的css -->
     <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
@@ -15,7 +14,6 @@
     <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
     <!-- 引入fileinput的css -->
     <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
-
     <!-- 引入my97 -->
     <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
     <!-- 引入bootstrap的js-->
@@ -41,7 +39,7 @@
     <table id="dataGrid"></table>
 
     <!--修改 权限 -->
-    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
 
         <div class="modal-dialog">
@@ -53,7 +51,7 @@
                     <h4 class="modal-title" id="myModalLabel">菜单信息</h4>
                 </div>
                 <!-- 中部   form内容设置  -->
-                <div  id="yonghu">
+                <div  id="jiaose">
                 </div>
                 <!-- 尾部 （按扭）-->
                 <div class="modal-footer">
@@ -63,6 +61,7 @@
             </div> <!-- /.modal-content -->
         </div> <!-- /.modal-dialog -->
     </div>
+
 </body>
 <script>
     $(function(){
@@ -72,7 +71,7 @@
     function initDataGrid() {
         //创建bootstrapTable
         $("#dataGrid").bootstrapTable({
-            url: "../emp/queryEmp",
+            url: "../emp/queryRoleAll",
             method: 'post',
             striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
@@ -111,79 +110,48 @@
                     pageSize: params.pageSize,
                     sortName: params.sortName,
                     sortOrder: params.sortOrder
-                   // name: $("#name").val()
+                    // name: $("#name").val()
 
                 };
                 return param;
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
-                {field: 'userName', title: '用户名', width: 300},
-                {field: 'userPwd', title: '密码', width: 300},
-                {field: 'createDate', title: '注册日期', width: 300},
-                {field: 'userStatus', title: '状态', width: 300,
-                    formatter:function (value, row, index) {
-                        if(value==0||value==null){return "正常";}
-                        if(value==1){return "异常";}
-                        if(value==2){return "申诉中,待审核";}
-                    }
-
-                },
+                {field: 'id', title: '编号', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'rolename', title: '角色', width: 300},
                 {field: 'xxxx', title: '操作', width: 300,
                     formatter:function(value,row,index){
                         //var id = JSON.stringify(row.id);
-                        return row.userStatus==2?"<button type='button' class='btn btn-info' onmouseup='updateStatus("+row.id+")'>审核通过</button>":""+
-                            "<button type='button' class='btn btn-info' onmouseup='setDeparent("+row.id+")'>岗位绑定</button>";
-
+                        return "<button type='button' class='btn btn-info' onmouseup='setMenu("+row.id+")'>角色授权</button>";
                     }
                 }
-
             ]
         });
     }
-    updateStatus=function (id) {
-        $.ajax({
-            url:"../emp/updateEmpStatus?id="+id,
-            type:"post",
-            success:function () {
-                location.href=location;
-                alert("审核已通过");
-            }
-        })
 
-    }
 
-    var res;
-    function createAddContent(url) {
-        $.ajax({
-            url: url,
-            async: false,
-            success: function (data) {
-                res = data;
-            }
-        });
-        return res;
-    }
-
-    setDeparent=function (id) {
+    setMenu=function (id) {
         bootbox.dialog({
-            title: '绑定角色',
-            message: createAddContent("../emp/setRole?id="+id),
+            title: '绑定权限',
+            message: createAddContent("../emp/toUpdateMenu?id="+id),
             closeButton: true,//是否显示关闭按钮
             buttons: {
                 "success": {
                     "label": "<i class='icon-ok'></i> 保存",
                     "className": "btn-sm btn-success",
                     "callback": function () {
-                        var rid=$("input[name='role']:checked").val();
-                        alert(rid);
+                        var a=$('#edittree').treeview('getChecked');
+                        var ids=""
+                        for(var i=0;i<a.length;i++){
+                            ids+=","+a[i].id
+                        }
+                        ids=ids.substring(1)
                         $.ajax({
-                            url:"../emp/updateRole",
+                            url:"../emp/updateMenu",
                             type:"post",
-                            data:{"uid":$("#uid").val(),"rid":rid},
+                            data:{"roleid":$("#rid").val(),"ids":ids},
                             success:function(){
-                                $('#myModal3').modal('hide'); //成功后关闭弹框
+                                $('#myModal2').modal('hide'); //成功后关闭弹框
                                 $('#dataGrid').bootstrapTable("refresh");
                             }
                         })
@@ -197,23 +165,18 @@
                 }
             }
         });
-
     }
-    function showleag(){
+
+    var res;
+    function createAddContent(url) {
         $.ajax({
-            url:"../emp/queryRole",
-            type:"post",
-            success:function(data){
-                var thtml='';
-                for (var i = 0; i < data.length; i++) {
-                    thtml+='<input type="checkbox" value="'+data[i].roleid+'" name="role">'+data[i].rolename+''
-                }
-                $("#leagid").html(thtml);
-            },
-            error:function(){
-                alert("后台错误，请使用debug调试");
+            url: url,
+            async: false,
+            success: function (data) {
+                res = data;
             }
-        })
+        });
+        return res;
     }
 </script>
 </html>

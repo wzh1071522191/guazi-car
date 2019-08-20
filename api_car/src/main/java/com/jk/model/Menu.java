@@ -1,5 +1,8 @@
 package com.jk.model;
 
+
+
+import com.alibaba.fastjson.JSON;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -25,15 +28,35 @@ public class Menu implements Serializable {
 
     private String url;
 
+    private JSON state ;
+
     //private String status;
 
-    //private String checked;
+    private String checked;
+
 
     private List<Menu> nodes;
 
     private String description;
 
     private Map<String, Object> attributes = new HashMap<String, Object>();
+
+
+    public JSON getState() {
+        return state;
+    }
+
+    public void setState(JSON state) {
+        this.state = state;
+    }
+
+    public String getChecked() {
+        return checked;
+    }
+
+    public void setChecked(String checked) {
+        this.checked = checked;
+    }
 
     public Integer getId() {
         return id;
