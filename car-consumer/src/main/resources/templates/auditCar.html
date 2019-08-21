@@ -154,9 +154,12 @@
                 {field: 'xxxx', title: '操作', width: 300,
                     formatter:function(value,row,index){
                         //var id = JSON.stringify(row.id);
-                        return "<button type='button' class='btn btn-info' onclick='updateStatus("+row.id+",0)'>审核通过</button>"+
+                        if(row.status==2){
+                            return "审核完毕";
+                        }else {
+                            return "<button type='button' class='btn btn-info' onclick='updateStatus("+row.id+",0)'>审核通过</button>"+
                             "<button type='button' class='btn btn-info' onclick='updateStatus("+row.id+",1)'>审核不通过</button>";
-
+                        }
                     }
                 }
 
