@@ -60,13 +60,24 @@
                 </tr>
                 <!--============列表展示当前数据=====-->
                 <tr style="background:#E8FFF5">
-                    <td colspan="2"><b><font color="#6A6AFF">商品概况-</font></b><table id="AnaTable" width="1100px"></table></td>
+                    <td colspan="2"><b>
+                        <font color="#6A6AFF">商品概况-</font></b>
+                        <button onclick="exportExcelGaikuangThree()" type="button" class="btn" style="background:#E8E8D0"><b>Excle导出商品近30天概况</b></button>
+                        <table id="AnaTable" width="1100px"></table>
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="background:#FFFFCE"><b><font color="#6A6AFF">商品流量-</font></b><table id="AnaTable2" width="1100px"></table></td>
+                    <td colspan="2" style="background:#FFFFCE">
+                        <b><font color="#6A6AFF">商品流量-</font></b>
+                        <button onclick="exportExcelLiuliangThree()" type="button" class="btn" style="background:#E8E8D0"><b>Excle导出商品近30天数量</b></button>
+                        <table id="AnaTable2" width="1100px"></table></td>
                 </tr>
                 <tr style="background:#E8FFF5">
-                    <td colspan="2"><b><font color="#6A6AFF">商品转化-</font></b><table id="AnaTable3" width="1100px"></table></td>
+                    <td colspan="2">
+                        <b><font color="#6A6AFF">商品转化-</font></b>
+                        <button onclick="exportExcelZhuanhuaThree()" type="button" class="btn" style="background:#E8E8D0"><b>Excle导出商品近30天转化</b></button>
+                        <table id="AnaTable3" width="1100px"></table>
+                    </td>
                 </tr>
             </table>
             <!--<table id="AnaSevenTable"></table>
@@ -112,7 +123,18 @@
         //折线图
         yueZhexian();
     })
-
+    /*导出商品概况===30天==================*/
+    function exportExcelGaikuangThree() {
+        location.href="../analysis/exportExcelGaikuangThree";
+    }
+    /*导出商品流量=====30天================*/
+    function exportExcelLiuliangThree() {
+        location.href="../analysis/exportExcelLiuliangThree";
+    }
+    /*导出商品转化=======30天==============*/
+    function exportExcelZhuanhuaThree() {
+        location.href="../analysis/exportExcelZhuanhuaThree";
+    }
     //返回首页
     function returnAnaList(){
 

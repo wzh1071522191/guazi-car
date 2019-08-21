@@ -99,17 +99,53 @@
 <!--根据月-柱形图-->
 	<select id="queryShoppingZhuxingByMonth" resultType="java.util.LinkedHashMap">
       select count(*) count,date_format(createdate,'%m') month from t_car group by date_format(createdate,'%m')
-  </select>
+    </select>
 	<!--根据年-柱形图-->
 	<select id="queryShoppingZhuxingByYear" resultType="java.util.LinkedHashMap">
       select count(*) count,date_format(createdate,'%Y') month from t_car group by date_format(createdate,'%Y')
-  </select>
+    </select>
 	<!--根据星期-柱状图-->
 	<select id="queryShoppingZhuxingByWeek" resultType="java.util.LinkedHashMap">
       select count(carck) count,date_format(createdate,'%w') month from t_car group by date_format(createdate,'%w')
-  </select>
+    </select>
 	<!--面积图-day-->
 	<select id="queryMianjiShopping" resultType="java.util.LinkedHashMap">
       select count(*) count,date_format(createdate,'%e') day from t_car group by date_format(createdate,'%e')
-  </select>
+    </select>
+	<!--查询商品概况数据-->
+	<select id="SelectShoppingGaikuang" resultType="com.jk.model.Car">
+		select group_concat(tc.sellcarcount) as sellcarcount,(select count(tc.carstatus) from t_car tc) as cangkucount,(select count(tc.visitcarstatu) from t_car tc where tc.visitcarstatu = 1) as visitcount from t_car tc
+	</select>
+	<!--查询商品流量数据-->
+	<select id="SelectShoppingLiuliang" resultType="com.jk.model.Car">
+     select group_concat(tc.carvolume) as carvolume,tc.visitorsum as visitorsum,(select count(tc.expocarstatu) from t_car tc where tc.expocarstatu = 1) as expocarcount from t_car tc
+	</select>
+	<!--查询商品转化数据-->
+	<select id="SelectShoppingZhuanhua" resultType="com.jk.model.Car">
+		select group_concat(tc.purchasesum) as purchasesum,(select count(tc.placecarstatu) from t_car tc where tc.placecarstatu = 1) as placecarcount,(select count(tc.mentcarstatu) from t_car tc where tc.mentcarstatu = 1) as mentcarcount from t_car tc
+	</select>
+	<!--查询近7天商品概况数据-->
+	<select id="queryExportExcelGaikuangSeven" resultType="com.jk.model.Car">
+		select group_concat(tc.sellcarcount) as sellcarcount,(select count(tc.carstatus) from t_car tc) as cangkucount,(select count(tc.visitcarstatu) from t_car tc where tc.visitcarstatu = 1) as visitcount from t_car tc where DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt; date(tc.cardate)
+	</select>
+	<!--查询近7天商品流量数据-->
+	<select id="queryExportExcelLiuliangSeven" resultType="com.jk.model.Car">
+     select group_concat(tc.carvolume) as carvolume,tc.visitorsum as visitorsum,(select count(tc.expocarstatu) from t_car tc where tc.expocarstatu = 1) as expocarcount from t_car tc where DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt; date(tc.cardate)
+	</select>
+	<!--查询近7天商品转化数据-->
+	<select id="queryExportExcelZhuanhuaSeven" resultType="com.jk.model.Car">
+		select group_concat(tc.purchasesum) as purchasesum,(select count(tc.placecarstatu) from t_car tc where tc.placecarstatu = 1) as placecarcount,(select count(tc.mentcarstatu) from t_car tc where tc.mentcarstatu = 1) as mentcarcount from t_car tc where DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt; date(tc.cardate)
+	</select>
+	<!--查询近30天商品概况数据-->
+	<select id="queryExportExcelGaikuangThree" resultType="com.jk.model.Car">
+		select group_concat(tc.sellcarcount) as sellcarcount,(select count(tc.carstatus) from t_car tc) as cangkucount,(select count(tc.visitcarstatu) from t_car tc where tc.visitcarstatu = 1) as visitcount from t_car tc where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt; date(tc.cardate)
+	</select>
+	<!--查询商品近30天流量数据-->
+	<select id="queryExportExcelLiuliangThree" resultType="com.jk.model.Car">
+     select group_concat(tc.carvolume) as carvolume,tc.visitorsum as visitorsum,(select count(tc.expocarstatu) from t_car tc where tc.expocarstatu = 1) as expocarcount from t_car tc where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt; date(tc.cardate)
+	</select>
+	<!--查询近30天商品转化数据-->
+	<select id="queryExportExcelZhuanhuaThree" resultType="com.jk.model.Car">
+		select group_concat(tc.purchasesum) as purchasesum,(select count(tc.placecarstatu) from t_car tc where tc.placecarstatu = 1) as placecarcount,(select count(tc.mentcarstatu) from t_car tc where tc.mentcarstatu = 1) as mentcarcount from t_car tc where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt; date(tc.cardate)
+	</select>
 </mapper>

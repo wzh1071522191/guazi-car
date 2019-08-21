@@ -22,7 +22,7 @@ public class Car implements Serializable {
     //类型id
     private Integer cartypeid;
     // 颜色
-    private Integer carcolor;
+    private String carcolor;
     //状态
     private Integer carstatus;
     //对应的客户id
@@ -41,8 +41,6 @@ public class Car implements Serializable {
     private Integer carpl;
 
     private Integer carranyou;
-
-
 
     //出售数量，下单成功后自动加所下单数量----商品分析
     private Integer sellcarcount;
@@ -70,42 +68,6 @@ public class Car implements Serializable {
     private Integer placecarcount;
 
     private Integer mentcarcount;
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "carid=" + carid +
-                ", carbrandid=" + carbrandid +
-                ", cardate=" + cardate +
-                ", carlc='" + carlc + '\'' +
-                ", carareaid=" + carareaid +
-                ", carck=" + carck +
-                ", cartypeid=" + cartypeid +
-                ", carcolor=" + carcolor +
-                ", carstatus=" + carstatus +
-                ", userid=" + userid +
-                ", typename='" + typename + '\'' +
-                ", createdate=" + createdate +
-                ", carsxj=" + carsxj +
-                ", carage=" + carage +
-                ", carlocation=" + carlocation +
-                ", carpl=" + carpl +
-                ", carranyou=" + carranyou +
-                ", sellcarcount=" + sellcarcount +
-                ", carvolume=" + carvolume +
-                ", visitorsum=" + visitorsum +
-                ", purchasesum=" + purchasesum +
-                ", expocarstatu=" + expocarstatu +
-                ", placecarstatu=" + placecarstatu +
-                ", mentcarstatu=" + mentcarstatu +
-                ", visitcarstatu=" + visitcarstatu +
-                ", cangkucount=" + cangkucount +
-                ", visitcount=" + visitcount +
-                ", expocarcount=" + expocarcount +
-                ", placecarcount=" + placecarcount +
-                ", mentcarcount=" + mentcarcount +
-                '}';
-    }
 
     public Integer getCarid() {
         return carid;
@@ -163,11 +125,11 @@ public class Car implements Serializable {
         this.cartypeid = cartypeid;
     }
 
-    public Integer getCarcolor() {
+    public String getCarcolor() {
         return carcolor;
     }
 
-    public void setCarcolor(Integer carcolor) {
+    public void setCarcolor(String carcolor) {
         this.carcolor = carcolor;
     }
 
@@ -345,5 +307,41 @@ public class Car implements Serializable {
 
     public void setMentcarcount(Integer mentcarcount) {
         this.mentcarcount = mentcarcount;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carid=" + carid +
+                ", carbrandid=" + carbrandid +
+                ", cardate=" + cardate +
+                ", carlc='" + carlc + '\'' +
+                ", carareaid=" + carareaid +
+                ", carck=" + carck +
+                ", cartypeid=" + cartypeid +
+                ", carcolor='" + carcolor + '\'' +
+                ", carstatus=" + carstatus +
+                ", userid=" + userid +
+                ", typename='" + typename + '\'' +
+                ", createdate=" + createdate +
+                ", carsxj=" + carsxj +
+                ", carage=" + carage +
+                ", carlocation=" + carlocation +
+                ", carpl=" + carpl +
+                ", carranyou=" + carranyou +
+                ", sellcarcount=" + sellcarcount +
+                ", carvolume=" + carvolume +
+                ", visitorsum=" + visitorsum +
+                ", purchasesum=" + purchasesum +
+                ", expocarstatu=" + expocarstatu +
+                ", placecarstatu=" + placecarstatu +
+                ", mentcarstatu=" + mentcarstatu +
+                ", visitcarstatu=" + visitcarstatu +
+                ", cangkucount=" + cangkucount +
+                ", visitcount=" + visitcount +
+                ", expocarcount=" + expocarcount +
+                ", placecarcount=" + placecarcount +
+                ", mentcarcount=" + mentcarcount +
+                '}';
     }
 }
