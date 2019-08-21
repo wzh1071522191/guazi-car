@@ -61,14 +61,6 @@ public class AlyServiceImpl implements AlyService{
     }
 
     @Override
-    public List<Map<String, Object>> queryAnalyXian() {
-
-        return alyMapper.queryAnalyXian();
-    }
-
-
-
-    @Override
     public List<Map<String, Object>> queryBingZhuang() {
         return alyMapper.queryBingZhuang();
     }
@@ -78,5 +70,39 @@ public class AlyServiceImpl implements AlyService{
         return alyMapper.queryZhuzhuang();
     }
 
+    @Override
+    public List<Map<String, Object>> queryShoppingZhexian() {
+        return alyMapper.queryShoppingZhexian();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhexianWeek() {
+        return alyMapper.queryShoppingZhexianWeek();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhexianYue() {
+        return alyMapper.queryShoppingZhexianYue();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhuxingByMonth() {
+        return alyMapper.queryShoppingZhuxingByMonth();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhuxingByYear() {
+        return alyMapper.queryShoppingZhuxingByYear();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhuxingByWeek() {
+        return alyMapper.queryShoppingZhuxingByWeek();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryMianjiShopping() {
+        return alyMapper.queryMianjiShopping();
+    }
 
 }
