@@ -36,5 +36,22 @@ public interface AlyService {
     List<Map<String, Object>> queryShoppingZhuxingByWeek();
     //查询柱状--面积
     List<Map<String, Object>> queryMianjiShopping();
-
+    //Excle导出商品概况
+    List<Car> SelectShoppingGaikuang();
+    //Excle导出商品流量
+    List<Car> SelectShoppingLiuliang();
+    //Excle导出商品转化
+    List<Car> SelectShoppingZhuanhua();
+    //Excle导出商品概况近7天
+    List<Car> queryExportExcelGaikuangSeven();
+    //Excle导出商品流量近7天
+    List<Car> queryExportExcelLiuliangSeven();
+    //Excle导出商品转化近7天
+    List<Car> queryExportExcelZhuanhuaSeven();
+    //Excle导出商品概况近30天
+    List<Car> queryExportExcelGaikuangThree();
+    //Excle导出商品流量近30天
+    List<Car> queryExportExcelLiuliangThree();
+    //Excle导出商品转化近30天
+    List<Car> queryExportExcelZhuanhuaThree();
 }

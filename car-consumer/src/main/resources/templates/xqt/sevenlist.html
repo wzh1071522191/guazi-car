@@ -60,13 +60,25 @@
                 </tr>
                 <!--============列表展示当前数据=====-->
                 <tr style="background:#E8FFF5">
-                    <td colspan="2"><b><font color="#6A6AFF">商品概况-</font></b><table id="AnaTable" width="1100px"></table></td>
+                    <td colspan="2"><b>
+                        <font color="#6A6AFF">商品概况-</font></b>
+                        <button onclick="exportExcelGaikuangSeven()" type="button" class="btn" style="background:#E8E8D0"><b>Excle导出商品近7天概况</b></button>
+                        <table id="AnaTable" width="1100px"></table>
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="background:#FFFFCE"><b><font color="#6A6AFF">商品流量-</font></b><table id="AnaTable2" width="1100px"></table></td>
+                    <td colspan="2" style="background:#FFFFCE"><b>
+                        <font color="#6A6AFF">商品流量-</font></b>
+                        <button onclick="exportExcelLiuliangSeven()" type="button" class="btn" style="background:#E8E8D0"><b>Excle导出商品近7天数量</b></button>
+                        <table id="AnaTable2" width="1100px"></table>
+                    </td>
                 </tr>
                 <tr style="background:#E8FFF5">
-                    <td colspan="2"><b><font color="#6A6AFF">商品转化-</font></b><table id="AnaTable3" width="1100px"></table></td>
+                    <td colspan="2"><b>
+                        <font color="#6A6AFF">商品转化-</font></b>
+                        <button onclick="exportExcelZhuanhuaSeven()" type="button" class="btn" style="background:#E8E8D0"><b>Excle导出商品近7天转化</b></button>
+                        <table id="AnaTable3" width="1100px"></table>
+                    </td>
                 </tr>
             </table>
             <!--<table id="AnaSevenTable"></table>
@@ -112,7 +124,18 @@
         //折线图
         nianZhexian();
     })
-
+    /*导出商品概况7天=====================*/
+    function exportExcelGaikuangSeven() {
+        location.href="../analysis/exportExcelGaikuangSeven";
+    }
+    /*导出商品流量7天=====================*/
+    function exportExcelLiuliangSeven() {
+        location.href="../analysis/exportExcelLiuliangSeven";
+    }
+    /*导出商品转化7天=====================*/
+    function exportExcelZhuanhuaSeven() {
+        location.href="../analysis/exportExcelZhuanhuaSeven";
+    }
     //返回首页
     function returnAnaList(){
 
