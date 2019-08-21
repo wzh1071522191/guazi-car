@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.AuditDao" >
-    <!--Integer queryAuditCarCount()
+    <!--Integer queryAuditCarCount();-->
     <select id="queryAuditCarCount" resultType="int">
-        SELECT COUNT(*) FROM t_audit
-    </select>-->
+        SELECT COUNT(*) FROM t_audit a LEFT JOIN t_user u ON a.userid=u.userid WHERE a.status =1
+    </select>
 
-    <!--List<Audit> queryListAuditCar(ParameUtil parameUtil)
+    <!--List<Audit> queryListAuditCar(ParameUtil pu);-->
+    <resultMap id="au" type="Audit">
+        <id column="id" property="id"/>
+        <result column="carid" property="carid"/>
+        <result column="varifierid" property="varifierid"/>
+        <result column="carname" property="carname"/>
+        <result column="carimg" property="carimg"/>
+        <result column="auditdate" property="auditdate"/>
+        <result column="shiguimg" property="shiguimg"/>
+        <result column="isshiigu" property="isshiigu"/>
+        <result column="iswaiguan" property="iswaiguan"/>
+        <result column="waiguanimg" property="waiguanimg"/>
+        <result column="isbujian" property="isbujian"/>
+        <result column="bujianimg" property="bujianimg"/>
+        <result column="ischangyong" property="ischangyong"/>
+        <result column="changyongimg" property="changyongimg"/>
+        <result column="status" property="status"/>
+        <association property="user" javaType="User">
+            <id column="userid" property="userid" jdbcType="INTEGER" />
+            <result column="username" property="username"/>
+            <result column="userphone" property="userphone"/>
+        </association>
+    </resultMap>
 
-    <select id="queryListAuditCar" resultType="Audit">
-        SELECT * FROM t_audit LIMIT #{pageNumber},#{pageSize}
-    </select>-->
+    <select id="queryListAuditCar" resultMap="au">
+        SELECT * FROM t_audit a LEFT JOIN t_user u ON a.userid=u.userid WHERE a.status=1 LIMIT #{pageNumber},#{pageSize}
+    </select>
 
     <!--void updateStatus(HashMap<String, Object> hashMap)-->
     <update id="updateStatus" parameterType="HashMap">
@@ -18,6 +40,13 @@
         <if test="flag==0">SET status=2</if>
         <if test="flag==1">SET status=3</if>
         WHERE id = #{id}
+    </update>
+
+    <!--void upMessage(Audit audit)-->
+    <update id="upMessage" parameterType="Audit">
+        update t_audit set auditdate=now(),isshigu=#{isshigu},shiguimg=#{shiguimg},
+        iswaiguan=#{iswaiguan},waiguanimg=#{waiguanimg},isbujian=#{isbujian},bujianimg=#{bujianimg},
+        ischangyong=#{ischangyong},changyongimg=#{changyongimg} where id=#{id}
     </update>
 
 </mapper>
