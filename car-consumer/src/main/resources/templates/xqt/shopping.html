@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <script src="../Highcharts/code/highcharts.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入my97 -->
+    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+    <script src="../js/highcharts/code/highcharts.js"></script>
+</head>
+
+<!--
+<body background="../js/163602-15577365629a41.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
+-->
+<body>
+<center>
+    <div>
+        <center>
+            <td colspan="2"><font size="5px" color="#3C3C3C "><b>瓜子二手车商品数据总概览</b></font></td>
+<table width="1250px" height="400px">
+    <!--============跳转列表展示=====-->
+    <tr style="background:#ddd">
+        <td>
+            <button onclick="initDataAnaSevenlist()" type="button" class="btn btn-success btn-sm">展示近七天商品数据</button>
+            <button onclick="initDataAnaThirtylist()" type="button" class="btn btn-success btn-sm">展示近三十天商品数据</button>
+        </td>
+    </tr>
+    <tr style="background:#ddd">
+
+    </tr>
+    <!--============列表展示当前数据==============-->
+    <tr style="background:#E8FFF5">
+<!--列表商品概况+导出商品概况-->
+        <td colspan="2">
+            <b><font color="#6A6AFF">商品概况-</font></b>
+            <button onclick="exportExcelGaikuang()" type="button" class="btn" style="background:#E8E8D0"><b>Excle导出商品概况</b></button>
+            <table id="AnaTable" width="1100px"></table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="background:#FFFFCE"><b>
+            <font color="#6A6AFF">商品流量-</font></b>
+            <button onclick="exportExcelLiuliang()" type="button" class="btn" style="background:#E8E8D0"><b>Excle导出商品数量</b></button>
+            <table id="AnaTable2" width="1100px"></table></td>
+    </tr>
+    <tr style="background:#E8FFF5">
+        <td colspan="2"><b>
+            <font color="#6A6AFF">商品转化-</font></b>
+            <button onclick="exportExcelZhuanhua()" type="button" class="btn" style="background:#E8E8D0"><b>Excle导出商品转化</b></button>
+            <table id="AnaTable3" width="1100px"></table>
+        </td>
+    </tr>
+</table>
+            <!--<table id="AnaSevenTable"></table>
+            <table id="AnaThirtyTable"></table>-->
+        </center>
+    </div>
+    <center>
+    <div>
+<!--===============展示折线图====================-->
+        <table width="1250px">
+            <tr>
+                <td colspan="2" style="background:#F3F3FA">
+                </td>
+            </tr>
+            <tr style="background:#ddd">
+                <td><font size="3px" color="#AE8F00"><b>商品数量趋势图</b></font></td>
+                <td><!--折线图--><div id="container" style="min-width: 300px; height: 300px; max-width: 1250px; margin: 0 auto"></div></td>
+            </tr>
+        </table>
+    </div>
+        <div>
+
+            <table style="background:#C48888" width="1250px">
+                <tr>
+                    <td colspan="2"><font size="3px" color="#F1E1FF"><b>----.点击展示.----</b></font></td>
+                </tr>
+            </table>
+
+        </div>
+    </center>
+    <div>
+<!--=====展示图标表格=========================-->
+        <table width="1250px" >
+            <tr style="background:#ECF5FF">
+              <td style="background:#ECF5FF" colspan="2"><button onclick="binzhuangtu()" type="button" class="btn" style="background:#B8B8DC"><b>查看商品支付状态所占比例</b></button>
+                  <div id="container2" style="min-width: 300px; height: 300px; max-width: 450px; margin: 0 auto"></div></td>
+              <td colspan="2" style="background:#F0FFF0">
+                  <button onclick="nianzhu()" type="button" class="btn" style="background:#FFE6D9"><b>查看每年商品数量</b></button><div id="container3" style="min-width: 300px; height: 300px; max-width: 450px; margin: 0 auto">
+              </div>
+              </td>
+            </tr>
+        </table>
+    </div>
+</center>
+</body>
+<script>
+    $(function(){
+        initDataAna();
+        initDataAna2();
+        initDataAna3();
+        //折线图
+        nianZhexian();
+    })
+
+    /*导出商品概况=====================*/
+    function exportExcelGaikuang() {
+        location.href="../analysis/exportExcelGaikuang";
+    }
+    /*导出商品流量=====================*/
+    function exportExcelLiuliang() {
+        location.href="../analysis/exportExcelLiuliang";
+    }
+    /*导出商品转化=====================*/
+    function exportExcelZhuanhua() {
+        location.href="../analysis/exportExcelZhuanhua";
+    }
+    //近七天
+    function initDataAnaSevenlist(){
+
+        location.href="../analysis/tosevenHtml";
+    }
+//近三十天
+    function initDataAnaThirtylist(){
+
+        location.href="../analysis/tothreesHtml";
+    }
+    //商品概况
+    function initDataAna(){
+        $('#AnaTable').bootstrapTable({
+            url:'../analysis/queryAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+            columns:[
+                {field:'sellcarcount',title:'出售商品数',align:'center'},
+                {field:'cangkucount',title:'仓库商品数',align:'center'},
+                {field:'visitcount',title:'被访问商品数',align:'center'}
+              /*  {field:'expocarcount',title:'商品曝光数',align:'center'},
+                {field:'carvolume',title:'商品浏览量',align:'center'},
+                {field:'visitorsum',title:'商品数访客数',align:'center'},
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}*/
+            ]
+        });
+    }
+    //商品流量
+    function initDataAna2(){
+        $('#AnaTable2').bootstrapTable({
+            url:'../analysis/queryAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+            columns:[
+                  {field:'expocarcount',title:'商品曝光数',align:'center'},
+                  {field:'carvolume',title:'商品浏览量',align:'center'},
+                  {field:'visitorsum',title:'商品数访客数',align:'center'}
+            ]
+        });
+
+
+    }
+    //商品转化
+    function initDataAna3(){
+        $('#AnaTable3').bootstrapTable({
+            url:'../analysis/queryAnaList',
+            toolbar:'#toolbar',
+            pagination:false, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+            columns:[
+                {field:'purchasesum',title:'加购件数',align:'center'},
+                {field:'placecarcount',title:'下单总数',align:'center'},
+                {field:'mentcarcount',title:'支付总数',align:'center'}
+            ]
+        });
+    }
+
+///===年折线图
+    function nianZhexian(){
+        $.ajax({
+            url:"../analysis/queryShoppingZhexianNian",
+            type:"post",
+            dataType:"json",
+            success:function (data) {
+                Highcharts.chart('container', {
+                    title: {
+                        text: '每年商品数量'
+                    },
+                    xAxis: {
+                        categories: data.week,
+                        crosshair: true
+                    },
+                    yAxis: {
+                        title: {
+                            text: '数量'
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle'
+                    },
+                    series: [{
+                        name: '数量',
+                        data: data.count
+                    }]
+                });
+            },error:function () {
+                alert("查询失败");
+            }
+        })
+    }
+
+/*饼状图*/
+    function binzhuangtu(){
+        $.ajax({
+            url:'../analysis/queryBingZhuang',
+            type:'post',
+            dataType:'json',
+            success:function(data){
+                Highcharts.chart('container2', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: '商品支付状态数量比例'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                style: {
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                }
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Brands',
+                        colorByPoint: true,
+                        data: data,
+                    }]
+                });
+
+            },
+            error:function(){
+                alert(".....加载数据图失败")
+            }
+        })
+
+    }
+
+    function nianzhu(){
+        $.ajax({
+            url:"../analysis/queryShoppingZhuxingByYear",
+            type:"post",
+            dataType:"json",
+            success:function (data) {
+                Highcharts.chart('container3', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: '年/商品数量'
+                    },
+                    xAxis: {
+                        categories: data.month,
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '数量'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: '数量',
+                        data: data.count
+                    }]
+                });
+            },error:function () {
+                alert("查询失败");
+            }
+        })
+    }
+</script>
+</html>

@@ -2,18 +2,19 @@ package com.jk.service;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSONObject;
 import com.jk.dao.EmpDao;
-import com.jk.model.Emp;
-import com.jk.model.LogBean;
-import com.jk.model.Menu;
+import com.jk.model.*;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ： 张松光
@@ -118,5 +119,125 @@ public class EmpServiceImpl implements EmpService {
         hashMap.put("total", total);
         hashMap.put("rows", find);
         return hashMap;
+    }
+
+    @Override
+    public List<Role> setDep(Integer id) {
+        List<Integer> queryId=empDao.queryRoleById(id);
+        List<Role> queryAllRole=empDao.queryAllRole();
+        for (int i = 0; i < queryId.size(); i++) {
+            for (int j = 0; j < queryAllRole.size(); j++) {
+                if (queryAllRole.get(j).getId()==queryId.get(i)) {
+                    queryAllRole.get(j).setChecked("true");
+                }
+            }
+        }
+        return queryAllRole;
+    }
+
+    @Override
+    public List<Integer> queryRoleById(Integer id) {
+
+        return empDao.queryRoleById(id);
+    }
+
+    @Override
+    public List<Role> queryRole() {
+
+        return empDao.queryAllRole();
+    }
+
+    @Override
+    public void updatero( Integer uid,Integer rid) {
+        empDao.deleteRole(uid);
+        Map<String,Object> map=new HashMap<String, Object>();
+        map.put("uid",uid);
+        map.put("rid",rid);
+        empDao.updateRole(map);
+
+
+    }
+
+    @Override
+    public HashMap<String, Object> queryRoleAll(ParameUtil parameUtil) {
+        Integer total=empDao.queryRoleTotal();
+        Integer page = parameUtil.getPageNumber();
+        parameUtil.setPageNumber((page-1)*parameUtil.getPageSize());
+        List<Role> queryList=empDao.queryListRole(parameUtil);
+        HashMap<String, Object> hashMap =new HashMap<String, Object>();
+        hashMap.put("total",total);
+        hashMap.put("rows", queryList);
+        return hashMap;
+    }
+
+    @Override
+    public List<Menu> queryMenuByRid(Integer id,Integer pid) {
+        JSONObject json =new JSONObject();
+        List <Menu> list =queryOrgAll3(pid);
+        List <Menu> list2= queryOrgAll2(id,pid);
+        Map map=new HashMap();
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list2.size(); j++) {
+                if(list.get(i).getId()==list2.get(j).getId()){
+                    list.get(i).getId();
+                    json.put("checked", true);
+                    list.get(i).setState(json);
+                }
+            }
+            if(list.size()>0){
+                for (int s = 0; s < list.size(); s++) {
+                    List<Menu>list3=queryMenuByRid(id,list.get(s).getId());
+                    list.get(s).setNodes(list3);
+                }
+            }
+        }
+        return list;
+
+    }
+
+
+
+    public List<Menu> queryOrgAll3(int pid) {
+        // 根据pid查询子节点
+        List<Menu> menu = empDao.queryMenuAll(pid);
+        // 如果查询到子节点集合
+        if(menu != null && menu.size()>0){
+            // 循环集合，将每个机构对象的id作为pid 继续查询子节点集合
+            for (int i = 0; i < menu.size(); i++) {
+                List<Menu> orgs2 = queryOrgAll3(menu.get(i).getId());
+                // 将查询的子节点集合放到该结构对象的children属性中
+                menu.get(i).setNodes(orgs2);
+            }
+        }
+        return menu;
+    }
+
+    public List<Menu> queryOrgAll2(int id, int pid) {
+        // 根据pid查询子节点
+        Map<String,Object> map =new HashMap<String,Object>();
+        map.put("id",id);
+        map.put("pid",pid);
+        List<Menu> orgs = empDao.queryMenuAllById(map);
+        // 如果查询到子节点集合
+        if(orgs != null && orgs.size()>0){
+            // 循环集合，将每个机构对象的id作为pid 继续查询子节点集合
+            for (int i = 0; i < orgs.size(); i++) {
+                List<Menu> orgs2 = queryOrgAll2(id,orgs.get(i).getId());
+                // 将查询的子节点集合放到该结构对象的children属性中
+                orgs.get(i).setNodes(orgs2);
+            }
+        }
+        return orgs;
+    }
+
+    @Override
+    public void updateMenu(Integer[] ids, Integer roleid) {
+        empDao.deleteRoleMenu(roleid);
+        for (int i = 0; i <ids.length ; i++) {
+            Rolemenu rm=new Rolemenu();
+            rm.setMid(ids[i]);
+            rm.setRid(roleid);
+            empDao.addRoleMenu(rm);
+        }
     }
 }

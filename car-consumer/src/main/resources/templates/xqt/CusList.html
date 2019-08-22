@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入my97 -->
+    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+    <script src="../js/highcharts/code/highcharts.js"></script>
+</head>
+<body>
+<button onclick="phoneCall()" type="button" class="btn" style="background:#E8E8D0"><b>联系机器人客服</b></button>
+<button onclick="peopleCall()" type="button" class="btn" style="background:#E8E8D0"><b>联系人工客服</b></button>
+<table id="shoppingTable"></table>
+</body>
+<script>
+$(function(){
+    initShoppingList();
+})
+    //猫列表查询
+    function initShoppingList(){
+        $('#shoppingTable').bootstrapTable({
+            url:'../Perso/findCarShoppingList',
+            toolbar:'#toolbar',
+            pagination:true, //是否展示分页
+            pageList:[2, 4, 6, 50],//分页组件
+            pageNumber:1,
+            pageSize:4,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,//斑马线
+            queryParams:function(){
+                return {
+                    page: this.pageNumber,
+                    rows: this.pageSize
+                };
+            },
+            columns:[
+                {field:'carid',title:'汽车编号',align:'center'},
+                {field:'carcolor',title:'汽车颜色',align:'center'},
+                {field:'carck',title:'汽车状况',align:'center',formatter:function(value,row,index){
+                    var zhuangkuang = "";
+                        if(value == 1){
+                            zhuangkuang += "好车";
+                        }
+                        if(value == 2){
+                            zhuangkuang += "正常车";
+                        }
+                        if(value ==3){
+                            zhuangkuang += "一般车";
+                        }
+                        if(value == 4){
+                            zhuangkuang += "事故车";
+                        }
+                        return zhuangkuang;
+                }},
+                {field:'carimg',title:'汽车封面',formatter:function(value,row,index){
+                 return '<img src="'+value+'" width="80px" height="80px"/>';
+                }},
+                {field:'caozuo',title:'操作',align:'center'}
+            ]
+        });
+    }
+
+<!--机器人客服-->
+function phoneCall(){
+    location.href = "../Perso/queryperson";
+}
+/*人工客服*/
+function peopleCall(){
+    location.href = "../Perso/querypeople";
+}
+</script>
+
+</html>

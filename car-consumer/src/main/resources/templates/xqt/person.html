@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客服服务中心</title>
+    <link rel="stylesheet" href="../js/easyui1.5/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" href="../js/easyui1.5/themes/icon.css">
+    <script src="../js/easyui1.5/jquery.min.js"></script>
+    <script src="../js/easyui1.5/jquery.easyui.min.js"></script>
+    <script src="../js/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入my97 -->
+    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+</head>
+<button onclick="toshopping()" type="button" class="btn" style="background:#E8E8D0"><b>返回首页</b></button>
+
+<style type="text/css">
+    .sendP{
+        text-align: right;
+    }
+    .sendCen{
+        background-color: #33CCFF;
+        color: white;
+        font-size: 18px;
+        padding: 2px 5px;
+        border-radius: 8px;
+    }
+    .sendIcon{
+        color: pink;
+        margin-left: -3px;
+    }
+    .reciveCen{
+        background-color: #CC00FF;
+        color: white;
+        font-size: 18px;
+        padding: 2px 5px;
+        border-radius: 8px;
+    }
+    .reciveIcon{
+        color: black;
+        margin-right: -3px;
+    }
+</style>
+<body>
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north'" style="height:60%" id="content">
+    </div>
+    <div data-options="region:'center'" style="text-align:center;">
+        <input  id="message">
+        <a href="javascript:sendMsg()" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">发送</a>
+    </div>
+</div>
+</body>
+<script>
+    function sendMsg(){
+
+        var message = $("#message").val();
+        var send = '<p class="sendP"><span class="sendCen">'+message+'</span><span class="sendIcon">▶</span></p>';
+        $("#content").append(send);
+        //清楚输入框
+        $("#message").val("");
+        //设置滚动条
+        $("#content").scrollTop($("#content")[0].scrollHeight);
+        $.ajax({
+            url:'../Perso/robotchat',
+            type:'post',
+            data:{
+                code:message
+            },
+            success:function(data){
+                var revice = '<p><span class="reciveIcon">◀</span><span class="reciveCen">'+data.content+'</span></p>'
+                $("#content").append(revice);
+                //设置滚动条高度
+                $("#content").scrollTop($("#content")[0].scrollHeight);
+            }
+        })
+    }
+
+    $(function(){
+        initKeyDown();
+    })
+
+    function initKeyDown(){
+        $('#message').bind('keydown',function(e){
+            if(e.keyCode == 13){
+                sendMsg();
+
+            }
+        });
+
+    }
+function toshopping(){
+        location.href="../Perso/CusList";
+}
+</script>
+</html>

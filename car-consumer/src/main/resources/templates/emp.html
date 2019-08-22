@@ -39,6 +39,30 @@
 <body>
     <!--  表格 -->
     <table id="dataGrid"></table>
+
+    <!--修改 权限 -->
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- 头部 -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                    <h4 class="modal-title" id="myModalLabel">菜单信息</h4>
+                </div>
+                <!-- 中部   form内容设置  -->
+                <div  id="yonghu">
+                </div>
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="tijiao()" class="btn btn-primary"> 提交更改</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div> <!-- /.modal-content -->
+        </div> <!-- /.modal-dialog -->
+    </div>
 </body>
 <script>
     $(function(){
@@ -109,8 +133,9 @@
                 {field: 'xxxx', title: '操作', width: 300,
                     formatter:function(value,row,index){
                         //var id = JSON.stringify(row.id);
-                        return row.userStatus==2?"<button type='button' class='btn btn-info btn-lg' onmouseup='updateStatus("+row.id+")'>审核通过</button>":"";
-                        //return "<button type='button' class='btn btn-info btn-lg' onmouseup='updateDog("+row.id+")'>审核通过</button>";
+                        return row.userStatus==2?"<button type='button' class='btn btn-info' onmouseup='updateStatus("+row.id+")'>审核通过</button>":""+
+                            "<button type='button' class='btn btn-info' onmouseup='setDeparent("+row.id+")'>岗位绑定</button>";
+
                     }
                 }
 
@@ -127,6 +152,68 @@
             }
         })
 
+    }
+
+    var res;
+    function createAddContent(url) {
+        $.ajax({
+            url: url,
+            async: false,
+            success: function (data) {
+                res = data;
+            }
+        });
+        return res;
+    }
+
+    setDeparent=function (id) {
+        bootbox.dialog({
+            title: '绑定角色',
+            message: createAddContent("../emp/setRole?id="+id),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+                        var rid=$("input[name='role']:checked").val();
+                        alert(rid);
+                        $.ajax({
+                            url:"../emp/updateRole",
+                            type:"post",
+                            data:{"uid":$("#uid").val(),"rid":rid},
+                            success:function(){
+                                $('#myModal3').modal('hide'); //成功后关闭弹框
+                                $('#dataGrid').bootstrapTable("refresh");
+                            }
+                        })
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+                    }
+                }
+            }
+        });
+
+    }
+    function showleag(){
+        $.ajax({
+            url:"../emp/queryRole",
+            type:"post",
+            success:function(data){
+                var thtml='';
+                for (var i = 0; i < data.length; i++) {
+                    thtml+='<input type="checkbox" value="'+data[i].roleid+'" name="role">'+data[i].rolename+''
+                }
+                $("#leagid").html(thtml);
+            },
+            error:function(){
+                alert("后台错误，请使用debug调试");
+            }
+        })
     }
 </script>
 </html>

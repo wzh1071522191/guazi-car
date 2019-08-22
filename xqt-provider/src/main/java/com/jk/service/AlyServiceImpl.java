@@ -61,14 +61,6 @@ public class AlyServiceImpl implements AlyService{
     }
 
     @Override
-    public List<Map<String, Object>> queryAnalyXian() {
-
-        return alyMapper.queryAnalyXian();
-    }
-
-
-
-    @Override
     public List<Map<String, Object>> queryBingZhuang() {
         return alyMapper.queryBingZhuang();
     }
@@ -76,6 +68,86 @@ public class AlyServiceImpl implements AlyService{
     @Override
     public List<Map<String, Object>> queryZhuzhuang() {
         return alyMapper.queryZhuzhuang();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhexian() {
+        return alyMapper.queryShoppingZhexian();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhexianWeek() {
+        return alyMapper.queryShoppingZhexianWeek();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhexianYue() {
+        return alyMapper.queryShoppingZhexianYue();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhuxingByMonth() {
+        return alyMapper.queryShoppingZhuxingByMonth();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhuxingByYear() {
+        return alyMapper.queryShoppingZhuxingByYear();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryShoppingZhuxingByWeek() {
+        return alyMapper.queryShoppingZhuxingByWeek();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryMianjiShopping() {
+        return alyMapper.queryMianjiShopping();
+    }
+
+    @Override
+    public List<Car> SelectShoppingGaikuang() {
+        return alyMapper.SelectShoppingGaikuang();
+    }
+
+    @Override
+    public List<Car> SelectShoppingLiuliang() {
+        return alyMapper.SelectShoppingLiuliang();
+    }
+
+    @Override
+    public List<Car> SelectShoppingZhuanhua() {
+        return alyMapper.SelectShoppingZhuanhua();
+    }
+
+    @Override
+    public List<Car> queryExportExcelGaikuangSeven() {
+        return alyMapper.queryExportExcelGaikuangSeven();
+    }
+
+    @Override
+    public List<Car> queryExportExcelLiuliangSeven() {
+        return alyMapper.queryExportExcelLiuliangSeven();
+    }
+
+    @Override
+    public List<Car> queryExportExcelZhuanhuaSeven() {
+        return alyMapper.queryExportExcelZhuanhuaSeven();
+    }
+
+    @Override
+    public List<Car> queryExportExcelGaikuangThree() {
+        return alyMapper.queryExportExcelGaikuangThree();
+    }
+
+    @Override
+    public List<Car> queryExportExcelLiuliangThree() {
+        return alyMapper.queryExportExcelLiuliangThree();
+    }
+
+    @Override
+    public List<Car> queryExportExcelZhuanhuaThree() {
+        return alyMapper.queryExportExcelZhuanhuaThree();
     }
 
 
