@@ -44,9 +44,9 @@
 
     <!--void upMessage(Audit audit)-->
     <update id="upMessage" parameterType="Audit">
-        update t_audit set auditdate=now(),isshigu=#{isshigu},shiguimg=#{shiguimg},
+        update t_audit set auditdate=now(),isshiigu=#{isshiigu},shiguimg=#{shiguimg},
         iswaiguan=#{iswaiguan},waiguanimg=#{waiguanimg},isbujian=#{isbujian},bujianimg=#{bujianimg},
-        ischangyong=#{ischangyong},changyongimg=#{changyongimg} where id=#{id}
+        ischangyong=#{ischangyong},changyongimg=#{changyongimg},status=4 where id=#{id}
     </update>
 
 </mapper>

@@ -35,32 +35,70 @@
 
 </head>
 <body>
-    <form>
-            <input type="" th:value="${id}" name="id">
+    <form id="addForm">
+        <input type="hidden" th:value="${id}" name="id">
+        <div class="row myrow">
+            <div class="col-sm-3"><label>是否为事故车:</label></div>
+            <div class="col-sm-3" >
+                <input type="radio"  value="0" name="isshiigu">是
+                <input type="radio"  value="1" name="isshiigu">否
+            </div>
+        </div>
+        <div class="row myrow" id="img1">
+            <div class="col-md-2"><label for="imgName">车辆图片</label></div>
+            <div class="col-md-10" >
+                <input type="hidden" id="upFile" name="shiguimg" />
+                <input type="file" class="form-control" id="imgName" name="imgName" >
+            </div>
+        </div><br>
 
-            <div class="row myrow">
-                <input type="radio" id="rd1" value="1">是
-                <input type="radio" id="rd2" value="2">否
-            </div>
-            <div class="row myrow" id="img1">
-                <div class="col-md-2">
-                    <label for="imgName">事故图片</label>
-                </div>
-                <div class="col-md-10" >
-                    <input type="disable" id="upFile" name="carimg" />
-                    <input type="file" class="form-control" id="imgName" name="imgName" >
-                </div>
-            </div>
 
-            <div class="row myrow">
-                <div class="col-md-2">
-                    <label for="imgName1">头像名称</label>
-                </div>
-                <div class="col-md-10" >
-                    <input type="disable" id="upFile1" name="carimg1" />
-                    <input type="file" class="form-control" id="imgName1" name="imgName">
-                </div>
+        <div class="row myrow">
+            <div class="col-sm-3"><label>外观是否良好:</label></div>
+            <div class="col-sm-3" >
+                <input type="radio"  value="0" name="iswaiguan">是
+                <input type="radio"  value="1" name="iswaiguan">否
             </div>
+        </div>
+        <div class="row myrow">
+            <div class="col-md-2"><label for="imgName1">外观图片</label></div>
+            <div class="col-md-10" >
+                <input type="hidden" id="upFile1" name="waiguanimg" />
+                <input type="file" class="form-control" id="imgName1" name="imgName">
+            </div>
+        </div><br>
+
+
+        <div class="row myrow">
+            <div class="col-sm-3"><label>部件是否良好:</label></div>
+            <div class="col-sm-3" >
+                <input type="radio"  value="0" name="isbujian">是
+                <input type="radio"  value="1" name="isbujian">否
+            </div>
+        </div>
+        <div class="row myrow">
+            <div class="col-md-2"><label for="imgName1">部件图片</label></div>
+            <div class="col-md-10" >
+                <input type="hidden" id="upFile2" name="bujianimg" />
+                <input type="file" class="form-control" id="imgName2" name="imgName">
+            </div>
+        </div>
+
+
+        <div class="row myrow">
+            <div class="col-sm-3"><label>功能是否良好:</label></div>
+            <div class="col-sm-3" >
+                <input type="radio"  value="0" name="ischangyong">是
+                <input type="radio"  value="1" name="ischangyong">否
+            </div>
+        </div>
+        <div class="row myrow">
+            <div class="col-md-2"><label for="imgName1">功能图片</label></div>
+            <div class="col-md-10" >
+                <input type="hidden" id="upFile3" name="changyongimg" />
+                <input type="file" class="form-control" id="imgName3" name="imgName">
+            </div>
+        </div>
     </form>
 
 </body>
@@ -71,6 +109,8 @@
     $(function () {
         uploadImg();
         uploadImg1();
+        uploadImg2();
+        uploadImg3();
     })
     function uploadImg(url){
         $('#imgName').fileinput({
@@ -87,7 +127,7 @@
             //maxImageHeight: 1000,//图片的最大高度
             //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
             //minFileCount: 0,
-            maxFileCount: 2, //表示允许同时上传的最大文件个数
+            maxFileCount: 10, //表示允许同时上传的最大文件个数
             enctype: 'multipart/form-data',
             validateInitialCount:true,
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
@@ -136,6 +176,76 @@
 			imgval += ","+"http://<%= request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"+data.response;
 		}*/
             $('#upFile1').val(imgval);
+        });
+    }
+
+
+    function uploadImg2(url){
+        $('#imgName2').fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: '../audit/upLoadFile', //上传的地址
+            allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
+            showUpload: true, //是否显示上传按钮
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            dropZoneEnabled: false,//是否显示拖拽区域
+            //minImageWidth: 50, //图片的最小宽度
+            //minImageHeight: 50,//图片的最小高度
+            //maxImageWidth: 1000,//图片的最大宽度
+            //maxImageHeight: 1000,//图片的最大高度
+            //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+            //minFileCount: 0,
+            maxFileCount: 2, //表示允许同时上传的最大文件个数
+            enctype: 'multipart/form-data',
+            validateInitialCount:true,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+
+        }).on('fileuploaded', function(event, data, previewId, index) {
+
+            var imgval = $('#upFile2').val();
+
+            if(imgval == null || imgval == "" || imgval == undefined){
+                imgval = data.response.responseText;
+            }/*else{
+			imgval += ","+"http://<%= request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"+data.response;
+		}*/
+            $('#upFile2').val(imgval);
+        });
+    }
+
+
+    function uploadImg3(url){
+        $('#imgName3').fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: '../audit/upLoadFile', //上传的地址
+            allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
+            showUpload: true, //是否显示上传按钮
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            dropZoneEnabled: false,//是否显示拖拽区域
+            //minImageWidth: 50, //图片的最小宽度
+            //minImageHeight: 50,//图片的最小高度
+            //maxImageWidth: 1000,//图片的最大宽度
+            //maxImageHeight: 1000,//图片的最大高度
+            //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+            //minFileCount: 0,
+            maxFileCount: 2, //表示允许同时上传的最大文件个数
+            enctype: 'multipart/form-data',
+            validateInitialCount:true,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+
+        }).on('fileuploaded', function(event, data, previewId, index) {
+
+            var imgval = $('#upFile3').val();
+
+            if(imgval == null || imgval == "" || imgval == undefined){
+                imgval = data.response.responseText;
+            }/*else{
+			imgval += ","+"http://<%= request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"+data.response;
+		}*/
+            $('#upFile3').val(imgval);
         });
     }
 

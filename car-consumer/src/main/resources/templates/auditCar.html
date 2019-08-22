@@ -35,13 +35,14 @@
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 </head>
 <style>
-    .table>tbody>tr>td{
-        border: 1px solid red; /* 整体表格边框 */
-    }
+    /*  .table>tbody>tr>td{
+         border: 1px solid red; 整体表格边框
+     }*/
 </style>
-<body>
+<body background="../js/316010G41T5.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
     <!--  表格 -->
-    <table id="dataGrid"  class="table table-bordered"></table>
+
+    <table id="dataGrid" class="table table-condensed" border="0px"></table>
 
 </body>
 <script>
@@ -124,7 +125,7 @@
                 },
                 {field: 'shiguimg', title: '事故车图片', width: 300,
                     formatter:function (value, row, index) {
-                        return row.isshiigu==0?"无事故图片":"<img src='../upload/"+value+"' style='width: 80px;height: 50px'>";
+                        return "<img src='"+value+"' style='width: 80px;height: 50px'>";
                     }
                 },
                 {field: 'iswaiguan', title: '外观是否良好', width: 100,
@@ -134,7 +135,7 @@
                 },
                 {field: 'waiguanimg', title: '汽车外观图片', width: 300,
                     formatter:function (value, row, index) {
-                        return "<img src='../upload/"+value+"' style='width: 80px;height: 50px'>";
+                        return "<img src='"+value+"' style='width: 80px;height: 50px'>";
                     }
                 },
                 {field: 'isbujian', title: '部件是否良好', width: 100,
@@ -144,7 +145,7 @@
                 },
                 {field: 'bujianimg', title: '问题部件图', width: 300,
                     formatter:function (value, row, index) {
-                        return row.isbujian==0?"无问题部件图'":"<img src='../upload/"+value+"' style='width:80px;height:50px'>";
+                        return "<img src='"+value+"' style='width:80px;height:50px'>";
                     }
                 },
                 {field: 'ischangyong', title: '功能是否良好', width: 100,
@@ -154,23 +155,7 @@
                 },
                 {field: 'changyongimg', title: '功能故障图', width: 300,
                     formatter:function (value, row, index) {
-                        return row.ischangyong==0?"无功能故障图":"<img src='../upload/"+value+"' style='width:80px;height:50px'>";
-                    }
-                },
-                {field: 'status', title: '审核状态', width: 300,
-                    formatter:function (value, row, index) {
-                        if(value==1){
-                            return "待审核";
-                        }
-                        if(value==2){
-                            return "审核已通过";
-                        }
-                        if(value==3){
-                            return "审核不通过";
-                        }
-                        if(value==4){
-                            return "审核中......";
-                        }
+                        return "<img src='"+value+"' style='width:80px;height:50px'>";
                     }
                 },
                 {field: 'xxxx', title: '操作', width: 300,
@@ -185,7 +170,7 @@
 
     upMessage=function (id) {
         bootbox.dialog({
-            title: '上传信息',
+            title: '上传车辆信息',
             message: createAddContent("../audit/toEventCar?id="+id),
             closeButton: true,//是否显示关闭按钮
             buttons: {

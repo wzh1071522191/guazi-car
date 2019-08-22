@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -239,8 +240,20 @@ public class EmpController {
     @RequestMapping("queryMenuByRid")
     @ResponseBody
     public List<Menu> queryMenuByRid(Integer id){
+        String key="updateTree"+id;
+
         Integer pid=0;
-        return empService.queryMenuByRid(id,pid);
+        List<Menu> list =new ArrayList<Menu>();
+        if(redisTemplate.hasKey(key)){
+            list=(List<Menu>) redisTemplate.opsForValue().get(key);
+            System.out.println("权限缓存"+id);
+        }else {
+            list = empService.queryMenuByRid(id,pid);
+            redisTemplate.opsForValue().set(key, list);
+            System.out.println("权限数据库"+id);
+        }
+        //return empService.queryMenuByRid(id,pid);
+        return list;
     }
 
     //绑定权限
@@ -248,7 +261,28 @@ public class EmpController {
     @ResponseBody
     public void updateMenu(Integer[] ids,Integer roleid){
         empService.updateMenu(ids,roleid);
+        Integer pid=0;
+        Integer id=roleid;
+        String key="updateTree"+roleid;
+
+        System.out.println(roleid);
+        List<Menu> list= empService.queryMenuByRid(id,pid);
+        redisTemplate.delete(key);
+
+       redisTemplate.opsForValue().set(key, list);
+
     }
+
+    @RequestMapping("logOut")
+    @ResponseBody
+    public void logOut(HttpServletRequest request){
+
+        request.getSession().removeAttribute("u");
+
+
+    }
+
+
 
 
 

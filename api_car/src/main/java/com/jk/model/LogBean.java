@@ -32,6 +32,16 @@ public class LogBean implements Serializable {
     private String parame;          //参数
     private Integer userId;         //登录用户id
     private Object returningValue;  //返回值
+    private String userName;
+
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
