@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>客服服务中心</title>
+    <title>人工客服中心</title>
     <link rel="stylesheet" href="../js/easyui1.5/themes/bootstrap/easyui.css">
     <link rel="stylesheet" href="../js/easyui1.5/themes/icon.css">
     <script src="../js/easyui1.5/jquery.min.js"></script>
@@ -40,8 +40,16 @@
     <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
 
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+    <script language="JavaScript">
+        function myrefresh(){
+            window.location.reload();
+        }
+        setTimeout('myrefresh()',8000); //指定1秒刷新一次
+    </script>
 </head>
-<button onclick="toshopping()" type="button" class="btn" style="background:#E8E8D0"><b>返回首页</b></button>
+<center><font size="5px" color="red"><b>后台客服系统</b></font></center>
+<button onclick="returnshou()" type="button" class="btn" style="background:#FFD2D2"><b><font color="green"><--返回首页</font></b></button>
+<!--样式-->
 
 <style type="text/css">
     .sendP{
@@ -70,17 +78,40 @@
         margin-right: -3px;
     }
 </style>
-<body>
+<!--拼接客户发送过来的消息-->
+<body style="background:#EFFFD7">
+<div id="ulul"  style="height:350px;overflow:auto;"></div>
+<!--发送消息-->
 <div class="easyui-layout" data-options="fit:true">
-    <div data-options="region:'north'" style="height:60%" id="content">
+    <div data-options="region:'north'" style="height:30%;background:#FFFAF4" id="content">
     </div>
-    <div data-options="region:'center'" style="text-align:center;">
-        <input  id="message">
+    <div data-options="region:'center'" style="text-align:center;background:#E8FFF5">
+        <input  type="text" id="message" class="easyui-textbox" style="width:300px; height:50px;">
         <a href="javascript:sendMsg()" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">发送</a>
     </div>
 </div>
 </body>
 <script>
+    /*页面加载客户发过来的消息*/
+    $(function(){
+        $(document).ready(function() {
+            $.ajax({
+                url : "../Perso/queryKehus2",
+                dataType : "json",
+                type : "post",
+                success : function(data) {
+                    var html = "";
+                    for(var i=0;i<data.length;i++){
+                        var ls = data[i];
+                        html +="<li><p><span class='reciveIcon'>◀</span><span class='reciveCen'>"+ls.codeKehu+"----时间："+ls.cusTime+"</span></p></li>";
+                    }
+                    $("#ulul").html(html);
+                },
+            })
+        })
+    })
+
+/*客服要输入的话*/
     function sendMsg(){
         var message = $("#message").val();
         var send = '<p class="sendP"><span class="sendCen">'+message+'</span><span class="sendIcon">▶</span></p>';
@@ -90,15 +121,14 @@
         //设置滚动条
         $("#content").scrollTop($("#content")[0].scrollHeight);
         $.ajax({
-            url:'../Perso/robotchat',
+            url:'../Perso/insertkefucode',
             type:'post',
             data:{
-                code:message
+                codeKefu:message,
             },
             success:function(data){
                 var revice = '<p><span class="reciveIcon">◀</span><span class="reciveCen">'+data.content+'</span></p>'
-                $("#content").append(revice);
-                //设置滚动条高度
+
                 $("#content").scrollTop($("#content")[0].scrollHeight);
             }
         })
@@ -106,7 +136,6 @@
     $(function(){
         initKeyDown();
     })
-
     function initKeyDown(){
         $('#message').bind('keydown',function(e){
             if(e.keyCode == 13){
@@ -114,10 +143,12 @@
 
             }
         });
-
     }
-function toshopping(){
+//返回首页
+    function returnshou(){
         location.href="../Perso/CusList";
-}
+    }
+
+
 </script>
 </html>

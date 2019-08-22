@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.jk.dao.PersonMapper;
 import com.jk.model.Audit;
 import com.jk.model.Car;
+import com.jk.model.Cusmoter;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,4 +36,26 @@ public class PersonServiceImpl implements PersonService{
         hashMap.put("rows", lists);
         return hashMap;
     }
+//新增客户说的话
+    @Override
+    public void insertKehu(Cusmoter cusmoter) {
+        personMapper.insertKehu(cusmoter);
+    }
+//查询客户说的话
+    @Override
+    public List<Cusmoter> queryKehus2() {
+        return personMapper.queryKehus2();
+    }
+//新增客服说的话
+    @Override
+    public void insertkefu(Cusmoter cusmoter) {
+        personMapper.insertkefu(cusmoter);
+    }
+//查询客服说的话
+    @Override
+    public List<Cusmoter> queryKefucode() {
+
+        return personMapper.queryKefucode();
+    }
+
 }

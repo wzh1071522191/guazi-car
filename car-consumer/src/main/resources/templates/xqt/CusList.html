@@ -41,6 +41,7 @@
 <body>
 <button onclick="phoneCall()" type="button" class="btn" style="background:#E8E8D0"><b>联系机器人客服</b></button>
 <button onclick="peopleCall()" type="button" class="btn" style="background:#E8E8D0"><b>联系人工客服</b></button>
+<button onclick="houtai()" type="button" class="btn" style="background:#E8E8D0"><b>后台人工客服</b></button>
 <table id="shoppingTable"></table>
 </body>
 <script>
@@ -95,9 +96,13 @@ $(function(){
 function phoneCall(){
     location.href = "../Perso/queryperson";
 }
+
 /*人工客服*/
 function peopleCall(){
     location.href = "../Perso/querypeople";
+}
+function houtai(){
+    location.href = "../Perso/querykefu";
 }
 </script>
 
