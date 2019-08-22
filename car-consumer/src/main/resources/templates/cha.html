@@ -194,13 +194,38 @@
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'dindanhao', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'typename', title: '汽车名称', width: 300},
                 {field: 'price', title: '单价', width: 300},
                 {field: 'cunmber', title: '数量', width: 300,},
                 {field: 'xdtime', title: '下单时间', width: 300},
                 {field: 'username', title: '买家', width: 300},
-                {field: 'status', title: '交易状态', width: 300},
+                {field: 'status', title: '交易状态', width: 300,formatter:function(value,row,index){
+                        if(row.status==1){
+                            return  "待付款";
+                        }else if(row.status==2){
+
+                            return  "待发货";
+                        }
+                        else if(row.status==3){
+
+                            return  "已发货";
+                        }
+                        else if(row.status==4){
+
+                            return  "已完成";
+                        }
+                        else if(row.status==5){
+
+                            return  "已关闭";
+                        }
+                        else if(row.status==6){
+
+                            return  "退款中";
+                        }
+
+
+                    }},
                 {field: 'shprice', title: '实收金额', width: 300},
 
                 {field: 'ss', title: '操作', width: 300,formatter:function(value,row,index){
@@ -279,13 +304,38 @@
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'dindanhao', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'typename', title: '汽车名称', width: 300},
                 {field: 'price', title: '单价', width: 300},
                 {field: 'cunmber', title: '数量', width: 300,},
                 {field: 'xdtime', title: '下单时间', width: 300},
                 {field: 'username', title: '买家', width: 300},
-                {field: 'status', title: '交易状态', width: 300},
+                {field: 'status', title: '交易状态', width: 300,formatter:function(value,row,index){
+                        if(row.status==1){
+                            return  "待付款";
+                        }else if(row.status==2){
+
+                            return  "待发货";
+                        }
+                        else if(row.status==3){
+
+                            return  "已发货";
+                        }
+                        else if(row.status==4){
+
+                            return  "已完成";
+                        }
+                        else if(row.status==5){
+
+                            return  "已关闭";
+                        }
+                        else if(row.status==6){
+
+                            return  "退款中";
+                        }
+
+
+                    }},
                 {field: 'shprice', title: '实收金额', width: 300},
 
                 {field: 'ss', title: '操作', width: 300,formatter:function(value,row,index){
@@ -364,13 +414,38 @@
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'dindanhao', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'typename', title: '汽车名称', width: 300},
                 {field: 'price', title: '单价', width: 300},
                 {field: 'cunmber', title: '数量', width: 300,},
                 {field: 'xdtime', title: '下单时间', width: 300},
                 {field: 'username', title: '买家', width: 300},
-                {field: 'status', title: '交易状态', width: 300},
+                {field: 'status', title: '交易状态', width: 300,formatter:function(value,row,index){
+                        if(row.status==1){
+                            return  "待付款";
+                        }else if(row.status==2){
+
+                            return  "待发货";
+                        }
+                        else if(row.status==3){
+
+                            return  "已发货";
+                        }
+                        else if(row.status==4){
+
+                            return  "已完成";
+                        }
+                        else if(row.status==5){
+
+                            return  "已关闭";
+                        }
+                        else if(row.status==6){
+
+                            return  "退款中";
+                        }
+
+
+                    }},
                 {field: 'shprice', title: '实收金额', width: 300},
 
                 {field: 'ss', title: '操作', width: 300,formatter:function(value,row,index){
@@ -449,13 +524,38 @@
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'dindanhao', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'typename', title: '汽车名称', width: 300},
                 {field: 'price', title: '单价', width: 300},
                 {field: 'cunmber', title: '数量', width: 300,},
                 {field: 'xdtime', title: '下单时间', width: 300},
                 {field: 'username', title: '买家', width: 300},
-                {field: 'status', title: '交易状态', width: 300},
+                {field: 'status', title: '交易状态', width: 300,formatter:function(value,row,index){
+                        if(row.status==1){
+                            return  "待付款";
+                        }else if(row.status==2){
+
+                            return  "待发货";
+                        }
+                        else if(row.status==3){
+
+                            return  "已发货";
+                        }
+                        else if(row.status==4){
+
+                            return  "已完成";
+                        }
+                        else if(row.status==5){
+
+                            return  "已关闭";
+                        }
+                        else if(row.status==6){
+
+                            return  "退款中";
+                        }
+
+
+                    }},
                 {field: 'shprice', title: '实收金额', width: 300},
 
                 {field: 'ss', title: '操作', width: 300,formatter:function(value,row,index){
@@ -534,13 +634,38 @@
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'dindanhao', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'typename', title: '汽车名称', width: 300},
                 {field: 'price', title: '单价', width: 300},
                 {field: 'cunmber', title: '数量', width: 300,},
                 {field: 'xdtime', title: '下单时间', width: 300},
                 {field: 'username', title: '买家', width: 300},
-                {field: 'status', title: '交易状态', width: 300},
+                {field: 'status', title: '交易状态', width: 300,formatter:function(value,row,index){
+                        if(row.status==1){
+                            return  "待付款";
+                        }else if(row.status==2){
+
+                            return  "待发货";
+                        }
+                        else if(row.status==3){
+
+                            return  "已发货";
+                        }
+                        else if(row.status==4){
+
+                            return  "已完成";
+                        }
+                        else if(row.status==5){
+
+                            return  "已关闭";
+                        }
+                        else if(row.status==6){
+
+                            return  "退款中";
+                        }
+
+
+                    }},
                 {field: 'shprice', title: '实收金额', width: 300},
 
                 {field: 'ss', title: '操作', width: 300,formatter:function(value,row,index){
@@ -619,13 +744,38 @@
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'dindanhao', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'typename', title: '汽车名称', width: 300},
                 {field: 'price', title: '单价', width: 300},
                 {field: 'cunmber', title: '数量', width: 300,},
                 {field: 'xdtime', title: '下单时间', width: 300},
                 {field: 'username', title: '买家', width: 300},
-                {field: 'status', title: '交易状态', width: 300},
+                {field: 'status', title: '交易状态', width: 300,formatter:function(value,row,index){
+                        if(row.status==1){
+                            return  "待付款";
+                        }else if(row.status==2){
+
+                            return  "待发货";
+                        }
+                        else if(row.status==3){
+
+                            return  "已发货";
+                        }
+                        else if(row.status==4){
+
+                            return  "已完成";
+                        }
+                        else if(row.status==5){
+
+                            return  "已关闭";
+                        }
+                        else if(row.status==6){
+
+                            return  "退款中";
+                        }
+
+
+                    }},
                 {field: 'shprice', title: '实收金额', width: 300},
 
                 {field: 'ss', title: '操作', width: 300,formatter:function(value,row,index){
@@ -704,7 +854,7 @@
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'dindanhao', title: '订单号', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'typename', title: '汽车名称', width: 300},
                 {field: 'price', title: '单价', width: 300},
                 {field: 'cunmber', title: '数量', width: 300,},

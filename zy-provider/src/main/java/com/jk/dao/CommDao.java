@@ -62,4 +62,11 @@ public interface CommDao {
 
 
     void xiangqing(Details s);
+
+    List<Order> xiang1(@Param("page")Integer page,  @Param("pageSize")Integer pageSize,  @Param("id")Integer id);
+
+    List<Comment> shu(Integer id);
+
+
+    void huifu(Comment c);
 }
