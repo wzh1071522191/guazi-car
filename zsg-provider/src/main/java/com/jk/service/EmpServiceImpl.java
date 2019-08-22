@@ -7,8 +7,11 @@ import com.jk.dao.EmpDao;
 import com.jk.model.*;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -108,11 +111,29 @@ public class EmpServiceImpl implements EmpService {
 
     @Override
     public HashMap<String, Object> queryEmpLog(ParameUtil pu) {
+        Criteria c = new Criteria();
         Query query=new Query();
+        if (pu.getName() != null&&!"".equals(pu.getName())) {
+            c.and("userName").is(pu.getName());
+        }
+        //两者都不为空
+        if (pu.getStarDate() != null&&pu.getEndDate()!=null) {
+            c.and("logtime").gte(pu.getStarDate()).lte(pu.getEndDate());
+        }
+        //结束时间为空，开始不空
+        if (pu.getStarDate() != null&&pu.getEndDate()==null) {
+            c.and("logtime").gte(pu.getStarDate());
+        }
+        //开始为空，结束不空
+        if (pu.getStarDate() == null&&pu.getEndDate()!=null) {
+            c.and("logtime").lte(pu.getEndDate());
+        }
+        query.addCriteria(c);
         Integer total=(int) mongoTemplate.count(query, LogBean.class, "log");
 
         query.skip((pu.getPageNumber()-1)*pu.getPageSize());
         query.limit(pu.getPageSize());
+        query.with(new Sort(Sort.Direction.DESC, "logtime"));
         List<LogBean> find = mongoTemplate.find(query, LogBean.class, "log");
         HashMap<String, Object> hashMap=new HashMap<String, Object>();
         hashMap.put("total", total);

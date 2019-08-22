@@ -1,6 +1,7 @@
 package com.jk.service;
 
 
+import com.jk.model.Comment;
 import com.jk.model.Details;
 import com.jk.model.Order;
 import com.jk.util.DataGridResult;
@@ -38,7 +39,12 @@ public interface CommService {
     Map ping(ParameUtil param);
 
 
-    void dindanxin(Order o,String color);
 
 
+
+    Map xiang1(ParameUtil param, Integer id);
+
+    List<Comment> shu(Integer id);
+
+    void huifu(Integer id, Comment c);
 }

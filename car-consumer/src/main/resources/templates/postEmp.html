@@ -152,7 +152,8 @@
                             data:{"roleid":$("#rid").val(),"ids":ids},
                             success:function(){
                                 $('#myModal2').modal('hide'); //成功后关闭弹框
-                                $('#dataGrid').bootstrapTable("refresh");
+                                //$('#dataGrid').bootstrapTable("refresh");
+                                location.href=location;
                             }
                         })
                     }

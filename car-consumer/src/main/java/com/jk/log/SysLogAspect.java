@@ -76,6 +76,7 @@ public class SysLogAspect {
 		
 		if(user != null){
 			log.setUserId(user.getId());
+			log.setUserName(user.getUserName());
 		}
 		
 		

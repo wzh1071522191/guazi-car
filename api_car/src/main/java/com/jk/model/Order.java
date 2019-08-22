@@ -11,23 +11,21 @@ public class Order implements Serializable {
     private Integer  id; //订单号
     private Integer  carid;//汽车id
     private Integer  price;//单价
-    private Integer  cunmber;//数量
-    @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
+    private Integer  cunmber;//数量 @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
+
     private Date xdtime;//下单时间
     private Integer  userid;//买家id
     private Integer  status;//交易状态
     private Integer  shprice;//实收金额
-    private Integer  dataid;//订单详情id
+    private Integer  detaid;//订单详情id
     private String  username;//用户名称临时字段
     private String   typename;//汽车名称临时字段
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private String guige;//规格
+    private Integer kuaidifei;//快递费
+    private Integer yuhui;//优惠
+    private Integer spprice;//商品总价
+    private  String dindanhao;//订单号
 
     public Integer getCarid() {
         return carid;
@@ -53,7 +51,37 @@ public class Order implements Serializable {
         this.cunmber = cunmber;
     }
 
+    public String getGuige() {
+        return guige;
+    }
 
+    public void setGuige(String guige) {
+        this.guige = guige;
+    }
+
+    public Integer getKuaidifei() {
+        return kuaidifei;
+    }
+
+    public void setKuaidifei(Integer kuaidifei) {
+        this.kuaidifei = kuaidifei;
+    }
+
+    public Integer getYuhui() {
+        return yuhui;
+    }
+
+    public void setYuhui(Integer yuhui) {
+        this.yuhui = yuhui;
+    }
+
+    public Integer getSpprice() {
+        return spprice;
+    }
+
+    public void setSpprice(Integer spprice) {
+        this.spprice = spprice;
+    }
 
     public Integer getUserid() {
         return userid;
@@ -77,14 +105,6 @@ public class Order implements Serializable {
 
     public void setShprice(Integer shprice) {
         this.shprice = shprice;
-    }
-
-    public Integer getDataid() {
-        return dataid;
-    }
-
-    public void setDataid(Integer dataid) {
-        this.dataid = dataid;
     }
 
 
@@ -111,5 +131,30 @@ public class Order implements Serializable {
 
     public void setXdtime(Date xdtime) {
         this.xdtime = xdtime;
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getDetaid() {
+        return detaid;
+    }
+
+    public void setDetaid(Integer detaid) {
+        this.detaid = detaid;
+    }
+
+    public String getDindanhao() {
+        return dindanhao;
+    }
+
+    public void setDindanhao(String dindanhao) {
+        this.dindanhao = dindanhao;
     }
 }

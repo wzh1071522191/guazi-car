@@ -44,6 +44,15 @@ public class Audit implements Serializable {
 
     private Integer status; //状态   1.待审核 2.审核已通过 3.审核不通过
 
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getId() {
         return id;

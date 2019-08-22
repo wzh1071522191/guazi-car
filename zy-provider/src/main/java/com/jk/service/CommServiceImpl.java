@@ -10,6 +10,7 @@ import com.jk.model.Order;
 import com.jk.model.Refund;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,9 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 
 @Service
@@ -142,18 +142,45 @@ public class CommServiceImpl implements CommService {
         return ma;
     }
 
-    @Override
-    public void dindanxin(Order o,String color) {
-       Details s=new Details();
+
+    @RabbitListener(queues = "Rabbitmq")//添加RabbitListener注解 监听
+    public void Queue(Order o) {
+
+
+       /*Details s=new Details();
        s.setKuaidifei(30);
        s.setGuige(color);
        s.setSpprice(1200);
        s.setYuhui(200);
         da.xiangqing(s);
-        System.err.println(s.getId());
-  /*      o.setDataid(d.getId());*/
+        System.err.println(s.getId());*/
+  /*   o.setDataid(d.getId());*/
          da.didanxin(o);
 
+    }
+
+    @Override
+    public Map xiang1(ParameUtil param, Integer id) {
+        Integer count=da.pzong(param);
+        Integer page=(param.getPageNumber()-1)*param.getPageSize();
+        List<Order> list=da.xiang1(page,param.getPageSize(),id);
+        Map ma=new HashMap();
+        ma.put("total",count);
+        ma.put("rows",list);
+        return ma;
+    }
+
+    @Override
+    public List<Comment> shu(Integer id) {
+        return da.shu(id);
+    }
+
+    @Override
+    public void huifu(Integer id, Comment c) {
+        c.setPid(id);
+        c.setPtime(new Date());
+
+        da.huifu(c);
     }
 
 

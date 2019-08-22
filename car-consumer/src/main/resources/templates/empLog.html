@@ -36,6 +36,16 @@
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 </head>
 <body>
+
+    <form id="pro_from" class="form-inline">
+            <label>用户名:</label>
+            <input type="text" class="form-control" name = "userName" id="userName" placeholder="用户名">
+        <br>
+            <label>日期:</label>
+            <input type="date" class="form-control" name="starDate" id="starDate">--<input type="date" class="form-control" name="endDate" id="endDate">
+        <br>
+        <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
+    </form>
     <!--  表格 -->
     <table id="dataGrid"></table>
 </body>
@@ -85,8 +95,10 @@
                     pageNumber: params.pageNumber,
                     pageSize: params.pageSize,
                     sortName: params.sortName,
-                    sortOrder: params.sortOrder
-                    // name: $("#name").val()
+                    sortOrder: params.sortOrder,
+                    name: $("#userName").val(),
+                    starDate:$("#starDate").val(),
+                    endDate:$("#endDate").val()
 
                 };
                 return param;
@@ -97,8 +109,19 @@
                 {field: 'logname', title: '日志名称', width: 300},
                 {field: 'logip', title: 'ip地址', width: 300},
                 {field: 'logtime', title: '登录时间', width: 300},
-                {field: 'userId', title: '登录用户', width: 300}
+                {field: 'userName', title: '登录用户', width: 300}
             ]
+        });
+    }
+    function queryData(){
+        $("#dataGrid").bootstrapTable("refresh", {
+            "query": {
+
+                "name": $("#userName").val(),
+                "starDate":$("#starDate").val(),
+                "endDate":$("#endDate").val()
+
+            }
         });
     }
 </script>

@@ -1,6 +1,8 @@
 package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.jk.minggan.test;
+import com.jk.model.Comment;
 import com.jk.model.Details;
 import com.jk.model.Order;
 import com.jk.model.User;
@@ -9,6 +11,8 @@ import com.jk.util.DataGridResult;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,15 +23,18 @@ import sun.net.httpserver.HttpsServerImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import javax.xml.crypto.Data;
+import java.io.UnsupportedEncodingException;
+import java.util.*;
 
 @Controller
 @RequestMapping("comm")
 public class CommController {
     @Reference
     private CommService se;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
     //订单查询全部
     @RequestMapping("cha")
     @ResponseBody
@@ -85,17 +92,23 @@ public class CommController {
 
         return se.tui(param);
     }
-    //订单详情查询
+    //订单详情跳转
     @RequestMapping("xiang")
 
-    public String xiang(Integer id,Model model){
-        List<Details> list= se.xiang(id);
-        model.addAttribute("s",list);
- return  "xiang";
+    public String xiang(Integer id,HttpServletRequest request){
+        request.getSession().setAttribute("s",id);
+ return  "xiang" ;
+
     }
 
+    //订单详情查询
 
+    @RequestMapping("xiang1")
+    @ResponseBody
+    public Map xiang1(@RequestBody ParameUtil param, Integer id){
 
+        return se.xiang1(param,id);
+    }
     //交易退款查询
     @RequestMapping("kuan")
     @ResponseBody
@@ -116,9 +129,23 @@ public class CommController {
         se.tong(sum,id);
     }
     //评论查询
+    @RequestMapping("pinglun")
+    @ResponseBody
+    public List<Comment> treeList(Integer id){
+
+        //定义默认根节点的id 0
+
+      //  List<Comment> beanList=TreeNode(id);
+        List<Comment> list=se.shu(id);
+        return list;
+    }
+
+    //评论查询
     @RequestMapping("ping")
     @ResponseBody
+
     public Map pinglun(@RequestBody ParameUtil  param){
+
         return se.ping(param);
     }
  @RequestMapping("ping1")
@@ -128,19 +155,72 @@ public class CommController {
     //订单新增
     @RequestMapping("dindanxin")
     @ResponseBody
-    public void  dindanxin(String color,Integer cid, HttpServletRequest request){
-        Order o=new Order();
-        User loginUserid = (User) request.getSession().getAttribute("LoginUserid");
-          o.setCarid(cid);
-          o.setUserid(loginUserid.getuserid());
-          o.setPrice(1000);
-          o.setCunmber(1);
-          o.setXdtime(new Date());
-          o.setStatus(1);
-          o.setShprice(1000);
-          se.dindanxin(o,color);
-        System.out.println("666666666666");
-    }
+    public void  dindanxin(String carname,Integer price,String color,Integer cid,Integer uid){
+        long time =  System.currentTimeMillis();
+        Random ran = new Random();
+        int i = ran.nextInt(1000);
+        long s= time+i;
 
+        Order o=new Order();
+        o.setDindanhao(s+"");
+        o.setCarid(cid);
+        o.setUserid(uid);
+        o.setPrice(1000);
+        o.setCunmber(1);
+        o.setXdtime(new Date());
+        o.setStatus(1);
+        o.setShprice(1000);
+        o.setGuige(color);
+        o.setKuaidifei(20);
+        o.setYuhui(200);
+        o.setShprice(1200);
+        amqpTemplate.convertAndSend("Rabbitmq",o);
+
+    }
+//回复弹框
+ @RequestMapping("huifu1")
+    public String  huifu1(){
+
+        return "huifu";
+ }
+ //评论弹框
+ @RequestMapping("pinglun1")
+    public  String pinglun1(Integer id,HttpServletRequest request){
+ request.getSession().setAttribute("pinglun",id);
+        return "pinglun";
+ }
+ //回复新增
+    @RequestMapping("huifu")
+    @ResponseBody
+    public  void huifu(Integer id,Comment c) throws UnsupportedEncodingException {
+        String text = c.getText();
+
+        String[] arr = {"傻","傻逼","王八蛋","猪","草","王八","智障吗","逼", "你妈","sb","SB","S B","s b"};
+        String content = text;
+
+
+
+
+
+        test t = new test();
+
+        List<String> words = new ArrayList<String>();
+
+        for (String in : arr) {
+            words.add(in);
+        }
+        t.createKeywordTree(words);
+
+        String result = t.searchKeyword(content);
+        c.setText(result);
+        System.out.println(result);
+
+
+      se.huifu(id,c);
+    }
+    @RequestMapping("shaxiang")
+    public String shaxiang(){
+        return "aaa";
+    }
 }
 

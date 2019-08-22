@@ -34,9 +34,15 @@
 
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 </head>
-<body>
+<style>
+    /*  .table>tbody>tr>td{
+         border: 1px solid red; 整体表格边框
+     }*/
+</style>
+<body background="../js/316010G41T5.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
     <!--  表格 -->
-    <table id="dataGrid"></table>
+
+    <table id="dataGrid" class="table table-condensed" border="0px"></table>
 
 </body>
 <script>
@@ -51,7 +57,7 @@
             method: 'post',
             striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
-            singleSelect: false,
+            singleSelect: true,
             //选中行是不选中复选框或者单选按钮
             clickToSelect: true,
             showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
@@ -80,6 +86,8 @@
             // 设置为limit可以获取limit, offset, search, sort, order
             queryParamsType: 'undefined',
             // 请求服务器数据
+            //idField: 'project_name', //指定主键
+
             queryParams: function queryParams(params) {
                 var param = {
                     pageNumber: params.pageNumber,
@@ -94,10 +102,22 @@
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
                 {field: 'id', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
-                {field: 'userid', title: '出售方', width: 300},
+                {field: 'user', title: '出售方', width: 300,
+                    formatter:function (value, row, index) {
+                        return value.username;
+                    }
+                },
+                {field: 'user', title: '出售方联系方式', width: 300,
+                    formatter:function (value, row, index) {
+                        return value.userphone;
+                    }
+                },
                 {field: 'carname', title: '汽车品牌', width: 300},
-                {field: 'carimg', title: '汽车图片', width: 300},
-                {field: 'auditdate', title: '审核日期', width: 300},
+                {field: 'carimg', title: '汽车图片', width: 300,
+                    formatter:function (value, row, index) {
+                        return "<img src='"+value+"' style='width: 80px;height: 50px'>";
+                    }
+                },
                 {field: 'isshiigu', title: '是否为事故车', width: 300,
                     formatter:function (value, row, index) {
                         return value==0?"否":"是";
@@ -105,79 +125,119 @@
                 },
                 {field: 'shiguimg', title: '事故车图片', width: 300,
                     formatter:function (value, row, index) {
-                        return row.isshiigu==0?"无事故图片":"<img src='../upload/"+value+"' style='width: 80px;height: 50px'>";
+                        return "<img src='"+value+"' style='width: 80px;height: 50px'>";
                     }
                 },
-                {field: 'iswaiguan', title: '汽车外观是否良好', width: 300,
+                {field: 'iswaiguan', title: '外观是否良好', width: 100,
                     formatter:function (value, row, index) {
                         return value==0?"否":"是";
                     }
                 },
                 {field: 'waiguanimg', title: '汽车外观图片', width: 300,
                     formatter:function (value, row, index) {
-                        return "<img src='../upload/"+value+"' style='width: 80px;height: 50px'>";
+                        return "<img src='"+value+"' style='width: 80px;height: 50px'>";
                     }
                 },
-                {field: 'isbujian', title: '部件是否良好', width: 300,
+                {field: 'isbujian', title: '部件是否良好', width: 100,
                     formatter:function (value, row, index) {
                         return value==0?"否":"是";
                     }
                 },
                 {field: 'bujianimg', title: '问题部件图', width: 300,
                     formatter:function (value, row, index) {
-                        return row.isbujian==0?"无问题部件图'":"<img src='../upload/"+value+"' style='width:80px;height:50px'>";
+                        return "<img src='"+value+"' style='width:80px;height:50px'>";
                     }
                 },
-                {field: 'ischangyong', title: '功能是否良好', width: 300,
+                {field: 'ischangyong', title: '功能是否良好', width: 100,
                     formatter:function (value, row, index) {
                         return value==0?"否":"是";
                     }
                 },
                 {field: 'changyongimg', title: '功能故障图', width: 300,
                     formatter:function (value, row, index) {
-                        return row.ischangyong==0?"无功能故障图":"<img src='../upload/"+value+"' style='width:80px;height:50px'>";
-                    }
-                },
-                {field: 'status', title: '审核状态', width: 300,
-                    formatter:function (value, row, index) {
-                        if(value==1){
-                            return "待审核";
-                        }
-                        if(value==2){
-                            return "审核已通过";
-                        }
-                        if(value==3){
-                            return "审核不通过";
-                        }
+                        return "<img src='"+value+"' style='width:80px;height:50px'>";
                     }
                 },
                 {field: 'xxxx', title: '操作', width: 300,
-                    formatter:function(value,row,index){
-                        //var id = JSON.stringify(row.id);
-                         if(row.status==2){
-                            return "审核完毕";
-                        }else {
-                            return "<button type='button' class='btn btn-info' onclick='updateStatus("+row.id+",0)'>审核通过</button>"+
-                            "<button type='button' class='btn btn-info' onclick='updateStatus("+row.id+",1)'>审核不通过</button>";
-                        }
-
+                    formatter:function (value, row, index) {
+                        return "<button type='button' class='btn btn-xs btn-warning' onclick='upMessage("+row.id+")'>上传信息</button>";
                     }
-                }
+                },
 
             ]
         });
     }
 
-    updateStatus=function (id,flag) {
-        $.ajax({
-            url:"../audit/updateStatus",
-            type:"post",
-            data:{"id":id,"flag":flag},
-            success:function () {
-                $('#dataGrid').bootstrapTable("refresh");
+    upMessage=function (id) {
+        bootbox.dialog({
+            title: '上传车辆信息',
+            message: createAddContent("../audit/toEventCar?id="+id),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
 
+                        $.ajax({
+                            url: '../audit/upMessage',
+                            type: 'post',
+                            cache:false,
+                            data: $("#addForm").serialize(),
+                            success: function () {
+                                location.href=location;
+                                // alert("新增成功");
+                                // $('#dataGrid').bootstrapTable('destroy').bootstrapTable();
+                                //bootstrapTable('destroy')
+                                //$("#dataGrid").bootstrapTable('refresh');
+                                // initDataGrid();
+                                //initDataGrid();
+                                //$('#dataGrid').bootstrapTable("refresh");
+                                //刷新表格
+                            }, error: function () {
+                                alert("失败");
+                            }
+                        });
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+
+                    }
+                }
             }
-        })
+
+        });
+    }
+//------------------------------------------------------------------------------------------------------------
+    var res;
+    function createAddContent(url) {
+        $.ajax({
+            url: url,
+            async: false,
+            success: function (data) {
+                res = data;
+            }
+        });
+        return res;
+    }
+
+    updateStatus=function (id,flag) {
+        var a= $("#dataGrid").bootstrapTable('getSelections');
+        //location.href="../audit/toVariFierid?audit="+a;
+        if(confirm("确认信息无误,是否提交申请")){
+            $.ajax({
+                url:"../audit/updateStatus",
+                type:"post",
+                data:{"id":id,"flag":flag},
+                success:function () {
+                    $('#dataGrid').bootstrapTable("refresh");
+
+                }
+            })
+        }
 
     }
 </script>

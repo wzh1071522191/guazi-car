@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="treeDiv"></div>
+
+<input type="hidden" th:value="${session.pinglun}" id="userid1">
+</body>
+<script>
+
+    $.ajax({
+        url:'../comm/pinglun?id='+$("#userid1").val(),
+        type : "post",
+        dataType:"json",
+        success:function(data){
+            //alert();
+            $("#treeDiv").treeview({
+                //data属性 树节点信息 json数组
+                data: data,
+                //tree默认展开的节点级别默认为2
+                levels: 100
+
+            })
+        },error : function (){
+            alert("查询树失败");
+        }
+    })
+</script>
+</html>
