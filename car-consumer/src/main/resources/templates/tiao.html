@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+</head>
+<body>
+<input type="hidden" th:value="${session.z}" id="userid1">
+<input type="hidden" th:value="${session.y}" id="userid2">
+</body>
+<script>
+    var status=$("#userid1").val();
+    var uid=$("#userid2").val();
+    $.ajax({
+        url:"../comm/miaosha",
+        data:{uid:uid,status:status},
+        type:"post",
+        success:function(data){
+            alert(data)
+        },
+        error:function(){
+        alert("错了")
+        }
+    })
+</script>
+</html>

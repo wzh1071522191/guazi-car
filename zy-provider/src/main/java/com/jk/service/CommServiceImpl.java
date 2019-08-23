@@ -153,8 +153,10 @@ public class CommServiceImpl implements CommService {
        s.setSpprice(1200);
        s.setYuhui(200);
         da.xiangqing(s);
-        System.err.println(s.getId());*/
-  /*   o.setDataid(d.getId());*/
+        System.err.println(s.getId());
+       o.setDataid(d.getId());
+       */
+
          da.didanxin(o);
 
     }
@@ -181,6 +183,17 @@ public class CommServiceImpl implements CommService {
         c.setPtime(new Date());
 
         da.huifu(c);
+    }
+
+    @Override
+    public void miaosha(Integer uid,Integer status) {
+        if(status==1){
+            da.wubai(uid);
+        }else if(status==2){
+          da.yiqian(uid);
+        }else if(status==3){
+           da.wuqian(uid);
+        }
     }
 
 

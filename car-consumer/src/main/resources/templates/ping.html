@@ -145,6 +145,7 @@
                     return st+row.text;
                 }},
                 {field: 'ptime', title: '评论时间', width: 300},
+
                 {field: 'username', title: '评论人', width: 300,},
                 {field: 'typename', title: '汽车品牌', width: 300},
                 {field: 'caozuo', title: '操作', width: 300,formatter:function(value,row,index){
@@ -202,7 +203,7 @@ format: 'YYYY-MM-DD',
     }
    function huifu(id){
 
-  alert(id)
+
        bootbox.dialog({
            title: '回复',
            message:createAddContent("../comm/huifu1"),

@@ -69,4 +69,10 @@ public interface CommDao {
 
 
     void huifu(Comment c);
+
+    void wubai(Integer uid);
+
+    void yiqian(Integer uid);
+
+    void wuqian(Integer uid);
 }

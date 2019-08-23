@@ -47,4 +47,6 @@ public interface CommService {
     List<Comment> shu(Integer id);
 
     void huifu(Integer id, Comment c);
+
+    void miaosha(Integer uid,Integer status);
 }
