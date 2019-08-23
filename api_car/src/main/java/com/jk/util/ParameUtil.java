@@ -1,9 +1,14 @@
 package com.jk.util;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class ParameUtil implements Serializable {
-    private Integer pageNumber;
+	private static final long serialVersionUID = 1486269777590726558L;
+	private Integer pageNumber;
     private Integer pageSize;
 	private String sortName;      //排序字段
 	private String sortOrder;    //正序或倒,+-序
@@ -18,6 +23,39 @@ public class ParameUtil implements Serializable {
     private Integer carbrandid;
     private String typename;
 	private String carareaid;
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
+	private Date starDate;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
+	private Date endDate;
+
+	public Date getStarDate() {
+		return starDate;
+	}
+
+	public void setStarDate(Date starDate) {
+		this.starDate = starDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 
 	public String getCarareaid() {
 		return carareaid;

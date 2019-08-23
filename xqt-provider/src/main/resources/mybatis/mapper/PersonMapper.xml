@@ -10,4 +10,12 @@
       select * from t_car
         limit #{page},#{rows}
     </select>
+<!--查询客户说过的话-->
+    <select id="queryKehus2" resultType="com.jk.model.Cusmoter">
+       select codeKehu,cusTime from t_cusmoter
+    </select>
+<!--查询客服说过的话-->
+    <select id="queryKefucode" resultType="com.jk.model.Cusmoter">
+       select codeKefu,cusTime from t_cusmoter
+    </select>
 </mapper>
