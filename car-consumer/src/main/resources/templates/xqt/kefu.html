@@ -44,7 +44,7 @@
         function myrefresh(){
             window.location.reload();
         }
-        setTimeout('myrefresh()',8000); //指定1秒刷新一次
+        setTimeout('myrefresh()',6000); //指定1秒刷新一次
     </script>
 </head>
 <center><font size="5px" color="red"><b>后台客服系统</b></font></center>
@@ -56,20 +56,20 @@
         text-align: right;
     }
     .sendCen{
-        background-color: #33CCFF;
-        color: white;
-        font-size: 18px;
+        background-color: #DFFFDF;
+        color: darkred;
+        font-size: 20px;
         padding: 2px 5px;
-        border-radius: 8px;
+        border-radius: 10px;
     }
     .sendIcon{
-        color: pink;
+        color: darkred;
         margin-left: -3px;
     }
     .reciveCen{
-        background-color: #CC00FF;
-        color: white;
-        font-size: 18px;
+        background-color: #DFFFDF;
+        color: darkred;
+        font-size: 20px;
         padding: 2px 5px;
         border-radius: 8px;
     }
@@ -79,42 +79,73 @@
     }
 </style>
 <!--拼接客户发送过来的消息-->
-<body style="background:#EFFFD7">
+<body style="background:#E0E0E0">
+<br>
+<font size="4px" color="red"><b>客户回复：</b></font>
 <div id="ulul"  style="height:350px;overflow:auto;"></div>
 <!--发送消息-->
 <div class="easyui-layout" data-options="fit:true">
-    <div data-options="region:'north'" style="height:30%;background:#FFFAF4" id="content">
+    <div data-options="region:'north'" style="height:30%;background:#DEDEBE" id="content">
+        <!--查询自己发送的消息-->
+        <font color="red" size="3px"><b>您的历史发送记录:</b></font>
+        <div id="ulul4" style="height:100px;overflow:auto;"></div>
     </div>
-    <div data-options="region:'center'" style="text-align:center;background:#E8FFF5">
-        <input  type="text" id="message" class="easyui-textbox" style="width:300px; height:50px;">
+
+    <div data-options="region:'center'" style="text-align:center;background:#F3F3FA">
+        <input  id="message">
         <a href="javascript:sendMsg()" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">发送</a>
     </div>
 </div>
 </body>
 <script>
-    /*页面加载客户发过来的消息*/
+    /*页面加载：客户发过来的消息和客服自己发送的消息*/
     $(function(){
+        //客户的消息
+        kehuxiaoxi();
+        //客服的消息
+        kefuxiaoxi();
+    })
+    /*查询客户发过来的消息*/
+  function kehuxiaoxi() {
+    $(document).ready(function () {
+        $.ajax({
+            url: "../Perso/queryKehus2",
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                var html = "";
+                for (var i = 0; i < data.length; i++) {
+                    var ls = data[i];
+                    html += "<li><p><span class='reciveIcon'><==</span><span class='reciveCen'>" + ls.codeKehu + "----时间：" + ls.cusTime + "</span></p></li>";
+                }
+                $("#ulul").html(html);
+            },
+        })
+    })
+}
+/*查询客服自己发送的消息*/
+    function kefuxiaoxi(){
         $(document).ready(function() {
             $.ajax({
-                url : "../Perso/queryKehus2",
+                url : "../Perso/queryKefucode",
                 dataType : "json",
                 type : "post",
                 success : function(data) {
                     var html = "";
                     for(var i=0;i<data.length;i++){
                         var ls = data[i];
-                        html +="<li><p><span class='reciveIcon'>◀</span><span class='reciveCen'>"+ls.codeKehu+"----时间："+ls.cusTime+"</span></p></li>";
+                        html +="<li><p><span class='reciveIcon'><==</span><span class='reciveCen'>"+ls.codeKefu+"----时间："+ls.cusTime+"</span></p></li>";
                     }
-                    $("#ulul").html(html);
+                    $("#ulul4").html(html);
                 },
             })
         })
-    })
+    }
 
 /*客服要输入的话*/
     function sendMsg(){
         var message = $("#message").val();
-        var send = '<p class="sendP"><span class="sendCen">'+message+'</span><span class="sendIcon">▶</span></p>';
+        var send = '<p class="sendP"><span class="sendCen">'+message+'</span><span class="sendIcon">==></span></p>';
         $("#content").append(send);
         //清楚输入框
         $("#message").val("");
@@ -127,7 +158,7 @@
                 codeKefu:message,
             },
             success:function(data){
-                var revice = '<p><span class="reciveIcon">◀</span><span class="reciveCen">'+data.content+'</span></p>'
+                var revice = '<p><span class="reciveIcon"><==</span><span class="reciveCen">'+data.content+'</span></p>'
 
                 $("#content").scrollTop($("#content")[0].scrollHeight);
             }

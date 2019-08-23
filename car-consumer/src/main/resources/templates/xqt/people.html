@@ -44,7 +44,7 @@
         function myrefresh(){
             window.location.reload();
         }
-        setTimeout('myrefresh()',8000); //指定1秒刷新一次
+        setTimeout('myrefresh()',6000); //指定1秒刷新一次
     </script>
 </head>
 <center><font size="5px" color="green"><b>前台消费者客服系统</b></font></center>
@@ -56,22 +56,22 @@
         text-align: right;
     }
     .sendCen{
-        background-color: #33CCFF;
+        background-color: #A23400;
         color: white;
         font-size: 18px;
         padding: 2px 5px;
         border-radius: 8px;
     }
     .sendIcon{
-        color: pink;
+        color: blue;
         margin-left: -3px;
     }
     .reciveCen{
-        background-color: #CC00FF;
+        background-color: #A23400;
         color: white;
-        font-size: 18px;
+        font-size: 20px;
         padding: 2px 5px;
-        border-radius: 8px;
+        border-radius: 10px;
     }
     .reciveIcon{
         color: black;
@@ -80,19 +80,21 @@
 </style>
 
 <body style="background:#EFFFD7">
+<br>
+<font size="4px" color="red"><b>客服回复您:</b></font>
 <!--查询客服发过来的消息-->
 <div id="ulul2"  style="height:350px;overflow:auto;">
 </div>
 
 <!--发送消息-->
 <div class="easyui-layout" data-options="fit:true">
-
     <div data-options="region:'north'" style="height:30%;background:#FFFAF4" id="content">
+        <!--查询自己发送的消息-->
         <font color="red" size="3px"><b>您的历史发送记录:</b></font>
         <div id="ulul3" style="height:100px;overflow:auto;"></div>
     </div>
     <div data-options="region:'center'" style="text-align:center;background:#E8FFF5">
-        <input  id="message" class="easyui-textbox" style="width:300px; height:50px;">
+        <input  id="message">
         <a href="javascript:sendMsg()" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">发送</a>
     </div>
 </div>
@@ -113,7 +115,7 @@
                     var html = "";
                     for(var i=0;i<data.length;i++){
                         var ls = data[i];
-                        html +="<li><p><span class='reciveIcon'>◀</span><span class='reciveCen'>"+ls.codeKefu+"----时间："+ls.cusTime+"</span></p></li>";
+                        html +="<li><p><span class='reciveIcon'><==</span><span class='reciveCen'>"+ls.codeKefu+"----时间："+ls.cusTime+"</span></p></li>";
                     }
                     $("#ulul2").html(html);
                 },
@@ -131,7 +133,7 @@
                     var html = "";
                     for (var i = 0; i < data.length; i++) {
                         var ls = data[i];
-                        html += "<li><p><span class='reciveIcon'>◀</span><span class='reciveCen'>" + ls.codeKehu + "----时间:" + ls.cusTime + "</span></p></li>";
+                        html += "<li><p><span class='reciveIcon'><==</span><span class='reciveCen'>" + ls.codeKehu + "----时间:" + ls.cusTime + "</span></p></li>";
                     }
                     $("#ulul3").html(html);
                 },
@@ -144,7 +146,7 @@
     }
     function sendMsg(){
         var message = $("#message").val();
-        var send = '<p class="sendP"><span class="sendCen">'+message+'</span><span class="sendIcon">▶</span></p>';
+        var send = '<p class="sendP"><span class="sendCen">'+message+'</span><span class="sendIcon">==></span></p>';
         $("#content").append(send);
         //清楚输入框
         $("#message").val("");
@@ -157,7 +159,7 @@
                 codeKehu:message,
             },
             success:function(data){
-                var revice = '<p><span class="reciveIcon">◀</span><span class="reciveCen">'+data.content+'</span></p>'
+                var revice = '<p><span class="reciveIcon"><==</span><span class="reciveCen">'+data.content+'</span></p>'
 
                 $("#content").scrollTop($("#content")[0].scrollHeight);
             }
