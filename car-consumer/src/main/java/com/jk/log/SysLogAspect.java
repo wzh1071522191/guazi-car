@@ -32,7 +32,7 @@ public class SysLogAspect {
 	 
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	
+
 	@Pointcut("execution(* com.jk.controller.EmpController.loginUser(..))")
 	public void logPointCut() {}
 	 //后置通知

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.jk.dao.EmpDao;
 import com.jk.model.*;
 import com.jk.util.ParameUtil;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -259,5 +260,11 @@ public class EmpServiceImpl implements EmpService {
             rm.setRid(roleid);
             empDao.addRoleMenu(rm);
         }
+    }
+
+    //RabbitListener
+    @RabbitListener(queues = "Rabbitmq")//添加RabbitListener注解 监听
+    public void registerRabbit(Emp emp){
+        empDao.register(emp);
     }
 }

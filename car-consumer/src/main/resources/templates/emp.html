@@ -122,19 +122,10 @@
                 {field: 'userName', title: '用户名', width: 300},
                 {field: 'userPwd', title: '密码', width: 300},
                 {field: 'createDate', title: '注册日期', width: 300},
-                {field: 'userStatus', title: '状态', width: 300,
-                    formatter:function (value, row, index) {
-                        if(value==0||value==null){return "正常";}
-                        if(value==1){return "异常";}
-                        if(value==2){return "申诉中,待审核";}
-                    }
-
-                },
                 {field: 'xxxx', title: '操作', width: 300,
                     formatter:function(value,row,index){
                         //var id = JSON.stringify(row.id);
-                        return row.userStatus==2?"<button type='button' class='btn btn-info' onmouseup='updateStatus("+row.id+")'>审核通过</button>":""+
-                            "<button type='button' class='btn btn-info' onmouseup='setDeparent("+row.id+")'>岗位绑定</button>";
+                        return "<button type='button' class='btn btn-info' onmouseup='setDeparent("+row.id+")'>岗位绑定</button>";
 
                     }
                 }
@@ -199,6 +190,7 @@
         });
 
     }
+    //没用到
     function showleag(){
         $.ajax({
             url:"../emp/queryRole",
