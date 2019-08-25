@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>瓜子二手车后台管理系统</title>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <!-- 引入bootstrap的css -->
     <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
@@ -34,7 +34,9 @@
 
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 </head>
-<body background="../js/316010G41T5.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
+
+
+<body background="../js/c9d8b7d0f62cd9c21034d7d6c894e433.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <!--定义在容器顶部  -->
@@ -55,15 +57,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active "><a href="https://www.guazi.com/xa/intro/" class="glyphicon glyphicon-heart">&nbsp瓜子服务<span class="sr-only">(current)</span></a></li>
-                <li><a href="https://jr.guazi.com/xa/" class="glyphicon glyphicon-usd">&nbsp瓜子金融</a></li>
+                <li class="active "><a href="https://www.guazi.com/" class="glyphicon glyphicon-heart">&nbsp瓜子服务</a></li>
+                <li><a href="https://guazi.com/" class="glyphicon glyphicon-usd">&nbsp瓜子金融</a></li>
                 <li><a href="#" class="glyphicon glyphicon-phone-alt">&nbsp热线电话 400-069-6530</a></li>
+                <li><a href="https://www.maodou.com" class="glyphicon glyphicon-road">&nbsp毛豆新车</a></li>
                 <li class="dropdown">
 
                 </li>
             </ul>
-
-
 
             <!-- 右边的    导航 按钮 -->
             <ul class="nav navbar-nav navbar-right">
@@ -86,16 +87,15 @@
 </nav>
 <!-- ============================导航结束==================================-->
 
+<div style="margin-top:3%;margin-left:1%;height: 20px">
+    <h1 align="center" style="font-family:Simsun;"><b>瓜子二手车后台管理系统</b></h1></div>
 
-
-<br/>
-<br/><br/>
-<div class="row">
+<div class="row" style="opacity:0.7">
     <div class="col-sm-2">
         <a class="list-group-item" data-addtab="userMenu" data-target="#tabs" data-url="http://www.baidu.com">
         </a>
         <!-- tree 的插件 -->
-        <div id="treeDiv"></div>
+        <div id="treeDiv"  style="position:relative;color:black"></div>
         <!-- tree 的插件 -->
         <!--  <div id="treeDiv2"></div>   -->
     </div>
@@ -118,7 +118,7 @@
 <script>
 
     $(function(){
-        $.addtabs({iframeHeight:992});
+        $.addtabs({iframeHeight:900});
         showTree();
 
     });

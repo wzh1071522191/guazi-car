@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * @author ： xueqitao
  * @date ：Created in 2019/8/21 0021 17:16
- * @description：客服
+ * @description：客服聊天系统
  * @package ：com.jk.controller
  * @version:
  */
@@ -33,13 +33,7 @@ public class PersonController {
     @Reference
     private PersonService personService;
 
-    //客户
-    @Resource
-    private RedisTemplate<String,Object> redisTemplate;
-    //客服
-    private RedisTemplate<String,Object> redisTemplate2;
-
-    //跳转商品列表接口
+    //跳转消费者商品列表接口
     @RequestMapping("/CusList")
     public String torobotchat(){
 
@@ -51,19 +45,32 @@ public class PersonController {
 
         return "xqt/person.html";
     }
+    //跳转chat页面
+    @RequestMapping("/tochat")
+    public String tochat(){
 
+        return "xqt/chat.html";
+    }
+    //跳转login页面
+    @RequestMapping("/tochat2")
+    public String tologin(){
+
+        return "xqt/chat2.html";
+    }
     //跳转人工客户服务接口
     @RequestMapping("/querypeople")
     public String querypeople(){
 
         return "xqt/people.html";
     }
+
     //跳转人工客服服务接口
     @RequestMapping("/querykefu")
     public String querykefu(){
 
         return "xqt/kefu.html";
     }
+
     //商品分页列表查询
     @RequestMapping("findCarShoppingList")
     @ResponseBody
@@ -86,7 +93,8 @@ public class PersonController {
         JSONObject parseObject = JSON.parseObject(returnStr);
         return parseObject;
     }
-//将客服说的话存入数据库中
+
+    //将客服说的话存入数据库中
     @RequestMapping("rengong")
     @ResponseBody
     public String rengong(HttpServletRequest request,Cusmoter cusmoter){
@@ -97,6 +105,7 @@ public class PersonController {
         personService.insertKehu(cusmoter);
         return null;
     }
+
     //正式---查询查询客户说过的话
     @RequestMapping("queryKehus2")
     @ResponseBody
@@ -104,6 +113,7 @@ public class PersonController {
 
         return personService.queryKehus2();
     }
+
     //正式---将客服说的话存入数据库中
     @RequestMapping("insertkefucode")
     @ResponseBody
@@ -114,6 +124,7 @@ public class PersonController {
         personService.insertkefu(cusmoter);
         return null;
     }
+
     //测试--查询查询客服说过的话
     @RequestMapping("queryKefucode")
     @ResponseBody
