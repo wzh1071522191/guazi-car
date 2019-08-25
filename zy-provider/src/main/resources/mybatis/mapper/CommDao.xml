@@ -144,4 +144,16 @@ select * from comment c where c.pid =#{id}
     <update id="wuqian" parameterType="java.lang.Integer">
         update t_user set fivethousand=1 where userid=#{uid}
     </update>
+    <select id="mszong" resultType="java.lang.Integer">
+        select  count(*) from seckill
+    </select>
+    <select id="miaoshacha" resultType="com.jk.model.Seckill">
+        select  * from seckill  limit #{page},#{pageSize}
+    </select>
+    <select id="chaseckill" resultType="com.jk.model.Seckill">
+              select  * from seckill where id=#{id}
+    </select>
+    <update id="update">
+        update  seckill set stime=#{stime}  where id=#{id}
+    </update>
 </mapper>

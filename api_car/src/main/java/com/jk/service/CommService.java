@@ -4,6 +4,7 @@ package com.jk.service;
 import com.jk.model.Comment;
 import com.jk.model.Details;
 import com.jk.model.Order;
+import com.jk.model.Seckill;
 import com.jk.util.DataGridResult;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
@@ -49,4 +50,13 @@ public interface CommService {
     void huifu(Integer id, Comment c);
 
     void miaosha(Integer uid,Integer status);
+
+    Map miaoshacha(ParameUtil param);
+
+
+  
+
+    void update(Seckill s);
+
+    Seckill chaseckill(Integer id);
 }
