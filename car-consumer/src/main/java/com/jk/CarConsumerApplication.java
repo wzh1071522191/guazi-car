@@ -10,6 +10,7 @@ import org.thymeleaf.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
 @SpringBootApplication
 @RestController
 public class CarConsumerApplication {
@@ -20,6 +21,7 @@ public class CarConsumerApplication {
     public ModelAndView login() {
         return new ModelAndView("/login");
     }
+
     /**
      * 聊天界面
      */
@@ -28,11 +30,12 @@ public class CarConsumerApplication {
         if (StringUtils.isEmpty(username)) {
             username = "匿名用户";
         }
-        ModelAndView mav = new ModelAndView("/chat");
+        ModelAndView mav = new ModelAndView("chat");
         mav.addObject("username", username);
-        mav.addObject("webSocketUrl", "ws://"+ InetAddress.getLocalHost().getHostAddress()+":"+request.getServerPort()+request.getContextPath()+"/chat");
+        mav.addObject("webSocketUrl", "ws://"+InetAddress.getLocalHost().getHostAddress()+":"+request.getServerPort()+request.getContextPath()+"/chat");
         return mav;
     }
+
 
     public static void main(String[] args) {
         SpringApplication.run(CarConsumerApplication.class, args);

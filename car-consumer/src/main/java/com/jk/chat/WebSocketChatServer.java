@@ -1,7 +1,6 @@
-package com.jk.websocket;
+package com.jk.chat;
 
 import com.alibaba.fastjson.JSON;
-import com.jk.model.Message;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -12,15 +11,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author ： xueqitao
- * @date ：Created in 2019/8/23 0023 22:03
+ * @date ：Created in 2019/8/25 0025 11:09
  * @description：WebSocket 聊天服务端
- * @package ：com.jk.websocket
+ * @package ：com.jk.chat
  * @version: 1.0
  */
 @Component
 @ServerEndpoint("/chat")
 public class WebSocketChatServer {
-
     /**
      * 全部在线会话  PS: 基于场景考虑 这里使用线程安全的Map存储会话对象。
      */
@@ -76,5 +74,4 @@ public class WebSocketChatServer {
             }
         });
     }
-
 }
