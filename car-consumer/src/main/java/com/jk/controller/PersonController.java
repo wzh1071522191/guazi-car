@@ -47,11 +47,11 @@ public class PersonController {
 
         return "xqt/person.html";
     }
-//测试人工客服页面
-    @RequestMapping("/tosocket")
+    //测试人工客服页面
+    @RequestMapping("/login")
     public String tosocket(){
 
-        return "xqt/socket.html";
+        return "xqt/login.html";
     }
     //跳转人工客户服务接口
     @RequestMapping("/querypeople")
