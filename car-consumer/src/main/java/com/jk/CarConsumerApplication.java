@@ -13,17 +13,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @SpringBootApplication
-@RestController
 public class CarConsumerApplication {
-    /**
-     * 登陆界面
-     */
-    @GetMapping("/")
-    public ModelAndView login() {
-
-        return new ModelAndView("/login");
-
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(CarConsumerApplication.class, args);
