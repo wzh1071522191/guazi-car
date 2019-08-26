@@ -18,54 +18,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 @SpringBootApplication
-
-
 @Configuration
-
-@RestController
 public class CarConsumerApplication {
-    /**
-     * 登陆界面
-     */
-    @GetMapping("/")
-    public ModelAndView login() {
-        return new ModelAndView("/login");
-    }
-    /**
-     * 聊天界面
-     */
-    @GetMapping("/index")
-    public ModelAndView index(String username, String password, HttpServletRequest request) throws UnknownHostException {
-        if (StringUtils.isEmpty(username)) {
-            username = "匿名用户";
-        }
-        ModelAndView mav = new ModelAndView("/chat");
-        mav.addObject("username", username);
-        mav.addObject("webSocketUrl", "ws://"+ InetAddress.getLocalHost().getHostAddress()+":"+request.getServerPort()+request.getContextPath()+"/chat");
-        return mav;
-    }
+
 
     public static void main(String[] args) {
         SpringApplication.run(CarConsumerApplication.class, args);
     }
 
-    @Bean
 
-    public MultipartConfigElement multipartConfigElement() {
-
-        MultipartConfigFactory factory = new MultipartConfigFactory();
-
-        //单个文件最大
-
-        factory.setMaxFileSize("10240KB"); //KB,MB
-
-        /// 设置总上传数据总大小
-
-        factory.setMaxRequestSize("102400KB");
-
-        return factory.createMultipartConfig();
-
-    }
 
 
 
