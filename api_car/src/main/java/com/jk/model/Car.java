@@ -61,11 +61,19 @@ public class Car implements Serializable {
     //仓库总数量临时
     private Integer cangkucount;
 
+
+    private String carimg;
+     private String text;
+
+
     private Integer visitcount;
+
 
     private Integer expocarcount;
 
+
     private Integer placecarcount;
+
 
     private Integer mentcarcount;
 
@@ -275,6 +283,22 @@ public class Car implements Serializable {
 
     public void setCangkucount(Integer cangkucount) {
         this.cangkucount = cangkucount;
+    }
+
+    public String getCarimg() {
+        return carimg;
+    }
+
+    public void setCarimg(String carimg) {
+        this.carimg = carimg;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public Integer getVisitcount() {

@@ -11,7 +11,8 @@ public class Order implements Serializable {
     private Integer  id; //订单号
     private Integer  carid;//汽车id
     private Integer  price;//单价
-    private Integer  cunmber;//数量 @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
+    private Integer  cunmber;//数量
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
 
     private Date xdtime;//下单时间

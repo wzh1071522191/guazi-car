@@ -6,8 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.jk.dao.Mdao;
 
 
-import com.jk.model.Car;
-import com.jk.model.CarType;
+import com.jk.model.*;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class MserviceImpl implements Mservice {
     public Map querycar(ParameUtil parm) {
 
 
-       int sum=mdao.sumcount();
+        Integer sum=mdao.sumcount(parm);
         Integer page=parm.getPageNumber();
         parm.setPageNumber((page-1)*parm.getPageSize());
 
@@ -53,13 +52,11 @@ public class MserviceImpl implements Mservice {
         for (String id:split) {
             mdao.deleteUser(id);
         }
-
-
     }
 
     @Override
     public Map querycartype(ParameUtil parm) {
-        int sum=mdao.sumcount2();
+        int sum=mdao.sumcount2(parm);
         String name = parm.getTypename();
         parm.setTypename("%"+(name)+"%");
         Integer page=parm.getPageNumber();
@@ -79,7 +76,7 @@ public class MserviceImpl implements Mservice {
 
     @Override
     public Map querycar2(ParameUtil parm) {
-        int sum=mdao.sumcount12();
+        int sum=mdao.sumcount12(parm);
         Integer page=parm.getPageNumber();
         parm.setPageNumber((page-1)*parm.getPageSize());
 
@@ -92,6 +89,7 @@ public class MserviceImpl implements Mservice {
 
     @Override
     public void addcar(Car c) {
+
         mdao.addcar(c);
     }
 
@@ -117,6 +115,114 @@ public class MserviceImpl implements Mservice {
         for (String id:split) {
             mdao.deleteUser2(id);
         }
+    }
+
+    @Override
+    public Map querymaiche(ParameUtil parm) {
+        int sum=mdao.sumcountmc(parm);
+        Integer page=parm.getPageNumber();
+        parm.setPageNumber((page-1)*parm.getPageSize());
+
+        List<Audit> list=mdao.chamaiche(parm);
+        Map<String,Object>map=new HashMap<>();
+        map.put("rows",list);
+        map.put("total",sum);
+        return map;
+    }
+
+    @Override
+    public Audit querymai(Integer id) {
+        Audit a=  mdao.querymai(id);
+        return  a;
+    }
+
+    @Override
+    public void addxianxia(Audit a, String dd) {
+        Integer aa=a.getId();
+          Map map=new HashMap();
+          map.put("aa",aa);
+          map.put("dd",dd);
+        mdao.addxianxia(map);
+    }
+
+    @Override
+        public void addaudit(Car a) {
+
+        mdao.addaudit(a);
+    }
+
+    @Override
+    public void addyes(Integer id) {
+        mdao.addyes(id);
+    }
+
+    @Override
+    public void addno(Integer id) {
+        mdao.addno(id);
+    }
+
+    @Override
+    public Map querykk(ParameUtil parm) {
+        int sum=mdao.querykhcon(parm);
+        Integer page=parm.getPageNumber();
+        parm.setPageNumber((page-1)*parm.getPageSize());
+
+        List<User> list=mdao.queryuser(parm);
+        Map<String,Object>map=new HashMap<>();
+        map.put("rows",list);
+        map.put("total",sum);
+        return map;
+    }
+
+    @Override
+    public void cv(Integer id) {
+        mdao.dsa(id);
+    }
+
+    @Override
+    public Map queryhei(ParameUtil parm) {
+        int sum=mdao.querykhcon2(parm);
+        Integer page=parm.getPageNumber();
+        parm.setPageNumber((page-1)*parm.getPageSize());
+
+        List<User> list=mdao.queryhei(parm);
+        Map<String,Object>map=new HashMap<>();
+        map.put("rows",list);
+        map.put("total",sum);
+        return map;
+    }
+
+    @Override
+    public void huifu(Integer id) {
+        mdao.huifu(id);
+    }
+
+    @Override
+    public Map jm(ParameUtil parm) {
+        int sum=mdao.qu(parm);
+        Integer page=parm.getPageNumber();
+        parm.setPageNumber((page-1)*parm.getPageSize());
+
+        List<jiameng> list=mdao.jm(parm);
+        Map<String,Object>map=new HashMap<>();
+        map.put("rows",list);
+        map.put("total",sum);
+        return map;
+    }
+
+    @Override
+    public void sh(Integer id) {
+        mdao.sh(id);
+    }
+
+    @Override
+    public void sh2(Integer id) {
+        mdao.sh2(id);
+    }
+
+    @Override
+    public void addjm(jiameng jm) {
+        mdao.addjm(jm);
     }
 
 
