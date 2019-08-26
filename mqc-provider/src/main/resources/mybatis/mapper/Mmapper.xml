@@ -4,31 +4,28 @@
 
 
     <select id="querycar" resultType="com.jk.model.Car" >
-     select *  from  t_car c,car_type t <include refid="ii"/> and c.carsxj=1
-       limit #{pageNumber},#{pageSize}
+     select *  from  t_car c,car_type t ,comment m <include refid="ii"/> and c.carsxj=1
+     and c.carbrandid=t.id
+     and m.id=c.carpl  limit #{pageNumber},#{pageSize}
      </select>
-    <select id="sumcount"  resultType="int"   >
-        select count(*) from  t_car c,car_type t  <include refid="ii"/>  and c.carsxj=1
 
+
+    <select id="sumcount" resultType="Integer">
+        select count(*) from  t_car c,car_type t,comment m <include refid="ii"/> and c.carsxj=1
+        and c.carbrandid=t.id and m.id=c.carpl
     </select>
 
 
     <select id="querycar2" resultType="com.jk.model.Car">
-        select *  from  t_car c,car_type t  <include refid="ii"/> and c.carsxj=2
+        select *  from  t_car c,car_type t ,comment m  <include refid="ii"/> and c.carsxj=2
+        and c.carbrandid=t.id and m.id=c.carpl
         limit #{pageNumber},#{pageSize}
     </select>
 
     <select id="sumcount12"  resultType="int"   >
-        select count(*) from  t_car c,car_type t  <include refid="ii"/>  and c.carsxj=2
-
+        select count(*) from  t_car c,car_type t ,comment m <include refid="ii"/>  and c.carsxj=2
+    and c.carbrandid=t.id and m.id=c.carpl
     </select>
-
-   <!-- <insert id="addcar" parameterType="com.jk.model.Car">
-
-    </insert>-->
-
-
-
 
 
 
@@ -37,9 +34,9 @@
 </select>
 
 
-    <sql id="ii">
+ <sql id="ii">
 <where>
-c.carbrandid=t.id
+1=1
 <if test="carstatus!=null and carstatus!=0 ">
     and carstatus=#{carstatus}
 </if>
@@ -48,7 +45,13 @@ c.carbrandid=t.id
         and carareaid=#{carareaid}
     </if>
 
+    <if test="qian!=null and qian!=''">
+     and c.createdate &gt; #{qian}
+    </if>
 
+    <if test="ho!=null and ho!=''">
+        and c.createdate &lt; #{ho}
+    </if>
 </where>
    </sql>
 
@@ -76,6 +79,63 @@ c.carbrandid=t.id
 <select id="sumcount2"  resultType="int" >
     select count(*) from car_type <include refid="i"/>
 
+</select>
+
+
+
+
+
+
+
+    <select id="chamaiche" resultType="com.jk.model.Audit">
+          select *
+           from t_audit a,t_user u  where  a.userid=u.userid
+         limit #{pageNumber},#{pageSize}
+    </select>
+
+
+<select id="sumcountmc" resultType="int">
+    select count(*) from t_audit a,t_user u
+    where  a.userid=u.userid
+</select>
+
+<select id="querymai" resultType="com.jk.model.Audit" parameterType="Integer" >
+    select * from t_audit a,t_user u
+    where  a.userid=u.userid  and a.id=#{id}
+</select>
+
+<update id="addxianxia" parameterType="java.util.Map">
+    update t_audit set status=4,varifierid=#{dd} where id=#{aa}
+</update>
+
+<select id="queryuser" resultType="com.jk.model.User">
+    select * from t_user where userstatus=1
+    limit #{pageNumber},#{pageSize}
+
+</select>
+
+<select id="querykhcon" resultType="int">
+    select count(*) from t_user where userstatus=1
+</select>
+
+
+
+
+    <select id="queryhei" resultType="com.jk.model.User">
+    select * from t_user where userstatus=2
+    limit #{pageNumber},#{pageSize}
+</select>
+    <select id="querykhcon2" resultType="int">
+    select count(*) from t_user where userstatus=2
+</select>
+
+
+    <select id="jm" resultType="com.jk.model.jiameng">
+    select * from jiameng
+    limit #{pageNumber},#{pageSize}
+</select>
+    <select id="qu" resultType="int">
+    select count(*) from jiameng
 </select>
 
 

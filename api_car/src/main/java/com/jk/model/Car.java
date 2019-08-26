@@ -61,11 +61,43 @@ public class Car implements Serializable {
     //仓库总数量临时
     private Integer cangkucount;
 
+<<<<<<< HEAD
+    private String carimg;
+     private String text;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getCarimg() {
+        return carimg;
+    }
+
+    public void setCarimg(String carimg) {
+        this.carimg = carimg;
+    }
+
+    public String getTypename() {
+        return typename;
+    }
+=======
     private Integer visitcount;
+>>>>>>> ce4ec4202b2cf86c0af63914a0e6362a4daff4f6
 
     private Integer expocarcount;
 
+<<<<<<< HEAD
+
+    public Integer getCarsxj() {
+        return carsxj;
+    }
+=======
     private Integer placecarcount;
+>>>>>>> ce4ec4202b2cf86c0af63914a0e6362a4daff4f6
 
     private Integer mentcarcount;
 

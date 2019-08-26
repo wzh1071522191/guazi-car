@@ -24,12 +24,12 @@ public interface PersonMapper {
 
     List<Car> findCarShoppingList(@Param("page")int i, @Param("rows")Integer rows, @Param("car")Car car);
 
-    @Insert("insert into t_cusmoter (codeKehu,codeKefu,cusTime) values (#{codeKehu},'.....亲,请稍等,客服可能有些忙',now())")
+    @Insert("insert into t_cusmoter (codeKehu,codeKefu,cusTime) values (#{codeKehu},'--稍等',now())")
     void insertKehu(Cusmoter cusmoter);
 
     List<Cusmoter> queryKehus2();
 
-    @Insert("insert into t_cusmoter (codeKefu,codeKehu,cusTime) values (#{codeKefu},'......请稍等,客户可能在回话中',now())")
+    @Insert("insert into t_cusmoter (codeKefu,codeKehu,cusTime) values (#{codeKefu},'--稍等',now())")
     void insertkefu(Cusmoter cusmoter);
 
     List<Cusmoter> queryKefucode();

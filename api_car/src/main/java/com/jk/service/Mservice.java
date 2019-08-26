@@ -1,7 +1,9 @@
 package com.jk.service;
 
+import com.jk.model.Audit;
 import com.jk.model.Car;
 import com.jk.model.CarType;
+import com.jk.model.jiameng;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 
@@ -34,4 +36,33 @@ public interface Mservice {
     void upcar(Car c);
 
     void deleteUser2(String ids);
+
+    Map querymaiche(ParameUtil parm);
+
+
+  Audit querymai(Integer id);
+
+  void addxianxia(Audit a, String id);
+
+  void addaudit(Car a);
+
+  void addyes(Integer id);
+
+  void addno(Integer id);
+
+  Map querykk(ParameUtil parm);
+
+  void cv(Integer id);
+
+  Map queryhei(ParameUtil parm);
+
+  void huifu(Integer id);
+
+  Map jm(ParameUtil parm);
+
+  void sh(Integer id);
+
+  void sh2(Integer id);
+
+  void addjm(jiameng jm);
 }

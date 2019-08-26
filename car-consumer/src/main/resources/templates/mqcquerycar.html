@@ -51,23 +51,27 @@
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 
 
-
-
-
 </head>
-<body>
-<center>
-<button type="button"  class="btn btn-info btn-lg" onclick="addcar()">发布商品</button>
-
-<button type="button"  class="btn btn-info btn-lg" onclick="kc()">库存</button>
-
-<button type="button"  class="btn btn-info btn-lg" onclick="deleteUserById()">批量删除</button>
+<body >
+<div>
+<iframe width="800" scrolling="no" height="220" frameborder="0"
+        allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=19&color=%23&bgc=%23FFFFFF&bdc=%2300B0F0&icon=1&py=haidian&temp=1&num=5&site=13"></iframe>
+</div><div>xdvxv</div>
 <br>
+<div>
+
+<center>
+
+    <font color="#b8860b" size="5px">车辆数据信息展示列表</font>
+
+
 <br>
 <br>
 
 <form id="pro_from" class="form-inline">
     <div class="form-group">
+           出厂时间<input type="date" name="qian" id="qian"><------><input  type="date" name="ho" id="ho">
+       <br>
 
         <label>地区</label>
 
@@ -94,22 +98,34 @@
     <br>
     <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
 </form>
+
 </center>
+</div>
+    <br>
+
+<button type="button"  class="btn btn-info btn-lg" onclick="addcar()">发布商品</button>
+
+<button type="button"  class="btn btn-info btn-lg" onclick="kc()">库存</button>
+
+<button type="button"  class="btn btn-info btn-lg" onclick="deleteUserById()">批量删除</button>
 <!--  表格 -->
 <table id="dataGrid"></table>
+
 </body>
 <script type="text/javascript">
     //库存
     function kc(){
      location.href="../mqc/ck";
-
     }
-
-
     $(function(){
-
         initDataGrid();
     });
+
+    //刷新页面
+    shua=function(){
+        location.reload(); //清除页面信息
+    }
+
     function initDataGrid() {
         //创建bootstrapTable
 
@@ -157,7 +173,8 @@
                    // carstatus: $("#carstatus").val(),
                     carstatus: $("input[name='carstatus']:checked").val(),
                     carareaid: $(".vv").val(),
-
+                    qian:$("#qian").val(),
+                    ho:$("#ho").val(),
 
                 };
                 return param;
@@ -165,7 +182,34 @@
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
                 {field: 'carid', title: '汽车id', width: 300},      //  列    field   代表是 后台  传过来的值
-                {field: 'typename', title: '汽车品牌', width: 300 },
+                {field: 'typename', title: '汽车品牌', width: 300,
+                    formatter: function (value,row,index){
+                    return "<font color='blue'>value</font>";
+                    }
+                },
+                {field: 'carimg', title: '图片', width: 300 ,
+                    formatter: function (value,row,index){
+                        return "<img src='"+value+"' style='width: 100px;height: 80px'>"
+                    }
+                },
+                {field: 'placecarstatu', title: '是否下单', width: 300,
+                    formatter: function (value,row,index){
+                    if(value==1){
+                        return "<font color='#b8860b'>已下单</font>";
+                    } if(value==2){
+                            return "未下单";
+                        }
+
+                    }
+
+                },
+                {field: 'sellcarcount', title: '该车型已出售数量', width: 300},
+                {field: 'carlc', title: '行驶里程', width: 300},
+                {field: 'carranyou', title: '燃油情况', width: 300,
+                    formatter: function (value,row,index) {
+                    return value+"升/公里"
+                    }
+                },
                 {field: 'carareaid', title: '原产地', width: 300,
                     formatter: function (value,row,index) {
                         if (value == "1") {
@@ -179,35 +223,22 @@
                         }
                     }
                 },
-                {field: 'carcolor', title: '汽车颜色', width: 300,
-                    formatter: function (value,row,index) {
-                        if (value == "1") {
-                            return "红色";
-                        }
-                        if (value == "2") {
-                            return "蓝色";
-                        }
-                        if (value == "3") {
-                            return "白色";
-                        }
-                        if (value == "4") {
-                            return "黑色";
-                        }
-                    }
-
+                {field: 'carcolor', title: '汽车颜色', width: 300
                 },
+                {field: 'carage', title: '车龄', width: 300 },
+                {field: 'text', title: '评论', width: 300 },
                 {field: 'carck', title: '车况', width: 300,
                     formatter: function (value,row,index) {
                         if (value == "1") {
-                            return "好";
+                            return "<font color='#228b22'>好</font>";
                         }
                         if (value == "2") {
-                            return "正常";
+                            return "<font color='#32cd32'>正常</font>";
                         }
                         if (value == "3") {
-                            return "一般";
+                            return "<font color='#b8860b'>一般</font>";
                         }if (value == "4") {
-                            return "事故车";
+                            return "<font color='red'>问题重重</font>";
                         }
 
                     }
@@ -232,10 +263,7 @@
                     formatter: function (value, row, index) {
 
                         return  "<a href='javascript:updatee(&quot;" + row.carid + "&quot;)'>下架</a>";
-//+"      "+"<a href='javascript:updatecar(&quot;" + row.carid + "&quot;)'>修改</a>"
                     }
-
-
                 }
             ]
         });
@@ -304,7 +332,8 @@
 
         $("#dataGrid").bootstrapTable("refresh", {
             "query": {
-
+                "qian":$("#qian").val(),
+                "ho":$("#ho").val(),
                 "carareaid": $(".vv").val(),
                 "carstatus": $("input[name='carstatus']:checked").val(),
 
@@ -338,11 +367,11 @@ function updatee(id){
             url:"../mqc/upx",
             data:{id:id},
             success:function(){
-                alert("下架成功");
+
                 location.href=location;
             },
             error:function(){
-                alert("后台")
+
             }
         })
 }
@@ -357,7 +386,7 @@ function updatee(id){
 
         //打开新增弹框
         bootbox.dialog({
-            title: '新增用户',
+            title: '新增',
             message: createAddContent("../mqc/toAddUserPage"),
             closeButton: true,//是否显示关闭按钮
             buttons: {
@@ -371,12 +400,12 @@ function updatee(id){
                             type: 'post',
                             data: $("#formId").serialize(),
                             success: function () {
-                                alert("新增成功");
+
                                 $('#dataGrid').bootstrapTable("refresh");
                                 location.href=location;
                                 //刷新表格
                             }, error: function () {
-                                alert("新增失败");
+
                             }
                         });
                     }
@@ -420,16 +449,22 @@ function updatee(id){
                 data: {ids: ids},
                 type: "post",
                 success: function () {
-                    alert("删除成功！");
+
                     $("#dataGrid").bootstrapTable("refresh");
 
                 }, error: function () {
-                    alert("失败");
+
                 }
 
 
             })
         }
+
+
+
+
+
+
 
 
     }
