@@ -11,7 +11,7 @@
             box-sizing: border-box;
         }
         body {
-            background: #383a3c url('login.jpg');
+            background: #383a3c;
             font-weight: 400;
             font-size: 1em;
             line-height: 1.25;
@@ -121,11 +121,11 @@
     <form>
         <div class="input_outer">
             <span class="u_user"></span>
-            <input id="username" name="username" class="text" type="text" placeholder="任意中文名">
+            <input id="username" name="username" class="text" type="text" placeholder="请输入账号">
         </div>
         <div class="input_outer">
             <span class="us_uer"></span>
-            <input id="password" name="password" class="text" type="password" placeholder="任意密码">
+            <input id="password" name="password" class="text" type="password" placeholder="请输入密码">
         </div>
         <div class="mb2">
             <a class="act-but submit" onclick="login()">登录</a>
@@ -148,7 +148,5 @@
         e.keyCode === 13 && login();
     };
 </script>
-
-
 </body>
 </html>
