@@ -13,9 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,8 +32,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/Perso")
 public class PersonController {
-
-
 
     @Reference
     private PersonService personService;
@@ -47,9 +48,18 @@ public class PersonController {
 
         return "xqt/person.html";
     }
-    //测试人工客服页面
-    @RequestMapping("/login")
-    public String tosocket(){
+    //跳转chat页面
+    @RequestMapping("/tochat")
+    public ModelAndView tochat(String username, HttpServletRequest request) throws UnknownHostException {
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("xqt/chatPage");
+        mv.addObject("username",username);
+        mv.addObject("webSocketUrl", "ws://"+InetAddress.getLocalHost().getHostAddress()+":"+request.getServerPort()+request.getContextPath()+"/chat");
+        return mv;
+    }
+    //跳转login页面
+    @RequestMapping("/tologin")
+    public String tologin(){
 
         return "xqt/login.html";
     }
@@ -59,14 +69,12 @@ public class PersonController {
 
         return "xqt/people.html";
     }
-
     //跳转人工客服服务接口
     @RequestMapping("/querykefu")
     public String querykefu(){
 
         return "xqt/kefu.html";
     }
-
     //商品分页列表查询
     @RequestMapping("findCarShoppingList")
     @ResponseBody
@@ -75,7 +83,6 @@ public class PersonController {
 
         return personService.findCarShoppingList(page,rows,car);
     }
-
     //机器人服务正式接口
     @RequestMapping("robotchat")
     @ResponseBody
