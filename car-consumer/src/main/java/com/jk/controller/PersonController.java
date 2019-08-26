@@ -30,6 +30,8 @@ import java.util.List;
 @RequestMapping("/Perso")
 public class PersonController {
 
+
+
     @Reference
     private PersonService personService;
 
@@ -45,17 +47,11 @@ public class PersonController {
 
         return "xqt/person.html";
     }
-    //跳转chat页面
-    @RequestMapping("/tochat")
-    public String tochat(){
+    //测试人工客服页面
+    @RequestMapping("/login")
+    public String tosocket(){
 
-        return "xqt/chat.html";
-    }
-    //跳转login页面
-    @RequestMapping("/tochat2")
-    public String tologin(){
-
-        return "xqt/chat2.html";
+        return "xqt/login.html";
     }
     //跳转人工客户服务接口
     @RequestMapping("/querypeople")

@@ -47,7 +47,6 @@ public class AlyController {
 
         return "xqt/fudian.html";
     }
-
     /**
      * @return
      * @author :xueqitao

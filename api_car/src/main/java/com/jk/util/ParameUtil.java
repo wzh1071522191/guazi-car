@@ -9,87 +9,94 @@ import java.util.Date;
 public class ParameUtil implements Serializable {
 	private static final long serialVersionUID = 1486269777590726558L;
 	private Integer pageNumber;
-    private Integer pageSize;
+	private Integer pageSize;
 	private String sortName;      //排序字段
 	private String sortOrder;    //正序或倒,+-序
-    private String qian;
-    private String ho;
-    private Integer id;
-    private Integer fang;
+	private String qian;
+	private String ho;
+	private Integer id;
+	private Integer fang;
 	private Integer zhuang;
 	private Integer kuan;
 	private Integer re;
-    private Integer carstatus;
-    private Integer carbrandid;
-    private String typename;
+	private Integer carstatus;
+	private Integer carbrandid;
+	private String typename;
 	private String carareaid;
-	private String name;
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	private Integer status;
 	@DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
-	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")// 处理从	后端到前端的时间
 	private Date starDate;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
-	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")// 处理从	后端到前端的时间
 	private Date endDate;
+	private String name;
 
-	public Date getStarDate() {
-		return starDate;
+	public Integer getStatus() {
+		return status;
 	}
 
-	public void setStarDate(Date starDate) {
-		this.starDate = starDate;
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Integer getPageNumber() {
+		return pageNumber;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setPageNumber(Integer pageNumber) {
+		this.pageNumber = pageNumber;
 	}
 
-	public String getCarareaid() {
-		return carareaid;
+	public Integer getPageSize() {
+		return pageSize;
 	}
 
-	public void setCarareaid(String carareaid) {
-		this.carareaid = carareaid;
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
 	}
 
-	public String getTypename() {
-		return typename;
+	public String getSortName() {
+		return sortName;
 	}
 
-	public void setTypename(String typename) {
-		this.typename = typename;
+	public void setSortName(String sortName) {
+		this.sortName = sortName;
 	}
 
-	public Integer getCarstatus() {
-		return carstatus;
+	public String getSortOrder() {
+		return sortOrder;
 	}
 
-	public void setCarstatus(Integer carstatus) {
-		this.carstatus = carstatus;
+	public void setSortOrder(String sortOrder) {
+		this.sortOrder = sortOrder;
 	}
 
-	public Integer getCarbrandid() {
-		return carbrandid;
+	public String getQian() {
+		return qian;
 	}
 
-	public void setCarbrandid(Integer carbrandid) {
-		this.carbrandid = carbrandid;
+	public void setQian(String qian) {
+		this.qian = qian;
 	}
 
-	private Integer ordername;
+	public String getHo() {
+		return ho;
+	}
+
+	public void setHo(String ho) {
+		this.ho = ho;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Integer getFang() {
 		return fang;
@@ -123,66 +130,73 @@ public class ParameUtil implements Serializable {
 		this.re = re;
 	}
 
-	public Integer getPageNumber() {
-		return pageNumber;
-	}
-	public void setPageNumber(Integer pageNumber) {
-		this.pageNumber = pageNumber;
-	}
-	public Integer getPageSize() {
-		return pageSize;
-	}
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
+	public Integer getCarstatus() {
+		return carstatus;
 	}
 
-	public String getQian() {
-		return qian;
+	public void setCarstatus(Integer carstatus) {
+		this.carstatus = carstatus;
 	}
 
-	public void setQian(String qian) {
-		this.qian = qian;
+	public Integer getCarbrandid() {
+		return carbrandid;
 	}
 
-
-
-	public Integer getOrdername() {
-		return ordername;
+	public void setCarbrandid(Integer carbrandid) {
+		this.carbrandid = carbrandid;
 	}
 
-	public void setOrdername(Integer ordername) {
-		this.ordername = ordername;
+	public String getTypename() {
+		return typename;
 	}
 
-	public String getHo() {
-		return ho;
+	public void setTypename(String typename) {
+		this.typename = typename;
 	}
 
-	public void setHo(String ho) {
-		this.ho = ho;
+	public String getCarareaid() {
+		return carareaid;
 	}
 
-	public Integer getId() {
-		return id;
+	public void setCarareaid(String carareaid) {
+		this.carareaid = carareaid;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getSortName() {
-		return sortName;
+	public Date getStarDate() {
+		return starDate;
 	}
 
-	public void setSortName(String sortName) {
-		this.sortName = sortName;
+	public void setStarDate(Date starDate) {
+		this.starDate = starDate;
 	}
 
-	public String getSortOrder() {
-		return sortOrder;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setSortOrder(String sortOrder) {
-		this.sortOrder = sortOrder;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+
+
+
+
+
+
+
+
+
+
+	}
 }
