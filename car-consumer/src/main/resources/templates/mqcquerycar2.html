@@ -202,21 +202,8 @@
                         }
                     }
                 },
-                {field: 'carcolor', title: '汽车颜色', width: 300,
-                    formatter: function (value,row,index) {
-                        if (value == "1") {
-                            return "红色";
-                        }
-                        if (value == "2") {
-                            return "蓝色";
-                        }
-                        if (value == "3") {
-                            return "白色";
-                        }
-                        if (value == "4") {
-                            return "黑色";
-                        }
-                    }
+                {field: 'carcolor', title: '汽车颜色', width: 300
+
 
                 },
                 {field: 'carck', title: '车况', width: 300,
@@ -300,11 +287,11 @@
             url:"../mqc/ups",
             data:{id:id},
             success:function(){
-                alert("上架成功");
+
                 location.href=location;
             },
             error:function(){
-                alert("后台")
+
             }
         })
     }
@@ -333,11 +320,11 @@
                             type: 'post',
                             data: $("#formId").serialize(),
                             success: function () {
-                                alert("新增成功");
+
                                 $('#dataGrid').bootstrapTable("refresh");
                                 //刷新表格
                             }, error: function () {
-                                alert("新增失败");
+
                             }
                         });
                     }
@@ -381,11 +368,11 @@
                 data: {ids: ids},
                 type: "post",
                 success: function () {
-                    alert("删除成功！");
+
                     $("#dataGrid").bootstrapTable("refresh");
 
                 }, error: function () {
-                    alert("失败");
+
                 }
 
 
