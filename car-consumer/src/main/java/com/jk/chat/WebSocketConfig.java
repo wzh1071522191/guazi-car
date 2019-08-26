@@ -4,6 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;*/
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+
 /**
  * @author ： xueqitao
  * @date ：Created in 2019/8/25 0025 11:11
@@ -12,7 +16,7 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;*/
  * @version: 1.0
  */
 
-/*
+
 @Configuration
 public class WebSocketConfig {
     @Bean
@@ -21,4 +25,4 @@ public class WebSocketConfig {
         return new ServerEndpointExporter();
     }
 }
-*/
+
