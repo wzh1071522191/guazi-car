@@ -1,3 +1,4 @@
+/*
 package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -47,14 +48,16 @@ public class AlyController {
 
         return "xqt/fudian.html";
     }
-    /**
+    */
+/**
      * @return
      * @author :xueqitao
      * @method : 查询商品分析所有的数据
      * @description :查询
      * @date: 2019/8/18 0018 15:32
      * @param:Car car
-     */
+     *//*
+
     @RequestMapping("queryAnaList")
     @ResponseBody
     public HashMap<String, Object> queryAnaList(Car car) {
@@ -622,4 +625,4 @@ public void exportExcelZhuanhuaThree(HttpServletResponse response){
         e.printStackTrace();
     }
 }
-}
+}*/
