@@ -4,10 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jk.dao.CommDao;
-import com.jk.model.Comment;
-import com.jk.model.Details;
-import com.jk.model.Order;
-import com.jk.model.Refund;
+import com.jk.model.*;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -153,8 +150,10 @@ public class CommServiceImpl implements CommService {
        s.setSpprice(1200);
        s.setYuhui(200);
         da.xiangqing(s);
-        System.err.println(s.getId());*/
-  /*   o.setDataid(d.getId());*/
+        System.err.println(s.getId());
+       o.setDataid(d.getId());
+       */
+
          da.didanxin(o);
 
     }
@@ -181,6 +180,39 @@ public class CommServiceImpl implements CommService {
         c.setPtime(new Date());
 
         da.huifu(c);
+    }
+
+    @Override
+    public void miaosha(Integer uid,Integer status) {
+        if(status==1){
+            da.wubai(uid);
+        }else if(status==2){
+          da.yiqian(uid);
+        }else if(status==3){
+           da.wuqian(uid);
+        }
+    }
+
+    @Override
+    public Map miaoshacha(ParameUtil param) {
+        Integer count=da.mszong(param);
+        Integer page=(param.getPageNumber()-1)*param.getPageSize();
+        List<Seckill> list=da.miaoshacha(page,param.getPageSize());
+        Map ma=new HashMap();
+        ma.put("total",count);
+        ma.put("rows",list);
+        return ma;
+
+    }
+
+    @Override
+    public Seckill chaseckill(Integer id) {
+        return da.chaseckill(id);
+    }
+
+    @Override
+    public void update(Seckill s) {
+        da.update(s);
     }
 
 

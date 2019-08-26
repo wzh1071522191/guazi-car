@@ -44,41 +44,23 @@
 
 </head>
 <body>
-<form id="tjfrom" class="form-inline">
 
-
-    评论时间<input type='date' name="qian" id="qian" class="form-control" />---<input type='date' name="ho" id="ho" class="form-control" />
-
-</select>
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;评论<select class="form-control" name="commentname" id="kuan">
-    <option value="0">请选择</option>
-    <option value="1">好评</option>
-    <option value="2">中评</option>
-    <option value="3">差评</option>
-
-
-
-</select>
-
-
-
-    <button type="button" class="btn btn-success" onclick="sousuo()">搜索</button>
-</form>
 <table id="dataGrid"></table>
-
 </body>
 <script>
 
     $(function(){
 
         initDataGrid();
+
     });
     function initDataGrid() {
         //创建bootstrapTable
 
 
         $("#dataGrid").bootstrapTable({
-            url: "../comm/ping",
+
+            url: "../comm/miaoshacha" ,
             method: 'post',
             striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
@@ -116,43 +98,33 @@
                 var param = {
                     pageNumber: params.pageNumber,
                     pageSize: params.pageSize,
-                    qian: $("#qian").val(),
-                    ho: $("#ho").val(),
-
-                    kuan:$("#kuan").val(),
 
                 };
                 return param;
             },
             columns:[
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'status', title: '评价', width: 300,formatter:function(value,row,indes){
-               if(value==1){
-              return "好评";
-               }else if(value==2){
-                            return "中评";
-                        }
-                        else if(value==3){
-                            return "差评";
-                        }
-                    }},      //  列    field   代表是 后台  传过来的值
-                {field: 'text', title: '评论内容', width: 300,
+                {field: 'id', title: 'ID', width: 300,
+                },      //  列    field   代表是 后台  传过来的值
+                {field: 'stime', title: '开始时间', width: 300},
+                {field: 'seckillname', title: '优惠券名称', width: 300,
                 formatter:function(value,row,index){
-
-
-                    var st='<button type="button" class="btn btn-warning" onclick=pinglun('+row.id+') >查看评论</button>';
-
-                    return st+row.text;
-                }},
-                {field: 'ptime', title: '评论时间', width: 300},
-
-                {field: 'username', title: '评论人', width: 300,},
-                {field: 'typename', title: '汽车品牌', width: 300},
-                {field: 'caozuo', title: '操作', width: 300,formatter:function(value,row,index){
-                        var st='<button type="button" class="btn btn-warning" onclick=huifu('+row.id+') >回复</button>';
+                      if(value==1){
+                       return "500元代金券";
+                      }else if(value==2){
+                          return "1000元代金券";
+                      }else if(value==3){
+                          return "5000元代金券";
+                      }
+                }
+                },
+                {
+                    field: 'sss', title: '操作', width: 300,formatter:function(value,row,index){
+                        var st='<button type="button" class="btn btn-warning" onclick=miaosha('+row.id+') >秒杀开始时间</button>';
 
                         return st;
-                    }},
+                    }
+                }
 
 
             ]
@@ -166,15 +138,54 @@
 
     }
 
-    /*    $(function () {
-$('#datetimepicker1').datetimepicker({
-format: 'YYYY-MM-DD',
-/!* locale: moment.locale('zh-cn')*!/
 
-});
-});*/
 </script>
 <script>
+    function miaosha(id){
+
+        bootbox.dialog({
+            title: '开始时间',
+            message: createAddContent("../comm/updateseckill?id="+id),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+                       //var a=${#dates.format($("#aa").val(),'yyyy-MM-dd HH:mm:ss')}
+                        $.ajax({
+                            url: '../comm/update',
+                            type: 'post',
+                            cache:false,
+                            data: $("#addFormId").serialize(),
+                            success: function () {
+                                location.href=location;
+                                // alert("新增成功");
+                                // $('#dataGrid').bootstrapTable('destroy').bootstrapTable();
+                                //bootstrapTable('destroy')
+                                //$("#dataGrid").bootstrapTable('refresh');
+                                // initDataGrid();
+                                //initDataGrid();
+                                //$('#dataGrid').bootstrapTable("refresh");
+                                //刷新表格
+                            }, error: function () {
+                                alert("失败");
+                            }
+                        });
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+
+                    }
+                }
+            }
+
+        });
+
+    }
     var res;
     function createAddContent(url) {
         $.ajax({
@@ -186,70 +197,6 @@ format: 'YYYY-MM-DD',
         });
         return res;
     }
-    function pinglun(id){
-
-        bootbox.dialog({
-            title: '回复',
-            message:createAddContent("../comm/pinglun1?id="+id),
-            closeButton: true,//是否显示关闭按钮
-            buttons: {
-
-
-            }
-
-        });
-
-
-    }
-   function huifu(id){
-
-
-       bootbox.dialog({
-           title: '回复',
-           message:createAddContent("../comm/huifu1"),
-           closeButton: true,//是否显示关闭按钮
-           buttons: {
-               "success": {
-                   "label": "<i class='icon-ok'></i> 保存",
-                   "className": "btn-sm btn-success",
-                   "callback": function () {
-                       $.ajax({
-                           url: '../comm/huifu?id='+id,
-                           type: 'post',
-                           data: $("#formid").serialize(),
-                           success: function () {
-                               alert("新增成功");
-                               $('#dataGrid').bootstrapTable("refresh");
-                               //刷新表格
-                           }, error: function () {
-                               alert("新增失败");
-                           }
-                       });
-                   }
-           },
-               "cancel": {
-                   "label": "<i class='icon-info'></i> 取消",
-                   "className": "btn-sm btn-danger",
-                   "callback": function () {
-
-                   }
-               }
-           }
-
-       });
-
-   }
-    //条件查询
-    function sousuo() {
-
-        $("#dataGrid").bootstrapTable("refresh", {
-            "query" : {
-                "qian" : $("#qian").val(),
-                "ho" : $("#ho").val(),
-                "kuan":$("#kuan").val(),
-            }
-        });
-
-    }
 </script>
+</body>
 </html>

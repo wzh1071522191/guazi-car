@@ -2,10 +2,7 @@ package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.minggan.test;
-import com.jk.model.Comment;
-import com.jk.model.Details;
-import com.jk.model.Order;
-import com.jk.model.User;
+import com.jk.model.*;
 import com.jk.service.CommService;
 import com.jk.util.DataGridResult;
 import com.jk.util.PageUtil;
@@ -13,6 +10,8 @@ import com.jk.util.ParameUtil;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,16 +22,22 @@ import sun.net.httpserver.HttpsServerImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.crypto.Data;
 import java.io.UnsupportedEncodingException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("comm")
 public class CommController {
     @Reference
     private CommService se;
-
+  @Autowired
+  private RedisTemplate redisTemplate;
     @Autowired
     private AmqpTemplate amqpTemplate;
     //订单查询全部
@@ -222,5 +227,87 @@ public class CommController {
     public String shaxiang(){
         return "aaa";
     }
-}
+//秒杀跳页面
+    String key = "youhui";
+    @RequestMapping("miaosha1")
+       public  String miaosha1(HttpSession session,Integer uid,Integer status){
+        session.setAttribute("z",status);
+        session.setAttribute("y",uid);
 
+        if (redisTemplate.hasKey(key)) {
+        } else {
+            redisTemplate.opsForValue().set(key, 50);
+            redisTemplate.expire(key,30,TimeUnit.MINUTES);
+        }
+
+
+      return "tiao";
+    }
+
+//秒杀实现
+@RequestMapping("miaosha")
+@ResponseBody
+public String miaosha(Integer uid, Integer status, HttpSession session){
+     if(uid==null){
+         return "cuo";
+     }else {
+         String aa = "uid"+uid;
+         if(redisTemplate.hasKey(aa)){
+             return "you";
+         }else{
+             redisTemplate.opsForList().leftPush(aa, uid);
+
+                if (redisTemplate.hasKey(key)) {
+                     Integer o = (Integer) redisTemplate.opsForValue().get(key);
+                     if (o > 0) {
+                         redisTemplate.opsForValue().decrement(key);
+                     } else {
+                         return "wan";
+                     }
+                 } else {
+                     redisTemplate.opsForValue().set(key, 50);
+                     redisTemplate.expire(key,30,TimeUnit.MINUTES);
+
+                 }
+
+
+         }
+
+     }
+    se.miaosha(uid, status);
+    return "dao";
+}
+//秒杀数据查询
+@RequestMapping("miaoshacha")
+@ResponseBody
+    public  Map  maoshacha(@RequestBody ParameUtil param){
+        return se.miaoshacha(param);
+}
+//秒杀跳转页面
+@RequestMapping("miaoshacha1")
+    public  String miaoshacha1(){
+
+ return "miaoshacha";
+    }
+    //秒杀页面
+    @RequestMapping("aaa")
+    public  String aaa(){
+        return  "miaosha";
+    }
+   @RequestMapping("updateseckill")
+
+    public String  chaseckill(Integer id,Model model){
+       Seckill list=se.chaseckill(  id);
+       model.addAttribute("l",list);
+         return  "updateseckill";
+   }
+   @RequestMapping("update")
+    @ResponseBody
+    public void update(Seckill s,HttpServletRequest request){
+       SimpleDateFormat c=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       System.out.println(s.getStime());
+       String format = c.format(s.getStime());
+      request.getSession().setAttribute("time",format);
+       se.update(s);
+   }
+}
