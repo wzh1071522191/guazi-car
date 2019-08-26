@@ -3,13 +3,15 @@
 <head>
     <title>登陆聊天</title>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/mdui/dist/css/mdui.css}">
+    <script th:src="@{/webjars/mdui/dist/js/mdui.js}"></script>
     <style>
         *, *:after, *:before {
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
         }
         body {
-            background: #383a3c url('/img/316010G41T5.jpg');
+            background: #383a3c url('login-bg.jpg');
             font-weight: 400;
             font-size: 1em;
             line-height: 1.25;
@@ -111,6 +113,7 @@
             z-index: 100;
         }
     </style>
+
 </head>
 <body>
 <div class="logo_box">
@@ -135,7 +138,7 @@
      * 登陆聊天
      */
     function login() {
-        location.href = '/index?username='+$('#username').val();
+        location.href = '../Perso/tochat?username='+$('#username').val();
     }
     /**
      * 使用ENTER登陆

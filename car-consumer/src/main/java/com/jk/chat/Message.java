@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author ： xueqitao
  * @date ：Created in 2019/8/25 0025 11:08
@@ -13,7 +15,7 @@ import lombok.Data;
  */
 @AllArgsConstructor
 @Data
-public class Message {
+public class Message implements Serializable {
     public static final String ENTER = "ENTER";
     public static final String SPEAK = "SPEAK";
     public static final String QUIT = "QUIT";

@@ -179,7 +179,15 @@ public class CommController {
         o.setKuaidifei(20);
         o.setYuhui(200);
         o.setShprice(1200);
-        amqpTemplate.convertAndSend("Rabbitmq",o);
+        if(o.getStatus()==1){
+            String cun="order";
+
+            redisTemplate.opsForValue().set(cun,o);
+            redisTemplate.expire(cun,30,TimeUnit.MINUTES);
+        }else{
+            amqpTemplate.convertAndSend("Rabbitmq",o);
+        }
+
 
     }
 //回复弹框
