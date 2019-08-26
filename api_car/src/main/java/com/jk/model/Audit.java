@@ -44,8 +44,19 @@ public class Audit implements Serializable {
     private String changyongimg;//功能检测是否完好，上传问题图片
 
     private Integer status; //状态   1.待审核 2.审核已通过 3.审核不通过
+
+    private User user;
+
     private String username;
     private String userphone;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getUserphone() {
         return userphone;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>瓜子二手车后台管理系统</title>
@@ -36,7 +36,7 @@
 </head>
 
 
-<body background="../js/f17c20d42256fd67339735b0c1e5cb18.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
+<body background="../js/46e04cb3810fde7f66af80690012c693.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <!--定义在容器顶部  -->
@@ -50,6 +50,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <!-- 头部信息 -->
         <div class="navbar-header">
+
             <a class="navbar-brand glyphicon glyphicon-home" href="https://www.guazi.com" id="menu-toggle">
                 瓜子二手车交易平台
             </a>
@@ -57,12 +58,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active "><a href="https://www.guazi.com/" class="glyphicon glyphicon-heart">&nbsp瓜子服务</a></li>
+                <li class="active"><a href="https://www.guazi.com/" class="glyphicon glyphicon-heart">&nbsp瓜子服务</a></li>
                 <li><a href="https://guazi.com/" class="glyphicon glyphicon-usd">&nbsp瓜子金融</a></li>
                 <li><a href="#" class="glyphicon glyphicon-phone-alt">&nbsp热线电话 400-069-6530</a></li>
                 <li><a href="https://www.maodou.com" class="glyphicon glyphicon-road">&nbsp毛豆新车</a></li>
                 <li class="dropdown">
-
                 </li>
             </ul>
 
@@ -89,7 +89,7 @@
 
 <div style="margin-top:3%;margin-left:1%;height: 35px">
     <h1 align="center" style="font-family:Simsun;"><b>瓜子二手车后台管理系统</b></h1></div>
-<div class="row" style="opacity:0.7">
+<div class="row" style="opacity:0.8">
     <div class="col-sm-2">
         <a class="list-group-item" data-addtab="userMenu" data-target="#tabs" data-url="http://www.baidu.com">
         </a>
@@ -104,7 +104,7 @@
         <!-- Nav tabs -->
         <ul id="tabs" class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">欢迎</a></li>
+                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">欢迎<span th:text="${session.u.userName}" style="color: red"></span>登录</a></li>
         </ul>
         <!-- 选项卡  内容 -->
         <!-- Tab panes -->
