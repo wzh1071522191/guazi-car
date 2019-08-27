@@ -41,8 +41,6 @@
 
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 </head>
-<button onclick="toshopping()" type="button" class="btn" style="background:#E8E8D0"><b>返回首页</b></button>
-
 <style type="text/css">
     .sendP{
         text-align: right;
@@ -75,12 +73,20 @@
     <div data-options="region:'north'" style="height:60%" id="content">
     </div>
     <div data-options="region:'center'" style="text-align:center;">
-        <input  id="message">
-        <a href="javascript:sendMsg()" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">发送</a>
+        <div class="input-group">
+        <input type="text" id="message" class="form-control" size="150" align="center"></div>
+
+        <!--<a href="javascript:sendMsg()" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">发送</a>-->
+            <button type="button" class="btn btn-success" onclick="sendMsg()">发送</button>
+            <button type="button" class="btn btn-success" onclick="resetMsg()">取消</button>
+
     </div>
 </div>
 </body>
 <script>
+    resetMsg=function () {
+        $("#message").val("");
+    }
     function sendMsg(){
         var message = $("#message").val();
         var send = '<p class="sendP"><span class="sendCen">'+message+'</span><span class="sendIcon">▶</span></p>';

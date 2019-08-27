@@ -7,11 +7,11 @@
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/mdui/dist/js/mdui.js}"></script>
 </head>
-<body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink" background="../img/iiiii.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
 <div class="mdui-container">
     <div class="mdui-toolbar mdui-color-theme">
         <a class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
-        <span class="mdui-typo-title">客服通信</span>
+        <span class="mdui-typo-title">客服聊天</span>
         <div class="mdui-toolbar-spacer"></div>
         <a class="mdui-btn mdui-btn-icon" href="https://www.jianshu.com/p/964370d9374e" target="_blank"><i
                 class="mdui-icon material-icons">search</i></a>
@@ -66,25 +66,25 @@
 </div>
 
 <script th:inline="javascript">
-    /**
+    /*
      * WebSocket客户端
      *
      * 使用说明：
      * 2、WebSocket客户端通过send方法来发送消息给服务端。例如：webSocket.send();
      */
     function getWebSocket() {
-        /**
-         * WebSocket客户端 PS：URL开头表示WebSocket协议 中间是域名端口 结尾是服务端映射地址
-         */
+        /*
+        * WebSocket客户端 PS：URL开头表示WebSocket协议 中间是域名端口 结尾是服务端映射地址
+        */
         var webSocket = new WebSocket('ws://localhost:8089/chat');
-        /**
-         * 当服务端打开连接
-         */
+        /*
+        * 当服务端打开连接
+        */
         webSocket.onopen = function (event) {
             console.log('WebSocket打开连接');
         };
-        /**
-         * 当服务端发来消息：1.广播消息 2.更新在线人数
+         /*
+         *  当服务端发来消息：1.广播消息 2.更新在线人数
          */
         webSocket.onmessage = function (event) {
             console.log('WebSocket收到消息：%c' + event.data, 'color:green');
@@ -95,7 +95,7 @@
                 $messageContainer.append(
                     '<div class="mdui-card" style="margin: 10px 0;">' +
                     '<div class="mdui-card-primary">' +
-                    '<div class="mdui-card-content message-content">' + message.username + "：" + message.msg + '</div>' +
+                    '<div class="mdui-card-content message-content">'+'<font color="red">' + message.username+'</font>' + "：" + message.msg + '</div>' +
                     '</div></div>');
             }
             $('.chat-num').text(message.onlineCount);
@@ -116,7 +116,7 @@
         /**
          * 通信失败
          */
-        webSocket.onerror = function (event) {
+        webSocket.onerror = function (event) {z
             console.log('WebSocket发生异常');
         };
         return webSocket;
