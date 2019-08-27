@@ -36,7 +36,7 @@
 </head>
 
 
-<body background="../js/46e04cb3810fde7f66af80690012c693.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
+<body background="../img/211325105ea1b490fd875ab3db2859db.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <!--定义在容器顶部  -->
@@ -87,9 +87,9 @@
 </nav>
 <!-- ============================导航结束==================================-->
 
-<div style="margin-top:3%;margin-left:1%;height: 35px">
-    <h1 align="center" style="font-family:Simsun;"><b>瓜子二手车后台管理系统</b></h1></div>
-<div class="row" style="opacity:0.8">
+<div style="margin-top:4%;margin-left:1%;height: 35px">
+    <h1 align="center" style="font-family:Simsun;color: #00000d"><b>瓜子二手车后台管理系统</b></h1></div>
+<div class="row" style="opacity:0.9">
     <div class="col-sm-2">
         <a class="list-group-item" data-addtab="userMenu" data-target="#tabs" data-url="http://www.baidu.com">
         </a>
@@ -104,14 +104,18 @@
         <!-- Nav tabs -->
         <ul id="tabs" class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">欢迎<span th:text="${session.u.userName}" style="color: red"></span>登录</a></li>
+                <a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: #0000a1">Welcome</a></li>
         </ul>
         <!-- 选项卡  内容 -->
         <!-- Tab panes -->
         <div class="tab-content">
-            <div role="tabpanel" style="" class="tab-pane active " id="home"></div>
+            <div role="tabpanel" style="" class="tab-pane active " id="home">
+
+                <marquee direction="left"  scrollamount="20"> <h1 style="font-family:华文宋体;color: #0000a1">欢迎<span th:text="${session.u.userName}" style="color: #ff5a01"></span>登录</h1></marquee>
+            </div>
         </div>
     </div>
+
 </div>
 
 </body>

@@ -94,10 +94,11 @@
 
     <div class="register w3layouts agileits">
         <h2>注 册</h2>
-        <form id="zhuceForm" action="#" method="post">
-            <input type="text" Name="userName" placeholder="用户名"   id="userName"   required="true">
+        <form id="registerForm" action="#" method="post">
+            <input type="text" Name="userName" placeholder="用户名"   id="userName"   required="true"  onblur="checkName()">
+            <span id="msg1"></span>
             <input type="password" Name="userPwd" placeholder="密码"  id="pwd"  autocomplete='userPwd' required="true">
-            <input type="password" Name="userPwd" placeholder="确认密码"  id="checkpwd"  autocomplete='userPwd' onblur="checkPassword()" required="true">
+            <input type="password"  placeholder="确认密码"  id="checkpwd"  autocomplete='userPwd' onblur="checkPassword()" required="true">
 
         </form>
         <span id="msg"></span>
@@ -113,7 +114,7 @@
     <p><b><font color="_blank">Copyright  &copy;  Jinke Education : 1902B FivethTeam</font></b></p>
 </div>
 <div style="text-align:center;">
-    <p>更多：<a href="http://www.mycodes.net/" target="_blank">ThreeTourism</a></p>
+    <p>更多：<a href="https://www.guazi.com" target="_blank" style="color: #00000d">瓜子二手车官网</a></p>
 </div>
 
 </body>
@@ -164,7 +165,7 @@
                     return true;
                 }
                 if(data==1){
-                    $("#msg1").html("<font color='red'>用户已存在</font>");
+                    $("#msg1").html("<font color='red'>已存在</font>");
                     return false;
                 }
             }
@@ -188,11 +189,11 @@
 
     }
     toRegister=function(){
-        if(checkPassword()){
+        if(checkPassword()&&checkName()){
             $.ajax({
                 url:"../emp/register",
                 type:"post",
-                data:$("#addForm").serialize(),
+                data:$("#registerForm").serialize(),
                 success:function (data) {
                     if(data==0){
                         location.href=location;
@@ -208,7 +209,7 @@
 
             })
         }else {
-            alert("请账号完善信息");
+            alert("请完善账号信息");
         }
 
 

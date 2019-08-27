@@ -36,18 +36,19 @@
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 </head>
 <body>
-
+<div style="margin-top:1%;margin-left:1%;">
     <form id="pro_from" class="form-inline">
-            <label>用户名:</label>
+        <br>
+            <label>用户名:&nbsp;&nbsp;&nbsp; </label>
             <input type="text" class="form-control" name = "userName" id="userName" placeholder="用户名">
-        <br>
-            <label>日期:</label>
+            <label>登录日期:</label>
             <input type="date" class="form-control" name="starDate" id="starDate">--<input type="date" class="form-control" name="endDate" id="endDate">
-        <br>
         <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
     </form>
+</div>
+<div style="margin-top:1%;margin-left:1%;">
     <!--  表格 -->
-    <table id="dataGrid"></table>
+    <table id="dataGrid"></table></div>
 </body>
 <script>
     $(function(){
@@ -106,10 +107,10 @@
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
                 {field: 'id', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
-                {field: 'logname', title: '日志名称', width: 300},
+                {field: 'logname', title: '日志名称', width: 200},
                 {field: 'logip', title: 'ip地址', width: 300},
                 {field: 'logtime', title: '登录时间', width: 300},
-                {field: 'userName', title: '登录用户', width: 300}
+                {field: 'userName', title: '登录用户', width: 200}
             ]
         });
     }
