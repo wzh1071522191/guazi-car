@@ -41,8 +41,9 @@
 </style>
 <body>
     <!--  表格 -->
-
-    <table id="dataGrid" class="table table-condensed" border="0px"></table>
+    <div class="table-responsive">
+    <table id="dataGrid"  border="0px" title="数据信息"></table>
+    </div>
 
 </body>
 <script>
@@ -113,11 +114,11 @@
                     }
                 },
                 {field: 'carname', title: '汽车品牌', width: 300},
-                {field: 'carimg', title: '汽车图片', width: 300,
+                /*{field: 'carimg', title: '汽车图片', width: 300,
                     formatter:function (value, row, index) {
                         return "<img src='"+value+"' style='width: 80px;height: 50px'>";
                     }
-                },
+                },*/
                 {field: 'isshiigu', title: '是否为事故车', width: 300,
                     formatter:function (value, row, index) {
                         return value==0?"否":"是";
@@ -239,6 +240,50 @@
             })
         }
 
+    }
+
+    createQRCode=function (id) {
+        bootbox.dialog({
+            title: '二维码信息',
+            message: createAddContent("../audit/toQRCode?id="+id),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+
+                        $.ajax({
+                            url: '../audit/upMessage1',
+                            type: 'post',
+                            cache:false,
+                            data: $("#addForm").serialize(),
+                            success: function () {
+                                location.href=location;
+                                // alert("新增成功");
+                                // $('#dataGrid').bootstrapTable('destroy').bootstrapTable();
+                                //bootstrapTable('destroy')
+                                //$("#dataGrid").bootstrapTable('refresh');
+                                // initDataGrid();
+                                //initDataGrid();
+                                //$('#dataGrid').bootstrapTable("refresh");
+                                //刷新表格
+                            }, error: function () {
+                                alert("失败");
+                            }
+                        });
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+
+                    }
+                }
+            }
+
+        });
     }
 </script>
 </html>

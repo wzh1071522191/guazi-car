@@ -50,4 +50,9 @@ public class AuditServiceImpl implements AuditService{
     public void upMessage(Audit audit) {
         auditDao.upMessage(audit);
     }
+
+    @Override
+    public Audit queryCarById(Integer id) {
+        return auditDao.queryCarById(id);
+    }
 }

@@ -26,4 +26,7 @@ public interface AuditDao {
 
    // @Update("update t_audit set auditdate=now(),isshigu=#{isshigu},shiguimg=#{shiguimg},iswaiguan=#{iswaiguan},waiguanimg=#{waiguanimg},isbujian=#{isbujian},bujianimg=#{bujianimg},ischangyong=#{ischangyong},changyongimg=#{changyongimg} where id=#{id}")
     void upMessage(Audit audit);
+
+    //@Select("SELECT * FROM t_audit where id=#{id}")
+    Audit queryCarById(Integer id);
 }
