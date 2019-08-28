@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+</head>
+<body>
+<form id="addFormId">
+    <input type="hidden" th:value="${l.id}" name="id"/>
+    <input type='text' name="stime" id="aa"  th:value="${#dates.format(l.stime,'yyyy-MM-dd HH:mm:ss')}"/>
+
+</form>
+</body>
+</html>

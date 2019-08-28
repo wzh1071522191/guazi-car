@@ -1,5 +1,6 @@
 package com.jk.service;
 
+import com.jk.model.Audit;
 import com.jk.util.ParameUtil;
 
 import java.util.HashMap;
@@ -15,4 +16,6 @@ public interface AuditService {
     HashMap<String, Object> queryAuditCar(ParameUtil pu);
 
     String updateStatus(Integer id, Integer flag);
+
+    void upMessage(Audit audit);
 }

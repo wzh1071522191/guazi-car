@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>人工客服中心</title>
+    <link rel="stylesheet" href="../js/easyui1.5/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" href="../js/easyui1.5/themes/icon.css">
+    <script src="../js/easyui1.5/jquery.min.js"></script>
+    <script src="../js/easyui1.5/jquery.easyui.min.js"></script>
+    <script src="../js/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入my97 -->
+    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+    <script language="JavaScript">
+        function myrefresh(){
+            window.location.reload();
+        }
+        setTimeout('myrefresh()',6000); //指定1秒刷新一次
+    </script>
+</head>
+<center><font size="5px" color="red"><b>后台客服系统</b></font></center>
+<button onclick="returnshou()" type="button" class="btn" style="background:#FFD2D2"><b><font color="green"><--返回首页</font></b></button>
+<!--样式-->
+
+<style type="text/css">
+    .sendP{
+        text-align: right;
+    }
+    .sendCen{
+        background-color: #DFFFDF;
+        color: darkred;
+        font-size: 20px;
+        padding: 2px 5px;
+        border-radius: 10px;
+    }
+    .sendIcon{
+        color: darkred;
+        margin-left: -3px;
+    }
+    .reciveCen{
+        background-color: #DFFFDF;
+        color: darkred;
+        font-size: 20px;
+        padding: 2px 5px;
+        border-radius: 8px;
+    }
+    .reciveIcon{
+        color: black;
+        margin-right: -3px;
+    }
+</style>
+<!--拼接客户发送过来的消息-->
+<body style="background:#E0E0E0">
+<br>
+<font size="4px" color="red"><b>客户回复：</b></font>
+<div id="ulul" style="width:1900px;height:350px;overflow-x:auto;overflow-y:auto"></div>
+<!--发送消息-->
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north'" style="height:30%" id="content">
+        <!--查询自己发送的消息-->
+        <font color="red" size="3px"><b>您的历史发送记录:</b></font>
+        <div id="ulul4" style="height:100px;overflow:auto;"></div>
+    </div>
+
+    <div data-options="region:'center'" style="text-align:center;background:#F3F3FA">
+        <input  id="message">
+        <a href="javascript:sendMsg()" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">发送</a>
+    </div>
+</div>
+</body>
+<script>
+    /*页面加载：客户发过来的消息和客服自己发送的消息*/
+    $(function(){
+        //客户的消息
+        kehuxiaoxi();
+        //客服的消息
+        kefuxiaoxi();
+    })
+    /*查询客户发过来的消息*/
+  function kehuxiaoxi() {
+    $(document).ready(function () {
+        $.ajax({
+            url: "../Perso/queryKehus2",
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                var html = "";
+                for (var i = 0; i < data.length; i++) {
+                    var ls = data[i];
+                    html += "<li><p><span class='reciveIcon'><==</span><span class='reciveCen'>" + ls.codeKehu + "----时间：" + ls.cusTime + "</span></p></li>";
+                }
+                $("#ulul").html(html);
+            },
+        })
+    })
+}
+/*查询客服自己发送的消息*/
+    function kefuxiaoxi(){
+        $(document).ready(function() {
+            $.ajax({
+                url : "../Perso/queryKefucode",
+                dataType : "json",
+                type : "post",
+                success : function(data) {
+                    var html = "";
+                    for(var i=0;i<data.length;i++){
+                        var ls = data[i];
+                        html +="<li><p><span class='reciveIcon'><==</span><span class='reciveCen'>"+ls.codeKefu+"----时间："+ls.cusTime+"</span></p></li>";
+                    }
+                    $("#ulul4").html(html);
+                },
+            })
+        })
+    }
+
+/*客服要输入的话*/
+    function sendMsg(){
+        var message = $("#message").val();
+        var send = '<p class="sendP"><span class="sendCen">'+message+'</span><span class="sendIcon">==></span></p>';
+        $("#content").append(send);
+        //清楚输入框
+        $("#message").val("");
+        //设置滚动条
+        $("#content").scrollTop($("#content")[0].scrollHeight);
+        $.ajax({
+            url:'../Perso/insertkefucode',
+            type:'post',
+            data:{
+                codeKefu:message,
+            },
+            success:function(data){
+                var revice = '<p><span class="reciveIcon"><==</span><span class="reciveCen">'+data.content+'</span></p>'
+
+                $("#content").scrollTop($("#content")[0].scrollHeight);
+            }
+        })
+    }
+    $(function(){
+        initKeyDown();
+    })
+    function initKeyDown(){
+        $('#message').bind('keydown',function(e){
+            if(e.keyCode == 13){
+                sendMsg();
+
+            }
+        });
+    }
+//返回首页
+    function returnshou(){
+        location.href="../Perso/CusList";
+    }
+
+
+</script>
+</html>

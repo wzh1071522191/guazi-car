@@ -23,14 +23,25 @@ import java.util.Date;
  */
 public class LogBean implements Serializable {
 
+    private static final long serialVersionUID = -1342285481020412884L;//序列id
     private String id;
-    private String logname;
-    private String logip;
-    private String logis;
-    private String requerpath;
-    private String parame;
-    private Integer userId;
-    private Object returningValue;
+    private String logname;         //日志名称
+    private String logip;           //ip地址
+    private String logis;           //是否有效
+    private String requerpath;      //请求路径
+    private String parame;          //参数
+    private Integer userId;         //登录用户id
+    private Object returningValue;  //返回值
+    private String userName;
+
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
@@ -40,7 +51,7 @@ public class LogBean implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date endDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date logtime;
 
 

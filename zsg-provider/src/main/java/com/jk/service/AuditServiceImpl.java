@@ -45,4 +45,9 @@ public class AuditServiceImpl implements AuditService{
         auditDao.updateStatus(hashMap);
         return null;
     }
+
+    @Override
+    public void upMessage(Audit audit) {
+        auditDao.upMessage(audit);
+    }
 }

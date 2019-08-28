@@ -32,7 +32,7 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
-/*.se-io {
+.se-io {
     width: 20px;
     height: 33px;
     position: absolute;
@@ -42,11 +42,11 @@
     left: 85px;
     top: 126px;
     display: block;
-}*/
+}
 
 .se-info {
     position: absolute;
-    top: 130px;
+    top: 140px;
     text-align: center;
     width: 100%;
     font-size: 20px;
@@ -55,7 +55,7 @@
 
 .se-count {
     position: absolute;
-    top: 180px;
+    top: 212px;
     left: 30px;
     height: 40px;
 }

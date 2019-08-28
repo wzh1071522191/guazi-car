@@ -34,4 +34,22 @@ public interface AlyMapper {
     List<Map<String, Object>> queryShoppingZhuxingByWeek();
 
     List<Map<String, Object>> queryMianjiShopping();
+
+    List<Car> SelectShoppingGaikuang();
+
+    List<Car> SelectShoppingLiuliang();
+
+    List<Car> SelectShoppingZhuanhua();
+
+    List<Car> queryExportExcelGaikuangSeven();
+
+    List<Car> queryExportExcelLiuliangSeven();
+
+    List<Car> queryExportExcelZhuanhuaSeven();
+
+    List<Car> queryExportExcelGaikuangThree();
+
+    List<Car> queryExportExcelLiuliangThree();
+
+    List<Car> queryExportExcelZhuanhuaThree();
 }

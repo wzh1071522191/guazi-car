@@ -11,8 +11,8 @@ public class jiameng implements Serializable {
     private Integer jmid; //加盟id
     private String username; //
     private String userphone;
-    private String shengdq;  //省地址
-    private String shidq; //市
+        private Integer shengdq;  //省地址
+    private Integer shidq; //市
     private String youxiang; //邮箱
     private String liuyan;  //留言
     private Integer shenhe;  //审核
@@ -61,19 +61,19 @@ public class jiameng implements Serializable {
         this.userphone = userphone;
     }
 
-    public String getShengdq() {
+    public Integer getShengdq() {
         return shengdq;
     }
 
-    public void setShengdq(String shengdq) {
+    public void setShengdq(Integer shengdq) {
         this.shengdq = shengdq;
     }
 
-    public String getShidq() {
+    public Integer getShidq() {
         return shidq;
     }
 
-    public void setShidq(String shidq) {
+    public void setShidq(Integer shidq) {
         this.shidq = shidq;
     }
 

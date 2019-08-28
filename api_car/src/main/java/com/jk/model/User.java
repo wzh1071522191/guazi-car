@@ -2,22 +2,23 @@ package com.jk.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
-    private Integer userid;
-
-    private Integer gwcid;
-
-    private String userphone;
-
+public class User  implements Serializable {
+    private Integer  userid;
     private String username;
 
+
+    private String  userphone;
+
+
+    private Integer gwcid;//购物车id
+
     private Integer fivehundred;
-
     private Integer onethousand;
-
     private Integer fivethousand;
-
     private Integer userstatus;
+
+
+
 
     public Integer getUserid() {
         return userid;
@@ -27,12 +28,12 @@ public class User implements Serializable {
         this.userid = userid;
     }
 
-    public Integer getGwcid() {
-        return gwcid;
+    public String getUsername() {
+        return username;
     }
 
-    public void setGwcid(Integer gwcid) {
-        this.gwcid = gwcid;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getUserphone() {
@@ -40,15 +41,15 @@ public class User implements Serializable {
     }
 
     public void setUserphone(String userphone) {
-        this.userphone = userphone == null ? null : userphone.trim();
+        this.userphone = userphone;
     }
 
-    public String getUsername() {
-        return username;
+    public Integer getGwcid() {
+        return gwcid;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setGwcid(Integer gwcid) {
+        this.gwcid = gwcid;
     }
 
     public Integer getFivehundred() {
@@ -82,4 +83,6 @@ public class User implements Serializable {
     public void setUserstatus(Integer userstatus) {
         this.userstatus = userstatus;
     }
+
+
 }

@@ -1,9 +1,6 @@
 package com.jk.dao;
 
-import com.jk.model.Comment;
-import com.jk.model.Details;
-import com.jk.model.Order;
-import com.jk.model.Refund;
+import com.jk.model.*;
 import com.jk.util.ParameUtil;
 import org.apache.ibatis.annotations.Param;
 
@@ -62,4 +59,26 @@ public interface CommDao {
 
 
     void xiangqing(Details s);
+
+    List<Order> xiang1(@Param("page")Integer page,  @Param("pageSize")Integer pageSize,  @Param("id")Integer id);
+
+    List<Comment> shu(Integer id);
+
+
+    void huifu(Comment c);
+
+    void wubai(Integer uid);
+
+    void yiqian(Integer uid);
+
+    void wuqian(Integer uid);
+
+    Integer mszong(ParameUtil param);
+
+    List<Seckill> miaoshacha(@Param("page")Integer page, @Param("pageSize")Integer pageSize);
+
+
+    Seckill chaseckill(Integer id);
+
+    void update(Seckill s);
 }

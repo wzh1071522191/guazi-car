@@ -32,7 +32,7 @@ public class SysLogAspect {
 	 
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	
+
 	@Pointcut("execution(* com.jk.controller.EmpController.loginUser(..))")
 	public void logPointCut() {}
 	 //后置通知
@@ -76,6 +76,7 @@ public class SysLogAspect {
 		
 		if(user != null){
 			log.setUserId(user.getId());
+			log.setUserName(user.getUserName());
 		}
 		
 		

@@ -3,6 +3,7 @@ package com.jk.dao;
 import com.jk.model.Audit;
 import com.jk.util.ParameUtil;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +16,14 @@ import java.util.List;
  * @version: 1.0.0
  */
 public interface AuditDao {
-    @Select("SELECT COUNT(*) FROM t_audit")
+   // @Select("SELECT COUNT(*) FROM t_audit")
     Integer queryAuditCarCount();
 
-    @Select("SELECT * FROM t_audit LIMIT #{pageNumber},#{pageSize}")
+    //@Select("SELECT * FROM t_audit LIMIT #{pageNumber},#{pageSize}")
     List<Audit> queryListAuditCar(ParameUtil pu);
 
     void updateStatus(HashMap<String, Object> hashMap);
+
+   // @Update("update t_audit set auditdate=now(),isshigu=#{isshigu},shiguimg=#{shiguimg},iswaiguan=#{iswaiguan},waiguanimg=#{waiguanimg},isbujian=#{isbujian},bujianimg=#{bujianimg},ischangyong=#{ischangyong},changyongimg=#{changyongimg} where id=#{id}")
+    void upMessage(Audit audit);
 }

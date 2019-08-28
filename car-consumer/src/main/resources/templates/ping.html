@@ -65,6 +65,7 @@
     <button type="button" class="btn btn-success" onclick="sousuo()">搜索</button>
 </form>
 <table id="dataGrid"></table>
+
 </body>
 <script>
 
@@ -135,10 +136,23 @@
                             return "差评";
                         }
                     }},      //  列    field   代表是 后台  传过来的值
-                {field: 'commentname', title: '评论内容', width: 300},
+                {field: 'text', title: '评论内容', width: 300,
+                formatter:function(value,row,index){
+
+
+                    var st='<button type="button" class="btn btn-warning" onclick=pinglun('+row.id+') >查看评论</button>';
+
+                    return st+row.text;
+                }},
                 {field: 'ptime', title: '评论时间', width: 300},
+
                 {field: 'username', title: '评论人', width: 300,},
                 {field: 'typename', title: '汽车品牌', width: 300},
+                {field: 'caozuo', title: '操作', width: 300,formatter:function(value,row,index){
+                        var st='<button type="button" class="btn btn-warning" onclick=huifu('+row.id+') >回复</button>';
+
+                        return st;
+                    }},
 
 
             ]
@@ -161,7 +175,70 @@ format: 'YYYY-MM-DD',
 });*/
 </script>
 <script>
+    var res;
+    function createAddContent(url) {
+        $.ajax({
+            url: url,
+            async: false,
+            success: function (data) {
+                res = data;
+            }
+        });
+        return res;
+    }
+    function pinglun(id){
 
+        bootbox.dialog({
+            title: '回复',
+            message:createAddContent("../comm/pinglun1?id="+id),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+
+
+            }
+
+        });
+
+
+    }
+   function huifu(id){
+
+
+       bootbox.dialog({
+           title: '回复',
+           message:createAddContent("../comm/huifu1"),
+           closeButton: true,//是否显示关闭按钮
+           buttons: {
+               "success": {
+                   "label": "<i class='icon-ok'></i> 保存",
+                   "className": "btn-sm btn-success",
+                   "callback": function () {
+                       $.ajax({
+                           url: '../comm/huifu?id='+id,
+                           type: 'post',
+                           data: $("#formid").serialize(),
+                           success: function () {
+                               alert("新增成功");
+                               $('#dataGrid').bootstrapTable("refresh");
+                               //刷新表格
+                           }, error: function () {
+                               alert("新增失败");
+                           }
+                       });
+                   }
+           },
+               "cancel": {
+                   "label": "<i class='icon-info'></i> 取消",
+                   "className": "btn-sm btn-danger",
+                   "callback": function () {
+
+                   }
+               }
+           }
+
+       });
+
+   }
     //条件查询
     function sousuo() {
 

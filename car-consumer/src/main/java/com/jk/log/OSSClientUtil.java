@@ -30,6 +30,7 @@ public class OSSClientUtil {
     private String filedir = "ma/";
 
 
+
     private OSSClient ossClient;
 
     public OSSClientUtil() {

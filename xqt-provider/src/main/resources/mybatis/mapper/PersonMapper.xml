@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.PersonMapper" >
+
+    <select id="findCarShoppingCount" parameterType="map" resultType="int">
+       select count(1) from t_car
+    </select>
+
+    <select id="findCarShoppingList"  resultType="com.jk.model.Car">
+      select * from t_car
+        limit #{page},#{rows}
+    </select>
+<!--查询客户说过的话-->
+    <select id="queryKehus2" resultType="com.jk.model.Cusmoter">
+       select codeKehu,cusTime from t_cusmoter
+    </select>
+<!--查询客服说过的话-->
+    <select id="queryKefucode" resultType="com.jk.model.Cusmoter">
+       select codeKefu,cusTime from t_cusmoter
+    </select>
+</mapper>

@@ -105,4 +105,50 @@ public class AlyServiceImpl implements AlyService{
         return alyMapper.queryMianjiShopping();
     }
 
+    @Override
+    public List<Car> SelectShoppingGaikuang() {
+        return alyMapper.SelectShoppingGaikuang();
+    }
+
+    @Override
+    public List<Car> SelectShoppingLiuliang() {
+        return alyMapper.SelectShoppingLiuliang();
+    }
+
+    @Override
+    public List<Car> SelectShoppingZhuanhua() {
+        return alyMapper.SelectShoppingZhuanhua();
+    }
+
+    @Override
+    public List<Car> queryExportExcelGaikuangSeven() {
+        return alyMapper.queryExportExcelGaikuangSeven();
+    }
+
+    @Override
+    public List<Car> queryExportExcelLiuliangSeven() {
+        return alyMapper.queryExportExcelLiuliangSeven();
+    }
+
+    @Override
+    public List<Car> queryExportExcelZhuanhuaSeven() {
+        return alyMapper.queryExportExcelZhuanhuaSeven();
+    }
+
+    @Override
+    public List<Car> queryExportExcelGaikuangThree() {
+        return alyMapper.queryExportExcelGaikuangThree();
+    }
+
+    @Override
+    public List<Car> queryExportExcelLiuliangThree() {
+        return alyMapper.queryExportExcelLiuliangThree();
+    }
+
+    @Override
+    public List<Car> queryExportExcelZhuanhuaThree() {
+        return alyMapper.queryExportExcelZhuanhuaThree();
+    }
+
+
 }

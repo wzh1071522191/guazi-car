@@ -8,6 +8,7 @@ import com.jk.model.Role;
 import com.jk.service.EmpService;
 import com.jk.util.ParameUtil;
 import com.jk.util.TreeNoteUtil;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +38,9 @@ public class EmpController {
 
     @Reference(version = "1.0")
     private EmpService empService;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -133,12 +138,18 @@ public class EmpController {
     public String checkName(String userName){
         return empService.checkName(userName);
     }
+
     //注册，新增
+    //RabbitListener
     @RequestMapping("register")
     @ResponseBody
-    public String register(Emp emp){
-       return empService.register(emp);
+    public void register(Emp emp){
+       //return empService.register(emp);
+        amqpTemplate.convertAndSend("Rabbitmq",emp);
     }
+
+
+
     //跳转修改登录信息页面
     @RequestMapping("toUpdate")
     public String toUpdate(){
@@ -191,27 +202,48 @@ public class EmpController {
         return empService.queryEmpLog(pu);
     }
 
-    @RequestMapping("setDep")
+    /*@RequestMapping("setDep")
     @ResponseBody
     public  List<Role>  setDep(Integer id){
         List<Role> list = empService.setDep(id);
         return list;
-    }
+    }*/
 
     @RequestMapping("setRole")
     public String  setRole(Integer id, Model model, HttpServletRequest request){
-        List<Role> list = empService.setDep(id);
+        List<Role> list1=new ArrayList<>();
+        String key = "RoleAll"+id;
+        if (redisTemplate.hasKey(key)) {
+            list1=(List<Role>) redisTemplate.opsForValue().get(key);
+            System.out.println("角色缓存");
+        }else {
+            list1=empService.setDep(id);
+            redisTemplate.opsForValue().set(key, list1);
+            System.out.println("角色数据库");
+        }
+         //List<Role> list = empService.setDep(id);
        // List<Integer> list1 = empService.queryRoleById(id);
        // request.getSession().setAttribute("roleId",list1.get(0));
         model.addAttribute("id",id);
-        model.addAttribute("list",list);
+        model.addAttribute("list",list1);
         return "updateRole";
     }
 
+    //没用到
     @RequestMapping("queryRole")
     @ResponseBody
     public List<Role> queryRole(){
-        return empService.queryRole();
+        List<Role> list=new ArrayList<>();
+        String key = "RoleAll";
+        if(redisTemplate.hasKey(key)){
+            list=(List<Role>) redisTemplate.opsForValue().get(key);
+            System.out.println("角色缓存");
+        }else {
+            list=empService.queryRole();
+            redisTemplate.opsForValue().set(key, list);
+            System.out.println("角色数据库");
+        }
+        return list;
     }
     @RequestMapping("updateRole")
     @ResponseBody
@@ -239,8 +271,20 @@ public class EmpController {
     @RequestMapping("queryMenuByRid")
     @ResponseBody
     public List<Menu> queryMenuByRid(Integer id){
+        String key="updateTree"+id;
+
         Integer pid=0;
-        return empService.queryMenuByRid(id,pid);
+        List<Menu> list =new ArrayList<Menu>();
+        if(redisTemplate.hasKey(key)){
+            list=(List<Menu>) redisTemplate.opsForValue().get(key);
+            System.out.println("权限缓存"+id);
+        }else {
+            list = empService.queryMenuByRid(id,pid);
+            redisTemplate.opsForValue().set(key, list);
+            System.out.println("权限数据库"+id);
+        }
+        //return empService.queryMenuByRid(id,pid);
+        return list;
     }
 
     //绑定权限
@@ -248,7 +292,33 @@ public class EmpController {
     @ResponseBody
     public void updateMenu(Integer[] ids,Integer roleid){
         empService.updateMenu(ids,roleid);
+        Integer pid=0;
+        Integer id=roleid;
+        String key="updateTree"+roleid;
+
+        System.out.println(roleid);
+        List<Menu> list= empService.queryMenuByRid(id,pid);
+        redisTemplate.delete(key);
+
+       redisTemplate.opsForValue().set(key, list);
+
     }
+
+    @RequestMapping("logOut")
+    @ResponseBody
+    public void logOut(HttpServletRequest request){
+
+        request.getSession().removeAttribute("u");
+
+
+    }
+
+    @RequestMapping("toLogin1")
+    public String toLogin1(){
+        return  "Login1";
+    }
+
+
 
 
 
