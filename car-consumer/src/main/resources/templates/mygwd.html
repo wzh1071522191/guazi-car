@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <link rel="stylesheet" type="text/css" href="../city/city.css">
+    <script type="text/javascript" src="../script/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../script/home_ban.js"></script>
+    <script type="text/javascript" src="../script/eg_top_search.js"></script>
+    <script type="text/javascript" src="../script/city.js"></script>
+    <script type="text/javascript" src="../script/snncar.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
+    <script type="text/javascript" src="../easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
+
+    <script type="text/javascript" src="../easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+<table id="datagridId"></table>
+<input  type="hidden" th:value="${session.LoginUserid}" id="userid1">
+<script>
+    var phoneidggg1=$("#userid1").val();
+    $(function (){
+        alert(phoneidggg1);
+        queryBook();
+
+    })
+
+    function  queryBook() {
+        $('#datagridId').datagrid({
+            url: '../car/showCar',
+            method: "post",    //请求方式
+            pagination: true,    //显示分页工具栏
+            pageNumber: 1,    //初始页码
+            pageSize: 2,    //初始页面行数，必须在pageList中
+            pageList: [1, 2, 3, 5, 8, 10, 15, 20],    //页面显示行数列表
+            fitColumns: true,    //自适应容器大小
+
+            striped: true,//斑马线效果
+            rownumbers: true,//显示行号
+            columns: [
+                [
+                    {field: 'carid', title: '编号', width: 100},
+                    {field: 'carbrandid', title: '品牌', width: 100},
+                    {field: 'cardate', title: '上市日期', width: 100},
+                    {field: 'carlc', title: '里程', width: 100},
+                    {field: 'carcolor', title: '颜色', width: 100},
+                    {field: 'cartypeid', title: '类型', width: 100,formatter: function(value,row,index) {
+                            if (row.cartypeid == 1) {
+                                return "suv";
+                            }
+                            if (row.cartypeid == 2) {
+                                return "轿跑";
+                            }
+                            if (row.cartypeid == 3) {
+                                return "超跑";
+                            }
+                        }
+                    },
+
+                    {
+                        field: 'carimg', title: '图片', width: 100,
+                        formatter: function (value, row, index) {
+                            return "<img width='100' src='../" + value + "'>"
+                        }
+                    },
+
+                    {
+                        field: 'll', title: '操作', width: 100, align: 'right',
+                        formatter: function (value, row, index) {
+                            //var btn = '<a class="editcls"  href="javascript:updgwczt('+row.dmid+','+userid+')">加入购物车</a>';
+                            var btn = '<a class="editcls"  href="javascript:updgwczt(' + row.cartypeid+ ','+ row.carcolor+')">下单</a>';
+                            return btn;
+                        }
+                    }
+
+                ]
+            ],
+            queryParams: {
+                "uid":phoneidggg1
+            },
+            onLoadSuccess: function (data) {
+
+                $('.editcls').linkbutton({text: '下单', plain: true, iconCls: 'icon-cart'});
+
+
+            },
+
+        });
+    }
+    function updgwczt(id,color){
+        alert(phoneidggg1);
+        alert(id);
+        alert(color);
+
+        $.ajax({
+            url:"../comm/dindanxin",
+            type:"post",
+            data:{
+                "cid":id,
+                "color":color,
+                "uid":phoneidggg1
+            },
+            success:function(){
+                alert("下单成功！！！")
+                $('#datagridId').datagrid('reload');
+            },
+            error:function(){
+                alert("five");
+            }
+        })
+    }
+</script>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.jk.service;
 
 import com.jk.model.Emp;
+
 import com.jk.model.Menu;
 import com.jk.model.Role;
 import com.jk.util.ParameUtil;
@@ -33,11 +34,11 @@ public interface EmpService {
 
     List<Role> queryRole();
 
-    void updatero( Integer uid,Integer rid);
+    void updatero(Integer uid, Integer rid);
 
     HashMap<String, Object> queryRoleAll(ParameUtil parameUtil);
 
-    List<Menu> queryMenuByRid(Integer id,Integer pid);
+    List<Menu> queryMenuByRid(Integer id, Integer pid);
 
     void updateMenu(Integer[] ids, Integer roleid);
 }

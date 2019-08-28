@@ -1,38 +1,44 @@
 package com.jk.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.io.Serializable;
 import java.util.Date;
 
-public class Car implements Serializable {
-    //id
+public class Car implements Serializable{
+
+    private static final long serialVersionUID = -128926087222449921L;
     private Integer carid;
-    //品牌id
+
+    private Double  carmaxprice;
+    private Double carminprice;
     private Integer carbrandid;
-    //上牌时间
+
     private Date cardate;
-    //汽车里程
+
     private String carlc;
-    //汽车牌照地
+
     private Integer carareaid;
-    //车况 一共有四种：1.好 2.正常 3.一般 4.事故车
+
     private Integer carck;
-    //类型id
+
     private Integer cartypeid;
-    // 颜色
-    private Integer carcolor;
-    //状态
+
+    private String carcolor;
+
     private Integer carstatus;
-    //对应的客户id
+
     private Integer userid;
-    private String typename;
-    //发布日期
-    @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
+
     private Date createdate;
-    private Integer carsxj;
+
+    private String carname;
+
+    public String getCarname() {
+        return carname;
+    }
+
+    public void setCarname(String carname) {
+        this.carname = carname;
+    }
 
     private Integer carage;
 
@@ -42,70 +48,33 @@ public class Car implements Serializable {
 
     private Integer carranyou;
 
-
-
-    //出售数量，下单成功后自动加所下单数量----商品分析
     private Integer sellcarcount;
-    //商品浏览量
-    private Integer carvolume;
-    //商品访客数
-    private Integer visitorsum;
-    //加购件数
-    private Integer purchasesum;
-    //1:已曝光 2:未曝光
+
     private Integer expocarstatu;
-   //1:已下单 2:未下单
+
     private Integer placecarstatu;
-   //1:已支付 3:支付中 2:未支付   默认是2未支付
+
     private Integer mentcarstatu;
-   //1:未访问 2:已访问   默认是1未访问
+
     private Integer visitcarstatu;
-    //仓库总数量临时
-    private Integer cangkucount;
 
-    private Integer visitcount;
+    private String carimg;
 
-    private Integer expocarcount;
+    private Integer cartypesonid;
 
-    private Integer placecarcount;
+    private Integer carvolume;
 
-    private Integer mentcarcount;
+    private Integer visitorsum;
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "carid=" + carid +
-                ", carbrandid=" + carbrandid +
-                ", cardate=" + cardate +
-                ", carlc='" + carlc + '\'' +
-                ", carareaid=" + carareaid +
-                ", carck=" + carck +
-                ", cartypeid=" + cartypeid +
-                ", carcolor=" + carcolor +
-                ", carstatus=" + carstatus +
-                ", userid=" + userid +
-                ", typename='" + typename + '\'' +
-                ", createdate=" + createdate +
-                ", carsxj=" + carsxj +
-                ", carage=" + carage +
-                ", carlocation=" + carlocation +
-                ", carpl=" + carpl +
-                ", carranyou=" + carranyou +
-                ", sellcarcount=" + sellcarcount +
-                ", carvolume=" + carvolume +
-                ", visitorsum=" + visitorsum +
-                ", purchasesum=" + purchasesum +
-                ", expocarstatu=" + expocarstatu +
-                ", placecarstatu=" + placecarstatu +
-                ", mentcarstatu=" + mentcarstatu +
-                ", visitcarstatu=" + visitcarstatu +
-                ", cangkucount=" + cangkucount +
-                ", visitcount=" + visitcount +
-                ", expocarcount=" + expocarcount +
-                ", placecarcount=" + placecarcount +
-                ", mentcarcount=" + mentcarcount +
-                '}';
-    }
+    private Integer purchasesum;
+
+    private Integer carquerytypeid;
+
+    private Integer carsxj;
+
+    private Double carprice;
+
+    private Date buydate;
 
     public Integer getCarid() {
         return carid;
@@ -113,6 +82,22 @@ public class Car implements Serializable {
 
     public void setCarid(Integer carid) {
         this.carid = carid;
+    }
+
+    public Double getCarmaxprice() {
+        return carmaxprice;
+    }
+
+    public void setCarmaxprice(Double carmaxprice) {
+        this.carmaxprice = carmaxprice;
+    }
+
+    public Double getCarminprice() {
+        return carminprice;
+    }
+
+    public void setCarminprice(Double carminprice) {
+        this.carminprice = carminprice;
     }
 
     public Integer getCarbrandid() {
@@ -163,11 +148,11 @@ public class Car implements Serializable {
         this.cartypeid = cartypeid;
     }
 
-    public Integer getCarcolor() {
+    public String getCarcolor() {
         return carcolor;
     }
 
-    public void setCarcolor(Integer carcolor) {
+    public void setCarcolor(String carcolor) {
         this.carcolor = carcolor;
     }
 
@@ -187,28 +172,12 @@ public class Car implements Serializable {
         this.userid = userid;
     }
 
-    public String getTypename() {
-        return typename;
-    }
-
-    public void setTypename(String typename) {
-        this.typename = typename;
-    }
-
     public Date getCreatedate() {
         return createdate;
     }
 
     public void setCreatedate(Date createdate) {
         this.createdate = createdate;
-    }
-
-    public Integer getCarsxj() {
-        return carsxj;
-    }
-
-    public void setCarsxj(Integer carsxj) {
-        this.carsxj = carsxj;
     }
 
     public Integer getCarage() {
@@ -251,30 +220,6 @@ public class Car implements Serializable {
         this.sellcarcount = sellcarcount;
     }
 
-    public Integer getCarvolume() {
-        return carvolume;
-    }
-
-    public void setCarvolume(Integer carvolume) {
-        this.carvolume = carvolume;
-    }
-
-    public Integer getVisitorsum() {
-        return visitorsum;
-    }
-
-    public void setVisitorsum(Integer visitorsum) {
-        this.visitorsum = visitorsum;
-    }
-
-    public Integer getPurchasesum() {
-        return purchasesum;
-    }
-
-    public void setPurchasesum(Integer purchasesum) {
-        this.purchasesum = purchasesum;
-    }
-
     public Integer getExpocarstatu() {
         return expocarstatu;
     }
@@ -307,43 +252,111 @@ public class Car implements Serializable {
         this.visitcarstatu = visitcarstatu;
     }
 
-    public Integer getCangkucount() {
-        return cangkucount;
+    public String getCarimg() {
+        return carimg;
     }
 
-    public void setCangkucount(Integer cangkucount) {
-        this.cangkucount = cangkucount;
+    public void setCarimg(String carimg) {
+        this.carimg = carimg;
     }
 
-    public Integer getVisitcount() {
-        return visitcount;
+    public Integer getCartypesonid() {
+        return cartypesonid;
     }
 
-    public void setVisitcount(Integer visitcount) {
-        this.visitcount = visitcount;
+    public void setCartypesonid(Integer cartypesonid) {
+        this.cartypesonid = cartypesonid;
     }
 
-    public Integer getExpocarcount() {
-        return expocarcount;
+    public Integer getCarvolume() {
+        return carvolume;
     }
 
-    public void setExpocarcount(Integer expocarcount) {
-        this.expocarcount = expocarcount;
+    public void setCarvolume(Integer carvolume) {
+        this.carvolume = carvolume;
     }
 
-    public Integer getPlacecarcount() {
-        return placecarcount;
+    public Integer getVisitorsum() {
+        return visitorsum;
     }
 
-    public void setPlacecarcount(Integer placecarcount) {
-        this.placecarcount = placecarcount;
+    public void setVisitorsum(Integer visitorsum) {
+        this.visitorsum = visitorsum;
     }
 
-    public Integer getMentcarcount() {
-        return mentcarcount;
+    public Integer getPurchasesum() {
+        return purchasesum;
     }
 
-    public void setMentcarcount(Integer mentcarcount) {
-        this.mentcarcount = mentcarcount;
+    public void setPurchasesum(Integer purchasesum) {
+        this.purchasesum = purchasesum;
+    }
+
+    public Integer getCarquerytypeid() {
+        return carquerytypeid;
+    }
+
+    public void setCarquerytypeid(Integer carquerytypeid) {
+        this.carquerytypeid = carquerytypeid;
+    }
+
+    public Integer getCarsxj() {
+        return carsxj;
+    }
+
+    public void setCarsxj(Integer carsxj) {
+        this.carsxj = carsxj;
+    }
+
+    public Double getCarprice() {
+        return carprice;
+    }
+
+    public void setCarprice(Double carprice) {
+        this.carprice = carprice;
+    }
+
+    public Date getBuydate() {
+        return buydate;
+    }
+
+    public void setBuydate(Date buydate) {
+        this.buydate = buydate;
+    }
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carid=" + carid +
+                ", carmaxprice=" + carmaxprice +
+                ", carminprice=" + carminprice +
+                ", carbrandid=" + carbrandid +
+                ", cardate=" + cardate +
+                ", carlc='" + carlc + '\'' +
+                ", carareaid=" + carareaid +
+                ", carck=" + carck +
+                ", cartypeid=" + cartypeid +
+                ", carcolor='" + carcolor + '\'' +
+                ", carstatus=" + carstatus +
+                ", userid=" + userid +
+                ", createdate=" + createdate +
+                ", carage=" + carage +
+                ", carlocation=" + carlocation +
+                ", carpl=" + carpl +
+                ", carranyou=" + carranyou +
+                ", sellcarcount=" + sellcarcount +
+                ", expocarstatu=" + expocarstatu +
+                ", placecarstatu=" + placecarstatu +
+                ", mentcarstatu=" + mentcarstatu +
+                ", visitcarstatu=" + visitcarstatu +
+                ", carimg='" + carimg + '\'' +
+                ", cartypesonid=" + cartypesonid +
+                ", carvolume=" + carvolume +
+                ", visitorsum=" + visitorsum +
+                ", purchasesum=" + purchasesum +
+                ", carquerytypeid=" + carquerytypeid +
+                ", carsxj=" + carsxj +
+                ", carprice=" + carprice +
+                ", buydate=" + buydate +
+                '}';
     }
 }

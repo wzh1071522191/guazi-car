@@ -5,25 +5,24 @@ import com.jk.dao.UserMapper;
 import com.jk.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Service
+@Service(version = "1.0")
 public class UserServiceImpl implements  UserService{
     @Autowired
     private UserMapper userMapper;
-    @Override
-    public int queryPhone(String phone) {
-       User reuser= userMapper.queryPhone(phone);
-       if(reuser==null){
-           return 0;
-       }else{
-           return 1;
-       }
 
-    }
 
     @Override
     public void addUser(User user) {
         userMapper.addUser(user);
     }
+
+    @Override
+    public User queryLoginPhone(String phone) {
+        System.out.println("userservice================"+phone);
+        return userMapper.queryLoginPhone(phone);
+    }
+
+
 /**
  * Copyright (C), 2015-2019, jk
  * FileName: UserServiceImpl

@@ -2,27 +2,27 @@ package com.jk.model;
 
 import java.io.Serializable;
 
-public class CarType  implements Serializable {
-    private Integer id;
+public class CarType implements Serializable {
+    private Integer tid;
 
-    private String typename;
+    private String tname;
 
     private Integer pid;
 
-    public Integer getId() {
-        return id;
+    public Integer getTid() {
+        return tid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTid(Integer tid) {
+        this.tid = tid;
     }
 
-    public String getTypename() {
-        return typename;
+    public String getTname() {
+        return tname;
     }
 
-    public void setTypename(String typename) {
-        this.typename = typename == null ? null : typename.trim();
+    public void setTname(String tname) {
+        this.tname = tname == null ? null : tname.trim();
     }
 
     public Integer getPid() {

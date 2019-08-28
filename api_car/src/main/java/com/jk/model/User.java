@@ -2,53 +2,45 @@ package com.jk.model;
 
 import java.io.Serializable;
 
-public class User  implements Serializable {
-    private Integer 
-userid;
+public class User implements Serializable {
+    private Integer userid;
 
-    private String 
-userphone;
+    private Integer gwcid;
 
-    private Integer 
-gwcid;
+    private String userphone;
 
     private String username;
 
-    public Integer getuserid() {
-        return 
-userid;
+    private Integer fivehundred;
+
+    private Integer onethousand;
+
+    private Integer fivethousand;
+
+    private Integer userstatus;
+
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setuserid(Integer
-userid) {
-        this.
-userid = 
-userid;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
-    public String getuserphone() {
-        return 
-userphone;
+    public Integer getGwcid() {
+        return gwcid;
     }
 
-    public void setuserphone(String
-userphone) {
-        this.
-userphone = 
-userphone == null ? null : 
-userphone.trim();
+    public void setGwcid(Integer gwcid) {
+        this.gwcid = gwcid;
     }
 
-    public Integer getgwcid() {
-        return 
-gwcid;
+    public String getUserphone() {
+        return userphone;
     }
 
-    public void setgwcid(Integer
-gwcid) {
-        this.
-gwcid = 
-gwcid;
+    public void setUserphone(String userphone) {
+        this.userphone = userphone == null ? null : userphone.trim();
     }
 
     public String getUsername() {
@@ -57,5 +49,37 @@ gwcid;
 
     public void setUsername(String username) {
         this.username = username == null ? null : username.trim();
+    }
+
+    public Integer getFivehundred() {
+        return fivehundred;
+    }
+
+    public void setFivehundred(Integer fivehundred) {
+        this.fivehundred = fivehundred;
+    }
+
+    public Integer getOnethousand() {
+        return onethousand;
+    }
+
+    public void setOnethousand(Integer onethousand) {
+        this.onethousand = onethousand;
+    }
+
+    public Integer getFivethousand() {
+        return fivethousand;
+    }
+
+    public void setFivethousand(Integer fivethousand) {
+        this.fivethousand = fivethousand;
+    }
+
+    public Integer getUserstatus() {
+        return userstatus;
+    }
+
+    public void setUserstatus(Integer userstatus) {
+        this.userstatus = userstatus;
     }
 }
