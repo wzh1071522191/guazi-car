@@ -156,4 +156,5 @@ select * from comment c where c.pid =#{id}
     <update id="update">
         update  seckill set stime=#{stime},zhangshu=#{zhangshu}  where id=#{id}
     </update>
+
 </mapper>

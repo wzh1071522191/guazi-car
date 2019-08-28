@@ -59,4 +59,6 @@ public interface CommService {
     void update(Seckill s);
 
     Seckill chaseckill(Integer id);
+
+
 }

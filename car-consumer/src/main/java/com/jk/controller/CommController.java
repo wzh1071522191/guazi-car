@@ -156,7 +156,7 @@ public class CommController {
     //订单新增
     @RequestMapping("dindanxin")
     @ResponseBody
-    public void  dindanxin(HttpServletRequest request,Integer status,String carname,Integer yuhui,Integer price,String color,Integer cid){
+    public void  dindanxin(HttpServletRequest request,Integer status,Integer yuhui,Integer price,String color,Integer cid){
         Integer loginUserid = (Integer) request.getSession().getAttribute("LoginUserid");
         long time =  System.currentTimeMillis();
         Random ran = new Random();
@@ -180,7 +180,7 @@ public class CommController {
             o.setYuhui(5000);
         }
         o.setStatus(status);
-     Integer commodity=price-yuhui;
+     Integer commodity=price-o.getYuhui();
         o.setShprice(commodity);
         o.setGuige(color);
        o.setSpprice(commodity);
@@ -240,6 +240,7 @@ public class CommController {
 //秒杀跳页面
     String key = "youhui";
     @RequestMapping("miaosha1")
+
        public  String miaosha1(HttpSession session,Integer uid,Integer status,HttpServletRequest request){
         Integer loginUserid = (Integer) request.getSession().getAttribute("LoginUserid");
         session.setAttribute("z",status);
@@ -301,11 +302,7 @@ public String miaosha(Integer uid,Integer status){
 
  return "miaoshacha";
     }
-    //秒杀页面
-    @RequestMapping("aaa")
-    public  String aaa(){
-        return  "miaosha";
-    }
+
 
    @RequestMapping("updateseckill")
     public String  chaseckill(Integer id,Model model){
