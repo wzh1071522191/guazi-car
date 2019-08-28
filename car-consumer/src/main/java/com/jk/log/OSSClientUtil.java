@@ -21,13 +21,12 @@ public class OSSClientUtil {
 
     private String endpoint = "oss-cn-beijing.aliyuncs.com";
     // accessKey
-    private String accessKeyId = "LTAILeBu3Gqzohbh";
-    private String accessKeySecret = "NIcd7JETT4cSyXlCf5g3nbWYMdUpTT";
+    private String accessKeyId = "LTAIB5IFr7msJrOL";
+    private String accessKeySecret = "WeLzRSUN8kSfYFpMixyM3iX2uVIJRd";
     // 空间
-    private String bucketName = "magege";
+    private String bucketName = "zsg0604";
     // 文件存储目录
-    private String filedir = "ma/";
-
+    private String filedir = "zsg0604/";
 
 
     private OSSClient ossClient;

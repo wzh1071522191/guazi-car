@@ -33,7 +33,7 @@ public interface Mdao {
 
     List<Car> querycar2(ParameUtil parm);
 
-    @Insert("insert into t_car(carbrandid, carareaid, carcolor, carck, createdate, carstatus,carsxj,carimg) values(#{p.carbrandid},#{p.carareaid},#{p.carcolor},#{p.carck},now(),#{p.carstatus},1,#{p.carimg})")
+    @Insert("insert into t_car(carbrandid, carareaid, carcolor, carck, createdate,sellcarcount,carlc,carage,carranyou,placecarstatu, carstatus,carsxj,carimg) values(#{p.carbrandid},#{p.carareaid},#{p.carcolor},#{p.carck},now(),#{p.sellcarcount},#{p.carlc},#{p.carage},#{p.carranyou},#{p.placecarstatu},#{p.carstatus},1,#{p.carimg})")
     void addcar(@Param("p") Car c);
 
     @Update("update t_car set carsxj=1 where carid=#{id}")

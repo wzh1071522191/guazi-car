@@ -7,7 +7,7 @@ public class CarType  implements Serializable {
 
     private String typename;
 
-    private Integer pid;
+
 
     public Integer getId() {
         return id;
@@ -22,14 +22,6 @@ public class CarType  implements Serializable {
     }
 
     public void setTypename(String typename) {
-        this.typename = typename == null ? null : typename.trim();
-    }
-
-    public Integer getPid() {
-        return pid;
-    }
-
-    public void setPid(Integer pid) {
-        this.pid = pid;
+        this.typename = typename;
     }
 }
