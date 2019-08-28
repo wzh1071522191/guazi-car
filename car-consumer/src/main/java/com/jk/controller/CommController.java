@@ -156,6 +156,42 @@ public class CommController {
     //订单新增
     @RequestMapping("dindanxin")
     @ResponseBody
+    public void  dindanxin(Order order){
+        System.out.println(order.getPrice());
+        System.out.println("++++++"+order.getCarid());
+        long time =  System.currentTimeMillis();
+        Random ran = new Random();
+        int i = ran.nextInt(1000);
+        long s= time+i;
+
+
+
+        order.setDindanhao(s+"");
+        order.setCarid(order.getCarid());
+        order.setUserid(order.getUserid());
+        order.setPrice(order.getPrice());
+        order.setCunmber(1);
+        order.setXdtime(new Date());
+        order.setStatus(2);
+        order.setShprice(order.getPrice());
+        order.setGuige(order.getGuige());
+        order.setKuaidifei(20);
+        order.setYuhui(200);
+        order.setSpprice(order.getPrice());
+        if(order.getStatus()==1){
+            String cun="order";
+
+            redisTemplate.opsForValue().set(cun,order);
+            redisTemplate.expire(cun,30,TimeUnit.MINUTES);
+        }else{
+            amqpTemplate.convertAndSend("Rabbitmq",order);
+        }
+
+
+
+    }
+ /*   @RequestMapping("dindanxin")
+    @ResponseBody
     public void  dindanxin(HttpServletRequest request,Integer status,Integer yuhui,Integer price,String color,Integer cid){
         Integer loginUserid = (Integer) request.getSession().getAttribute("LoginUserid");
         long time =  System.currentTimeMillis();
@@ -194,7 +230,7 @@ public class CommController {
         }
 
 
-    }
+    }*/
 //回复弹框
  @RequestMapping("huifu1")
     public String  huifu1(){
