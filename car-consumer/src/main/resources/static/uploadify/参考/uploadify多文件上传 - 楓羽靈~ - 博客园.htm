@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+<title>uploadify多文件上传 - 楓羽靈~ - 博客园</title>
+<meta property="og:description" content="我们都知道，一般上传文件的实现都是一个一个上传文件实现的，或者通过多添加几个按钮。有没有批量上传呢？肯定是有的，那就是Jquery插件uploadify。Uploadify是JQuery的一个上传插件">
+<link type="text/css" rel="stylesheet" href="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-darkgreentrip.css">
+<link type="text/css" rel="stylesheet" href="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/279841.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-darkgreentrip-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/520fyl/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/520fyl/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/520fyl/wlwmanifest.xml">
+<script async="" src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/analytics.js"></script><script type="text/javascript" src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/encoder.js"></script><script src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery-2.js"></script>
+<script type="text/javascript">var currentBlogApp = '520fyl', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/520fyl/"><img id="blogLogo" src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/520fyl/">楓羽靈~</a></h1>
+<h2>花自飄零水自流，浮生若夢繁華錦。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/520fyl/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E6%A5%93%E7%BE%BD%E9%9D%88%7E">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/520fyl/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/520fyl/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 66&nbsp; </span>
+<span id="stats_article_count">文章 - 1&nbsp; </span>
+<span id="stats-comment_count">评论 - 10</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/520fyl/p/7090407.html">uploadify多文件上传</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><span style="font-family: 宋体">我们都知道，一般</span><span style="font-family: 宋体">上
+传文件的实现都是一个一个上传文件实现的，或者通过多添加几个按钮。有没有批量上传呢？肯定是有的，那就是Jquery插件uploadify。
+Uploadify是JQuery的一个上传插件，实现的效果非常不错，带进度显示。官方提供的实例是php版本的，本文将详细介绍Uploadify插
+件的运用。</span></p>
+<p>首先是我自己使用的简易的js处理文件</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff">var</span> feng_pic =<span style="color: #000000"> {
+                    uploadTotal : </span>0<span style="color: #000000">,
+                    uploadLimit : </span>25<span style="color: #000000">,
+                    Max : </span>25<span style="color: #000000">,
+                    swf:</span>''<span style="color: #000000">,
+                    uploader:</span>''<span style="color: #000000">,
+                    uploadify : </span><span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                        </span><span style="color: #008000">//</span><span style="color: #008000">文件上传测试</span>
+                        $('#file'<span style="color: #000000">).uploadify({
+                            swf : feng_pic.swf,
+                            uploader : feng_pic.uploader,
+                            uploadLimit : feng_pic.uploadLimit,
+                            width : </span>120<span style="color: #000000">,
+                            height : </span>35<span style="color: #000000">,
+                            fileTypeDesc : </span>'图片类型'<span style="color: #000000">,
+                            buttonCursor : </span>'pointer'<span style="color: #000000">,
+                            buttonText : </span>'上传图片'<span style="color: #000000">,
+                            fileTypeExts : </span>'*.jpeg; *.jpg; *.png; *.gif'<span style="color: #000000">,
+                            fileSizeLimit : </span>'2MB'<span style="color: #000000">,
+                            removeCompleted : </span><span style="color: #0000ff">true</span><span style="color: #000000">,
+                            removeTimeout   : </span>1<span style="color: #000000">,
+                            overrideEvents : [</span>'onSelectError','onSelect','onDialogClose','onUploadError'<span style="color: #000000">],
+                            </span><span style="color: #008000">//</span><span style="color: #008000">上传失败返回的错误</span>
+                            onSelectError : <span style="color: #0000ff">function</span><span style="color: #000000"> (file, errorCode, errorMsg) {
+                                console.log(file, errorCode, errorMsg);
+                                </span><span style="color: #0000ff">switch</span><span style="color: #000000"> (errorCode) {
+                                    </span><span style="color: #0000ff">case</span> -100<span style="color: #000000">:
+                                        bootbox.alert(</span>"限制为"+feng_pic.Max+"张...", <span style="color: #0000ff">function</span><span style="color: #000000">(){});
+                                        </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                                    </span><span style="color: #0000ff">case</span> -110<span style="color: #000000"> :
+                                        bootbox.alert(</span>'超过2MB...', <span style="color: #0000ff">function</span><span style="color: #000000">(){});
+                                        </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                                    </span><span style="color: #0000ff">case</span> -120<span style="color: #000000">:
+                                        bootbox.alert(</span>"文件 [" + file.name + "] 大小异常！", <span style="color: #0000ff">function</span><span style="color: #000000">(){});
+                                        </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                                    </span><span style="color: #0000ff">case</span> -130<span style="color: #000000">:
+                                        bootbox.alert(</span>"文件 [" + file.name + "] 类型不正确！", <span style="color: #0000ff">function</span><span style="color: #000000">(){});
+                                        </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                                }
+                            },
+                            onUploadStart : </span><span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                                </span><span style="color: #0000ff">if</span> (feng_pic.uploadTotal ==<span style="color: #000000"> feng_pic.Max) {
+                                    $(</span>'#file').uploadify('stop'<span style="color: #000000">);
+                                    $(</span>'#file').uploadify('cancel'<span style="color: #000000">);
+                                    bootbox.alert(</span>"限制为"+feng_pic.Max+"张...", <span style="color: #0000ff">function</span><span style="color: #000000">(){});
+
+                                }
+
+                            },
+                            </span><span style="color: #008000">//</span><span style="color: #008000">检测FLASH失败调用</span>
+                            onFallback: <span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                                alert(</span>"您未安装FLASH控件，无法上传！请安装FLASH控件后再试。"<span style="color: #000000">);
+                            },
+                            </span><span style="color: #008000">//</span><span style="color: #008000">图片上传成功回调</span>
+                            onUploadSuccess : <span style="color: #0000ff">function</span><span style="color: #000000"> (file, data, response) {
+                                </span><span style="color: #0000ff">var</span> allData = eval('(' + data + ')'<span style="color: #000000">);
+                                </span><span style="color: #008000">//</span><span style="color: #008000">自定义写的图片上传显示html</span>
+                                $('.pic_list').append('&lt;div class="pic_content"&gt;&lt;span class="remove"&gt;&lt;/span&gt;&lt;span class="text"&gt;删除&lt;/span&gt;&lt;input type="hidden" name="contractImage[]" value="'+ allData.savename +'"&gt;&lt;img src="' + allData.filename + '" class="pic_img"&gt;&lt;/div&gt;'<span style="color: #000000">);
+                                setTimeout(</span><span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                                    feng_pic.hover();
+                                    feng_pic.remove();
+                                }, </span>10<span style="color: #000000">);
+                                feng_pic.uploadTotal</span>++<span style="color: #000000">;
+                                feng_pic.uploadLimit</span>--<span style="color: #000000">;
+                                $(</span>'.pic_total'<span style="color: #000000">).text(feng_pic.uploadTotal);
+                                $(</span>'.pic_limit'<span style="color: #000000">).text(feng_pic.uploadLimit);
+
+                            }
+
+
+                        });
+                    },
+                    hover : </span><span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                        </span><span style="color: #0000ff">var</span> content = $('.pic_content'<span style="color: #000000">);
+                        </span><span style="color: #0000ff">var</span> len =<span style="color: #000000"> content.length;
+                        $(content[len </span>- 1]).hover(<span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                            $(</span><span style="color: #0000ff">this</span>).find('.remove'<span style="color: #000000">).show();
+                            $(</span><span style="color: #0000ff">this</span>).find('.text'<span style="color: #000000">).show();
+                        }, </span><span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                            $(</span><span style="color: #0000ff">this</span>).find('.remove'<span style="color: #000000">).hide();
+                            $(</span><span style="color: #0000ff">this</span>).find('.text'<span style="color: #000000">).hide();
+                        });
+                    },
+                    allHover:</span><span style="color: #0000ff">function</span><span style="color: #000000">(){
+                        $(</span>'.pic_content').each(<span style="color: #0000ff">function</span><span style="color: #000000">(){
+                                $(</span><span style="color: #0000ff">this</span>).hover(<span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                                $(</span><span style="color: #0000ff">this</span>).find('.remove'<span style="color: #000000">).show();
+                                $(</span><span style="color: #0000ff">this</span>).find('.text'<span style="color: #000000">).show();
+                            }, </span><span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                                $(</span><span style="color: #0000ff">this</span>).find('.remove'<span style="color: #000000">).hide();
+                                $(</span><span style="color: #0000ff">this</span>).find('.text'<span style="color: #000000">).hide();
+                            });
+                        });
+                    },
+                    </span><span style="color: #008000">//</span><span style="color: #008000">删除已上传文件</span>
+                    remove : <span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                        </span><span style="color: #0000ff">var</span> remove = $('.pic_content .text'<span style="color: #000000">);
+                        </span><span style="color: #0000ff">var</span> len =<span style="color: #000000"> remove.length;
+                        $(remove[len </span>- 1]).on('click', <span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                            $(</span><span style="color: #0000ff">this</span><span style="color: #000000">).parent().remove();
+                            feng_pic.uploadTotal</span>--<span style="color: #000000">;
+                            feng_pic.uploadLimit</span>++<span style="color: #000000">;
+                            $(</span>'.pic_total'<span style="color: #000000">).text(feng_pic.uploadTotal);
+                            $(</span>'.pic_limit'<span style="color: #000000">).text(feng_pic.uploadLimit);
+                            </span><span style="color: #0000ff">var</span> swfu = $('#file').data('uploadify'<span style="color: #000000">);
+                            </span><span style="color: #0000ff">var</span> stats =<span style="color: #000000"> swfu.getStats();
+                            stats.successful_uploads</span>--<span style="color: #000000">;
+                            swfu.setStats(stats);
+                        });
+                    },
+                    allRemove:</span><span style="color: #0000ff">function</span><span style="color: #000000">(){
+                        $(</span>'.pic_content .text').each(<span style="color: #0000ff">function</span><span style="color: #000000">(){
+                            $(</span><span style="color: #0000ff">this</span>).on('click', <span style="color: #0000ff">function</span><span style="color: #000000"> () {
+                                $(</span><span style="color: #0000ff">this</span><span style="color: #000000">).parent().remove();
+                                feng_pic.uploadTotal</span>--<span style="color: #000000">;
+                                feng_pic.uploadLimit</span>++<span style="color: #000000">;
+                                $(</span>'.pic_total'<span style="color: #000000">).text(feng_pic.uploadTotal);
+                                $(</span>'.pic_limit'<span style="color: #000000">).text(feng_pic.uploadLimit);
+                                </span><span style="color: #0000ff">var</span> swfu = $('#file').data('uploadify'<span style="color: #000000">);
+                                </span><span style="color: #0000ff">var</span> stats =<span style="color: #000000"> swfu.getStats();
+                                stats.successful_uploads</span>--<span style="color: #000000">;
+                                swfu.setStats(stats);
+                            });
+                        });
+                    },
+                    judgeUploadTotal:</span><span style="color: #0000ff">function</span><span style="color: #000000">(){
+                        </span><span style="color: #0000ff">var</span> content = $('.pic_content'<span style="color: #000000">);
+                        </span><span style="color: #0000ff">var</span> len =<span style="color: #000000"> content.length;
+                        feng_pic.uploadTotal</span>=<span style="color: #000000">len;
+                        feng_pic.uploadLimit</span>=feng_pic.uploadLimit-<span style="color: #000000">len;
+                        $(</span>'.pic_total'<span style="color: #000000">).text(feng_pic.uploadTotal);
+                        $(</span>'.pic_limit'<span style="color: #000000">).text(feng_pic.uploadLimit);
+                    },
+                    </span><span style="color: #008000">//</span><span style="color: #008000">初始化参数</span>
+                    init : <span style="color: #0000ff">function</span><span style="color: #000000"> (swf,uploader,uploadLimit) {
+                            feng_pic.swf</span>=<span style="color: #000000">swf;
+                            feng_pic.uploader</span>=<span style="color: #000000">uploader;
+                            feng_pic.uploadLimit</span>=<span style="color: #000000">uploadLimit;
+                            feng_pic.Max</span>=<span style="color: #000000">uploadLimit;
+                            feng_pic.allHover();
+                            feng_pic.allRemove();
+                            feng_pic.judgeUploadTotal();
+                            feng_pic.uploadify();
+
+                    }
+            };</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>其次就是HTML与CSS文件（自定义写的）</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000">&lt;!--</span><span style="color: #008000">多文件上传引入</span><span style="color: #008000">--&gt;</span>
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">script </span><span style="color: #ff0000">type</span><span style="color: #0000ff">="text/javascript"</span><span style="color: #ff0000"> src</span><span style="color: #0000ff">="{_TEMP_PUBLIC_}/uploadFile/js/jquery.ui.js"</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">script</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">link </span><span style="color: #ff0000">rel</span><span style="color: #0000ff">="stylesheet"</span><span style="color: #ff0000"> href</span><span style="color: #0000ff">="{_TEMP_PUBLIC_}/uploadFile/uploadify/uploadify.css"</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">link </span><span style="color: #ff0000">rel</span><span style="color: #0000ff">="stylesheet"</span><span style="color: #ff0000"> href</span><span style="color: #0000ff">="{_TEMP_PUBLIC_}/uploadFile/css/feng_upload.css"</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">script </span><span style="color: #ff0000">src</span><span style="color: #0000ff">="{_TEMP_PUBLIC_}/uploadFile/uploadify/jquery.uploadify.min.js"</span><span style="color: #ff0000"> type</span><span style="color: #0000ff">="text/javascript"</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">script</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">div </span><span style="color: #ff0000">class</span><span style="color: #0000ff">="form-group form-md-line-input"</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">label </span><span style="color: #ff0000">class</span><span style="color: #0000ff">="col-md-2 control-label"</span><span style="color: #0000ff">&gt;</span>多文件上传<span style="color: #0000ff">&lt;/</span><span style="color: #800000">label</span><span style="color: #0000ff">&gt;</span>
+      <span style="color: #0000ff">&lt;</span><span style="color: #800000">div </span><span style="color: #ff0000">class</span><span style="color: #0000ff">="col-md-10"</span><span style="color: #0000ff">&gt;</span>
+          <span style="color: #0000ff">&lt;</span><span style="color: #800000">div </span><span style="color: #ff0000">class</span><span style="color: #0000ff">="postPic"</span><span style="color: #0000ff">&gt;</span>
+              <span style="color: #0000ff">&lt;</span><span style="color: #800000">div </span><span style="color: #ff0000">class</span><span style="color: #0000ff">="pic_header"</span><span style="color: #0000ff">&gt;</span>
+                   <span style="color: #0000ff">&lt;</span><span style="color: #800000">span </span><span style="color: #ff0000">class</span><span style="color: #0000ff">="pic_info"</span><span style="color: #0000ff">&gt;</span>共 <span style="color: #0000ff">&lt;</span><span style="color: #800000">span </span><span style="color: #ff0000">class</span><span style="color: #0000ff">="pic_total"</span><span style="color: #0000ff">&gt;</span>0<span style="color: #0000ff">&lt;/</span><span style="color: #800000">span</span><span style="color: #0000ff">&gt;</span> 张，还能上传 <span style="color: #0000ff">&lt;</span><span style="color: #800000">span </span><span style="color: #ff0000">class</span><span style="color: #0000ff">="pic_limit"</span><span style="color: #0000ff">&gt;</span>0<span style="color: #0000ff">&lt;/</span><span style="color: #800000">span</span><span style="color: #0000ff">&gt;</span> 张（按住ctrl可选择多张，每张最大不能超过2MB）<span style="color: #0000ff">&lt;/</span><span style="color: #800000">span</span><span style="color: #0000ff">&gt;</span>
+              <span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span>
+                   <span style="color: #0000ff">&lt;</span><span style="color: #800000">div </span><span style="color: #ff0000">class</span><span style="color: #0000ff">="pic_list"</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span>
+                   <span style="color: #0000ff">&lt;</span><span style="color: #800000">input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">="file"</span><span style="color: #ff0000"> name</span><span style="color: #0000ff">="file"</span><span style="color: #ff0000"> id</span><span style="color: #0000ff">="file"</span><span style="color: #0000ff">&gt;</span>
+           <span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span>
+           <span style="color: #0000ff">&lt;</span><span style="color: #800000">script </span><span style="color: #ff0000">type</span><span style="color: #0000ff">="text/javascript"</span><span style="color: #ff0000"> src</span><span style="color: #0000ff">="{_TEMP_PUBLIC_}/uploadFile/js/feng_upload.js"</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">script</span><span style="color: #0000ff">&gt;</span>
+           <span style="color: #0000ff">&lt;</span><span style="color: #800000">script</span><span style="color: #0000ff">&gt;</span><span style="background-color: #f5f5f5; color: #000000">
+               $(</span><span style="background-color: #f5f5f5; color: #0000ff">function</span><span style="background-color: #f5f5f5; color: #000000">(){<br>　　　　　　　　　　　　//初始化参数
+                    feng_pic.init(</span><span style="background-color: #f5f5f5; color: #000000">'</span><span style="background-color: #f5f5f5; color: #000000">{_TEMP_PUBLIC_}/uploadFile/uploadify/uploadify.swf</span><span style="background-color: #f5f5f5; color: #000000">'</span><span style="background-color: #f5f5f5; color: #000000">,</span><span style="background-color: #f5f5f5; color: #000000">'</span><span style="background-color: #f5f5f5; color: #000000">/index/uploadPhoto.json</span><span style="background-color: #f5f5f5; color: #000000">'</span><span style="background-color: #f5f5f5; color: #000000">,</span><span style="background-color: #f5f5f5; color: #000000">25</span><span style="background-color: #f5f5f5; color: #000000">);
+                });
+           </span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">script</span><span style="color: #0000ff">&gt;</span>
+       <span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>最后就是CSS文件，主要是上传文件以后的显示样式</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800000">          .postPic</span>{<span style="color: #ff0000">
+                   border</span>:<span style="color: #0000ff"> 1px solid #ccc</span>;<span style="color: #ff0000">
+                   height</span>:<span style="color: #0000ff"> auto</span>;<span style="color: #ff0000">
+                   margin</span>:<span style="color: #0000ff"> 1%</span>;<span style="color: #ff0000">
+                   border-radius</span>:<span style="color: #0000ff"> 4px</span>;<span style="color: #ff0000">
+                   padding</span>:<span style="color: #0000ff"> 0</span>;
+            }<span style="color: #800000">
+            .postPic .pic_header</span>{<span style="color: #ff0000">
+                    height</span>:<span style="color: #0000ff"> 30px</span>;<span style="color: #ff0000">
+                    line-height</span>:<span style="color: #0000ff"> 30px</span>;<span style="color: #ff0000">
+                    color</span>:<span style="color: #0000ff"> #666</span>;<span style="color: #ff0000">
+                    font-size</span>:<span style="color: #0000ff"> 13px</span>;<span style="color: #ff0000">
+                    background</span>:<span style="color: #0000ff"> rgba(204, 204, 204, 0.21)</span>;<span style="color: #ff0000">
+                    text-indent</span>:<span style="color: #0000ff"> 10px</span>;<span style="color: #ff0000">
+                    margin-bottom</span>:<span style="color: #0000ff"> 20px</span>;<span style="color: #ff0000">
+                    box-shadow</span>:<span style="color: #0000ff"> 0px 2px 5px 1px rgba(102, 102, 102, 0.42)</span>;
+            }<span style="color: #800000">
+           .postPic .pic_header .pic_info </span>{<span style="color: #ff0000">
+                float</span>:<span style="color: #0000ff"> left</span>;
+            }<span style="color: #800000">
+            .pic_total</span>{<span style="color: #ff0000">
+                    height</span>:<span style="color: #0000ff"> 30px</span>;<span style="color: #ff0000">
+                    line-height</span>:<span style="color: #0000ff"> 30px</span>;<span style="color: #ff0000">
+                    color</span>:<span style="color: #0000ff"> #666</span>;<span style="color: #ff0000">
+                    font-size</span>:<span style="color: #0000ff"> 13px</span>;<span style="color: #ff0000">
+                    background</span>:<span style="color: #0000ff"> #fafafa</span>;<span style="color: #ff0000">
+                    text-indent</span>:<span style="color: #0000ff"> 10px</span>;
+            }<span style="color: #800000">
+            .pic_content </span>{<span style="color: #ff0000">
+                width</span>:<span style="color: #0000ff"> 140px</span>;<span style="color: #ff0000">
+                height</span>:<span style="color: #0000ff"> 140px</span>;<span style="color: #ff0000">
+                float</span>:<span style="color: #0000ff"> left</span>;<span style="color: #ff0000">
+                border</span>:<span style="color: #0000ff"> 2px solid #eee</span>;<span style="color: #ff0000">
+                margin</span>:<span style="color: #0000ff"> 6px 11px</span>;<span style="color: #ff0000">
+                overflow</span>:<span style="color: #0000ff"> hidden</span>;<span style="color: #ff0000">
+                position</span>:<span style="color: #0000ff"> relative</span>;<span style="color: #ff0000">
+                border-radius</span>:<span style="color: #0000ff"> 8px</span>;
+                }<span style="color: #800000">
+            .pic_content img</span>{<span style="color: #ff0000">
+                width</span>:<span style="color: #0000ff"> 145px</span>;<span style="color: #ff0000">
+                height</span>:<span style="color: #0000ff"> 170px</span>;
+            }<span style="color: #800000">
+            #file </span>{<span style="color: #ff0000">
+                clear</span>:<span style="color: #0000ff"> both</span>;<span style="color: #ff0000">
+                margin</span>:<span style="color: #0000ff"> 0 auto</span>;<span style="color: #ff0000">
+                position</span>:<span style="color: #0000ff"> relative</span>;<span style="color: #ff0000">
+                top</span>:<span style="color: #0000ff"> 5px</span>;
+            }<span style="color: #800000">
+            .text </span>{<span style="color: #ff0000">
+                    display</span>:<span style="color: #0000ff"> none</span>;<span style="color: #ff0000">
+                    width</span>:<span style="color: #0000ff"> 140px</span>;<span style="color: #ff0000">
+                    height</span>:<span style="color: #0000ff"> 25px</span>;<span style="color: #ff0000">
+                    line-height</span>:<span style="color: #0000ff"> 25px</span>;<span style="color: #ff0000">
+                    text-align</span>:<span style="color: #0000ff"> center</span>;<span style="color: #ff0000">
+                    position</span>:<span style="color: #0000ff"> absolute</span>;<span style="color: #ff0000">
+                    top</span>:<span style="color: #0000ff"> 125px</span>;<span style="color: #ff0000">
+                    left</span>:<span style="color: #0000ff"> 0</span>;<span style="color: #ff0000">
+                    z-index</span>:<span style="color: #0000ff"> 3</span>;<span style="color: #ff0000">
+                    cursor</span>:<span style="color: #0000ff"> pointer</span>;<span style="color: #ff0000">
+                    color</span>:<span style="color: #0000ff"> #fff</span>;<span style="color: #ff0000">
+                    font-size</span>:<span style="color: #0000ff"> 13px</span>;
+                }<span style="color: #800000">
+            .remove </span>{<span style="color: #ff0000">
+                    display</span>:<span style="color: #0000ff"> none</span>;<span style="color: #ff0000">
+                    width</span>:<span style="color: #0000ff"> 140px</span>;<span style="color: #ff0000">
+                    height</span>:<span style="color: #0000ff"> 25px</span>;<span style="color: #ff0000">
+                    background</span>:<span style="color: #0000ff"> #000</span>;<span style="color: #ff0000">
+                    position</span>:<span style="color: #0000ff"> absolute</span>;<span style="color: #ff0000">
+                    top</span>:<span style="color: #0000ff"> 125px</span>;<span style="color: #ff0000">
+                    left</span>:<span style="color: #0000ff"> 0</span>;<span style="color: #ff0000">
+                    z-index</span>:<span style="color: #0000ff"> 2</span>;<span style="color: #ff0000">
+                    opacity</span>:<span style="color: #0000ff"> 0.7</span>;<span style="color: #ff0000">
+                    filter</span>:<span style="color: #0000ff"> alpha(opacity=70)</span>;<span style="color: #ff0000">
+                    cursor</span>:<span style="color: #0000ff"> pointer</span>;
+                }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>样式图</p>
+<p><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/912935-20170628163233649-1450147145.png" alt=""></p>
+<p>已上传样式图</p>
+<p><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/912935-20170628163254211-268104644.png" alt=""></p>
+<p>&nbsp;</p>
+<p>给大家看看我给jquery.uploadify.js添加的注释说明</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>(<span style="color: #0000ff">function</span><span style="color: #000000">($) {
+
+    </span><span style="color: #008000">//</span><span style="color: #008000"> These methods can be called by adding them as the first argument in the uploadify plugin call 这些方法可以被添加在uploadify插件调用的第一个参数</span>
+    <span style="color: #0000ff">var</span> methods =<span style="color: #000000"> {
+
+        init : </span><span style="color: #0000ff">function</span><span style="color: #000000">(options, swfUploadOptions) {
+            
+            </span><span style="color: #0000ff">return</span> <span style="color: #0000ff">this</span>.each(<span style="color: #0000ff">function</span><span style="color: #000000">() {
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Create a reference to the jQuery DOM object 创建一个对jQuery DOM对象的引用</span>
+                <span style="color: #0000ff">var</span> $<span style="color: #0000ff">this</span> = $(<span style="color: #0000ff">this</span><span style="color: #000000">);
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Clone the original DOM object 克隆原始DOM对象</span>
+                <span style="color: #0000ff">var</span> $clone = $<span style="color: #0000ff">this</span><span style="color: #000000">.clone();
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Setup the default options 设置默认选项</span>
+                <span style="color: #0000ff">var</span> settings =<span style="color: #000000"> $.extend({
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Required Settings 所需的设置</span>
+                    id       : $<span style="color: #0000ff">this</span>.attr('id'), <span style="color: #008000">//</span><span style="color: #008000"> The ID of the DOM object DOM对象的id</span>
+                    swf      : 'uploadify.swf',  <span style="color: #008000">//</span><span style="color: #008000"> The path to the uploadify SWF file 到Uploadify SWF文件的路径</span>
+                    uploader : 'uploadify.php',  <span style="color: #008000">//</span><span style="color: #008000"> The path to the server-side upload script 服务器端上传脚本的路径</span>
+                    
+                    <span style="color: #008000">//</span><span style="color: #008000"> Options</span>
+                    auto            : <span style="color: #0000ff">true</span>,               <span style="color: #008000">//</span><span style="color: #008000"> Automatically upload files when added to the queue 自动上传文件时，添加到队列</span>
+                    buttonClass     : '',                 <span style="color: #008000">//</span><span style="color: #008000"> A class name to add to the browse button DOM object 要添加到浏览按钮DOM对象的类名</span>
+                    buttonCursor    : 'hand',             <span style="color: #008000">//</span><span style="color: #008000"> The cursor to use with the browse button 光标与浏览按钮一起使用</span>
+                    buttonImage     : <span style="color: #0000ff">null</span>,               <span style="color: #008000">//</span><span style="color: #008000"> (String or null) The path to an image to use for the Flash browse button if not using CSS to style the button （字符串或NULL）的图像的路径使用的Flash浏览按钮，如果不使用CSS风格按钮</span>
+                    buttonText      : 'SELECT FILES',     <span style="color: #008000">//</span><span style="color: #008000"> The text to use for the browse button 用于浏览按钮的文本</span>
+                    checkExisting   : <span style="color: #0000ff">false</span>,              <span style="color: #008000">//</span><span style="color: #008000"> The path to a server-side script that checks for existing files on the server 检查服务器上现有文件的服务器端脚本的路径</span>
+                    debug           : <span style="color: #0000ff">false</span>,              <span style="color: #008000">//</span><span style="color: #008000"> Turn on swfUpload debugging mode 打开swfupload调试模式</span>
+                    fileObjName     : 'Filedata',         <span style="color: #008000">//</span><span style="color: #008000"> The name of the file object to use in your server-side script 要在服务器端脚本中使用的文件对象的名称</span>
+                    fileSizeLimit   : 0,                  <span style="color: #008000">//</span><span style="color: #008000"> The maximum size of an uploadable file in KB (Accepts units B KB MB GB if string, 0 for no limit) 在KB的上传文件的最大大小（KB MB GB单位接受B如果字符串，0为不限制）</span>
+                    fileTypeDesc    : 'All Files',        <span style="color: #008000">//</span><span style="color: #008000"> The description for file types in the browse dialog 浏览对话框中文件类型的说明</span>
+                    fileTypeExts    : '*.*',              <span style="color: #008000">//</span><span style="color: #008000"> Allowed extensions in the browse dialog (server-side validation should also be used) 允许扩展的浏览对话框（服务器端验证也应使用）</span>
+                    height          : 30,                 <span style="color: #008000">//</span><span style="color: #008000"> The height of the browse button 浏览按钮的高度</span>
+                    itemTemplate    : <span style="color: #0000ff">false</span>,              <span style="color: #008000">//</span><span style="color: #008000"> The template for the file item in the queue 队列中文件项的模板</span>
+                    method          : 'post',             <span style="color: #008000">//</span><span style="color: #008000"> The method to use when sending files to the server-side upload script 将文件发送到服务器端上传脚本时使用的方法</span>
+                    multi           : <span style="color: #0000ff">true</span>,               <span style="color: #008000">//</span><span style="color: #008000"> Allow multiple file selection in the browse dialog 允许在浏览对话框中选择多个文件 </span>
+                    formData        : {},                 <span style="color: #008000">//</span><span style="color: #008000"> An object with additional data to send to the server-side upload script with every file upload 带有附加数据的对象，将每个文件上传到服务器端上传脚本</span>
+                    preventCaching  : <span style="color: #0000ff">true</span>,               <span style="color: #008000">//</span><span style="color: #008000"> Adds a random value to the Flash URL to prevent caching of it (conflicts with existing parameters) 添加一个随机值的Flash URL，以防止缓存（与现有参数冲突）</span>
+                    progressData    : 'percentage',       <span style="color: #008000">//</span><span style="color: #008000"> ('percentage' or 'speed') Data to show in the queue item during a file upload （百分比或速度）在the item to queue日期显示在文件上传</span>
+                    queueID         : <span style="color: #0000ff">false</span>,              <span style="color: #008000">//</span><span style="color: #008000"> The ID of the DOM object to use as a file queue (without the #) 对DOM对象的ID作为文件队列（没有#）</span>
+                    queueSizeLimit  : 999,                <span style="color: #008000">//</span><span style="color: #008000"> The maximum number of files that can be in the queue at one time 一次可以在队列中最多的文件数</span>
+                    removeCompleted : <span style="color: #0000ff">true</span>,               <span style="color: #008000">//</span><span style="color: #008000"> Remove queue items from the queue when they are done uploading 在上传完成时从队列中移除队列项</span>
+                    removeTimeout   : 3,                  <span style="color: #008000">//</span><span style="color: #008000"> The delay in seconds before removing a queue item if removeCompleted is set to true 延迟秒移除一个队列项目如果removecompleted设置为true之前</span>
+                    requeueErrors   : <span style="color: #0000ff">false</span>,              <span style="color: #008000">//</span><span style="color: #008000"> Keep errored files in the queue and keep trying to upload them 错误的文件保持在队列中，继续上传</span>
+                    successTimeout  : 30,                 <span style="color: #008000">//</span><span style="color: #008000"> The number of seconds to wait for Flash to detect the server's response after the file has finished uploading 在文件完成上传后等待服务器检测服务器响应的秒数</span>
+                    uploadLimit     : 0,                  <span style="color: #008000">//</span><span style="color: #008000"> The maximum number of files you can upload 您可以上传的文件的最大数量</span>
+                    width           : 120,                <span style="color: #008000">//</span><span style="color: #008000"> The width of the browse button 浏览按钮的宽度</span>
+                    
+                    <span style="color: #008000">//</span><span style="color: #008000"> Events</span>
+                    overrideEvents  : []             <span style="color: #008000">//</span><span style="color: #008000"> (Array) A list of default event handlers to skip （数组）跳过的默认事件处理程序列表</span>
+                    <span style="color: #008000">/*</span><span style="color: #008000">
+                    onCancel         // Triggered when a file is cancelled from the queue
+                    onClearQueue     // Triggered during the 'clear queue' method
+                    onDestroy        // Triggered when the uploadify object is destroyed
+                    onDialogClose    // Triggered when the browse dialog is closed
+                    onDialogOpen     // Triggered when the browse dialog is opened
+                    onDisable        // Triggered when the browse button gets disabled
+                    onEnable         // Triggered when the browse button gets enabled
+                    onFallback       // Triggered is Flash is not detected    
+                    onInit           // Triggered when Uploadify is initialized
+                    onQueueComplete  // Triggered when all files in the queue have been uploaded
+                    onSelectError    // Triggered when an error occurs while selecting a file (file size, queue size limit, etc.)
+                    onSelect         // Triggered for each file that is selected
+                    onSWFReady       // Triggered when the SWF button is loaded
+                    onUploadComplete // Triggered when a file upload completes (success or error)
+                    onUploadError    // Triggered when a file upload returns an error
+                    onUploadSuccess  // Triggered when a file is uploaded successfully
+                    onUploadProgress // Triggered every time a file progress is updated
+                    onUploadStart    // Triggered immediately before a file upload starts
+                    ==========================================================================
+                    两个/触发时，一个文件从队列中取消
+                    onclearqueue /触发“清除队列的方法中
+                    使用/触发时，Uploadify销毁对象
+                    ondialogclose /浏览对话框关闭时触发
+                    ondialogopen /浏览对话框打开时触发
+                    ondisable /触发时，浏览按钮被禁用使/触发时浏览按钮启用
+                    onfallback /触发闪光检测不到
+                    OnInit /触发时，Uploadify被初始化
+                    onqueuecomplete /触发时，队列中的所有文件已上传
+                    onselecterror /触发时发生错误，选择一个文件（文件大小，队列的大小限制，等）
+                    onselect /触发每一个文件，选择
+                    onswfready /时触发按钮加载SWF
+                    onuploadcomplete /触发文件上传完成时（成功或错误）
+                    onuploaderror /触发时，上传文件返回一个错误
+                    onuploadsuccess /触发时，一个文件上传成功
+                    onuploadprogress /触发的每一次进步更新文件
+                    onuploadstart /触发立即上传文件开始之前
+                    </span><span style="color: #008000">*/</span><span style="color: #000000">
+                }, options);
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Prepare settings for SWFUpload</span>
+                <span style="color: #0000ff">var</span> swfUploadSettings =<span style="color: #000000"> {
+                    assume_success_timeout   : settings.successTimeout,
+                    button_placeholder_id    : settings.id,
+                    button_width             : settings.width,
+                    button_height            : settings.height,
+                    button_text              : </span><span style="color: #0000ff">null</span><span style="color: #000000">,
+                    button_text_style        : </span><span style="color: #0000ff">null</span><span style="color: #000000">,
+                    button_text_top_padding  : </span>0<span style="color: #000000">,
+                    button_text_left_padding : </span>0<span style="color: #000000">,
+                    button_action            : (settings.multi </span>?<span style="color: #000000"> SWFUpload.BUTTON_ACTION.SELECT_FILES : SWFUpload.BUTTON_ACTION.SELECT_FILE),
+                    button_disabled          : </span><span style="color: #0000ff">false</span><span style="color: #000000">,
+                    button_cursor            : (settings.buttonCursor </span>== 'arrow' ?<span style="color: #000000"> SWFUpload.CURSOR.ARROW : SWFUpload.CURSOR.HAND),
+                    button_window_mode       : SWFUpload.WINDOW_MODE.TRANSPARENT,
+                    debug                    : settings.debug,                        
+                    requeue_on_error         : settings.requeueErrors,
+                    file_post_name           : settings.fileObjName,
+                    file_size_limit          : settings.fileSizeLimit,
+                    file_types               : settings.fileTypeExts,
+                    file_types_description   : settings.fileTypeDesc,
+                    file_queue_limit         : settings.queueSizeLimit,
+                    file_upload_limit        : settings.uploadLimit,
+                    flash_url                : settings.swf,                    
+                    prevent_swf_caching      : settings.preventCaching,
+                    post_params              : settings.formData,
+                    upload_url               : settings.uploader,
+                    use_query_string         : (settings.method </span>== 'get'<span style="color: #000000">),
+                    
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Event Handlers </span>
+<span style="color: #000000">                    file_dialog_complete_handler : handlers.onDialogClose,
+                    file_dialog_start_handler    : handlers.onDialogOpen,
+                    file_queued_handler          : handlers.onSelect,
+                    file_queue_error_handler     : handlers.onSelectError,
+                    swfupload_loaded_handler     : settings.onSWFReady,
+                    upload_complete_handler      : handlers.onUploadComplete,
+                    upload_error_handler         : handlers.onUploadError,
+                    upload_progress_handler      : handlers.onUploadProgress,
+                    upload_start_handler         : handlers.onUploadStart,
+                    upload_success_handler       : handlers.onUploadSuccess
+                }
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Merge the user-defined options with the defaults</span>
+                <span style="color: #0000ff">if</span><span style="color: #000000"> (swfUploadOptions) {
+                    swfUploadSettings </span>=<span style="color: #000000"> $.extend(swfUploadSettings, swfUploadOptions);
+                }
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Add the user-defined settings to the swfupload object</span>
+                swfUploadSettings =<span style="color: #000000"> $.extend(swfUploadSettings, settings);
+                
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Detect if Flash is available</span>
+                <span style="color: #0000ff">var</span> playerVersion  =<span style="color: #000000"> swfobject.getFlashPlayerVersion();
+                </span><span style="color: #0000ff">var</span> flashInstalled = (playerVersion.major &gt;= 9<span style="color: #000000">);
+
+                </span><span style="color: #0000ff">if</span><span style="color: #000000"> (flashInstalled) {
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Create the swfUpload instance</span>
+                    window['uploadify_' + settings.id] = <span style="color: #0000ff">new</span><span style="color: #000000"> SWFUpload(swfUploadSettings);
+                    </span><span style="color: #0000ff">var</span> swfuploadify = window['uploadify_' +<span style="color: #000000"> settings.id];
+
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Add the SWFUpload object to the elements data object</span>
+                    $<span style="color: #0000ff">this</span>.data('uploadify'<span style="color: #000000">, swfuploadify);
+                    
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Wrap the instance</span>
+                    <span style="color: #0000ff">var</span> $wrapper = $('&lt;div /&gt;'<span style="color: #000000">, {
+                        </span>'id'<span style="color: #000000">    : settings.id,
+                        </span>'class' : 'uploadify'<span style="color: #000000">,
+                        </span>'css'<span style="color: #000000">   : {
+                                    </span>'height'   : settings.height + 'px'<span style="color: #000000">,
+                                    </span>'width'    : settings.width + 'px'<span style="color: #000000">
+                                  }
+                    });
+                    $(</span>'#' +<span style="color: #000000"> swfuploadify.movieName).wrap($wrapper);
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Recreate the reference to wrapper</span>
+                    $wrapper = $('#' +<span style="color: #000000"> settings.id);
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Add the data object to the wrapper </span>
+                    $wrapper.data('uploadify'<span style="color: #000000">, swfuploadify);
+
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Create the button</span>
+                    <span style="color: #0000ff">var</span> $button = $('&lt;div /&gt;'<span style="color: #000000">, {
+                        </span>'id'    : settings.id + '-button'<span style="color: #000000">,
+                        </span>'class' : 'uploadify-button ' +<span style="color: #000000"> settings.buttonClass
+                    });
+                    </span><span style="color: #0000ff">if</span><span style="color: #000000"> (settings.buttonImage) {
+                        $button.css({
+                            </span>'background-image' : "url('" + settings.buttonImage + "')"<span style="color: #000000">,
+                            </span>'text-indent'      : '-9999px'<span style="color: #000000">
+                        });
+                    }
+                    $button.html(</span>'&lt;span class="uploadify-button-text"&gt;' + settings.buttonText + '&lt;/span&gt;'<span style="color: #000000">)
+                    .css({
+                        </span>'height'      : settings.height + 'px'<span style="color: #000000">,
+                        </span>'line-height' : settings.height + 'px'<span style="color: #000000">,
+                        </span>'width'       : settings.width + 'px'<span style="color: #000000">
+                    });
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Append the button to the wrapper</span>
+<span style="color: #000000">                    $wrapper.append($button);
+
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Adjust the styles of the movie</span>
+                    $('#' +<span style="color: #000000"> swfuploadify.movieName).css({
+                        </span>'position' : 'absolute'<span style="color: #000000">,
+                        </span>'z-index'  : 1<span style="color: #000000">
+                    });
+                    
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Create the file queue</span>
+                    <span style="color: #0000ff">if</span> (!<span style="color: #000000">settings.queueID) {
+                        </span><span style="color: #0000ff">var</span> $queue = $('&lt;div /&gt;'<span style="color: #000000">, {
+                            </span>'id'    : settings.id + '-queue'<span style="color: #000000">,
+                            </span>'class' : 'uploadify-queue'<span style="color: #000000">
+                        });
+                        $wrapper.after($queue);
+                        swfuploadify.settings.queueID      </span>= settings.id + '-queue'<span style="color: #000000">;
+                        swfuploadify.settings.defaultQueue </span>= <span style="color: #0000ff">true</span><span style="color: #000000">;
+                    }
+                    
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Create some queue related objects and variables</span>
+                    swfuploadify.queueData =<span style="color: #000000"> {
+                        files              : {}, </span><span style="color: #008000">//</span><span style="color: #008000"> The files in the queue</span>
+                        filesSelected      : 0, <span style="color: #008000">//</span><span style="color: #008000"> The number of files selected in the last select operation</span>
+                        filesQueued        : 0, <span style="color: #008000">//</span><span style="color: #008000"> The number of files added to the queue in the last select operation</span>
+                        filesReplaced      : 0, <span style="color: #008000">//</span><span style="color: #008000"> The number of files replaced in the last select operation</span>
+                        filesCancelled     : 0, <span style="color: #008000">//</span><span style="color: #008000"> The number of files that were cancelled instead of replaced</span>
+                        filesErrored       : 0, <span style="color: #008000">//</span><span style="color: #008000"> The number of files that caused error in the last select operation</span>
+                        uploadsSuccessful  : 0, <span style="color: #008000">//</span><span style="color: #008000"> The number of files that were successfully uploaded</span>
+                        uploadsErrored     : 0, <span style="color: #008000">//</span><span style="color: #008000"> The number of files that returned errors during upload</span>
+                        averageSpeed       : 0, <span style="color: #008000">//</span><span style="color: #008000"> The average speed of the uploads in KB</span>
+                        queueLength        : 0, <span style="color: #008000">//</span><span style="color: #008000"> The number of files in the queue</span>
+                        queueSize          : 0, <span style="color: #008000">//</span><span style="color: #008000"> The size in bytes of the entire queue</span>
+                        uploadSize         : 0, <span style="color: #008000">//</span><span style="color: #008000"> The size in bytes of the upload queue</span>
+                        queueBytesUploaded : 0, <span style="color: #008000">//</span><span style="color: #008000"> The size in bytes that have been uploaded for the current upload queue</span>
+                        uploadQueue        : [], <span style="color: #008000">//</span><span style="color: #008000"> The files currently to be uploaded</span>
+                        errorMsg           : 'Some files were not added to the queue:'<span style="color: #000000">
+                    };
+
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Save references to all the objects</span>
+                    swfuploadify.original =<span style="color: #000000"> $clone;
+                    swfuploadify.wrapper  </span>=<span style="color: #000000"> $wrapper;
+                    swfuploadify.button   </span>=<span style="color: #000000"> $button;
+                    swfuploadify.queue    </span>=<span style="color: #000000"> $queue;
+
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined init event handler</span>
+                    <span style="color: #0000ff">if</span> (settings.onInit) settings.onInit.call($<span style="color: #0000ff">this</span><span style="color: #000000">, swfuploadify);
+
+                } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Call the fallback function</span>
+                    <span style="color: #0000ff">if</span> (settings.onFallback) settings.onFallback.call($<span style="color: #0000ff">this</span><span style="color: #000000">);
+
+                }
+            });
+
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Stop a file upload and remove it from the queue </span>
+        cancel : <span style="color: #0000ff">function</span><span style="color: #000000">(fileID, supressEvent) {
+
+            </span><span style="color: #0000ff">var</span> args =<span style="color: #000000"> arguments;
+            </span><span style="color: #0000ff">this</span>.each(<span style="color: #0000ff">function</span><span style="color: #000000">() {
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Create a reference to the jQuery DOM object</span>
+                <span style="color: #0000ff">var</span> $<span style="color: #0000ff">this</span>        = $(<span style="color: #0000ff">this</span><span style="color: #000000">),
+                    swfuploadify </span>= $<span style="color: #0000ff">this</span>.data('uploadify'<span style="color: #000000">),
+                    settings     </span>=<span style="color: #000000"> swfuploadify.settings,
+                    delay        </span>= -1<span style="color: #000000">;
+
+                </span><span style="color: #0000ff">if</span> (args[0<span style="color: #000000">]) {
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Clear the queue</span>
+                    <span style="color: #0000ff">if</span> (args[0] == '*'<span style="color: #000000">) {
+                        </span><span style="color: #0000ff">var</span> queueItemCount =<span style="color: #000000"> swfuploadify.queueData.queueLength;
+                        $(</span>'#' + settings.queueID).find('.uploadify-queue-item').each(<span style="color: #0000ff">function</span><span style="color: #000000">() {
+                            delay</span>++<span style="color: #000000">;
+                            </span><span style="color: #0000ff">if</span> (args[1] === <span style="color: #0000ff">true</span><span style="color: #000000">) {
+                                swfuploadify.cancelUpload($(</span><span style="color: #0000ff">this</span>).attr('id'), <span style="color: #0000ff">false</span><span style="color: #000000">);
+                            } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                                swfuploadify.cancelUpload($(</span><span style="color: #0000ff">this</span>).attr('id'<span style="color: #000000">));
+                            }
+                            $(</span><span style="color: #0000ff">this</span>).find('.data').removeClass('data').html(' - Cancelled'<span style="color: #000000">);
+                            $(</span><span style="color: #0000ff">this</span>).find('.uploadify-progress-bar'<span style="color: #000000">).remove();
+                            $(</span><span style="color: #0000ff">this</span>).delay(1000 + 100 * delay).fadeOut(500, <span style="color: #0000ff">function</span><span style="color: #000000">() {
+                                $(</span><span style="color: #0000ff">this</span><span style="color: #000000">).remove();
+                            });
+                        });
+                        swfuploadify.queueData.queueSize   </span>= 0<span style="color: #000000">;
+                        swfuploadify.queueData.queueLength </span>= 0<span style="color: #000000">;
+                        </span><span style="color: #008000">//</span><span style="color: #008000"> Trigger the onClearQueue event</span>
+                        <span style="color: #0000ff">if</span> (settings.onClearQueue) settings.onClearQueue.call($<span style="color: #0000ff">this</span><span style="color: #000000">, queueItemCount);
+                    } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                        </span><span style="color: #0000ff">for</span> (<span style="color: #0000ff">var</span> n = 0; n &lt; args.length; n++<span style="color: #000000">) {
+                            swfuploadify.cancelUpload(args[n]);
+                            </span><span style="color: #008000">/*</span><span style="color: #008000">添加代码--删除队列</span><span style="color: #008000">*/</span>
+                            <span style="color: #0000ff">delete</span><span style="color: #000000"> swfuploadify.queueData.files[args[n]];   
+                            swfuploadify.queueData.queueLength </span>= swfuploadify.queueData.queueLength - 1<span style="color: #000000">; 
+                               </span><span style="color: #008000">/*</span><span style="color: #008000">添加结束</span><span style="color: #008000">*/</span><span style="color: #000000">
+                            $(</span>'#' + args[n]).find('.data').removeClass('data').html(' - Cancelled'<span style="color: #000000">);
+                            $(</span>'#' + args[n]).find('.uploadify-progress-bar'<span style="color: #000000">).remove();
+                            $(</span>'#' + args[n]).delay(1000 + 100 * n).fadeOut(500, <span style="color: #0000ff">function</span><span style="color: #000000">() {
+                                $(</span><span style="color: #0000ff">this</span><span style="color: #000000">).remove();
+                            });
+                        }
+                    }
+                } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                    </span><span style="color: #0000ff">var</span> item = $('#' + settings.queueID).find('.uploadify-queue-item').get(0<span style="color: #000000">);
+                    $item </span>=<span style="color: #000000"> $(item);
+                    swfuploadify.cancelUpload($item.attr(</span>'id'<span style="color: #000000">));
+                    $item.find(</span>'.data').removeClass('data').html(' - Cancelled'<span style="color: #000000">);
+                    $item.find(</span>'.uploadify-progress-bar'<span style="color: #000000">).remove();
+                    $item.delay(</span>1000).fadeOut(500, <span style="color: #0000ff">function</span><span style="color: #000000">() {
+                        $(</span><span style="color: #0000ff">this</span><span style="color: #000000">).remove();
+                    });
+                }
+            });
+
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Revert the DOM object back to its original state</span>
+        destroy : <span style="color: #0000ff">function</span><span style="color: #000000">() {
+
+            </span><span style="color: #0000ff">this</span>.each(<span style="color: #0000ff">function</span><span style="color: #000000">() {
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Create a reference to the jQuery DOM object</span>
+                <span style="color: #0000ff">var</span> $<span style="color: #0000ff">this</span>        = $(<span style="color: #0000ff">this</span><span style="color: #000000">),
+                    swfuploadify </span>= $<span style="color: #0000ff">this</span>.data('uploadify'<span style="color: #000000">),
+                    settings     </span>=<span style="color: #000000"> swfuploadify.settings;
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Destroy the SWF object and </span>
+<span style="color: #000000">                swfuploadify.destroy();
+                
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Destroy the queue</span>
+                <span style="color: #0000ff">if</span><span style="color: #000000"> (settings.defaultQueue) {
+                    $(</span>'#' +<span style="color: #000000"> settings.queueID).remove();
+                }
+                
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Reload the original DOM element</span>
+                $('#' +<span style="color: #000000"> settings.id).replaceWith(swfuploadify.original);
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler</span>
+                <span style="color: #0000ff">if</span> (settings.onDestroy) settings.onDestroy.call(<span style="color: #0000ff">this</span><span style="color: #000000">);
+
+                </span><span style="color: #0000ff">delete</span><span style="color: #000000"> swfuploadify;
+            });
+
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Disable the select button</span>
+        disable : <span style="color: #0000ff">function</span><span style="color: #000000">(isDisabled) {
+            
+            </span><span style="color: #0000ff">this</span>.each(<span style="color: #0000ff">function</span><span style="color: #000000">() {
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Create a reference to the jQuery DOM object</span>
+                <span style="color: #0000ff">var</span> $<span style="color: #0000ff">this</span>        = $(<span style="color: #0000ff">this</span><span style="color: #000000">),
+                    swfuploadify </span>= $<span style="color: #0000ff">this</span>.data('uploadify'<span style="color: #000000">),
+                    settings     </span>=<span style="color: #000000"> swfuploadify.settings;
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handlers</span>
+                <span style="color: #0000ff">if</span><span style="color: #000000"> (isDisabled) {
+                    swfuploadify.button.addClass(</span>'disabled'<span style="color: #000000">);
+                    </span><span style="color: #0000ff">if</span> (settings.onDisable) settings.onDisable.call(<span style="color: #0000ff">this</span><span style="color: #000000">);
+                } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                    swfuploadify.button.removeClass(</span>'disabled'<span style="color: #000000">);
+                    </span><span style="color: #0000ff">if</span> (settings.onEnable) settings.onEnable.call(<span style="color: #0000ff">this</span><span style="color: #000000">);
+                }
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Enable/disable the browse button</span>
+<span style="color: #000000">                swfuploadify.setButtonDisabled(isDisabled);
+            });
+
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Get or set the settings data</span>
+        settings : <span style="color: #0000ff">function</span><span style="color: #000000">(name, value, resetObjects) {
+
+            </span><span style="color: #0000ff">var</span> args        =<span style="color: #000000"> arguments;
+            </span><span style="color: #0000ff">var</span> returnValue =<span style="color: #000000"> value;
+            </span><span style="color: #0000ff">this</span>.each(<span style="color: #0000ff">function</span><span style="color: #000000">() {
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Create a reference to the jQuery DOM object</span>
+                <span style="color: #0000ff">var</span> $<span style="color: #0000ff">this</span>        = $(<span style="color: #0000ff">this</span><span style="color: #000000">),
+                    swfuploadify </span>= $<span style="color: #0000ff">this</span>.data('uploadify'<span style="color: #000000">),
+                    settings     </span>=<span style="color: #000000"> swfuploadify.settings;
+
+                </span><span style="color: #0000ff">if</span> (<span style="color: #0000ff">typeof</span>(args[0]) == 'object'<span style="color: #000000">) {
+                    </span><span style="color: #0000ff">for</span> (<span style="color: #0000ff">var</span> n <span style="color: #0000ff">in</span><span style="color: #000000"> value) {
+                        setData(n,value[n]);
+                    }
+                }
+                </span><span style="color: #0000ff">if</span> (args.length === 1<span style="color: #000000">) {
+                    returnValue </span>=<span style="color: #000000">  settings[name];
+                } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                    </span><span style="color: #0000ff">switch</span><span style="color: #000000"> (name) {
+                        </span><span style="color: #0000ff">case</span> 'uploader'<span style="color: #000000">:
+                            swfuploadify.setUploadURL(value);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'formData'<span style="color: #000000">:
+                            </span><span style="color: #0000ff">if</span> (!<span style="color: #000000">resetObjects) {
+                                value </span>=<span style="color: #000000"> $.extend(settings.formData, value);
+                            }
+                            swfuploadify.setPostParams(settings.formData);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'method'<span style="color: #000000">:
+                            </span><span style="color: #0000ff">if</span> (value == 'get'<span style="color: #000000">) {
+                                swfuploadify.setUseQueryString(</span><span style="color: #0000ff">true</span><span style="color: #000000">);
+                            } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                                swfuploadify.setUseQueryString(</span><span style="color: #0000ff">false</span><span style="color: #000000">);
+                            }
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'fileObjName'<span style="color: #000000">:
+                            swfuploadify.setFilePostName(value);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'fileTypeExts'<span style="color: #000000">:
+                            swfuploadify.setFileTypes(value, settings.fileTypeDesc);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'fileTypeDesc'<span style="color: #000000">:
+                            swfuploadify.setFileTypes(settings.fileTypeExts, value);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'fileSizeLimit'<span style="color: #000000">:
+                            swfuploadify.setFileSizeLimit(value);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'uploadLimit'<span style="color: #000000">:
+                            swfuploadify.setFileUploadLimit(value);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'queueSizeLimit'<span style="color: #000000">:
+                            swfuploadify.setFileQueueLimit(value);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'buttonImage'<span style="color: #000000">:
+                            swfuploadify.button.css(</span>'background-image'<span style="color: #000000">, settingValue);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'buttonCursor'<span style="color: #000000">:
+                            </span><span style="color: #0000ff">if</span> (value == 'arrow'<span style="color: #000000">) {
+                                swfuploadify.setButtonCursor(SWFUpload.CURSOR.ARROW);
+                            } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                                swfuploadify.setButtonCursor(SWFUpload.CURSOR.HAND);
+                            }
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'buttonText'<span style="color: #000000">:
+                            $(</span>'#' + settings.id + '-button').find('.uploadify-button-text'<span style="color: #000000">).html(value);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'width'<span style="color: #000000">:
+                            swfuploadify.setButtonDimensions(value, settings.height);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'height'<span style="color: #000000">:
+                            swfuploadify.setButtonDimensions(settings.width, value);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span> 'multi'<span style="color: #000000">:
+                            </span><span style="color: #0000ff">if</span><span style="color: #000000"> (value) {
+                                swfuploadify.setButtonAction(SWFUpload.BUTTON_ACTION.SELECT_FILES);
+                            } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                                swfuploadify.setButtonAction(SWFUpload.BUTTON_ACTION.SELECT_FILE);
+                            }
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                    }
+                    settings[name] </span>=<span style="color: #000000"> value;
+                }
+            });
+            
+            </span><span style="color: #0000ff">if</span> (args.length === 1<span style="color: #000000">) {
+                </span><span style="color: #0000ff">return</span><span style="color: #000000"> returnValue;
+            }
+
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Stop the current uploads and requeue what is in progress</span>
+        stop : <span style="color: #0000ff">function</span><span style="color: #000000">() {
+
+            </span><span style="color: #0000ff">this</span>.each(<span style="color: #0000ff">function</span><span style="color: #000000">() {
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Create a reference to the jQuery DOM object</span>
+                <span style="color: #0000ff">var</span> $<span style="color: #0000ff">this</span>        = $(<span style="color: #0000ff">this</span><span style="color: #000000">),
+                    swfuploadify </span>= $<span style="color: #0000ff">this</span>.data('uploadify'<span style="color: #000000">);
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Reset the queue information</span>
+                swfuploadify.queueData.averageSpeed  = 0<span style="color: #000000">;
+                swfuploadify.queueData.uploadSize    </span>= 0<span style="color: #000000">;
+                swfuploadify.queueData.bytesUploaded </span>= 0<span style="color: #000000">;
+                swfuploadify.queueData.uploadQueue   </span>=<span style="color: #000000"> [];
+
+                swfuploadify.stopUpload();
+            });
+
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Start uploading files in the queue</span>
+        upload : <span style="color: #0000ff">function</span><span style="color: #000000">() {
+
+            </span><span style="color: #0000ff">var</span> args =<span style="color: #000000"> arguments;
+
+            </span><span style="color: #0000ff">this</span>.each(<span style="color: #0000ff">function</span><span style="color: #000000">() {
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Create a reference to the jQuery DOM object</span>
+                <span style="color: #0000ff">var</span> $<span style="color: #0000ff">this</span>        = $(<span style="color: #0000ff">this</span><span style="color: #000000">),
+                    swfuploadify </span>= $<span style="color: #0000ff">this</span>.data('uploadify'<span style="color: #000000">);
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Reset the queue information</span>
+                swfuploadify.queueData.averageSpeed  = 0<span style="color: #000000">;
+                swfuploadify.queueData.uploadSize    </span>= 0<span style="color: #000000">;
+                swfuploadify.queueData.bytesUploaded </span>= 0<span style="color: #000000">;
+                swfuploadify.queueData.uploadQueue   </span>=<span style="color: #000000"> [];
+                
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Upload the files</span>
+                <span style="color: #0000ff">if</span> (args[0<span style="color: #000000">]) {
+                    </span><span style="color: #0000ff">if</span> (args[0] == '*'<span style="color: #000000">) {
+                        swfuploadify.queueData.uploadSize </span>=<span style="color: #000000"> swfuploadify.queueData.queueSize;
+                        swfuploadify.queueData.uploadQueue.push(</span>'*'<span style="color: #000000">);
+                        swfuploadify.startUpload();
+                    } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                        </span><span style="color: #0000ff">for</span> (<span style="color: #0000ff">var</span> n = 0; n &lt; args.length; n++<span style="color: #000000">) {
+                            swfuploadify.queueData.uploadSize </span>+=<span style="color: #000000"> swfuploadify.queueData.files[args[n]].size;
+                            swfuploadify.queueData.uploadQueue.push(args[n]);
+                        }
+                        swfuploadify.startUpload(swfuploadify.queueData.uploadQueue.shift());
+                    }
+                } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                    swfuploadify.startUpload();
+                }
+
+            });
+
+        }
+
+    }
+
+    </span><span style="color: #008000">//</span><span style="color: #008000"> These functions handle all the events that occur with the file uploader</span>
+    <span style="color: #0000ff">var</span> handlers =<span style="color: #000000"> {
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Triggered when the file dialog is opened</span>
+        onDialogOpen : <span style="color: #0000ff">function</span><span style="color: #000000">() {
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Load the swfupload settings</span>
+            <span style="color: #0000ff">var</span> settings = <span style="color: #0000ff">this</span><span style="color: #000000">.settings;
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Reset some queue info</span>
+            <span style="color: #0000ff">this</span>.queueData.errorMsg       = 'Some files were not added to the queue:'<span style="color: #000000">;
+            </span><span style="color: #0000ff">this</span>.queueData.filesReplaced  = 0<span style="color: #000000">;
+            </span><span style="color: #0000ff">this</span>.queueData.filesCancelled = 0<span style="color: #000000">;
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler</span>
+            <span style="color: #0000ff">if</span> (settings.onDialogOpen) settings.onDialogOpen.call(<span style="color: #0000ff">this</span><span style="color: #000000">);
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Triggered when the browse dialog is closed 当浏览对话框关闭时引发</span>
+        onDialogClose :  <span style="color: #0000ff">function</span><span style="color: #000000">(filesSelected, filesQueued, queueLength) {
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Load the swfupload settings</span>
+            <span style="color: #0000ff">var</span> settings = <span style="color: #0000ff">this</span><span style="color: #000000">.settings;
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Update the queue information 更新队列信息</span>
+            <span style="color: #0000ff">this</span>.queueData.filesErrored  = filesSelected -<span style="color: #000000"> filesQueued;
+            </span><span style="color: #0000ff">this</span>.queueData.filesSelected =<span style="color: #000000"> filesSelected;
+            </span><span style="color: #0000ff">this</span>.queueData.filesQueued   = filesQueued - <span style="color: #0000ff">this</span><span style="color: #000000">.queueData.filesCancelled;
+            </span><span style="color: #0000ff">this</span>.queueData.queueLength   =<span style="color: #000000"> queueLength;
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Run the default event handler 运行默认事件处理程序</span>
+            <span style="color: #0000ff">if</span> ($.inArray('onDialogClose', settings.overrideEvents) &lt; 0<span style="color: #000000">) {
+                </span><span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.queueData.filesErrored &gt; 0<span style="color: #000000">) {
+                    alert(</span><span style="color: #0000ff">this</span><span style="color: #000000">.queueData.errorMsg);
+                }
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler 调用自定义事件处理程序</span>
+            <span style="color: #0000ff">if</span> (settings.onDialogClose) settings.onDialogClose.call(<span style="color: #0000ff">this</span>, <span style="color: #0000ff">this</span><span style="color: #000000">.queueData);
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Upload the files if auto is true 上传文件，如果汽车是真实的</span>
+            <span style="color: #0000ff">if</span> (settings.auto) $('#' + settings.id).uploadify('upload', '*'<span style="color: #000000">);
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Triggered once for each file added to the queue 为每个文件添加到队列触发一次</span>
+        onSelect : <span style="color: #0000ff">function</span><span style="color: #000000">(file) {
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Load the swfupload settings</span>
+            <span style="color: #0000ff">var</span> settings = <span style="color: #0000ff">this</span><span style="color: #000000">.settings;
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Check if a file with the same name exists in the queue 检查队列中是否存在同名的文件</span>
+            <span style="color: #0000ff">var</span> queuedFile =<span style="color: #000000"> {};
+            </span><span style="color: #0000ff">for</span> (<span style="color: #0000ff">var</span> n <span style="color: #0000ff">in</span> <span style="color: #0000ff">this</span><span style="color: #000000">.queueData.files) {
+                queuedFile </span>= <span style="color: #0000ff">this</span><span style="color: #000000">.queueData.files[n];
+                </span><span style="color: #0000ff">if</span> (queuedFile.uploaded != <span style="color: #0000ff">true</span> &amp;&amp; queuedFile.name ==<span style="color: #000000"> file.name) {
+                    </span><span style="color: #0000ff">var</span> replaceQueueItem = confirm('The file named "' + file.name + '" is already in the queue.\nDo you want to replace the existing item in the queue?'<span style="color: #000000">);
+                    </span><span style="color: #0000ff">if</span> (!<span style="color: #000000">replaceQueueItem) {
+                        </span><span style="color: #0000ff">this</span><span style="color: #000000">.cancelUpload(file.id);
+                        </span><span style="color: #0000ff">this</span>.queueData.filesCancelled++<span style="color: #000000">;
+                        </span><span style="color: #0000ff">return</span> <span style="color: #0000ff">false</span><span style="color: #000000">;
+                    } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                        $(</span>'#' +<span style="color: #000000"> queuedFile.id).remove();
+                        </span><span style="color: #0000ff">this</span><span style="color: #000000">.cancelUpload(queuedFile.id);
+                        </span><span style="color: #0000ff">this</span>.queueData.filesReplaced++<span style="color: #000000">;
+                    }
+                }
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Get the size of the file 获取文件的大小</span>
+            <span style="color: #0000ff">var</span> fileSize = Math.round(file.size / 1024<span style="color: #000000">);
+            </span><span style="color: #0000ff">var</span> suffix   = 'KB'<span style="color: #000000">;
+            </span><span style="color: #0000ff">if</span> (fileSize &gt; 1000<span style="color: #000000">) {
+                fileSize </span>= Math.round(fileSize / 1000<span style="color: #000000">);
+                suffix   </span>= 'MB'<span style="color: #000000">;
+            }
+            </span><span style="color: #0000ff">var</span> fileSizeParts = fileSize.toString().split('.'<span style="color: #000000">);
+            fileSize </span>= fileSizeParts[0<span style="color: #000000">];
+            </span><span style="color: #0000ff">if</span> (fileSizeParts.length &gt; 1<span style="color: #000000">) {
+                fileSize </span>+= '.' + fileSizeParts[1].substr(0,2<span style="color: #000000">);
+            }
+            fileSize </span>+=<span style="color: #000000"> suffix;
+            
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Truncate the filename if it's too long 截断文件名，如果它太长</span>
+            <span style="color: #0000ff">var</span> fileName =<span style="color: #000000"> file.name;
+            </span><span style="color: #0000ff">if</span> (fileName.length &gt; 25<span style="color: #000000">) {
+                fileName </span>= fileName.substr(0,25) + '...'<span style="color: #000000">;
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Create the file data object 创建文件数据对象</span>
+            itemData =<span style="color: #000000"> {
+                </span>'fileID'<span style="color: #000000">     : file.id,
+                </span>'instanceID'<span style="color: #000000"> : settings.id,
+                </span>'fileName'<span style="color: #000000">   : fileName,
+                </span>'fileSize'<span style="color: #000000">   : fileSize
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Create the file item template 创建文件项模板</span>
+            <span style="color: #0000ff">if</span> (settings.itemTemplate == <span style="color: #0000ff">false</span><span style="color: #000000">) {
+                settings.itemTemplate </span>= '<span style="color: #000000">&lt;div id="${fileID}" class="uploadify-queue-item"&gt;\
+                    &lt;div class="cancel"&gt;\
+                        &lt;a href="javascript:$(\'#${instanceID}\').uploadify(\'cancel\', \'${fileID}\')"&gt;X&lt;/a&gt;\
+                    &lt;/div&gt;\
+                    &lt;span class="fileName"&gt;${fileName} (${fileSize})&lt;/span&gt;&lt;span class="data"&gt;&lt;/span&gt;\
+                    &lt;div class="uploadify-progress"&gt;\
+                        &lt;div class="uploadify-progress-bar"&gt;&lt;!--Progress Bar--&gt;&lt;/div&gt;\
+                    &lt;/div&gt;\
+                &lt;/div&gt;</span>'<span style="color: #000000">;
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Run the default event handler 运行默认事件处理程序</span>
+            <span style="color: #0000ff">if</span> ($.inArray('onSelect', settings.overrideEvents) &lt; 0<span style="color: #000000">) {
+                
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Replace the item data in the template 替换模板中的项目数据</span>
+                itemHTML =<span style="color: #000000"> settings.itemTemplate;
+                </span><span style="color: #0000ff">for</span> (<span style="color: #0000ff">var</span> d <span style="color: #0000ff">in</span><span style="color: #000000"> itemData) {
+                    itemHTML </span>= itemHTML.replace(<span style="color: #0000ff">new</span> RegExp('\\$\\{' + d + '\\}', 'g'<span style="color: #000000">), itemData[d]);
+                }
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Add the file item to the queue 将文件项添加到队列中</span>
+                $('#' +<span style="color: #000000"> settings.queueID).append(itemHTML);
+            }
+
+            </span><span style="color: #0000ff">this</span>.queueData.queueSize +=<span style="color: #000000"> file.size;
+            </span><span style="color: #0000ff">this</span>.queueData.files[file.id] =<span style="color: #000000"> file;
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler 调用自定义事件处理程序</span>
+            <span style="color: #0000ff">if</span> (settings.onSelect) settings.onSelect.apply(<span style="color: #0000ff">this</span><span style="color: #000000">, arguments);
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Triggered when a file is not added to the queue 当文件未添加到队列时引发</span>
+        onSelectError : <span style="color: #0000ff">function</span><span style="color: #000000">(file, errorCode, errorMsg) {
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Load the swfupload settings 负荷swfupload设置</span>
+            <span style="color: #0000ff">var</span> settings = <span style="color: #0000ff">this</span><span style="color: #000000">.settings;
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Run the default event handler 运行默认事件处理程序</span>
+            <span style="color: #0000ff">if</span> ($.inArray('onSelectError', settings.overrideEvents) &lt; 0<span style="color: #000000">) {
+                </span><span style="color: #0000ff">switch</span><span style="color: #000000">(errorCode) {
+                    </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+                        </span><span style="color: #0000ff">if</span> (settings.queueSizeLimit &gt;<span style="color: #000000"> errorMsg) {
+                            </span><span style="color: #0000ff">this</span>.queueData.errorMsg += '\nThe number of files selected exceeds the remaining upload limit (' + errorMsg + ').'<span style="color: #000000">;
+                        } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                            </span><span style="color: #0000ff">this</span>.queueData.errorMsg += '\nThe number of files selected exceeds the queue size limit (' + settings.queueSizeLimit + ').'<span style="color: #000000">;
+                        }
+                        </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                    </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                        </span><span style="color: #0000ff">this</span>.queueData.errorMsg += '\nThe file "' + file.name + '" exceeds the size limit (' + settings.fileSizeLimit + ').'<span style="color: #000000">;
+                        </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                    </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                        </span><span style="color: #0000ff">this</span>.queueData.errorMsg += '\nThe file "' + file.name + '" is empty.'<span style="color: #000000">;
+                        </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                    </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                        </span><span style="color: #0000ff">this</span>.queueData.errorMsg += '\nThe file "' + file.name + '" is not an accepted file type (' + settings.fileTypeDesc + ').'<span style="color: #000000">;
+                        </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                }
+            }
+            </span><span style="color: #0000ff">if</span> (errorCode !=<span style="color: #000000"> SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED) {
+                </span><span style="color: #0000ff">delete</span> <span style="color: #0000ff">this</span><span style="color: #000000">.queueData.files[file.id];
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler 调用自定义事件处理程序</span>
+            <span style="color: #0000ff">if</span> (settings.onSelectError) settings.onSelectError.apply(<span style="color: #0000ff">this</span><span style="color: #000000">, arguments);
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Triggered when all the files in the queue have been processed 当队列中的所有文件已被处理时触发</span>
+        onQueueComplete : <span style="color: #0000ff">function</span><span style="color: #000000">() {
+            </span><span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.settings.onQueueComplete) <span style="color: #0000ff">this</span>.settings.onQueueComplete.call(<span style="color: #0000ff">this</span>, <span style="color: #0000ff">this</span><span style="color: #000000">.settings.queueData);
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Triggered when a file upload successfully completes 当文件上载成功完成时引发</span>
+        onUploadComplete : <span style="color: #0000ff">function</span><span style="color: #000000">(file) {
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Load the swfupload settings</span>
+            <span style="color: #0000ff">var</span> settings     = <span style="color: #0000ff">this</span><span style="color: #000000">.settings,
+                swfuploadify </span>= <span style="color: #0000ff">this</span><span style="color: #000000">;
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Check if all the files have completed uploading</span>
+            <span style="color: #0000ff">var</span> stats = <span style="color: #0000ff">this</span><span style="color: #000000">.getStats();
+            </span><span style="color: #0000ff">this</span>.queueData.queueLength =<span style="color: #000000"> stats.files_queued;
+            </span><span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.queueData.uploadQueue[0] == '*'<span style="color: #000000">) {
+                </span><span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.queueData.queueLength &gt; 0<span style="color: #000000">) {
+                    </span><span style="color: #0000ff">this</span><span style="color: #000000">.startUpload();
+                } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                    </span><span style="color: #0000ff">this</span>.queueData.uploadQueue =<span style="color: #000000"> [];
+
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler for queue complete</span>
+                    <span style="color: #0000ff">if</span> (settings.onQueueComplete) settings.onQueueComplete.call(<span style="color: #0000ff">this</span>, <span style="color: #0000ff">this</span><span style="color: #000000">.queueData);
+                }
+            } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                </span><span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.queueData.uploadQueue.length &gt; 0<span style="color: #000000">) {
+                    </span><span style="color: #0000ff">this</span>.startUpload(<span style="color: #0000ff">this</span><span style="color: #000000">.queueData.uploadQueue.shift());
+                } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                    </span><span style="color: #0000ff">this</span>.queueData.uploadQueue =<span style="color: #000000"> [];
+
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler for queue complete</span>
+                    <span style="color: #0000ff">if</span> (settings.onQueueComplete) settings.onQueueComplete.call(<span style="color: #0000ff">this</span>, <span style="color: #0000ff">this</span><span style="color: #000000">.queueData);
+                }
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the default event handler</span>
+            <span style="color: #0000ff">if</span> ($.inArray('onUploadComplete', settings.overrideEvents) &lt; 0<span style="color: #000000">) {
+                </span><span style="color: #0000ff">if</span><span style="color: #000000"> (settings.removeCompleted) {
+                    </span><span style="color: #0000ff">switch</span><span style="color: #000000"> (file.filestatus) {
+                        </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.FILE_STATUS.COMPLETE:
+                            setTimeout(</span><span style="color: #0000ff">function</span><span style="color: #000000">() { 
+                                </span><span style="color: #0000ff">if</span> ($('#' +<span style="color: #000000"> file.id)) {
+                                    swfuploadify.queueData.queueSize   </span>-=<span style="color: #000000"> file.size;
+                                    swfuploadify.queueData.queueLength </span>-= 1<span style="color: #000000">;
+                                    </span><span style="color: #0000ff">delete</span><span style="color: #000000"> swfuploadify.queueData.files[file.id]
+                                    $(</span>'#' + file.id).fadeOut(500, <span style="color: #0000ff">function</span><span style="color: #000000">() {
+                                        $(</span><span style="color: #0000ff">this</span><span style="color: #000000">).remove();
+                                    });
+                                }
+                            }, settings.removeTimeout </span>* 1000<span style="color: #000000">);
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                        </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.FILE_STATUS.ERROR:
+                            </span><span style="color: #0000ff">if</span> (!<span style="color: #000000">settings.requeueErrors) {
+                                setTimeout(</span><span style="color: #0000ff">function</span><span style="color: #000000">() {
+                                    </span><span style="color: #0000ff">if</span> ($('#' +<span style="color: #000000"> file.id)) {
+                                        swfuploadify.queueData.queueSize   </span>-=<span style="color: #000000"> file.size;
+                                        swfuploadify.queueData.queueLength </span>-= 1<span style="color: #000000">;
+                                        </span><span style="color: #0000ff">delete</span><span style="color: #000000"> swfuploadify.queueData.files[file.id];
+                                        $(</span>'#' + file.id).fadeOut(500, <span style="color: #0000ff">function</span><span style="color: #000000">() {
+                                            $(</span><span style="color: #0000ff">this</span><span style="color: #000000">).remove();
+                                        });
+                                    }
+                                }, settings.removeTimeout </span>* 1000<span style="color: #000000">);
+                            }
+                            </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                    }
+                } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                    file.uploaded </span>= <span style="color: #0000ff">true</span><span style="color: #000000">;
+                }
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler</span>
+            <span style="color: #0000ff">if</span> (settings.onUploadComplete) settings.onUploadComplete.call(<span style="color: #0000ff">this</span><span style="color: #000000">, file);
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Triggered when a file upload returns an error 当文件上载返回错误时引发</span>
+        onUploadError : <span style="color: #0000ff">function</span><span style="color: #000000">(file, errorCode, errorMsg) {
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Load the swfupload settings</span>
+            <span style="color: #0000ff">var</span> settings = <span style="color: #0000ff">this</span><span style="color: #000000">.settings;
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Set the error string</span>
+            <span style="color: #0000ff">var</span> errorString = 'Error'<span style="color: #000000">;
+            </span><span style="color: #0000ff">switch</span><span style="color: #000000">(errorCode) {
+                </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.UPLOAD_ERROR.HTTP_ERROR:
+                    errorString </span>= 'HTTP Error (' + errorMsg + ')'<span style="color: #000000">;
+                    </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.UPLOAD_ERROR.MISSING_UPLOAD_URL:
+                    errorString </span>= 'Missing Upload URL'<span style="color: #000000">;
+                    </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.UPLOAD_ERROR.IO_ERROR:
+                    errorString </span>= 'IO Error'<span style="color: #000000">;
+                    </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.UPLOAD_ERROR.SECURITY_ERROR:
+                    errorString </span>= 'Security Error'<span style="color: #000000">;
+                    </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                </span><span style="color: #0000ff">case</span> SWFUpload.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:<span style="color: #008000">//</span><span style="color: #008000">上传的文件数量超过了允许的最大值</span>
+                    <span style="color: #008000">//</span><span style="color: #008000">alert('The upload limit has been reached (' + errorMsg + ').');</span>
+                    errorString = 'Exceeds Upload Limit'<span style="color: #000000">;
+                    </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.UPLOAD_ERROR.UPLOAD_FAILED:
+                    errorString </span>= 'Failed'<span style="color: #000000">;
+                    </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.UPLOAD_ERROR.SPECIFIED_FILE_ID_NOT_FOUND:
+                    </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.UPLOAD_ERROR.FILE_VALIDATION_FAILED:
+                    errorString </span>= 'Validation Error'<span style="color: #000000">;
+                    </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.UPLOAD_ERROR.FILE_CANCELLED:
+                    errorString </span>= 'Cancelled'<span style="color: #000000">;
+                    </span><span style="color: #0000ff">this</span>.queueData.queueSize   -=<span style="color: #000000"> file.size;
+                    </span><span style="color: #0000ff">this</span>.queueData.queueLength -= 1<span style="color: #000000">;
+                    </span><span style="color: #0000ff">if</span> (file.status == SWFUpload.FILE_STATUS.IN_PROGRESS || $.inArray(file.id, <span style="color: #0000ff">this</span>.queueData.uploadQueue) &gt;= 0<span style="color: #000000">) {
+                        </span><span style="color: #0000ff">this</span>.queueData.uploadSize -=<span style="color: #000000"> file.size;
+                    }
+                    </span><span style="color: #008000">//</span><span style="color: #008000"> Trigger the onCancel event</span>
+                    <span style="color: #0000ff">if</span> (settings.onCancel) settings.onCancel.call(<span style="color: #0000ff">this</span><span style="color: #000000">, file);
+                    </span><span style="color: #0000ff">delete</span> <span style="color: #0000ff">this</span><span style="color: #000000">.queueData.files[file.id];
+                    </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+                </span><span style="color: #0000ff">case</span><span style="color: #000000"> SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED:
+                    errorString </span>= 'Stopped'<span style="color: #000000">;
+                    </span><span style="color: #0000ff">break</span><span style="color: #000000">;
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the default event handler</span>
+            <span style="color: #0000ff">if</span> ($.inArray('onUploadError', settings.overrideEvents) &lt; 0<span style="color: #000000">) {
+                </span><span style="color: #008000">//</span><span style="color: #008000">上传被取消了或上传被终止了</span>
+                <span style="color: #0000ff">if</span> (errorCode != SWFUpload.UPLOAD_ERROR.FILE_CANCELLED &amp;&amp; errorCode !=<span style="color: #000000"> SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED) {
+                    $(</span>'#' + file.id).addClass('uploadify-error'<span style="color: #000000">);
+                }
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Reset the progress bar 重置进度条</span>
+                $('#' + file.id).find('.uploadify-progress-bar').css('width','1px'<span style="color: #000000">);
+
+                </span><span style="color: #008000">//</span><span style="color: #008000"> Add the error message to the queue item 将错误消息添加到队列项</span>
+                <span style="color: #0000ff">if</span> (errorCode != SWFUpload.UPLOAD_ERROR.SPECIFIED_FILE_ID_NOT_FOUND &amp;&amp; file.status !=<span style="color: #000000"> SWFUpload.FILE_STATUS.COMPLETE) {
+                    $(</span>'#' + file.id).find('.data').html(' - ' +<span style="color: #000000"> errorString);
+                }
+            }
+
+            </span><span style="color: #0000ff">var</span> stats = <span style="color: #0000ff">this</span><span style="color: #000000">.getStats();
+            </span><span style="color: #0000ff">this</span>.queueData.uploadsErrored =<span style="color: #000000"> stats.upload_errors;
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler</span>
+            <span style="color: #0000ff">if</span> (settings.onUploadError) settings.onUploadError.call(<span style="color: #0000ff">this</span><span style="color: #000000">, file, errorCode, errorMsg, errorString);
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Triggered periodically during a file upload</span>
+        onUploadProgress : <span style="color: #0000ff">function</span><span style="color: #000000">(file, fileBytesLoaded, fileTotalBytes) {
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Load the swfupload settings</span>
+            <span style="color: #0000ff">var</span> settings = <span style="color: #0000ff">this</span><span style="color: #000000">.settings;
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Setup all the variables</span>
+            <span style="color: #0000ff">var</span> timer            = <span style="color: #0000ff">new</span><span style="color: #000000"> Date();
+            </span><span style="color: #0000ff">var</span> newTime          =<span style="color: #000000"> timer.getTime();
+            </span><span style="color: #0000ff">var</span> lapsedTime       = newTime - <span style="color: #0000ff">this</span><span style="color: #000000">.timer;
+            </span><span style="color: #0000ff">if</span> (lapsedTime &gt; 500<span style="color: #000000">) {
+                </span><span style="color: #0000ff">this</span>.timer =<span style="color: #000000"> newTime;
+            }
+            </span><span style="color: #0000ff">var</span> lapsedBytes      = fileBytesLoaded - <span style="color: #0000ff">this</span><span style="color: #000000">.bytesLoaded;
+            </span><span style="color: #0000ff">this</span>.bytesLoaded     =<span style="color: #000000"> fileBytesLoaded;
+            </span><span style="color: #0000ff">var</span> queueBytesLoaded = <span style="color: #0000ff">this</span>.queueData.queueBytesUploaded +<span style="color: #000000"> fileBytesLoaded;
+            </span><span style="color: #0000ff">var</span> percentage       = Math.round(fileBytesLoaded / fileTotalBytes * 100<span style="color: #000000">);
+            
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Calculate the average speed</span>
+            <span style="color: #0000ff">var</span> suffix = 'KB/s'<span style="color: #000000">;
+            </span><span style="color: #0000ff">var</span> mbs = 0<span style="color: #000000">;
+            </span><span style="color: #0000ff">var</span> kbs = (lapsedBytes / 1024) / (lapsedTime / 1000<span style="color: #000000">);
+                kbs </span>= Math.floor(kbs * 10) / 10<span style="color: #000000">;
+            </span><span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.queueData.averageSpeed &gt; 0<span style="color: #000000">) {
+                </span><span style="color: #0000ff">this</span>.queueData.averageSpeed = Math.floor((<span style="color: #0000ff">this</span>.queueData.averageSpeed + kbs) / 2<span style="color: #000000">);
+            } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                </span><span style="color: #0000ff">this</span>.queueData.averageSpeed =<span style="color: #000000"> Math.floor(kbs);
+            }
+            </span><span style="color: #0000ff">if</span> (kbs &gt; 1000<span style="color: #000000">) {
+                mbs </span>= (kbs * .001<span style="color: #000000">);
+                </span><span style="color: #0000ff">this</span>.queueData.averageSpeed =<span style="color: #000000"> Math.floor(mbs);
+                suffix </span>= 'MB/s'<span style="color: #000000">;
+            }
+            
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the default event handler</span>
+            <span style="color: #0000ff">if</span> ($.inArray('onUploadProgress', settings.overrideEvents) &lt; 0<span style="color: #000000">) {
+                </span><span style="color: #0000ff">if</span> (settings.progressData == 'percentage'<span style="color: #000000">) {
+                    $(</span>'#' + file.id).find('.data').html(' - ' + percentage + '%'<span style="color: #000000">);
+                } </span><span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (settings.progressData == 'speed' &amp;&amp; lapsedTime &gt; 500<span style="color: #000000">) {
+                    $(</span>'#' + file.id).find('.data').html(' - ' + <span style="color: #0000ff">this</span>.queueData.averageSpeed +<span style="color: #000000"> suffix);
+                }
+                $(</span>'#' + file.id).find('.uploadify-progress-bar').css('width', percentage + '%'<span style="color: #000000">);
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler</span>
+            <span style="color: #0000ff">if</span> (settings.onUploadProgress) settings.onUploadProgress.call(<span style="color: #0000ff">this</span>, file, fileBytesLoaded, fileTotalBytes, queueBytesLoaded, <span style="color: #0000ff">this</span><span style="color: #000000">.queueData.uploadSize);
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Triggered right before a file is uploaded 在文件上传前触发</span>
+        onUploadStart : <span style="color: #0000ff">function</span><span style="color: #000000">(file) {
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Load the swfupload settings</span>
+            <span style="color: #0000ff">var</span> settings = <span style="color: #0000ff">this</span><span style="color: #000000">.settings;
+            </span><span style="color: #0000ff">var</span> timer        = <span style="color: #0000ff">new</span><span style="color: #000000"> Date();
+            </span><span style="color: #0000ff">this</span>.timer       =<span style="color: #000000"> timer.getTime();
+            </span><span style="color: #0000ff">this</span>.bytesLoaded = 0<span style="color: #000000">;
+            </span><span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.queueData.uploadQueue.length == 0<span style="color: #000000">) {
+                </span><span style="color: #0000ff">this</span>.queueData.uploadSize =<span style="color: #000000"> file.size;
+            }
+            </span><span style="color: #0000ff">if</span><span style="color: #000000"> (settings.checkExisting) {
+                $.ajax({
+                    type    : </span>'POST'<span style="color: #000000">,
+                    async   : </span><span style="color: #0000ff">false</span><span style="color: #000000">,
+                    url     : settings.checkExisting,
+                    data    : {filename: file.name},
+                    success : </span><span style="color: #0000ff">function</span><span style="color: #000000">(data) {
+                        </span><span style="color: #0000ff">if</span> (data == 1<span style="color: #000000">) {
+                            </span><span style="color: #0000ff">var</span> overwrite = confirm('A file with the name "' + file.name + '" already exists on the server.\nWould you like to replace the existing file?'<span style="color: #000000">);
+                            </span><span style="color: #0000ff">if</span> (!<span style="color: #000000">overwrite) {
+                                </span><span style="color: #0000ff">this</span><span style="color: #000000">.cancelUpload(file.id);
+                                $(</span>'#' +<span style="color: #000000"> file.id).remove();
+                                </span><span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.queueData.uploadQueue.length &gt; 0 &amp;&amp; <span style="color: #0000ff">this</span>.queueData.queueLength &gt; 0<span style="color: #000000">) {
+                                    </span><span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.queueData.uploadQueue[0] == '*'<span style="color: #000000">) {
+                                        </span><span style="color: #0000ff">this</span><span style="color: #000000">.startUpload();
+                                    } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+                                        </span><span style="color: #0000ff">this</span>.startUpload(<span style="color: #0000ff">this</span><span style="color: #000000">.queueData.uploadQueue.shift());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler 调用自定义事件处理程序</span>
+            <span style="color: #0000ff">if</span> (settings.onUploadStart) settings.onUploadStart.call(<span style="color: #0000ff">this</span><span style="color: #000000">, file); 
+        },
+
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Triggered when a file upload returns a successful code</span>
+        onUploadSuccess : <span style="color: #0000ff">function</span><span style="color: #000000">(file, data, response) {
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Load the swfupload settings</span>
+            <span style="color: #0000ff">var</span> settings = <span style="color: #0000ff">this</span><span style="color: #000000">.settings;
+            </span><span style="color: #0000ff">var</span> stats    = <span style="color: #0000ff">this</span><span style="color: #000000">.getStats();
+            </span><span style="color: #0000ff">this</span>.queueData.uploadsSuccessful =<span style="color: #000000"> stats.successful_uploads;
+            </span><span style="color: #0000ff">this</span>.queueData.queueBytesUploaded +=<span style="color: #000000"> file.size;
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the default event handler</span>
+            <span style="color: #0000ff">if</span> ($.inArray('onUploadSuccess', settings.overrideEvents) &lt; 0<span style="color: #000000">) {
+                $(</span>'#' + file.id).find('.data').html(' - Complete'<span style="color: #000000">);
+            }
+
+            </span><span style="color: #008000">//</span><span style="color: #008000"> Call the user-defined event handler 调用自定义事件处理程序</span>
+            <span style="color: #0000ff">if</span> (settings.onUploadSuccess) settings.onUploadSuccess.call(<span style="color: #0000ff">this</span><span style="color: #000000">, file, data, response); 
+        }
+
+    }
+
+    $.fn.uploadify </span>= <span style="color: #0000ff">function</span><span style="color: #000000">(method) {
+
+        </span><span style="color: #0000ff">if</span><span style="color: #000000"> (methods[method]) {
+            </span><span style="color: #0000ff">return</span> methods[method].apply(<span style="color: #0000ff">this</span>, Array.prototype.slice.call(arguments, 1<span style="color: #000000">));
+        } </span><span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (<span style="color: #0000ff">typeof</span> method === 'object' || !<span style="color: #000000">method) {
+            </span><span style="color: #0000ff">return</span> methods.init.apply(<span style="color: #0000ff">this</span><span style="color: #000000">, arguments);
+        } </span><span style="color: #0000ff">else</span><span style="color: #000000"> {
+            $.error(</span>'The method ' + method + ' does not exist in $.uploadify'<span style="color: #000000">);
+        }
+
+    }
+
+})($);</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p></div><div id="MySignature" style="display: block;"><div style="font-size: 18px; color: #993300; margin-bottom: 15px;">觉得有收获，记得推荐一下哦！</div>
+<div style="font-size: 18px; color: #000000; font-weight: bold; margin-bottom: 15px;">作者：楓羽靈~</div>
+<div style="font-size: 18px; color: #000000; font-weight: bold; margin-bottom: 15px;">出处：http://520fyl.cnblogs.com/</div>
+<div style="font-size: 18px; color: #808000; margin-bottom: 15px;">如果您觉得本文对您的学习有所帮助，可通过点击页面下方【好文要顶】支持博主。</div></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="https://www.cnblogs.com/520fyl/tag/%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">多文件上传</a>, <a href="https://www.cnblogs.com/520fyl/tag/uploadify/">uploadify</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7090407,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow('81995dd9-98e9-e511-9fc1-ac853d9f53cc');" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/520fyl/" target="_blank"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/20160425092033.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/520fyl/">楓羽靈~</a><br>
+            <a href="http://home.cnblogs.com/u/520fyl/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/520fyl/followers">粉丝 - 5</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow('81995dd9-98e9-e511-9fc1-ac853d9f53cc');return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7090407,'Digg')">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+    <div class="buryit" onclick="votePost(7090407,'Bury')">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/520fyl/p/7090007.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/520fyl/p/7090007.html" title="发布于2017-06-28 15:38">单双引号与双引号之间的变量解析情况</a><br><a href="https://www.cnblogs.com/520fyl/p/7119621.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/520fyl/p/7119621.html" title="发布于2017-07-05 09:41">安装ThinkPHP5.0</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-06-28 16:34</span> <a href="https://www.cnblogs.com/520fyl/">楓羽靈~</a> 阅读(<span id="post_view_count">3597</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=7090407" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(7090407);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=279841,cb_entryId=7090407,cb_blogApp=currentBlogApp,cb_blogUserGuid='81995dd9-98e9-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2017/6/28 16:34:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login('commentform');">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="http://clickc.admaster.com.cn/c/a116493,b2949399,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-华为云')">【活动】申请成为华为云云享专家 尊享9大权益</a><br><a href="https://www.grapecity.com.cn/developer/spreadjs?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-SpreadJS')">【工具】SpreadJS纯前端表格控件，可嵌入应用开发的在线Excel</a><br><a href="https://cloud.tencent.com/act/group/amd/index?fromSource=gwzcw.1608278.1608278.1608278" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-腾讯云')">【腾讯云】拼团福利，AMD云服务器8元/月</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/act/double11?fromSource=gwzcw.1608279.1608279.1608279" target="_blank"><img src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/24442-20181116205423366-85420768.jpg" alt="qcloud" onclick="ga('send', 'event', 'Link', 'click', 'C1');" height="250" width="300"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/luolei05/archive/2012/02/13/2349246.html" target="_blank" onclick="clickRecomItmem(2349246,'1yX020Z2fhm8FD3VQfQKubPBLTnv+J3CjK1ZCdsBJ8rKNBzLTd63dSSXplY84ilQ/BRjxblex1/n+cSEbhSgJvfFxRrEPOjCKfWswVO88GHs3RyI9djq8XAHtxo/BagKlZMGgE9kb9an+5g=')">jquery uploadify上传插件若干问题总结</a><br>·  <a href="https://www.cnblogs.com/oec2003/archive/2010/01/06/1640027.html" target="_blank" onclick="clickRecomItmem(1640027,'76f+B+SUmwjTmK3wmtEd9V/V07gZIN9kmUCkcSYtCmZw2A6k/yBTBWstZZME6PDIucykmeR/QTMdxeFMCPRsKWhMxJ9MShNJdGhDDFicq65IW1R2i7a/rZeMndK9IRtNB0apzxJhR1Wbi0o=')">JQuery上传插件Uploadify使用详解</a><br>·  <a href="https://www.cnblogs.com/xuhongfei/p/3174879.html" target="_blank" onclick="clickRecomItmem(3174879,'gQkWj3JlaaliPQy1kkJCFcgH/Ls5qyufyFV2Ju1maDUG9962OVqFDTSqm8oJvYiQuLaXVsYq75iEPFd7bWGqnRhxEv1OTlIkPD5kWOnwQYpxpjZVAfhH9xVlNwQxWY+kZ4x75aVeh40LW+c=')">JQuery上传插件Uploadify使用详解 asp.net版</a><br>·  <a href="https://www.cnblogs.com/zhaoxg/articles/2346903.html" target="_blank" onclick="clickRecomItmem(2346903,'nqYU9F5RuA3uZJ2rORn2vcyuFs8xqa/xWouoldWoXbnyI+MeJbAsKG+tOBGmwfEkakPwEqv2Mvr99WtVL2d/ic6dos0TIY9m3k6gXcjH34w8Z2ERH5qvHgFqF0Zlo0QQDvtDnSSh035KxxU=')">文件上传JQueryUploadify</a><br>·  <a href="https://www.cnblogs.com/martinxj/articles/195711.html" target="_blank" onclick="clickRecomItmem(195711,'HPgs9WbK8nBLjM1xcJ6V9rZcGnz/NbkwxonN1KR53rdQy9VupGGja8xFIrCzxinJ1PdUAT+jdJLl0x96gh+TVnLkE7wRS37t2gYEaQJ/gKlP0A6N23wLFC5ZXmlB0ocYekNYnFNvSXvRGz7Q9g==')">ShowModalDialog的解决办法</a><br></div></div>
+<script async="async" src="uploadify%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20-%20%E6%A5%93%E7%BE%BD%E9%9D%88%7E%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/gpt.js"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;">
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    </div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/612898/" target="_blank">亚马逊部分用户信息被泄露：包括姓名和邮件地址</a><br> ·  <a href="https://news.cnblogs.com/n/612899/" target="_blank">拼多多市值距离京东 只差一个搜狗</a><br> ·  <a href="https://news.cnblogs.com/n/612895/" target="_blank">比起那样的种族歧视，我更怕的是这样的大型刻奇</a><br> ·  <a href="https://news.cnblogs.com/n/612894/" target="_blank">SpaceX载人飞船明年1月测试发射：有望6月份实现载人</a><br> ·  <a href="https://news.cnblogs.com/n/612893/" target="_blank">苹果有些尴尬 谷歌更新后能让Siri来启动Google语音</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/520fyl/">楓羽靈~</a><br>园龄：<a href="https://home.cnblogs.com/u/520fyl/" title="入园时间：2016-03-14">2年8个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/520fyl/followers/">5</a><br>关注：<a href="https://home.cnblogs.com/u/520fyl/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow('81995dd9-98e9-e511-9fc1-ac853d9f53cc')">+加关注</a></div><script>getFollowStatus('81995dd9-98e9-e511-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" title="Calendar" cellspacing="0" cellpadding="0">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2018/10/01');return false;">&lt;</a></td><td align="center">2018年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2018/12/01');return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" abbr="日" scope="col" align="center">日</th><th class="CalDayHeader" abbr="一" scope="col" align="center">一</th><th class="CalDayHeader" abbr="二" scope="col" align="center">二</th><th class="CalDayHeader" abbr="三" scope="col" align="center">三</th><th class="CalDayHeader" abbr="四" scope="col" align="center">四</th><th class="CalDayHeader" abbr="五" scope="col" align="center">五</th><th class="CalDayHeader" abbr="六" scope="col" align="center">六</th></tr><tr><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalTodayDay" align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+
+<div id="widget_my_google" class="div_my_zzk"><input name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk" type="text">&nbsp;<input onclick="google_go()" value="谷歌搜索" class="btn_my_zzk" type="button"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/520fyl/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/520fyl/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/520fyl/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/520fyl/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/520fyl/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/520fyl/category/817942.html">CI框架学习(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/520fyl/category/816197.html">JS/jQuery(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/520fyl/category/1046619.html">Laravel(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/520fyl/category/817948.html">mysql数据库(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/520fyl/category/815683.html">PHP(21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/520fyl/category/826952.html">Python(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/520fyl/category/817951.html">TCPDF(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/520fyl/category/1029158.html">ThinkPHP5.0学习笔记(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/520fyl/category/820541.html">编辑工具(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/520fyl/category/817941.html">第三方登录(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="https://www.cnblogs.com/520fyl/category/834443.html">电脑硬件知识(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="https://www.cnblogs.com/520fyl/category/820532.html">缓存技术(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/520fyl/archive/2018/06.html">2018年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="https://www.cnblogs.com/520fyl/archive/2018/05.html">2018年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="https://www.cnblogs.com/520fyl/archive/2017/12.html">2017年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="https://www.cnblogs.com/520fyl/archive/2017/11.html">2017年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="https://www.cnblogs.com/520fyl/archive/2017/08.html">2017年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="https://www.cnblogs.com/520fyl/archive/2017/07.html">2017年7月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="https://www.cnblogs.com/520fyl/archive/2017/06.html">2017年6月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="https://www.cnblogs.com/520fyl/archive/2016/08.html">2016年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="https://www.cnblogs.com/520fyl/archive/2016/05.html">2016年5月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="https://www.cnblogs.com/520fyl/archive/2016/04.html">2016年4月 (27)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlearchive" class="catListArticleArchive sidebar-block">
+<h3 class="catListTitle">文章档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="https://www.cnblogs.com/520fyl/archives/2018/04.html" rel="nofollow">2018年4月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	44439
+	</li>
+	<li class="liRank">
+		排名 -	10910
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/520fyl/p/5455973.html#3956334">1. Re:php 数据处理--合并，拆分，追加，去重</a></li>
+        <li class="recent_comment_body">确实是写错了值，谢谢指出！</li>
+        <li class="recent_comment_author">--楓羽靈~</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/520fyl/p/5455973.html#3876020">2. Re:php 数据处理--合并，拆分，追加，去重</a></li>
+        <li class="recent_comment_body">array_diff 这个打印结果错了吧！</li>
+        <li class="recent_comment_author">--何苦-&gt;</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/520fyl/p/5405388.html#3714853">3. Re:微博第三方登录</a></li>
+        <li class="recent_comment_body">这个微博授权是2015年测试的，这个是授权登录的，是我自己做过的项目，可能有些事为了符合当时的框架做了稍微的修改</li>
+        <li class="recent_comment_author">--楓羽靈~</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/520fyl/p/5396374.html#3714848">4. Re:TCPDF说明文档</a></li>
+        <li class="recent_comment_body">中文乱码可能是你的文本格式没有配置好哦，有时间可以都交流一下，呵呵呵</li>
+        <li class="recent_comment_author">--楓羽靈~</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/520fyl/p/5482487.html#3714839">5. Re:获取优酷视频缩略图logo</a></li>
+        <li class="recent_comment_body">这个是对接优酷开发平台，获取到的地址</li>
+        <li class="recent_comment_author">--楓羽靈~</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/520fyl/p/5396374.html">1. TCPDF说明文档(7967)</a></li><li><a href="https://www.cnblogs.com/520fyl/p/7122393.html">2. ThinkPHP5.0数据库基本操作(3927)</a></li><li><a href="https://www.cnblogs.com/520fyl/p/5420690.html">3. PHP Excel表格导出图片方法(3634)</a></li><li><a href="https://www.cnblogs.com/520fyl/p/7127610.html">4. ThinkPHP5.0 模型查询操作(3599)</a></li><li><a href="https://www.cnblogs.com/520fyl/p/7090407.html">5. uploadify多文件上传(3597)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/520fyl/p/5405388.html">1. 微博第三方登录(2)</a></li><li><a href="https://www.cnblogs.com/520fyl/p/5396374.html">2. TCPDF说明文档(2)</a></li><li><a href="https://www.cnblogs.com/520fyl/p/5505852.html">3. mongo扩展安装(2)</a></li><li><a href="https://www.cnblogs.com/520fyl/p/5482487.html">4. 获取优酷视频缩略图logo(2)</a></li><li><a href="https://www.cnblogs.com/520fyl/p/5455973.html">5. php 数据处理--合并，拆分，追加，去重(2)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/520fyl/p/7090407.html">1. uploadify多文件上传(1)</a></li><li><a href="https://www.cnblogs.com/520fyl/p/5482487.html">2. 获取优酷视频缩略图logo(1)</a></li><li><a href="https://www.cnblogs.com/520fyl/p/7127610.html">3. ThinkPHP5.0 模型查询操作(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 楓羽靈~
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

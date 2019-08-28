@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+<title>JQuery上传插件Uploadify API详解 - Ruthless - 博客园</title>
+<meta property="og:description" content="一、相关key值介绍uploader：uploadify.swf文件的相对路径，该swf文件是一个带有文字BROWSE的按钮，点击后淡出打开文件对话框，默认值：uploadify.swf。 scrip">
+<link type="text/css" rel="stylesheet" href="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-sea.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-sea-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/linjiqin/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/linjiqin/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/linjiqin/wlwmanifest.xml">
+<script async="" src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/analytics.js"></script><script src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery-2.js"></script>
+<script type="text/javascript">var currentBlogApp = 'linjiqin', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<div align="center"><a href="http://www.amazingcounter.com/"><img src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/counter.png" alt="track website visits" border="0"></a><br><a href="http://www.allonlinecoupons.com/">MCM</a> <a href="http://www.allonlinecoupons.com/st/mcm-electronics/">Discount Promos</a></div>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/linjiqin/">Ruthless</a><br>
+		J2EE+ANDROID+jQuery交流群: 158560018
+	</div>
+</div>
+
+</div>
+
+<div id="mytopmenu">
+	
+		<div id="mylinks"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a> &nbsp;
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/linjiqin/">首页</a> &nbsp;
+<a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> &nbsp;
+<a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/Ruthless">联系</a> &nbsp;
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/linjiqin/rss">订阅</a><a id="blog_nav_rss_image" href="https://www.cnblogs.com/linjiqin/rss"><img src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/xml.gif" alt="订阅"></a>&nbsp;
+<a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+</div>
+		<div id="mystats"><div id="blog_stats">
+随笔-976&nbsp;
+评论-868&nbsp;
+文章-0&nbsp;
+<!--trackbacks-0-->
+</div></div>
+	
+</div>
+<div id="centercontent">
+	
+<div id="post_detail">
+<div class="post">
+	<h1 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/linjiqin/p/3276859.html">JQuery上传插件Uploadify API详解</a></h1>
+	<div id="cnblogs_post_body" class="blogpost-body"><p><strong>一、相关key值介绍</strong><br><span style="color: #ff0000;">uploader</span>：uploadify.swf文件的相对路径，该swf文件是一个带有文字BROWSE的按钮，点击后淡出打开文件对话框，默认值：uploadify.swf。 <br><span style="color: #ff0000;">script</span>：后台处理程序的相对路径 。默认值：uploadify.php <br><span style="color: #ff0000;">scriptData</span>：上传到后台的参数，参数为json格式。<br><span style="color: #ff0000;">checkScript</span>：用来判断上传选择的文件在服务器是否存在的后台处理程序的相对路径 <br><span style="color: #ff0000;">fileDataName</span>：设置一个名字，在服务器处理程序中根据该名字来取上传文件的数据。默认为Filedata <br><span style="color: #ff0000;">method</span>：提交方式Post或Get，默认为Post <br><span style="color: #ff0000;">scriptAccess</span>：flash脚本文件的访问模式，如果在本地测试设置为always，默认值：sameDomain  <br><span style="color: #ff0000;">folder</span>：上传文件存放的目录 。 <br><span style="color: #ff0000;">queueID</span>：文件队列的ID，该ID与存放文件队列的div的ID一致。 <br><span style="color: #ff0000;">queueSizeLimit</span>：当允许多文件生成时，设置选择文件的个数，默认值：999。 <br><span style="color: #ff0000;">multi</span>：设置为true时可以上传多个文件。 <br><span style="color: #ff0000;">auto</span>：设置为true当选择文件后就直接上传了，为false需要点击上传按钮才上传 。 <br><span style="color: #ff0000;">fileDesc</span>：这个属性值必须设置fileExt属性后才有效，用来设置选择文件对话框中的提示文本，如设置fileDesc为“请选择rar doc pdf文件”，打开文件选择。<br><img src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/23093938-dcc39c6f9f8948438f76bcedeb014ea8.png" alt=""><br><span style="color: #ff0000;">fileExt</span>：设置可以选择的文件的类型，格式如：'*.doc;*.pdf;*.rar'。 <br><span style="color: #ff0000;">sizeLimit</span>：上传文件的大小限制 。 <br><span style="color: #ff0000;">simUploadLimit</span>：允许同时上传的个数 默认值：1。 <br><span style="color: #ff0000;">buttonText</span>：浏览按钮的文本，默认值：BROWSE。 <br><span style="color: #ff0000;">buttonImg</span>：浏览按钮的图片的路径。 <br><span style="color: #ff0000;">hideButton</span>：设置为true则隐藏浏览按钮的图片。 <br><span style="color: #ff0000;">rollover</span>：值为true和false，设置为true时当鼠标移到浏览按钮上时有反转效果。 <br><span style="color: #ff0000;">width</span>：设置浏览按钮的宽度，默认值：110。 <br><span style="color: #ff0000;">height</span>：设置浏览按钮的高度，默认值：30。 <br><span style="color: #ff0000;">wmode</span>：设置该项为transparent可以使浏览按钮的flash背景文件透明，并且flash文件会被置为页面的最高层。 默认值：opaque 。 <br><span style="color: #ff0000;">cancelImg</span> ：选择文件到文件队列中后的每一个文件上的关闭按钮图标，如下图：<br><img src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/23093947-7ed8fde7e69f4d0a903f3c28b39977a9.png" alt=""></p>
+<p><span style="color: #ff0000;">onInit</span>: 做一些初始化的工作。<br><span style="color: #ff0000;">onSelect</span>：选择文件时触发，该函数有三个参数，参数如下：<br>&nbsp; &nbsp; <span style="color: #0000ff;">event</span>:事件对象。<br>&nbsp; &nbsp; <span style="color: #0000ff;">queueID</span>：文件的唯一标识，由6位随机字符组成。<br>&nbsp; &nbsp; <span style="color: #0000ff;">fileObj</span>：选择的文件对象，有name、size、creationDate、modificationDate、type5个属性。<br><span style="color: #ff0000;">onSelectOnce</span>：在单文件或多文件上传时，选择文件时触发。该函数有两个参数event，data，data对象有以下几个属性：<br>&nbsp; &nbsp;<span style="color: #0000ff;">fileCount</span>：选择文件的总数。<br>&nbsp; &nbsp;<span style="color: #0000ff;">filesSelected</span>：同时选择文件的个数，如果一次选择了3个文件该属性值为3。<br>&nbsp; &nbsp;<span style="color: #0000ff;">filesReplaced</span>：如果文件队列中已经存在A和B两个文件，再次选择文件时又选择了A和B，该属性值为2。<br>&nbsp; &nbsp;<span style="color: #0000ff;">allBytesTotal</span>：所有选择的文件的总大小。<br><span style="color: #ff0000;">onCancel</span>: 当点击文件队列中文件的关闭按钮或点击取消上传时触发。该函数有event、queueId、fileObj、data四个参数，前三个参数同onSelect中的三个参数，data对象有两个属性fileCount和allBytesTotal。<br>&nbsp; &nbsp;<span style="color: #0000ff;">fileCount</span>：取消一个文件后，文件队列中剩余文件的个数。<br>&nbsp; &nbsp;<span style="color: #0000ff;">allBytesTotal</span>：取消一个文件后，文件队列中剩余文件的大小。<br><span style="color: #ff0000;">onClearQueue</span>：当调用函数fileUploadClearQueue时触发。有event和data两个参数，同onCancel中的两个对应参数。<br><span style="color: #ff0000;">onQueueFull</span>：当设置了queueSizeLimit并且选择的文件个数超出了queueSizeLimit的值时触发。该函数有两个参数event和queueSizeLimit。<br><span style="color: #ff0000;">onError</span>：当上传过程中发生错误时触发。该函数有event、queueId、fileObj、errorObj四个参数，其中前三个参数同上，errorObj对象有type和info两个属性。<br>&nbsp; &nbsp;<span style="color: #0000ff;">type</span>：错误的类型，有三种‘HTTP’,‘IO’,or‘Security’<br>&nbsp; &nbsp;<span style="color: #0000ff;">info</span>：错误的描述<br><span style="color: #ff0000;">onOpen</span>：点击上传时触发，如果auto设置为true则是选择文件时触发，如果有多个文件上传则遍历整个文件队列。该函数有event、queueId、fileObj三个参数，参数的解释同上。<br><span style="color: #ff0000;">onProgress</span>：
+点击上传时触发，如果auto设置为true则是选择文件时触发，如果有多个文件上传则遍历整个文件队列，在onOpen之后触发。该函数有event、
+queueId、fileObj、data四个参数，前三个参数的解释同上。data对象有四个属性percentage、bytesLoaded、
+allBytesLoaded、speed：<br>&nbsp; &nbsp;<span style="color: #0000ff;">percentage</span>：当前完成的百分比<br>&nbsp; &nbsp;<span style="color: #0000ff;">bytesLoaded</span>：当前上传的大小<br>&nbsp; &nbsp;<span style="color: #0000ff;">allBytesLoaded</span>：文件队列中已经上传完的大小<br>&nbsp; &nbsp;<span style="color: #0000ff;">speed</span>：上传速率 kb/s<br><span style="color: #ff0000;">onComplete</span>：文件上传完成后触发。该函数有四个参数event、queueId、fileObj、response、data五个参数，前三个参数同上。response为后台处理程序返回的值，data有两个属性fileCount和speed:<br>&nbsp; &nbsp;<span style="color: #0000ff;">fileCount</span>：剩余没有上传完成的文件的个数。<br>&nbsp; &nbsp;<span style="color: #0000ff;">speed</span>：文件上传的平均速率 kb/s<br>注：fileObj对象和上面讲到的有些不太一样，onComplete的fileObj对象有个filePath属性可以取出上传文件的路径。<br><span style="color: #ff0000;">onAllComplete</span>：文件队列中所有的文件上传完成后触发。该函数有event和data两个参数，data有四个属性，分别为：<br>&nbsp; &nbsp;<span style="color: #0000ff;">filesUploaded</span> :上传的所有文件个数。<br>&nbsp; &nbsp;<span style="color: #0000ff;">errors</span> ：出现错误的个数。<br>&nbsp; &nbsp;<span style="color: #0000ff;">allBytesLoaded</span> ：所有上传文件的总大小。<br>&nbsp; &nbsp;<span style="color: #0000ff;">speed</span> ：平均上传速率 kb/s</p>
+<p><strong>二、相关函数介绍</strong><br>在上面已说了<span style="color: #ff0000;">uploadifyUpload</span>和<span style="color: #ff0000;">uploadifyClearQueue</span>两个函数，除此之外还有几个函数：</p>
+<p><span style="color: #ff0000;">uploadifySettings</span>：可以动态修改上面介绍的那些key值，如下面代码：<br>$('#uploadify').uploadifySettings('folder','JS');</p>
+<p>如果上传按钮的事件写成下面这样，文件将会上传到uploadifySettings定义的目录中<br>&lt;a href="javascript:$('#uploadify').uploadifySettings('folder','JS');$('#uploadify').uploadifyUpload()"&gt;上传&lt;/a&gt;</p>
+<p><span style="color: #ff0000;">uploadifyCancel</span>：该函数接受一个queueID作为参数，可以取消文件队列中指定queueID的文件。<br>$('#uploadify').uploadifyCancel(id);</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="https://www.cnblogs.com/linjiqin/category/283835.html" target="_blank">jQuery</a></div>
+<div id="EntryTag">标签: <a href="https://www.cnblogs.com/linjiqin/tag/jQuery/">jQuery</a>, <a href="https://www.cnblogs.com/linjiqin/tag/jQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6/">jQuery上传插件</a>, <a href="https://www.cnblogs.com/linjiqin/tag/%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify/">上传插件Uploadify</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3276859,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow('a6448c44-d92c-e011-ac81-842b2b196315');" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/linjiqin/" target="_blank"><img src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/20160913065424.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/linjiqin/">Ruthless</a><br>
+            <a href="http://home.cnblogs.com/u/linjiqin/followees">关注 - 32</a><br>
+            <a href="http://home.cnblogs.com/u/linjiqin/followers">粉丝 - 3327</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow('a6448c44-d92c-e011-ac81-842b2b196315');return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3276859,'Digg')">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(3276859,'Bury')">
+        <span class="burynum" id="bury_count">1</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/linjiqin/p/3264400.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/linjiqin/p/3264400.html" title="发布于2013-08-17 14:42">jQuery插件开发</a><br><a href="https://www.cnblogs.com/linjiqin/p/3305906.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/linjiqin/p/3305906.html" title="发布于2013-09-06 17:43">Java:基于LinkedList实现栈和队列</a><br></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2013-08-23 09:41</span> <a href="https://www.cnblogs.com/linjiqin/">Ruthless</a> 阅读(<span id="post_view_count">41880</span>) 评论(<span id="post_comment_count">1</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3276859" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(3276859);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=83240,cb_entryId=3276859,cb_blogApp=currentBlogApp,cb_blogUserGuid='a6448c44-d92c-e011-ac81-842b2b196315',cb_entryCreatedDate='2013/8/23 9:41:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<b>评论:</b>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="#3342437" class="layer">#1楼</a><a name="3342437" id="comment_anchor_3342437"></a><span id="comment-maxId" style="display:none;">3342437</span><span id="comment-maxDate" style="display:none;">2016/1/6 17:31:22</span>
+				 <span class="comment_date">2016-01-06 17:31</span> | <a id="a_comment_author_3342437" href="https://www.cnblogs.com/go-onxp/" target="_blank">fovi</a> <a href="http://msg.cnblogs.com/send/fovi" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3342437" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3342437,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3342437,'Bury',this)">反对(0)</a></div><span id="comment_3342437_avatar" style="display:none;">http://pic.cnblogs.com/face/u326483.jpg?id=10082854</span>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+
+
+
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login('commentform');">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="http://clickc.admaster.com.cn/c/a116493,b2949399,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-华为云')">【活动】申请成为华为云云享专家 尊享9大权益</a><br><a href="https://www.grapecity.com.cn/developer/spreadjs?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-SpreadJS')">【工具】SpreadJS纯前端表格控件，可嵌入应用开发的在线Excel</a><br><a href="https://cloud.tencent.com/act/group/amd/index?fromSource=gwzcw.1608278.1608278.1608278" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-腾讯云')">【腾讯云】拼团福利，AMD云服务器8元/月</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/act/double11?fromSource=gwzcw.1608279.1608279.1608279" target="_blank"><img src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/24442-20181116205423366-85420768.jpg" alt="qcloud" onclick="ga('send', 'event', 'Link', 'click', 'C1');" height="250" width="300"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/mahaisong/archive/2011/06/25/2090075.html" target="_blank" onclick="clickRecomItmem(2090075,'AsHVP2oa2MNEifMwxw1o3B6xSZi3Cta2Td3rxjZe55ns8U+1R4QlgLQXpjGfg7DTYQl+anLfBn/AYCllyeGOiCYfp4TsT4H9q1F28hhqJtM4Fk0S2kwz3dfBky3Q6V2qIgSJfy8M/sALaopFmw0=')">uploadify API</a><br>·  <a href="https://www.cnblogs.com/liyujun1988/p/5005015.html" target="_blank" onclick="clickRecomItmem(5005015,'aAsD8CiGDlC6S0IqGtokIJaIyO8mmhBSy+1fipkWRcB1+1fWe7o+/t53T359LZW4wfEP5ihUzU186MWFqrCFlL4QHUfmmmYWsUAcVvdL/1s4ThLKveJhjNa6Clq447K9W69O6Ft8NxxYOaXPt0ptD50=')">JQuery上传插件Uploadify</a><br>·  <a href="https://www.cnblogs.com/lixiaozhe/p/3203404.html" target="_blank" onclick="clickRecomItmem(3203404,'mRDM6BVlvss4eF4SFzjKX14ieoP5UQ6PmafUSeLtXPO2jAujaOy8k3olU5TdmX0cFCh/iXEVoUQJminh2d7k7yyqom5sHrTtnndzp5psejUiraUvW46yWkBHWJe046SL/ft/sKuFyjtPyVcYU94=')">jquery uploadify插件多文件上传</a><br>·  <a href="https://www.cnblogs.com/zilanghuo/p/5218647.html" target="_blank" onclick="clickRecomItmem(5218647,'JdGXfL/SWdhugBzkEhLUcsxtLjIj2+Wc1lwxohYVe3Ob3eiZiC2o+aomyT8YBQJQ9CVVO1AB9LuXyamTR5FhxJwrYR6EsC+2lDeCTK4V1i99YWahTLou+qFpT8eQv24rx+HTkw9Zngue6qZg+N4Uc+Y=')">uploadify_简介</a><br>·  <a href="https://www.cnblogs.com/kuiyu/archive/2012/02/23/2365194.html" target="_blank" onclick="clickRecomItmem(2365194,'RIDjr7tsYGzU4zgrWBXIJk3Yp99o23Q98ri06AOCprCDJSa7MH4REAtZh5MEpcjjSpZVvrVt9Psijg6OetH6/XkyBGxwjiW5tKdEO8/NdJi6xCGfd8EfsO+6e/aMVSbYxA16QpXs+bgVDeHibimQRv4=')">uploadify上传控件使用</a><br></div></div>
+<script async="async" src="JQuery%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6Uploadify%20API%E8%AF%A6%E8%A7%A3%20-%20Ruthless%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/gpt.js"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;">
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    </div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/612914/" target="_blank">Windows 内核曾经尝试应对伽马射线导致的比特翻转</a><br> ·  <a href="https://news.cnblogs.com/n/612912/" target="_blank">虎牙发火，“中国王者荣耀第一人”违约赔款近半个亿</a><br> ·  <a href="https://news.cnblogs.com/n/612908/" target="_blank">中国高校研制世界首例双引擎人造微纳米机器</a><br> ·  <a href="https://news.cnblogs.com/n/612906/" target="_blank">T-Mobile完成首轮低频段5G数据传输测试 2020年商用</a><br> ·  <a href="https://news.cnblogs.com/n/612903/" target="_blank">时间从何而来？为什么我们会感觉时间在流动？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			
+<!--done-->
+<div class="newsItem">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/linjiqin/">Ruthless</a><br>园龄：<a href="https://home.cnblogs.com/u/linjiqin/" title="入园时间：2011-01-31">7年9个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/linjiqin/followers/">3327</a><br>关注：<a href="https://home.cnblogs.com/u/linjiqin/followees/">32</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow('a6448c44-d92c-e011-ac81-842b2b196315')">+加关注</a></div><script>getFollowStatus('a6448c44-d92c-e011-ac81-842b2b196315')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" title="Calendar" cellspacing="0" cellpadding="0">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2018/10/01');return false;">&lt;</a></td><td align="center">2018年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2018/12/01');return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" abbr="日" scope="col" align="center">日</th><th class="CalDayHeader" abbr="一" scope="col" align="center">一</th><th class="CalDayHeader" abbr="二" scope="col" align="center">二</th><th class="CalDayHeader" abbr="三" scope="col" align="center">三</th><th class="CalDayHeader" abbr="四" scope="col" align="center">四</th><th class="CalDayHeader" abbr="五" scope="col" align="center">五</th><th class="CalDayHeader" abbr="六" scope="col" align="center">六</th></tr><tr><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center"><a href="https://www.cnblogs.com/linjiqin/archive/2018/11/05.html"><u>5</u></a></td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalTodayDay" align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script><br>
+			<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk" type="text">&nbsp;<input onclick="zzk_go()" value="找找看" id="btnZzk" class="btn_my_zzk" type="button"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/linjiqin/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/linjiqin/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/linjiqin/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/linjiqin/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/linjiqin/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="https://www.cnblogs.com/linjiqin/tag/docker/">docker</a>(24)</li><li><a href="https://www.cnblogs.com/linjiqin/tag/java%20%E5%A4%9A%E7%BA%BF%E7%A8%8B/">java 多线程</a>(22)</li><li><a href="https://www.cnblogs.com/linjiqin/tag/redis/">redis</a>(21)</li><li><a href="https://www.cnblogs.com/linjiqin/tag/JAVA/">JAVA</a>(13)</li><li><a href="https://www.cnblogs.com/linjiqin/tag/android/">android</a>(12)</li><li><a href="https://www.cnblogs.com/linjiqin/tag/mysql/">mysql</a>(10)</li><li><a href="https://www.cnblogs.com/linjiqin/tag/nginx/">nginx</a>(8)</li><li><a href="https://www.cnblogs.com/linjiqin/tag/springboot/">springboot</a>(8)</li><li><a href="https://www.cnblogs.com/linjiqin/tag/OSCache/">OSCache</a>(7)</li><li><a href="https://www.cnblogs.com/linjiqin/tag/jQuery/">jQuery</a>(7)</li><li><a href="https://www.cnblogs.com/linjiqin/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h3 class="catListTitle">随笔分类</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_0" class="listitem" href="https://www.cnblogs.com/linjiqin/category/486898.html">ActiveMQ(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_1" class="listitem" href="https://www.cnblogs.com/linjiqin/category/284844.html">android菜单与对话框(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_2" class="listitem" href="https://www.cnblogs.com/linjiqin/category/284058.html">android常用控件(16)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_3" class="listitem" href="https://www.cnblogs.com/linjiqin/category/283833.html">android高级应用(51)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_4" class="listitem" href="https://www.cnblogs.com/linjiqin/category/282012.html">android基础知识(17)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_5" class="listitem" href="https://www.cnblogs.com/linjiqin/category/784542.html">APP(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_6" class="listitem" href="https://www.cnblogs.com/linjiqin/category/288914.html">aws(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_7" class="listitem" href="https://www.cnblogs.com/linjiqin/category/558364.html">Backbone(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_8" class="listitem" href="https://www.cnblogs.com/linjiqin/category/553534.html">Bootstrap 教程(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_9" class="listitem" href="https://www.cnblogs.com/linjiqin/category/294976.html">css(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_10" class="listitem" href="https://www.cnblogs.com/linjiqin/category/559235.html">django(14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_11" class="listitem" href="https://www.cnblogs.com/linjiqin/category/1108912.html">Docker系列教程(34)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_12" class="listitem" href="https://www.cnblogs.com/linjiqin/category/765727.html">dubbo(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_13" class="listitem" href="https://www.cnblogs.com/linjiqin/category/305982.html">ext(9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_14" class="listitem" href="https://www.cnblogs.com/linjiqin/category/527513.html">freemarker(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_15" class="listitem" href="https://www.cnblogs.com/linjiqin/category/455961.html">Hadoop(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_16" class="listitem" href="https://www.cnblogs.com/linjiqin/category/494384.html">hadoop源码分析(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_17" class="listitem" href="https://www.cnblogs.com/linjiqin/category/455962.html">Hbase(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_18" class="listitem" href="https://www.cnblogs.com/linjiqin/category/455965.html">HDFS(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_19" class="listitem" href="https://www.cnblogs.com/linjiqin/category/283834.html">hibernate(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_20" class="listitem" href="https://www.cnblogs.com/linjiqin/category/455963.html">Hive(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_21" class="listitem" href="https://www.cnblogs.com/linjiqin/category/294295.html">html5(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_22" class="listitem" href="https://www.cnblogs.com/linjiqin/category/383867.html">ibatis(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_23" class="listitem" href="https://www.cnblogs.com/linjiqin/category/283832.html">j2ee案例(74)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_24" class="listitem" href="https://www.cnblogs.com/linjiqin/category/290928.html">javascript(14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_25" class="listitem" href="https://www.cnblogs.com/linjiqin/category/499574.html">Java多线程编程(40)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_26" class="listitem" href="https://www.cnblogs.com/linjiqin/category/282013.html">java高级特性(45)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_27" class="listitem" href="https://www.cnblogs.com/linjiqin/category/549715.html">Java后端架构(16)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_28" class="listitem" href="https://www.cnblogs.com/linjiqin/category/499597.html">Java网络编程(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_29" class="listitem" href="https://www.cnblogs.com/linjiqin/category/282011.html">JPA(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_30" class="listitem" href="https://www.cnblogs.com/linjiqin/category/283835.html">jQuery(54)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_31" class="listitem" href="https://www.cnblogs.com/linjiqin/category/310475.html">jQueryMobile(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_32" class="listitem" href="https://www.cnblogs.com/linjiqin/category/492306.html">jsoup、xpath(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_33" class="listitem" href="https://www.cnblogs.com/linjiqin/category/283839.html">linux(32)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_34" class="listitem" href="https://www.cnblogs.com/linjiqin/category/491263.html">linux shell(21)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_35" class="listitem" href="https://www.cnblogs.com/linjiqin/category/491254.html">linux安装(13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_36" class="listitem" href="https://www.cnblogs.com/linjiqin/category/290952.html">Lucene(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_37" class="listitem" href="https://www.cnblogs.com/linjiqin/category/553905.html">MACD(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_38" class="listitem" href="https://www.cnblogs.com/linjiqin/category/455967.html">Mahout(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_39" class="listitem" href="https://www.cnblogs.com/linjiqin/category/695697.html">maven(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_40" class="listitem" href="https://www.cnblogs.com/linjiqin/category/497964.html">MongoDB(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_41" class="listitem" href="https://www.cnblogs.com/linjiqin/category/695698.html">mybatis(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_42" class="listitem" href="https://www.cnblogs.com/linjiqin/category/1119269.html">mycat(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_43" class="listitem" href="https://www.cnblogs.com/linjiqin/category/283837.html">Mysql(27)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_44" class="listitem" href="https://www.cnblogs.com/linjiqin/category/691604.html">Mysql优化(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_45" class="listitem" href="https://www.cnblogs.com/linjiqin/category/808798.html">Nginx(19)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_46" class="listitem" href="https://www.cnblogs.com/linjiqin/category/584717.html">nodejs(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_47" class="listitem" href="https://www.cnblogs.com/linjiqin/category/283838.html">oracle(21)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_48" class="listitem" href="https://www.cnblogs.com/linjiqin/category/349946.html">oracle案例(25)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_49" class="listitem" href="https://www.cnblogs.com/linjiqin/category/349944.html">oracle初级系列教程(29)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_50" class="listitem" href="https://www.cnblogs.com/linjiqin/category/369420.html">oracle分析函数(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_51" class="listitem" href="https://www.cnblogs.com/linjiqin/category/349945.html">oracle高级系列教程(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_52" class="listitem" href="https://www.cnblogs.com/linjiqin/category/339133.html">oracle中级系列教程(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_53" class="listitem" href="https://www.cnblogs.com/linjiqin/category/502896.html">OSCache(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_54" class="listitem" href="https://www.cnblogs.com/linjiqin/category/455964.html">Pig(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_55" class="listitem" href="https://www.cnblogs.com/linjiqin/category/310160.html">powerderigner(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_56" class="listitem" href="https://www.cnblogs.com/linjiqin/category/557318.html">Python(21)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_57" class="listitem" href="https://www.cnblogs.com/linjiqin/category/483911.html">redis(43)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_58" class="listitem" href="https://www.cnblogs.com/linjiqin/category/1288914.html">RocketMQ(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_59" class="listitem" href="https://www.cnblogs.com/linjiqin/category/535413.html">Spring MVC(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_60" class="listitem" href="https://www.cnblogs.com/linjiqin/category/282010.html">spring3(15)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_61" class="listitem" href="https://www.cnblogs.com/linjiqin/category/1283341.html">SpringBoot(10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_62" class="listitem" href="https://www.cnblogs.com/linjiqin/category/1301747.html">SpringCloud(12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_63" class="listitem" href="https://www.cnblogs.com/linjiqin/category/499598.html">Spring源码解析</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_64" class="listitem" href="https://www.cnblogs.com/linjiqin/category/478422.html">SQL注入(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_65" class="listitem" href="https://www.cnblogs.com/linjiqin/category/484107.html">storm(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_66" class="listitem" href="https://www.cnblogs.com/linjiqin/category/282009.html">struts2(15)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_67" class="listitem" href="https://www.cnblogs.com/linjiqin/category/679248.html">Tomcat(13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_68" class="listitem" href="https://www.cnblogs.com/linjiqin/category/560520.html">ubuntu(15)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_69" class="listitem" href="https://www.cnblogs.com/linjiqin/category/288252.html">weblogic(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_70" class="listitem" href="https://www.cnblogs.com/linjiqin/category/373109.html">webservice(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_71" class="listitem" href="https://www.cnblogs.com/linjiqin/category/455968.html">Zookeeper(9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_72" class="listitem" href="https://www.cnblogs.com/linjiqin/category/760937.html">并发编程(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_73" class="listitem" href="https://www.cnblogs.com/linjiqin/category/1284729.html">从0开始学微服务</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_74" class="listitem" href="https://www.cnblogs.com/linjiqin/category/515379.html">待人处事(9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_75" class="listitem" href="https://www.cnblogs.com/linjiqin/category/528807.html">电子商务(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_76" class="listitem" href="https://www.cnblogs.com/linjiqin/category/996466.html">服务器运维(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_77" class="listitem" href="https://www.cnblogs.com/linjiqin/category/455970.html">工具类(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_78" class="listitem" href="https://www.cnblogs.com/linjiqin/category/578515.html">股票(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_79" class="listitem" href="https://www.cnblogs.com/linjiqin/category/488767.html">管理与感悟(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_80" class="listitem" href="https://www.cnblogs.com/linjiqin/category/455969.html">互联网金融(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_81" class="listitem" href="https://www.cnblogs.com/linjiqin/category/553903.html">均线(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_82" class="listitem" href="https://www.cnblogs.com/linjiqin/category/282729.html">其他(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_83" class="listitem" href="https://www.cnblogs.com/linjiqin/category/1306405.html">锁(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_84" class="listitem" href="https://www.cnblogs.com/linjiqin/category/739048.html">通达信(25)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_85" class="listitem" href="https://www.cnblogs.com/linjiqin/category/477998.html">网络安全(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_86" class="listitem" href="https://www.cnblogs.com/linjiqin/category/558365.html">消息队列(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_87" class="listitem" href="https://www.cnblogs.com/linjiqin/category/349403.html">小故事大智慧(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_88" class="listitem" href="https://www.cnblogs.com/linjiqin/category/578159.html">养生保健(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_89" class="listitem" href="https://www.cnblogs.com/linjiqin/category/304377.html">移动web开发(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_90" class="listitem" href="https://www.cnblogs.com/linjiqin/category/455966.html">指标综合实战(5)</a></li>
+			
+				</ul>
+			
+	
+		<h3 class="catListTitle">随笔档案</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_0" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/11.html">2018年11月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_1" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/10.html">2018年10月 (11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_2" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/09.html">2018年9月 (23)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_3" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/08.html">2018年8月 (13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_4" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/07.html">2018年7月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_5" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/06.html">2018年6月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_6" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/05.html">2018年5月 (10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_7" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/04.html">2018年4月 (12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_8" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/03.html">2018年3月 (18)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_9" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/02.html">2018年2月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_10" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2018/01.html">2018年1月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_11" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/12.html">2017年12月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_12" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/11.html">2017年11月 (14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_13" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/10.html">2017年10月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_14" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/09.html">2017年9月 (10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_15" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/08.html">2017年8月 (16)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_16" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/07.html">2017年7月 (9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_17" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/06.html">2017年6月 (11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_18" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/05.html">2017年5月 (14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_19" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/04.html">2017年4月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_20" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/03.html">2017年3月 (12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_21" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/02.html">2017年2月 (13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_22" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2017/01.html">2017年1月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_23" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/12.html">2016年12月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_24" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/11.html">2016年11月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_25" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/10.html">2016年10月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_26" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/09.html">2016年9月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_27" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/08.html">2016年8月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_28" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/07.html">2016年7月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_29" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/06.html">2016年6月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_30" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/05.html">2016年5月 (16)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_31" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/04.html">2016年4月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_32" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/03.html">2016年3月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_33" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/02.html">2016年2月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_34" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2016/01.html">2016年1月 (14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_35" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/12.html">2015年12月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_36" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/10.html">2015年10月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_37" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/09.html">2015年9月 (10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_38" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/08.html">2015年8月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_39" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/07.html">2015年7月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_40" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/06.html">2015年6月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_41" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/05.html">2015年5月 (10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_42" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/04.html">2015年4月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_43" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/03.html">2015年3月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_44" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/02.html">2015年2月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_45" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2015/01.html">2015年1月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_46" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/12.html">2014年12月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_47" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/11.html">2014年11月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_48" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/09.html">2014年9月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_49" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/08.html">2014年8月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_50" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/07.html">2014年7月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_51" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/06.html">2014年6月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_52" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/05.html">2014年5月 (16)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_53" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/04.html">2014年4月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_54" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/03.html">2014年3月 (20)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_55" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/02.html">2014年2月 (28)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_56" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2014/01.html">2014年1月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_57" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2013/12.html">2013年12月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_58" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2013/11.html">2013年11月 (28)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_59" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2013/10.html">2013年10月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_60" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2013/09.html">2013年9月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_61" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2013/08.html">2013年8月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_62" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2013/07.html">2013年7月 (38)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_63" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2013/06.html">2013年6月 (84)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_64" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2013/05.html">2013年5月 (21)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_65" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2013/04.html">2013年4月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_66" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2013/03.html">2013年3月 (25)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_67" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2012/06.html">2012年6月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_68" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2012/05.html">2012年5月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_69" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2012/04.html">2012年4月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_70" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2012/03.html">2012年3月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_71" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2012/02.html">2012年2月 (26)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_72" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2012/01.html">2012年1月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_73" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/12.html">2011年12月 (14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_74" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/11.html">2011年11月 (11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_75" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/10.html">2011年10月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_76" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/09.html">2011年9月 (9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_77" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/08.html">2011年8月 (12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_78" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/07.html">2011年7月 (19)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_79" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/06.html">2011年6月 (24)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_80" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/05.html">2011年5月 (17)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_81" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/04.html">2011年4月 (24)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_82" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/03.html">2011年3月 (49)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_83" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/02.html">2011年2月 (45)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_84" class="listitem" href="https://www.cnblogs.com/linjiqin/archive/2011/01.html">2011年1月 (1)</a></li>
+			
+				</ul>
+			
+	
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		1432324
+	</li><li>
+		排名 -
+		46
+	</li>
+</ul>
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/linjiqin/p/3148066.html#4114750">1. Re:使用递归算法结合数据库解析成java树形结构</a></li>
+        <li class="recent_comment_body">personService呢？</li>
+        <li class="recent_comment_author">--GᎭ•Cristin</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/linjiqin/archive/2013/05/27/3101694.html#4112381">2. Re:windows下安装redis</a></li>
+        <li class="recent_comment_body">稳如老狗</li>
+        <li class="recent_comment_author">--咂一口妹汁</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/linjiqin/p/3148066.html#4110265">3. Re:使用递归算法结合数据库解析成java树形结构</a></li>
+        <li class="recent_comment_body">mark一下，有空自己测试测试</li>
+        <li class="recent_comment_author">--shammgod_code</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/linjiqin/p/8003838.html#4099860">4. Re:Redis分布式锁的正确实现方式</a></li>
+        <li class="recent_comment_body">有点不明白,加锁失败，是不是应该直接退出？？</li>
+        <li class="recent_comment_author">--ktmoon</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/linjiqin/p/3178452.html#4098450">5. Re:cron表达式详解</a></li>
+        <li class="recent_comment_body">学习</li>
+        <li class="recent_comment_author">--_York</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/linjiqin/p/3431835.html">1. jQuery Validate验证框架详解(316898)</a></li><li><a href="https://www.cnblogs.com/linjiqin/p/3544472.html">2. Linux启动/停止/重启Mysql数据库的方法(290678)</a></li><li><a href="https://www.cnblogs.com/linjiqin/archive/2011/02/11/1951632.html">3. java枚举使用详解(218610)</a></li><li><a href="https://www.cnblogs.com/linjiqin/archive/2012/04/01/2428695.html">4. 数据库设计三大范式(201066)</a></li><li><a href="https://www.cnblogs.com/linjiqin/archive/2013/05/30/3108188.html">5. 并发队列ConcurrentLinkedQueue和阻塞队列LinkedBlockingQueue用法(187325)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/linjiqin/archive/2011/06/03/2071956.html">1. 二十二、startActivityForResult用法详解(35)</a></li><li><a href="https://www.cnblogs.com/linjiqin/archive/2012/04/01/2428695.html">2. 数据库设计三大范式(34)</a></li><li><a href="https://www.cnblogs.com/linjiqin/p/8003838.html">3. Redis分布式锁的正确实现方式(32)</a></li><li><a href="https://www.cnblogs.com/linjiqin/p/3431835.html">4. jQuery Validate验证框架详解(24)</a></li><li><a href="https://www.cnblogs.com/linjiqin/p/3559800.html">5. Bootstrap 栅格系统(18)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/linjiqin/archive/2012/04/01/2428695.html">1. 数据库设计三大范式(64)</a></li><li><a href="https://www.cnblogs.com/linjiqin/p/3431835.html">2. jQuery Validate验证框架详解(33)</a></li><li><a href="https://www.cnblogs.com/linjiqin/archive/2011/06/03/2071956.html">3. 二十二、startActivityForResult用法详解(31)</a></li><li><a href="https://www.cnblogs.com/linjiqin/archive/2011/02/11/1951632.html">4. java枚举使用详解(26)</a></li><li><a href="https://www.cnblogs.com/linjiqin/archive/2011/05/28/2061396.html">5. 十二、ContentProvider和Uri详解(25)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script></div>
+	
+</div>
+
+<!--done-->
+<div class="footer">
+	Powered by: <a href="http://www.cnblogs.com/">博客园</a>	模板提供：<a href="http://blog.hjenglish.com/">沪江博客</a>
+	Copyright ©2018 Ruthless
+</div>
+
+
+
+
+
+</body></html>

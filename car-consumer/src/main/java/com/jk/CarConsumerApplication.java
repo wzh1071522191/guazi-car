@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 @SpringBootApplication
-
 public class CarConsumerApplication {
 
 

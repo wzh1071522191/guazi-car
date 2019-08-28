@@ -1,0 +1,171 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../js/addTabs/cdn.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+</head>
+<body>
+<input type="hidden" th:value="${session.time}" id="userid1">
+<div class="se-kl" style="float: left">
+    <div class="se-cn">优惠劵秒杀</div>
+    <div class="se-en"></div>
+    <i class="se-io"></i>
+    <div class="se-info">距离开始还剩</div>
+    <div class="se-count">
+        <div class="se-day"></div>
+        <div class="se-hour"><span class="se-txt">00</span></div>
+        <div class="se-min"><span class="se-txt">00</span></div>
+        <div class="se-sec"><span class="se-txt">00</span></div>
+    </div>
+
+</div>
+<div class = 'pro-all clearfix' style="float:left;margin-top:100px;">
+    <div class = 'phone-l fl phone-l-active'>
+        <a href = "#"><img src = "../img/123456789.png" th:width="300px" height="250px" alt = ""></a>
+    </div>
+
+    <div class = 'fl phone-r' >
+        <ul  id="shouji1">
+
+            <button type="button" class="btn btn-warning" onclick=aa(1) >立即抢购</button>
+
+            <!--  //查询手机-->
+
+        </ul>
+    </div>
+</div>
+<div class = 'pro-all clearfix' style="float:left;margin-top:100px;">
+    <div class = 'phone-l fl phone-l-active'>
+        <a href = "#"><img src = "../img/123456789.png" th:width="300px" height="250px" alt = ""></a>
+    </div>
+
+    <div class = 'fl phone-r' >
+        <ul  >
+
+            <button type="button" class="btn btn-warning" onclick=aa(2)>立即抢购</button>
+
+            <!--  //查询手机-->
+
+        </ul>
+    </div>
+</div>
+<div class = 'pro-all clearfix' style="float:left;margin-top:100px;">
+    <div class = 'phone-l fl phone-l-active'>
+        <a href = "#"><img src = "../img/123456789.png" th:width="300px" height="250px" alt = ""></a>
+    </div>
+
+    <div class = 'fl phone-r' >
+        <ul  >
+
+            <button type="button" class="btn btn-warning" onclick=aa(3)>立即抢购</button>
+
+            <!--  //查询手机-->
+
+        </ul>
+    </div>
+</div>
+<input type="hidden" id="ceshi">
+<input type="hidden" th:value="${session.yuhui}" id="yuhui1">
+</body>
+<script>
+
+
+
+    $(document).ready(function () {
+        var oDate = new Date();
+
+
+
+        var nowTime = oDate.getTime(); //现在的毫秒数
+        oDate.setDate(oDate.getDate()); // 设定截止时间为第二天
+
+        var c=$("#userid1").val();
+
+        var targetDate = c;
+
+        run(targetDate);
+    });
+
+    function run(enddate) {
+        getDate(enddate);
+        setInterval("getDate('" + enddate + "')", 500);
+    }
+    var kkkkk=null;
+    function getDate(enddate) {
+        var oDate = new Date(); //获取日期对象
+
+        var nowTime = oDate.getTime(); //现在的毫秒数
+        var enddate = new Date(enddate);
+        var targetTime = enddate.getTime(); // 截止时间的毫秒数
+
+        var second = Math.floor((targetTime - nowTime) / 1000); //截止时间距离现在的秒数
+
+        var day = Math.floor(second / 24 * 60 * 60); //整数部分代表的是天；一天有24*60*60=86400秒 ；
+        second = second % 86400; //余数代表剩下的秒数；
+        var hour = Math.floor(second / 3600); //整数部分代表小时；
+        second %= 3600; //余数代表 剩下的秒数；
+        var minute = Math.floor(second / 60);
+        second %= 60;
+        var spanH = $('.se-txt')[0];
+        var spanM = $('.se-txt')[1];
+        var spanS = $('.se-txt')[2];
+        /*  alert(JSON.stringify(spanH)+""+JSON.stringify(spanM)+""+JSON.stringify(spanS);*/
+
+        if (hour>=0)
+            spanH.innerHTML = tow(hour);
+        if (minute>=0)
+            spanM.innerHTML = tow(minute);
+        if(second>0){
+            spanS.innerHTML = tow(second);}
+        else if (second==0&&minute==0&&hour==0) {
+            $("#ceshi").val("aaa");
+            spanH.innerHTML = tow(hour);
+            spanM.innerHTML = tow(minute);
+            spanS.innerHTML = tow(second);
+
+
+
+        }
+    }
+    function tow(n) {
+
+        return n >= 0 && n < 10 ? '0' + n : '' + n;
+
+    }
+    yuhui=$("#yuhui1").val();
+
+
+
+    function aa(sun) {
+
+        var a = $("#ceshi").val();
+        if (a == null || a == "") {
+            alert("活动还没开始")
+        } else {
+            if (yuhui == sun) {
+                location.href = "../comm/miaosha1?status=" + sun;
+                $.ajax({
+                    url: "../comm/miaosha1",
+                    type: "post",
+                    data: {status: sum},
+                });
+            }
+        }
+    }
+    </script>

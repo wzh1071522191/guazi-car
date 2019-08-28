@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class Audit implements Serializable {
 
-    private static final long serialVersionUID = -2191296443509406864L;
+   private static final long serialVersionUID = -2191296443509406864L;
 
     private Integer id;//id主键
 
