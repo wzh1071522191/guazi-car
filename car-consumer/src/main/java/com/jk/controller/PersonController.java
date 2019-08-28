@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
@@ -48,7 +49,7 @@ public class PersonController {
 
         return "xqt/person.html";
     }
-    //跳转chat页面
+    //跳转chat服务页面
     @RequestMapping("/tochat")
     public ModelAndView tochat(String username, HttpServletRequest request) throws UnknownHostException {
         ModelAndView mv=new ModelAndView();
@@ -63,13 +64,13 @@ public class PersonController {
 
         return "xqt/login.html";
     }
-    //跳转人工客户服务接口
+    //测试跳转人工客户服务接口
     @RequestMapping("/querypeople")
     public String querypeople(){
 
         return "xqt/people.html";
     }
-    //跳转人工客服服务接口
+    //测试跳转人工客服服务接口
     @RequestMapping("/querykefu")
     public String querykefu(){
 
@@ -128,7 +129,7 @@ public class PersonController {
         return null;
     }
 
-    //测试--查询查询客服说过的话
+    //正式--查询查询客服说过的话
     @RequestMapping("queryKefucode")
     @ResponseBody
     public List<Cusmoter> queryKefucode(){

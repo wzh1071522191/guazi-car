@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.RoundImgMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.RoundImg" >
+    <id column="imgid" property="imgid" jdbcType="INTEGER" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="imgzt" property="imgzt" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    imgid, imgurl, imgzt
+  </sql>
+  <select  id="queryCount"  resultType="long">
+     select  count(*)  from  t_img
+  </select>
+  <select  id="queryList"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_img limit #{stat},#{rows}
+  </select>
+  <select  id="queryList1"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_img limit #{stat},#{rows}
+  </select>
+
+  <select id="ShowNowLb" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_img where imgzt=1
+
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_img
+    where imgid = #{imgid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_img
+    where imgid = #{imgid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.model.RoundImg" >
+    insert into t_img (imgid, imgurl, imgzt
+      )
+    values (#{imgid,jdbcType=INTEGER}, #{imgurl,jdbcType=VARCHAR}, #{imgzt,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="addLbShow">
+
+    update t_img set imgzt=1 where imgid in(${lbid})
+  </update>
+  <delete id="delImg">
+    delete from t_img where imgid in(${lbid})
+  </delete>
+
+  <insert id="addImg" parameterType="com.jk.model.RoundImg" >
+    insert into t_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imgid != null" >
+        imgid,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+      <if test="imgzt != null" >
+        imgzt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imgid != null" >
+        #{imgid,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgzt != null" >
+        #{imgzt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.RoundImg" >
+    update t_img
+    <set >
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgzt != null" >
+        imgzt = #{imgzt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where imgid = #{imgid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.model.RoundImg" >
+    update t_img
+    set imgurl = #{imgurl,jdbcType=VARCHAR},
+      imgzt = #{imgzt,jdbcType=INTEGER}
+    where imgid = #{imgid,jdbcType=INTEGER}
+  </update>
+</mapper>

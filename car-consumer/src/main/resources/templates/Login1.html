@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<head>
+    <title>瓜子二手车</title>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入my97 -->
+    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+
+    <!--<script src="../loginzth/Login.js" th:src="@{../loginzth/Login.js}" ></script>
+    <script src="../loginzth/ZhuCe.js" th:src="@{../loginzth/ZhuCe.js}" ></script>-->
+
+    <!-- Meta-Tags
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="application/x-javascript">addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    //Meta-Tags -->
+
+    <!-- Style --> <link rel="stylesheet" href="../js/style.css" type="text/css" media="all">
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+<body background="../js/e9b11dd669b7e493c6da0ad104a9b5f6.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
+
+<h1 style="font-family:Simsun;color: #0e103d">瓜子二手车后台管理登录平台</h1>
+
+<div class="container w3layouts agileits">
+
+    <div class="login w3layouts agileits">
+        <h2>登 录</h2>
+        <form id="loginUser"  method="post">
+            <input type="text" Name="userName" placeholder="账号" required="true" autocomplete='userPhone'>
+            <input type="password" Name="userPwd" placeholder="密码" required="true" autocomplete='userPassword'>
+
+        </form>
+        <div class="send-button w3layouts agileits">
+
+            <input type="button" class="btn btn-success btn-sm"  onclick="login()" value="登&nbsp;&nbsp;&nbsp;&nbsp;录">
+            <input type="button" class="btn btn-success btn-sm" onclick="upDatePassword()" value="修改密码">
+
+
+        </div>
+       <!-- <div class="social-icons w3layouts agileits">
+            <p>- 其他方式登录 -</p>
+            <ul>
+                <li class="qq"><a href="#">
+                    <span class="icons w3layouts agileits"></span>
+                    <span class="text w3layouts agileits">QQ</span></a></li>
+                <li class="weixin w3ls"><a href="#">
+                    <span class="icons w3layouts"></span>
+                    <span class="text w3layouts agileits">微信</span></a></li>
+                <li class="weibo aits"><a href="#">
+                    <span class="icons agileits"></span>
+                    <span class="text w3layouts agileits">微博</span></a></li>
+                <div class="clear"> </div>
+            </ul>
+        </div>-->
+        <div class="clear"></div>
+    </div>
+
+
+    <div class="register w3layouts agileits">
+        <h2>注 册</h2>
+        <form id="registerForm" action="#" method="post">
+            <input type="text" Name="userName" placeholder="用户名"   id="userName"   required="true"  onblur="checkName()">
+            <span id="msg1"></span>
+            <input type="password" Name="userPwd" placeholder="密码"  id="pwd"  autocomplete='userPwd' required="true">
+            <input type="password"  placeholder="确认密码"  id="checkpwd"  autocomplete='userPwd' onblur="checkPassword()" required="true">
+
+        </form>
+        <span id="msg"></span>
+        <div class="send-button w3layouts agileits">
+                <button type="button" class="btn btn-info" onclick="toRegister()" style="size: 100px">免费注册</button>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="footer w3layouts agileits">
+    <p><b><font color="_blank">Copyright  &copy;  Jinke Education : 1902B FivethTeam</font></b></p>
+</div>
+<div style="text-align:center;">
+    <p>更多：<a href="https://www.guazi.com" target="_blank" style="color: #00000d">瓜子二手车官网</a></p>
+</div>
+
+</body>
+<script>
+    function login(){
+        $.ajax({
+            url:"../emp/loginUser",
+            data:$("#loginUser").serialize(),
+            success:function(data){
+
+                if(data==4){
+                    alert("账户异常无法登录");
+                }
+                if (data==0) {
+                    alert("锁定");
+                }else
+                if (data==3) {
+                    alert("用户不存在");
+                }else
+                if (data==1) {
+                    alert("密码错误");
+                }else
+                if (data==2) {
+                    //alert("成功");
+                    location.href="../emp/toTreePage";
+
+                }
+            },error:function(){
+                alert("登录失败");
+            }
+        })
+    }
+
+//
+
+    upDatePassword=function () {
+        location.href="../emp/toUpdate";
+    }
+    //--------------------------------------------
+    function checkName(){
+        var userName= $("#userName").val();
+        $.ajax({
+            url:"../emp/checkName?userName="+userName,
+            type:"post",
+            success:function (data) {
+                if(data==0){
+                    $("#msg1").html("<font color='green'>√</font>");
+                    return true;
+                }
+                if(data==1){
+                    $("#msg1").html("<font color='red'>已存在</font>");
+                    return false;
+                }
+            }
+        })
+
+    }
+    function checkPassword(){
+        var p1=$("#pwd").val();
+        var p2=$("#checkpwd").val();
+        if (p1!=p2){
+            $("#msg").html("<font color='red'>密码不一致</font>");
+           /* $("#checkpwd").attr("type","text");
+            $("#checkpwd1").val("<font color='red'>密码不一致</font>");
+            $("#checkpwd").attr("placeholder","密码不一致");*/
+            return false;
+        }else if(p1==p2){
+            $("#checkpwd").attr("type","password");
+            $("#msg").html("<font color='green'>√</font>");
+            return true;
+        }
+
+    }
+    toRegister=function(){
+        if(checkPassword()&&checkName()){
+            $.ajax({
+                url:"../emp/register",
+                type:"post",
+                data:$("#registerForm").serialize(),
+                success:function (data) {
+                    if(data==0){
+                        location.href=location;
+                        $("#msg1").html("<font color='green'>√</font>");
+                        alert("注册成功请登录")
+                    }
+                    if (data==1){
+                        $("#msg1").html("<font color='red'>用户已存在</font>");
+                    }
+
+
+                }
+
+            })
+        }else {
+            alert("请完善账号信息");
+        }
+
+
+    }
+</script>
+</html>

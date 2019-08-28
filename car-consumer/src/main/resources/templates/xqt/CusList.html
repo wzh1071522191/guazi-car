@@ -36,19 +36,21 @@
     <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
 
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
     <script src="../js/highcharts/code/highcharts.js"></script>
 </head>
 <body>
 <button onclick="phoneCall()" type="button" class="btn" style="background:#E8E8D0"><b>联系机器人客服</b></button>
 <button onclick="peopleCall()" type="button" class="btn" style="background:#E8E8D0"><b>联系人工客服</b></button>
 <button onclick="houtai()" type="button" class="btn" style="background:#E8E8D0"><b>后台人工客服</b></button>
+<button onclick="webstocketrengong()" type="button" class="btn" style="background:#E8E8D0"><b>webstocket人工客服</b></button>
 <table id="shoppingTable"></table>
 </body>
 <script>
 $(function(){
     initShoppingList();
 })
-    //猫列表查询
+    //汽车列表查询
     function initShoppingList(){
         $('#shoppingTable').bootstrapTable({
             url:'../Perso/findCarShoppingList',
@@ -84,25 +86,25 @@ $(function(){
                         }
                         return zhuangkuang;
                 }},
-                {field:'carimg',title:'汽车封面',formatter:function(value,row,index){
-                 return '<img src="'+value+'" width="80px" height="80px"/>';
-                }},
                 {field:'caozuo',title:'操作',align:'center'}
             ]
         });
     }
-
 <!--机器人客服-->
 function phoneCall(){
     location.href = "../Perso/queryperson";
 }
-
-/*人工客服*/
+/*消费者人工客服*/
 function peopleCall(){
     location.href = "../Perso/querypeople";
 }
+//后台人工客服
 function houtai(){
     location.href = "../Perso/querykefu";
+}
+/*webstrocket人工客服*/
+function webstocketrengong(){
+    location.href = "../Perso/tologin";
 }
 </script>
 

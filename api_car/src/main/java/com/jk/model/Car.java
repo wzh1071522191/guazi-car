@@ -52,18 +52,18 @@ public class Car implements Serializable {
     private Integer purchasesum;
     //1:已曝光 2:未曝光
     private Integer expocarstatu;
-   //1:已下单 2:未下单
+    //1:已下单 2:未下单
     private Integer placecarstatu;
-   //1:已支付 3:支付中 2:未支付   默认是2未支付
+    //1:已支付 3:支付中 2:未支付   默认是2未支付
     private Integer mentcarstatu;
-   //1:未访问 2:已访问   默认是1未访问
+    //1:未访问 2:已访问   默认是1未访问
     private Integer visitcarstatu;
     //仓库总数量临时
     private Integer cangkucount;
 
 
     private String carimg;
-     private String text;
+    private String text;
 
 
     private Integer visitcount;

@@ -3,162 +3,161 @@
 <mapper namespace="com.jk.dao.CarMapper" >
   <resultMap id="BaseResultMap" type="com.jk.model.Car" >
     <id column="carid" property="carid" jdbcType="INTEGER" />
-    <result column="
-carbrandid" property="
-carbrandid" jdbcType="INTEGER" />
-    <result column="
-cardate" property="
-cardate" jdbcType="TIMESTAMP" />
-    <result column="
-carlc" property="
-carlc" jdbcType="VARCHAR" />
-    <result column="
-carareaid" property="
-carareaid" jdbcType="INTEGER" />
-    <result column="
-carck" property="
-carck" jdbcType="INTEGER" />
-    <result column="
-cartypeid" property="
-cartypeid" jdbcType="INTEGER" />
-    <result column="
-carcolor" property="
-carcolor" jdbcType="INTEGER" />
-    <result column="
-carstatus" property="
-carstatus" jdbcType="INTEGER" />
-    <result column="
-userid" property="
-userid" jdbcType="INTEGER" />
-    <result column="
-createdate" property="
-createdate" jdbcType="TIMESTAMP" />
+    <result column="carbrandid" property="carbrandid" jdbcType="INTEGER" />
+    <result column="cardate" property="cardate" jdbcType="DATE" />
+    <result column="carlc" property="carlc" jdbcType="VARCHAR" />
+    <result column="carareaid" property="carareaid" jdbcType="INTEGER" />
+    <result column="carck" property="carck" jdbcType="INTEGER" />
+    <result column="cartypeid" property="cartypeid" jdbcType="INTEGER" />
+    <result column="carcolor" property="carcolor" jdbcType="VARCHAR" />
+    <result column="carstatus" property="carstatus" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="DATE" />
     <result column="carage" property="carage" jdbcType="INTEGER" />
     <result column="carlocation" property="carlocation" jdbcType="INTEGER" />
     <result column="carpl" property="carpl" jdbcType="INTEGER" />
     <result column="carranyou" property="carranyou" jdbcType="INTEGER" />
-    <result column="sellcarstatu" property="sellcarstatu" jdbcType="INTEGER" />
+    <result column="sellcarcount" property="sellcarcount" jdbcType="INTEGER" />
     <result column="expocarstatu" property="expocarstatu" jdbcType="INTEGER" />
     <result column="placecarstatu" property="placecarstatu" jdbcType="INTEGER" />
     <result column="mentcarstatu" property="mentcarstatu" jdbcType="INTEGER" />
     <result column="visitcarstatu" property="visitcarstatu" jdbcType="INTEGER" />
+    <result column="carimg" property="carimg" jdbcType="VARCHAR" />
+    <result column="cartypesonid" property="cartypesonid" jdbcType="INTEGER" />
+    <result column="carvolume" property="carvolume" jdbcType="INTEGER" />
+    <result column="visitorsum" property="visitorsum" jdbcType="INTEGER" />
+    <result column="purchasesum" property="purchasesum" jdbcType="INTEGER" />
+    <result column="carquerytypeid" property="carquerytypeid" jdbcType="INTEGER" />
+    <result column="carsxj" property="carsxj" jdbcType="INTEGER" />
+    <result column="carprice" property="carprice" jdbcType="DOUBLE" />
+    <result column="carname" property="carname" jdbcType="VARCHAR"/>
+
+    <result column="buydate" property="buydate" jdbcType="DATE" />
   </resultMap>
+
+  <select  id="queryCarAll"  resultMap="BaseResultMap">
+  select * from t_car where 1=1
+  <if test="carranyou==1 and carranyou!=null">
+    and carranyou=1
+  </if>
+  <if test="carmaxprice!=null">
+      and  carprice &gt; 50000  and carprice &lt;80000
+  </if>
+    <if test="carminprice!=null">
+      and  carprice &gt;120000 and  carprice &lt;160000
+    </if>
+    <if test="cartypeid!=null and cartypeid==35">
+      and  cartypeid  &gt;20 and  cartypeid &lt;28
+    </if>
+    <if test="cartypeid!=null and cartypeid==36">
+      and  cartypeid  &gt;30 and  cartypeid &lt;35
+    </if>
+  </select>
+  <select id="showThisCarJsp"  resultMap="BaseResultMap">
+
+     select * from t_car where carid=#{carid}
+  </select>
   <sql id="Base_Column_List" >
-    carid, 
-carbrandid, 
-cardate, 
-carlc, 
-carareaid, 
-carck, 
-cartypeid, 
-carcolor, 
-    
-carstatus, 
-userid, 
-createdate, carage, carlocation, carpl, carranyou, sellcarstatu, 
-    expocarstatu, placecarstatu, mentcarstatu, visitcarstatu
+    carid, carbrandid, cardate, carlc, carareaid, carck, cartypeid, carcolor, carstatus, 
+    userid, createdate, carage, carlocation, carpl, carranyou, sellcarcount, expocarstatu, 
+    placecarstatu, mentcarstatu, visitcarstatu, carimg, cartypesonid, carvolume, visitorsum, 
+    purchasesum, carquerytypeid, carsxj, carprice, buydate
   </sql>
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from t_car
     where carid = #{carid,jdbcType=INTEGER}
   </select>
+
+  <select id="queryCar1" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from t_car limit  1,8
+
+  </select>
+  <select id="queryCar2" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from t_car limit 9,17
+
+  </select><select id="queryCar3" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from t_car limit 18,25
+
+</select><select id="queryCar4" resultMap="BaseResultMap" >
+  select
+  <include refid="Base_Column_List" />
+  from t_car limit 26,33
+
+</select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_car
     where carid = #{carid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jk.model.Car" >
-    insert into t_car (carid, 
-carbrandid, 
-cardate, 
-      
-carlc, 
-carareaid, 
-carck, 
-      
-cartypeid, 
-carcolor, 
-carstatus, 
-      
-userid, 
-createdate, carage, 
+    insert into t_car (carid, carbrandid, cardate, 
+      carlc, carareaid, carck, 
+      cartypeid, carcolor, carstatus, 
+      userid, createdate, carage, 
       carlocation, carpl, carranyou, 
-      sellcarstatu, expocarstatu, placecarstatu, 
-      mentcarstatu, visitcarstatu)
-    values (#{carid,jdbcType=INTEGER}, #{
-carbrandid,jdbcType=INTEGER}, #{
-cardate,jdbcType=TIMESTAMP}, 
-      #{
-carlc,jdbcType=VARCHAR}, #{
-carareaid,jdbcType=INTEGER}, #{
-carck,jdbcType=INTEGER}, 
-      #{
-cartypeid,jdbcType=INTEGER}, #{
-carcolor,jdbcType=INTEGER}, #{
-carstatus,jdbcType=INTEGER}, 
-      #{
-userid,jdbcType=INTEGER}, #{
-createdate,jdbcType=TIMESTAMP}, #{carage,jdbcType=INTEGER}, 
+      sellcarcount, expocarstatu, placecarstatu, 
+      mentcarstatu, visitcarstatu, carimg, 
+      cartypesonid, carvolume, visitorsum, 
+      purchasesum, carquerytypeid, carsxj, 
+      carprice, buydate,carname)
+    values (#{carid,jdbcType=INTEGER}, #{carbrandid,jdbcType=INTEGER}, #{cardate,jdbcType=DATE}, 
+      #{carlc,jdbcType=VARCHAR}, #{carareaid,jdbcType=INTEGER}, #{carck,jdbcType=INTEGER}, 
+      #{cartypeid,jdbcType=INTEGER}, #{carcolor,jdbcType=VARCHAR}, #{carstatus,jdbcType=INTEGER}, 
+      #{userid,jdbcType=INTEGER}, #{createdate,jdbcType=DATE}, #{carage,jdbcType=INTEGER}, 
       #{carlocation,jdbcType=INTEGER}, #{carpl,jdbcType=INTEGER}, #{carranyou,jdbcType=INTEGER}, 
-      #{sellcarstatu,jdbcType=INTEGER}, #{expocarstatu,jdbcType=INTEGER}, #{placecarstatu,jdbcType=INTEGER}, 
-      #{mentcarstatu,jdbcType=INTEGER}, #{visitcarstatu,jdbcType=INTEGER})
+      #{sellcarcount,jdbcType=INTEGER}, #{expocarstatu,jdbcType=INTEGER}, #{placecarstatu,jdbcType=INTEGER}, 
+      #{mentcarstatu,jdbcType=INTEGER}, #{visitcarstatu,jdbcType=INTEGER}, #{carimg,jdbcType=VARCHAR}, 
+      #{cartypesonid,jdbcType=INTEGER}, #{carvolume,jdbcType=INTEGER}, #{visitorsum,jdbcType=INTEGER}, 
+      #{purchasesum,jdbcType=INTEGER}, #{carquerytypeid,jdbcType=INTEGER}, #{carsxj,jdbcType=INTEGER}, 
+      #{carprice,jdbcType=DOUBLE}, #{buydate,jdbcType=DATE},#{carname,jdbcType=VARCHAR})
   </insert>
-  <insert id="addCar" parameterType="com.jk.model.Car" >
+  <insert id="insertSelective" parameterType="com.jk.model.Car" >
     insert into t_car
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="carid != null" >
         carid,
       </if>
-      <if test="
-carbrandid != null" >
-        
-carbrandid,
+      <if test="carbrandid != null" >
+        carbrandid,
       </if>
-      <if test="
-cardate != null" >
-        
-cardate,
+      <if test="cardate != null" >
+        cardate,
       </if>
-      <if test="
-carlc != null" >
-        
-carlc,
+      <if test="carlc != null" >
+        carlc,
       </if>
-      <if test="
-carareaid != null" >
-        
-carareaid,
+      <if test="carareaid != null" >
+        carareaid,
       </if>
-      <if test="
-carck != null" >
-        
-carck,
+      <if test="carck != null" >
+        carck,
       </if>
-      <if test="
-cartypeid != null" >
-        
-cartypeid,
+      <if test="cartypeid != null" >
+        cartypeid,
       </if>
-      <if test="
-carcolor != null" >
-        
-carcolor,
+      <if test="carcolor != null" >
+        carcolor,
       </if>
-      <if test="
-carstatus != null" >
-        
-carstatus,
+      <if test="carstatus != null" >
+        carstatus,
       </if>
-      <if test="
-userid != null" >
-        
-userid,
+      <if test="userid != null" >
+        userid,
       </if>
-      <if test="
-createdate != null" >
-        
-createdate,
+      <if test="createdate != null" >
+        createdate,
       </if>
       <if test="carage != null" >
         carage,
@@ -172,8 +171,8 @@ createdate,
       <if test="carranyou != null" >
         carranyou,
       </if>
-      <if test="sellcarstatu != null" >
-        sellcarstatu,
+      <if test="sellcarcount != null" >
+        sellcarcount,
       </if>
       <if test="expocarstatu != null" >
         expocarstatu,
@@ -187,60 +186,67 @@ createdate,
       <if test="visitcarstatu != null" >
         visitcarstatu,
       </if>
+      <if test="carimg != null" >
+        carimg,
+      </if>
+      <if test="cartypesonid != null" >
+        cartypesonid,
+      </if>
+      <if test="carvolume != null" >
+        carvolume,
+      </if>
+      <if test="visitorsum != null" >
+        visitorsum,
+      </if>
+      <if test="purchasesum != null" >
+        purchasesum,
+      </if>
+      <if test="carquerytypeid != null" >
+        carquerytypeid,
+      </if>
+      <if test="carsxj != null" >
+        carsxj,
+      </if>
+      <if test="carprice != null" >
+        carprice,
+      </if>
+      <if test="buydate != null" >
+        buydate,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="carid != null" >
         #{carid,jdbcType=INTEGER},
       </if>
-      <if test="
-carbrandid != null" >
-        #{
-carbrandid,jdbcType=INTEGER},
+      <if test="carbrandid != null" >
+        #{carbrandid,jdbcType=INTEGER},
       </if>
-      <if test="
-cardate != null" >
-        #{
-cardate,jdbcType=TIMESTAMP},
+      <if test="cardate != null" >
+        #{cardate,jdbcType=DATE},
       </if>
-      <if test="
-carlc != null" >
-        #{
-carlc,jdbcType=VARCHAR},
+      <if test="carlc != null" >
+        #{carlc,jdbcType=VARCHAR},
       </if>
-      <if test="
-carareaid != null" >
-        #{
-carareaid,jdbcType=INTEGER},
+      <if test="carareaid != null" >
+        #{carareaid,jdbcType=INTEGER},
       </if>
-      <if test="
-carck != null" >
-        #{
-carck,jdbcType=INTEGER},
+      <if test="carck != null" >
+        #{carck,jdbcType=INTEGER},
       </if>
-      <if test="
-cartypeid != null" >
-        #{
-cartypeid,jdbcType=INTEGER},
+      <if test="cartypeid != null" >
+        #{cartypeid,jdbcType=INTEGER},
       </if>
-      <if test="
-carcolor != null" >
-        #{
-carcolor,jdbcType=INTEGER},
+      <if test="carcolor != null" >
+        #{carcolor,jdbcType=VARCHAR},
       </if>
-      <if test="
-carstatus != null" >
-        #{
-carstatus,jdbcType=INTEGER},
+      <if test="carstatus != null" >
+        #{carstatus,jdbcType=INTEGER},
       </if>
-      <if test="
-userid != null" >
-        #{
-userid,jdbcType=INTEGER},
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
       </if>
-      <if test="
-createdate != null" >
-        #{
-createdate,jdbcType=TIMESTAMP},
+      <if test="createdate != null" >
+        #{createdate,jdbcType=DATE},
       </if>
       <if test="carage != null" >
         #{carage,jdbcType=INTEGER},
@@ -254,8 +260,8 @@ createdate,jdbcType=TIMESTAMP},
       <if test="carranyou != null" >
         #{carranyou,jdbcType=INTEGER},
       </if>
-      <if test="sellcarstatu != null" >
-        #{sellcarstatu,jdbcType=INTEGER},
+      <if test="sellcarcount != null" >
+        #{sellcarcount,jdbcType=INTEGER},
       </if>
       <if test="expocarstatu != null" >
         #{expocarstatu,jdbcType=INTEGER},
@@ -269,142 +275,35 @@ createdate,jdbcType=TIMESTAMP},
       <if test="visitcarstatu != null" >
         #{visitcarstatu,jdbcType=INTEGER},
       </if>
+      <if test="carimg != null" >
+        #{carimg,jdbcType=VARCHAR},
+      </if>
+      <if test="cartypesonid != null" >
+        #{cartypesonid,jdbcType=INTEGER},
+      </if>
+      <if test="carvolume != null" >
+        #{carvolume,jdbcType=INTEGER},
+      </if>
+      <if test="visitorsum != null" >
+        #{visitorsum,jdbcType=INTEGER},
+      </if>
+      <if test="purchasesum != null" >
+        #{purchasesum,jdbcType=INTEGER},
+      </if>
+      <if test="carquerytypeid != null" >
+        #{carquerytypeid,jdbcType=INTEGER},
+      </if>
+      <if test="carsxj != null" >
+        #{carsxj,jdbcType=INTEGER},
+      </if>
+      <if test="carprice != null" >
+        #{carprice,jdbcType=DOUBLE},
+      </if>
+      <if test="buydate != null" >
+        #{buydate,jdbcType=DATE},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.Car" >
-    update t_car
-    <set >
-      <if test="
-carbrandid != null" >
-        
-carbrandid = #{
-carbrandid,jdbcType=INTEGER},
-      </if>
-      <if test="
-cardate != null" >
-        
-cardate = #{
-cardate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="
-carlc != null" >
-        
-carlc = #{
-carlc,jdbcType=VARCHAR},
-      </if>
-      <if test="
-carareaid != null" >
-        
-carareaid = #{
-carareaid,jdbcType=INTEGER},
-      </if>
-      <if test="
-carck != null" >
-        
-carck = #{
-carck,jdbcType=INTEGER},
-      </if>
-      <if test="
-cartypeid != null" >
-        
-cartypeid = #{
-cartypeid,jdbcType=INTEGER},
-      </if>
-      <if test="
-carcolor != null" >
-        
-carcolor = #{
-carcolor,jdbcType=INTEGER},
-      </if>
-      <if test="
-carstatus != null" >
-        
-carstatus = #{
-carstatus,jdbcType=INTEGER},
-      </if>
-      <if test="
-userid != null" >
-        
-userid = #{
-userid,jdbcType=INTEGER},
-      </if>
-      <if test="
-createdate != null" >
-        
-createdate = #{
-createdate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="carage != null" >
-        carage = #{carage,jdbcType=INTEGER},
-      </if>
-      <if test="carlocation != null" >
-        carlocation = #{carlocation,jdbcType=INTEGER},
-      </if>
-      <if test="carpl != null" >
-        carpl = #{carpl,jdbcType=INTEGER},
-      </if>
-      <if test="carranyou != null" >
-        carranyou = #{carranyou,jdbcType=INTEGER},
-      </if>
-      <if test="sellcarstatu != null" >
-        sellcarstatu = #{sellcarstatu,jdbcType=INTEGER},
-      </if>
-      <if test="expocarstatu != null" >
-        expocarstatu = #{expocarstatu,jdbcType=INTEGER},
-      </if>
-      <if test="placecarstatu != null" >
-        placecarstatu = #{placecarstatu,jdbcType=INTEGER},
-      </if>
-      <if test="mentcarstatu != null" >
-        mentcarstatu = #{mentcarstatu,jdbcType=INTEGER},
-      </if>
-      <if test="visitcarstatu != null" >
-        visitcarstatu = #{visitcarstatu,jdbcType=INTEGER},
-      </if>
-    </set>
-    where carid = #{carid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.jk.model.Car" >
-    update t_car
-    set 
-carbrandid = #{
-carbrandid,jdbcType=INTEGER},
-      
-cardate = #{
-cardate,jdbcType=TIMESTAMP},
-      
-carlc = #{
-carlc,jdbcType=VARCHAR},
-      
-carareaid = #{
-carareaid,jdbcType=INTEGER},
-      
-carck = #{
-carck,jdbcType=INTEGER},
-      
-cartypeid = #{
-cartypeid,jdbcType=INTEGER},
-      
-carcolor = #{
-carcolor,jdbcType=INTEGER},
-      
-carstatus = #{
-carstatus,jdbcType=INTEGER},
-      
-userid = #{
-userid,jdbcType=INTEGER},
-      
-createdate = #{
-createdate,jdbcType=TIMESTAMP},
-      carage = #{carage,jdbcType=INTEGER},
-      carlocation = #{carlocation,jdbcType=INTEGER},
-      carpl = #{carpl,jdbcType=INTEGER},
-      carranyou = #{carranyou,jdbcType=INTEGER},
-      sellcarstatu = #{sellcarstatu,jdbcType=INTEGER},
-      expocarstatu = #{expocarstatu,jdbcType=INTEGER},
-      placecarstatu = #{placecarstatu,jdbcType=INTEGER},
-      mentcarstatu = #{mentcarstatu,jdbcType=INTEGER},
-      visitcarstatu = #{visitcarstatu,jdbcType=INTEGER}
-    where carid = #{carid,jdbcType=INTEGER}
-  </update>
+
+
 </mapper>

@@ -313,6 +313,11 @@ public class EmpController {
 
     }
 
+    @RequestMapping("toLogin1")
+    public String toLogin1(){
+        return  "Login1";
+    }
+
 
 
 
