@@ -28,7 +28,7 @@ public class Mqccontroller {
     @Reference(version="1.0")
     private Mservice Mservice;
 
-    @Autowired
+   @Autowired
     private AmqpTemplate amqpTemplate;
 
     @Autowired

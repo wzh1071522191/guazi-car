@@ -1,4 +1,4 @@
-package com.jk.util;
+package com.jk.conf;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

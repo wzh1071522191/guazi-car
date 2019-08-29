@@ -1,5 +1,6 @@
 package com.jk.util;
 import java.security.MessageDigest;
+
 public class CheckSumBuilder {
 	 // 计算并获取CheckSum
     public static String getCheckSum(String appSecret, String nonce, String curTime) {

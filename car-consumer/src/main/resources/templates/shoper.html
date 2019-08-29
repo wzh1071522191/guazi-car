@@ -243,7 +243,7 @@ $(function () {
 </div>
 <div class="clear_fix"></div>
 <!--所在位置-->
-<div class="crumbp"> <a href="">首页</a> <em>&gt;</em> <span>个人二手车</span> </div>
+<div class="crumbp"> <a href="">首页</a> <em>&gt;</em> <span>我的预约</span> </div>
 <div class="clear_fix"></div>
 <div class="mainbox"> 
 <!--  &lt;!&ndash;门店简介&ndash;&gt;
@@ -276,6 +276,7 @@ $(function () {
   <div class="clear_fix"></div>
   <div class="cs-list">
     <ul th:each="car:${list}">
+      <input  type="hidden" th:value="${car.carid}" id="carid">
       <li class="clearfix" style="position: relative;"> <span class="carImg fl"> <a href="" target="_blank">
         <div class="car_bg"> </div>
         <img  th:src="${car.carimg}" width="270"></a> </span>
@@ -297,26 +298,28 @@ $(function () {
 <input  type="hidden" th:value="${session.LoginUserid}" id="userid1">
 
 <script>
+  var carid=$("#carid").val();
   var phoneidggg1=$("#userid1").val();
   var pricevalue=$("#priceid").val();
   var colorvalue=$("#colorid").val();
   function updgwczt(){
-    alert(phoneidggg1);
-    alert(pricevalue);
-    alert(colorvalue);
+   // alert(carid);
+    //alert(phoneidggg1);
+   // alert(pricevalue);
+   // alert(colorvalue);
     $.ajax({
       url:"../comm/dindanxin",
       type:"post",
       data:{
-        "carid":id,
+        "carid":carid,
         "status":2,
-        "color":colorvalue,
-        "uid":phoneidggg1,
-        "price":pricevalue
+        "guige":colorvalue,
+        "userid":phoneidggg1,
+        "price":pricevalue*1
       },
       success:function(){
-        alert("下单成功！！！")
-        $('#datagridId').datagrid('reload');
+        location.href="/goAlipay?price="+pricevalue*1;
+      //  $('#datagridId').datagrid('reload');
       },
       error:function(){
         alert("five");

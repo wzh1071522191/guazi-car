@@ -1,6 +1,5 @@
 package com.jk.controller;
 
-import com.alibaba.dubbo.common.json.JSONObject;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.model.User;
 import com.jk.service.UserService;

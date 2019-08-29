@@ -209,21 +209,22 @@
 
     <ul class="navmenu">
         <li class="active"><a href="index.html">首页</a><span></span></li>
-        <li><a href="list.html">我要买车</a><span></span></li>
-        <li><a href="wymc.html">我要卖车</a><span></span></li>
-        <li><a href="">阳光联盟</a><span></span></li>
-        <li><a href="">我要加盟</a><span></span></li>
+        <li><a href="../car/queryCarAll">我要买车</a><span></span></li>
+        <li><a href="../car/wymc">我要卖车</a><span></span></li>
+        <li><a href="../car/shoper">我的预约</a><span></span></li>
+
     </ul>
 </div>
 <div  id="showDialogId" >
 
     <input name="mobile" id="mobileid"  class="form-control"   type="text" placeholder="请输入手机号"> <br>
+    <input name="mobil" class="form-control" id="yzmid"  onblur="testYzm()"type="text" placeholder="请输入验证码">   <br>
    <!-- <a class="tableReport-button" href="javascript:showTime()">-->
         <input type="button" class="form-control" value="获取验证码" onclick="showTime()" id="dianjiId">
    <!--</a>-->
-    <br>
 
-    <input name="mobil" class="form-control" id="yzmid"  onblur="testYzm()"type="text" placeholder="请输入验证码">
+
+
     <!--  <a  href="javascript:testYzm();" >登录</a>-->
 </div>
 <script >
@@ -238,7 +239,7 @@
 </script>
 <div class="clear_fix"></div>
 <!--所在位置-->
-<div class="crumbp"> <a href="">首页</a> <em>&gt;</em> <span>个人二手车</span></div>
+<div class="crumbp"> <a href="">首页</a> <em>&gt;</em> <span>预约看车</span></div>
 <div class="mainbox">
     <!--车子概况头部-->
     <div class="car-top">
@@ -434,7 +435,7 @@
                                     "userid":phoneidggg1
                                 },
                                 success:function () {
-                                    alert("加购成功!!!");
+                                    alert("预约成功!!!");
                                     location.href="../car/mygwd?uid="+phoneidggg1;
                                 },error:function () {
                                     alert("no way !!!")
@@ -444,11 +445,11 @@
                     }
                 </script>
                 <div class="row">
-                    <div class="tel-box">
+                    <!--<div class="tel-box">
 
 
-                    </div>
-                    <div class="order_button"> <span class="wanttoprice orderbut" id="sendMESS"  th:onclick="'addGwd(\''+${car.carid}+'\')'">加入购物车</span> </div>
+                    </div>-->
+                    <div class="order_button"> <span class="wanttoprice orderbut" id="sendMESS"  th:onclick="'addGwd(\''+${car.carid}+'\')'">预约看车</span> </div>
                     <div class="order_button"><a href="" class="shouchang" id="sendMESStx">收藏</a><!--<a href="#" class="yshouchang">已收藏</a>-->
                         <div id="fp">
                             <ul style=" position:relative;">
