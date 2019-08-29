@@ -75,4 +75,13 @@ public class AuditController {
     public void upMessage(Audit audit){
         auditService.upMessage(audit);
     }
+
+    @RequestMapping("toQRCode")
+    public ModelAndView toQRCode(Integer id){
+        Audit ad=auditService.queryCarById(id);
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("ad",ad);
+        mv.setViewName("QRCode");
+        return mv;
+    }
 }

@@ -10,6 +10,7 @@ import com.jk.service.Mservice;
 import com.jk.util.ParameUtil;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +30,15 @@ public class Mqccontroller {
 
    @Autowired
     private AmqpTemplate amqpTemplate;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     //跳转到汽车页面
      @RequestMapping("query")
       public String car1(){
-        return "mqcquerycar";
+
+         return "mqcquerycar";
       }
 
     //汽车查询
@@ -41,6 +47,8 @@ public class Mqccontroller {
      public Map querycar(@RequestBody ParameUtil parm){
          return Mservice.querycar(parm);
      }
+
+
 
 
 //查询下拉  querytype
@@ -67,18 +75,18 @@ public  void shan(String ids){
 
     }
 
-
-//分类
+    //分类
     @RequestMapping("querytypelist")
     public String cartype(){
         return "mqcquerytype";
     }
 
 
+
     //汽车类型查询type
     @RequestMapping("querycartype")
     @ResponseBody
-    public Map querycartype(@RequestBody ParameUtil parm){
+    public Map querycartyvgpe(@RequestBody ParameUtil parm){
         return Mservice.querycartype(parm);
     }
 
@@ -100,6 +108,7 @@ public  void shan(String ids){
     public String ck(){
         return "mqcquerycar2";
     }
+
     @RequestMapping("querycar2")
     @ResponseBody
     public Map querycar2(@RequestBody ParameUtil parm){
@@ -131,7 +140,9 @@ public String uploadImg(MultipartFile imgg)throws IOException {
     @RequestMapping("addcar")
     @ResponseBody
     public void  addcar(Car c){
-      Mservice.addcar(c);
+       // System.out.println(c);
+        amqpTemplate.convertAndSend("Rabbitmq",c);
+        // Mservice.addcar(c);
     }
 
 
@@ -284,7 +295,6 @@ public void upku(Integer id){
     @RequestMapping("addjiameng")
     @ResponseBody
      public void addjm(jiameng aa){
-        System.out.println(aa);
         Mservice.addjm(aa);
     }
 

@@ -27,7 +27,7 @@ public interface Mservice {
 
   Map querycar2(ParameUtil parm);
 
-  void addcar(Car c);
+ 
 
   void ups(Integer id);
 
@@ -65,4 +65,8 @@ public interface Mservice {
   void sh2(Integer id);
 
   void addjm(jiameng jm);
+
+
+
+
 }

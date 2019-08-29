@@ -9,7 +9,8 @@
 <form id="addFormId">
     <input type="hidden" th:value="${l.id}" name="id"/>
     <input type='text' name="stime" id="aa"  th:value="${#dates.format(l.stime,'yyyy-MM-dd HH:mm:ss')}"/>
-
+    <input type="text"  name="zhangshu" th:value="${l.zhangshu}"/>
+    <input type="hidden"  name="seckillname" th:value="${l.seckillname}"/>
 </form>
 </body>
 </html>

@@ -53,10 +53,7 @@
 
 </head>
 <body >
-<div>
-<iframe width="800" scrolling="no" height="220" frameborder="0"
-        allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=19&color=%23&bgc=%23FFFFFF&bdc=%2300B0F0&icon=1&py=haidian&temp=1&num=5&site=13"></iframe>
-</div><div>xdvxv</div>
+
 <br>
 <div>
 
@@ -70,7 +67,7 @@
 
 <form id="pro_from" class="form-inline">
     <div class="form-group">
-           出厂时间<input type="date" name="qian" id="qian"><------><input  type="date" name="ho" id="ho">
+           出厂时间：<input type="date" name="qian" id="qian" class="form-control" >--<input  type="date" name="ho" id="ho" class="form-control" >
        <br>
 
         <label>地区</label>
@@ -87,9 +84,9 @@
     </div>
     <br>
     <div class="form-group">
-        <label>汽车状态</label>
+        <label>汽车状态：</label>
 
-        <input type="radio" class="form-control" value="1"  name = "carstatus"   placeholder="状态" >已售出
+        <input type="radio" class="form-control" value="1"  name = "carstatus"   placeholder="状态" >已售出&nbsp;
         <input type="radio" class="form-control" value="2" name = "carstatus"  placeholder="状态">未售出
 
 
@@ -184,12 +181,13 @@
                 {field: 'carid', title: '汽车id', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'typename', title: '汽车品牌', width: 300,
                     formatter: function (value,row,index){
-                    return "<font color='blue'>value</font>";
+                    return "<font color='blue' size='3px'>"+value+"</font>";
+
                     }
                 },
                 {field: 'carimg', title: '图片', width: 300 ,
                     formatter: function (value,row,index){
-                        return "<img src='"+value+"' style='width: 100px;height: 80px'>"
+                        return "<img src='"+value+"' style='width: 150px;height: 90px'>"
                     }
                 },
                 {field: 'placecarstatu', title: '是否下单', width: 300,
@@ -226,7 +224,7 @@
                 {field: 'carcolor', title: '汽车颜色', width: 300
                 },
                 {field: 'carage', title: '车龄', width: 300 },
-                {field: 'text', title: '评论', width: 300 },
+
                 {field: 'carck', title: '车况', width: 300,
                     formatter: function (value,row,index) {
                         if (value == "1") {
@@ -400,7 +398,7 @@ function updatee(id){
                             type: 'post',
                             data: $("#formId").serialize(),
                             success: function () {
-
+                                   alert("1")
                                 $('#dataGrid').bootstrapTable("refresh");
                                 location.href=location;
                                 //刷新表格

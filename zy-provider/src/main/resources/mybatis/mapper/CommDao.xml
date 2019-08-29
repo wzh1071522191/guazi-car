@@ -136,13 +136,13 @@ select * from comment c where c.pid =#{id}
           insert  into comment(text,ptime,pid) values (#{text},#{ptime},#{pid})
     </insert>
     <update id="wubai" parameterType="java.lang.Integer">
-        update t_user set fivehundred=1 where userid=#{uid}
+        update t_user set fivesum=fivesum+1 where userid=#{uid}
     </update>
     <update id="yiqian" parameterType="java.lang.Integer">
-        update t_user set onethousand=1 where userid=#{uid}
+        update t_user set onesum=onesum+1 where userid=#{uid}
     </update>
     <update id="wuqian" parameterType="java.lang.Integer">
-        update t_user set fivethousand=1 where userid=#{uid}
+        update t_user set thsum=thsum+1 where userid=#{uid}
     </update>
     <select id="mszong" resultType="java.lang.Integer">
         select  count(*) from seckill
@@ -154,6 +154,7 @@ select * from comment c where c.pid =#{id}
               select  * from seckill where id=#{id}
     </select>
     <update id="update">
-        update  seckill set stime=#{stime}  where id=#{id}
+        update  seckill set stime=#{stime},zhangshu=#{zhangshu}  where id=#{id}
     </update>
+
 </mapper>

@@ -19,6 +19,34 @@ public class Seckill implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date stime;
     private  Integer seckillname;
+    private  Integer zhangshu;
+   private  Integer  fivesum;
+    private  Integer  onesum;
+    private  Integer thsum;
+
+    public Integer getFivesum() {
+        return fivesum;
+    }
+
+    public void setFivesum(Integer fivesum) {
+        this.fivesum = fivesum;
+    }
+
+    public Integer getOnesum() {
+        return onesum;
+    }
+
+    public void setOnesum(Integer onesum) {
+        this.onesum = onesum;
+    }
+
+    public Integer getThsum() {
+        return thsum;
+    }
+
+    public void setThsum(Integer thsum) {
+        this.thsum = thsum;
+    }
 
     public Integer getId() {
         return id;
@@ -43,5 +71,13 @@ public class Seckill implements Serializable {
 
     public void setSeckillname(Integer seckillname) {
         this.seckillname = seckillname;
+    }
+
+    public Integer getZhangshu() {
+        return zhangshu;
+    }
+
+    public void setZhangshu(Integer zhangshu) {
+        this.zhangshu = zhangshu;
     }
 }

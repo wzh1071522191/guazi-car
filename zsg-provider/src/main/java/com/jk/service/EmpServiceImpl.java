@@ -122,7 +122,7 @@ public class EmpServiceImpl implements EmpService {
             c.and("logtime").gte(pu.getStarDate()).lte(pu.getEndDate());
         }
         //结束时间为空，开始不空
-        if (pu.getStarDate!= null&&pu.getEndDate()==null) {
+        if (pu.getStarDate()!= null&&pu.getEndDate()==null) {
             c.and("logtime").gte(pu.getStarDate());
         }
         //开始为空，结束不空
