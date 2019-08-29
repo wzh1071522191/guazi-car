@@ -75,6 +75,63 @@ public class Car implements Serializable{
     private Double carprice;
 
     private Date buydate;
+    private Integer visitcount;
+
+
+    private Integer expocarcount;
+
+
+    private Integer placecarcount;
+
+
+    private Integer mentcarcount;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Integer getVisitcount() {
+        return visitcount;
+    }
+
+    public void setVisitcount(Integer visitcount) {
+        this.visitcount = visitcount;
+    }
+
+    public Integer getExpocarcount() {
+        return expocarcount;
+    }
+
+    public void setExpocarcount(Integer expocarcount) {
+        this.expocarcount = expocarcount;
+    }
+
+    public Integer getPlacecarcount() {
+        return placecarcount;
+    }
+
+    public void setPlacecarcount(Integer placecarcount) {
+        this.placecarcount = placecarcount;
+    }
+
+    public Integer getMentcarcount() {
+        return mentcarcount;
+    }
+
+    public void setMentcarcount(Integer mentcarcount) {
+        this.mentcarcount = mentcarcount;
+    }
+
+    public Integer getCangkucount() {
+        return cangkucount;
+    }
+
+    public void setCangkucount(Integer cangkucount) {
+        this.cangkucount = cangkucount;
+    }
+
+    //仓库总数量临时
+    private Integer cangkucount;
 
     public Integer getCarid() {
         return carid;

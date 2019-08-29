@@ -7,12 +7,12 @@
  */  
 package com.jk.util;
 
+import com.jk.model.Menu;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.jk.model.Menu;
 
 /** 
  * <pre>项目名称：zsg    

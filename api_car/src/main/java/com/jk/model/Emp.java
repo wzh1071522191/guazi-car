@@ -40,8 +40,6 @@ public class Emp implements Serializable {
 
     private String answerThree;     //答案3
 
-
-
     public Integer getId() {
         return id;
     }

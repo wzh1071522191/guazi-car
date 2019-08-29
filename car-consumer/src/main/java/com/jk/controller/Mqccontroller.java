@@ -27,7 +27,7 @@ public class Mqccontroller {
     @Reference(version="1.0")
     private Mservice Mservice;
 
-    @Autowired
+   @Autowired
     private AmqpTemplate amqpTemplate;
     //跳转到汽车页面
      @RequestMapping("query")

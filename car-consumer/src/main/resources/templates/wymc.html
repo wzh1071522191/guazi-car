@@ -189,8 +189,7 @@
             text:'保存',
             handler:function(){
               $.ajax({
-                // url:mqc/toAddUserPage"../",
-                url:"../car/addCar",
+                 url:"../mqc/addcar",
                 type:"post",
                 data:$("#addFormId").serialize(),
                 dataType:"text",
@@ -278,7 +277,7 @@
         for (var i = 0; i < data.length; i++) {
           thtml+='<option value="'+data[i].tid+'">'+data[i].tname+'</option>';
         }
-        $("[name='brandid']").html(thtml);
+        $("[name='carbrandid']").html(thtml);
       },
       error:function (){
         alert("后台有误，请使用debug调试！！！");
@@ -287,7 +286,7 @@
   })
 
   function queryShi(pid){
-    alert(pid);
+   // alert(pid);
     $.ajax({
       url:"../area/queryShi?pid="+pid,
       success:function (data){
@@ -306,7 +305,7 @@
   }
 
   function queryBrandType(pid){
-    alert(pid);
+    //alert(pid);
     $.ajax({
       url:"../car/queryBrandType?pid="+pid,
       success:function (data){
@@ -315,7 +314,7 @@
         for (var i = 0; i < data.length; i++) {
           thtml+='<option value="'+data[i].tid+'">'+data[i].tname+'</option>';
         }
-        $("[name='brandtypeid']").html(thtml);
+        $("[name='cartypeid']").html(thtml);
       },
       error:function (){
         alert("后台有误，请使用debug调试！！！");
@@ -585,12 +584,12 @@
     </select><br>-->
     <div class="form-group">
       <label for="brandid">所属品牌</label>
-      <select  class="form-control" name="brandid"  onchange="queryBrandType(this.value)">
+      <select  class="form-control" name="carbrandid"  onchange="queryBrandType(this.value)">
       </select>
     </div>
     <div class="form-group">
       <label for="brandtypeid">所属车系</label>
-      <select  class="form-control"  name="brandtypeid" >
+      <select  class="form-control"  name="cartypeid" >
       </select>
     </div>
 <!--
@@ -600,14 +599,14 @@
       <select name="brandtypeid">
         <option value="-1">&#45;&#45;请选择&#45;&#45;</option>
       </select><br>-->
-    <div class="form-group">
+   <!-- <div class="form-group">
       <label for="pdate">日期</label>
       <input type="date" class="form-control" name="buydate">
-    </div>
+    </div>-->
     <div class="row myrow" id="img1">
-      <div class="col-md-2"><label for="imgName">轮播图片</label></div>
+      <div class="col-md-2"><label for="imgName">汽车图片</label></div>
       <div class="col-md-10" >
-        <input type="hidden" id="upFile" name="imgurl" />
+        <input type="hidden" id="upFile" name="carimg" />
         <input type="file" class="form-control" id="imgName" name="imgName" >
       </div>
     </div>

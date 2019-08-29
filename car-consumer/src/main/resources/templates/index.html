@@ -156,11 +156,11 @@
   <div class="nav-cents">
     <ul>
       <li class="logo"><a href=""><img src="../images/logo.png" width="180"></a></li>
-      <li><a href="">首页</a></li>
+      <li><a href="../car/index">首页</a></li>
       <li><a href="../car/list">我要买车</a></li>
       <li><a href="../car/wymc">我要卖车</a></li>
-      <li><a href="">阳光联盟</a></li>
-      <li><a href="">我要加盟</a></li>
+      <li><a href="../car/shoper">我的预约</a></li>
+
     </ul>
     <div class="seas">
       <div class="egc-sea-box">
@@ -407,7 +407,7 @@
   <div class="clear_fix"></div>
 
   <div class="joinsnncar fl">
-    <form class="dForm" id="dForm" method="post">
+    <form class="dForm" id="dForm">
       <h2>我要加盟</h2>
       <div class="mod-form">
         <div class="mod-form-item">
@@ -420,16 +420,16 @@
         </div>-->
 
 
-        <select class="select" name="shengid" onchange="queryShi(this.value)">
+        <select class="select" name="shengdq" onchange="queryShi(this.value)">
           <option value="-1">所属省</option>
         </select><br><br>
-        <select class="select" name="carareaid">
+        <select class="select" name="shidq">
           <option value="-1">所属市</option>
         </select>
-
+<br>
 
         <div class="mod-form-item "><!--mobile-->
-          <input class="input1 tipinput" name="mobile" id="mobileid" placeholder="请填写您的手机号码">
+          <input class="input1 tipinput" name="userphone"id="mobileid" placeholder="请填写您的手机号码">
           <i class="i-must"></i> </div>
         <div class="mod-form-item mod-form-item-ex">
           <input class="input1 input-short tipinput" onblur="testYzm()" id="yzmid" placeholder="请输入短信验证码">
@@ -459,7 +459,7 @@
     var yzm="";
     var miao=60;
     function showTime(){
-      alert($("#mobileid").val())
+     // alert($("#mobileid").val())
       $.ajax({
         url:"../user/testCode",
         type:"post",
@@ -507,7 +507,7 @@
    //   alert("++++++++++++++++++"+yzm);
     //  alert(aa+"++++++++++++++++++");
       if(aa!=null && aa.toString()==yzm.toString()){
-        alert("验证码正确")
+      //  alert("验证码正确")
         $('#showDialogId').dialog("close");
         //停止计时器
         clearInterval(djs);
@@ -524,6 +524,8 @@
         //按钮名称改为原按钮名称
         document.getElementById("dianjiId").value="获取验证码";
         yzm="";
+      }else{
+        alert("验证码错误，请重新输入");
       }
     }
 
@@ -532,11 +534,12 @@
 
     function jm(){
       var aa=$("#dForm").serialize()
-    //  alert(aa)
+    // alert(aa)
       $.ajax({
         url:"../mqc/addjiameng",
         data:aa,
         success:function(){
+          aleet("加盟成功！！！");
           location.href=location;
         },
         error:function(){
@@ -554,7 +557,7 @@
           for (var i = 0; i < data.length; i++) {
             thtml+='<option value="'+data[i].aid+'">'+data[i].aname+'</option>';
           }
-          $("[name='shengid']").html(thtml);
+          $("[name='shengdq']").html(thtml);
         },
         error:function (){
           alert("后台有误，请使用debug调试！！！");
@@ -573,7 +576,7 @@
           for (var i = 0; i < data.length; i++) {
             thtml+='<option value="'+data[i].aid+'">'+data[i].aname+'</option>';
           }
-          $("[name='carareaid']").html(thtml);
+          $("[name='shidq']").html(thtml);
         },
         error:function (){
           alert("后台有误，请使用debug调试！！！");
@@ -582,7 +585,7 @@
 
     }
     function getName(id){
-      alert(id);
+    //  alert(id);
       location.href="../car/showThisCarJsp?carid="+id;
     }
 
@@ -879,7 +882,7 @@
           <div class="con"> <a href="">买车帮助</a> <a href="">卖车帮助</a> <a href="">过户帮助</a> </div>
         </div>
         <div class="items">
-          <div class="tit"><i class="icon-angle-right"></i>客服中心</div>
+          <div class="tit"><i class="icon-angle-right"></i><a href="../Perso/tologin" class="kf">客服中心</a></div>
           <div class="con"> <a href="javascript:;">网站合作</a> <a href="about">关于我们</a> <a href="javascript:;">联系我们</a> </div>
         </div>
         <div class="items">
@@ -971,7 +974,7 @@
         <form class="registForm" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
           <ul class="login-items">
             <li class="clearfix">
-              <input class="input" name="mobile" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）">
+              <input class="input" name="userphone"id="mobile" type="text" value="" placeholder="手机号码（登录帐号）">
             </li>
             <li class="clearfix">
               <input class="input left" type="text" value="" name="verify" placeholder="输入验证码" style="width:100px;">

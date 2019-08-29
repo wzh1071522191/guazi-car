@@ -5,15 +5,12 @@ import com.jk.model.Car;
 import com.jk.model.CarType;
 import com.jk.service.CarService;
 import com.jk.util.ParamQuery;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -44,10 +41,10 @@ public class CarController {
         return "showcar";
     }
     //首页关于热卖车型的条查  ------安安
-    @RequestMapping("queryCar")
+ /*   @RequestMapping("queryCar")
     public List<Car> queryCar(ParamQuery param){
         return carservice.queryCar(param);
-    }
+    }*/
     //关于评估车价计算价格
     @RequestMapping("testCarPrice")
     public Double testCarPrice(Car car, HttpSession session){

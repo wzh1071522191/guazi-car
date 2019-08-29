@@ -4,29 +4,20 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.minggan.test;
 import com.jk.model.*;
 import com.jk.service.CommService;
-import com.jk.util.DataGridResult;
-import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import sun.net.httpserver.HttpsServerImpl;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.crypto.Data;
 import java.io.UnsupportedEncodingException;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -38,7 +29,7 @@ public class CommController {
     private CommService se;
   @Autowired
   private RedisTemplate redisTemplate;
-    @Autowired
+  @Autowired
     private AmqpTemplate amqpTemplate;
     //订单查询全部
     @RequestMapping("cha")
@@ -160,32 +151,34 @@ public class CommController {
     //订单新增
     @RequestMapping("dindanxin")
     @ResponseBody
-    public void  dindanxin(String carname,Integer price,String color,Integer cid,Integer uid){
+    public void  dindanxin(Order order){
+        System.out.println(order.getPrice());
+        System.out.println("++++++"+order.getCarid());
         long time =  System.currentTimeMillis();
         Random ran = new Random();
         int i = ran.nextInt(1000);
         long s= time+i;
 
-        Order o=new Order();
-        o.setDindanhao(s+"");
-        o.setCarid(cid);
-        o.setUserid(uid);
-        o.setPrice(1000);
-        o.setCunmber(1);
-        o.setXdtime(new Date());
-        o.setStatus(1);
-        o.setShprice(1000);
-        o.setGuige(color);
-        o.setKuaidifei(20);
-        o.setYuhui(200);
-        o.setShprice(1200);
-        if(o.getStatus()==1){
+
+        order.setDindanhao(s+"");
+        order.setCarid(order.getCarid());
+        order.setUserid(order.getUserid());
+        order.setPrice(order.getPrice());
+        order.setCunmber(1);
+        order.setXdtime(new Date());
+        order.setStatus(2);
+        order.setShprice(order.getPrice());
+        order.setGuige(order.getGuige());
+        order.setKuaidifei(20);
+        order.setYuhui(200);
+        order.setSpprice(order.getPrice());
+        if(order.getStatus()==1){
             String cun="order";
 
-            redisTemplate.opsForValue().set(cun,o);
+            redisTemplate.opsForValue().set(cun,order);
             redisTemplate.expire(cun,30,TimeUnit.MINUTES);
         }else{
-            amqpTemplate.convertAndSend("Rabbitmq",o);
+            amqpTemplate.convertAndSend("Rabbitmq",order);
         }
 
 

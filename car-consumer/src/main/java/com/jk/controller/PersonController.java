@@ -7,15 +7,11 @@ import com.jk.model.Car;
 import com.jk.model.Cusmoter;
 import com.jk.service.PersonService;
 import com.jk.util.HttpClientUtil;
-import com.jk.util.ParameUtil;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;

@@ -178,7 +178,7 @@ public class AlipayDemoController {
 
             }
 
-            return "redirect:view";
+            return "redirect:zaz";
         }
 
         return "redirect:view";
