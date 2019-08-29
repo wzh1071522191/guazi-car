@@ -18,4 +18,6 @@ public interface AuditService {
     String updateStatus(Integer id, Integer flag);
 
     void upMessage(Audit audit);
+
+    Audit queryCarById(Integer id);
 }

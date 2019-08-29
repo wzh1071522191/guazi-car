@@ -49,4 +49,23 @@
         ischangyong=#{ischangyong},changyongimg=#{changyongimg},status=4 where id=#{id}
     </update>
 
+    <!--Audit queryCarById(Integer id)-->
+    <resultMap id="ad" type="Audit">
+        <id column="id" property="id"/>
+        <result column="carname" property="carname"/>
+        <result column="auditdate" property="auditdate"/>
+        <result column="qdcarprice" property="qdcarprice"/>
+        <association property="user" javaType="User">
+            <id column="userid" property="userid" />
+            <result column="username" property="username"/>
+            <result column="userphone" property="userphone"/>
+        </association>
+    </resultMap>
+    <select id="queryCarById" resultMap="ad">
+        SELECT
+            a.id,a.carname,a.auditdate,a.qdcarprice,
+            u.userid,u.username,u.userphone
+        FROM t_audit a LEFT JOIN t_user u ON a.userid=u.userid WHERE a.id=#{id}
+    </select>
+
 </mapper>

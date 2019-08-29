@@ -4,27 +4,27 @@
 
 
     <select id="querycar" resultType="com.jk.model.Car" >
-     select *  from  t_car c,car_type t ,comment m <include refid="ii"/> and c.carsxj=1
+     select *  from  t_car c,car_type t  <include refid="ii"/> and c.carsxj=1
      and c.carbrandid=t.id
-     and m.id=c.carpl  limit #{pageNumber},#{pageSize}
+     limit #{pageNumber},#{pageSize}
      </select>
 
 
     <select id="sumcount" resultType="Integer">
-        select count(*) from  t_car c,car_type t,comment m <include refid="ii"/> and c.carsxj=1
-        and c.carbrandid=t.id and m.id=c.carpl
+        select count(*) from  t_car c,car_type t <include refid="ii"/> and c.carsxj=1
+        and c.carbrandid=t.id
     </select>
 
 
     <select id="querycar2" resultType="com.jk.model.Car">
-        select *  from  t_car c,car_type t ,comment m  <include refid="ii"/> and c.carsxj=2
-        and c.carbrandid=t.id and m.id=c.carpl
+        select *  from  t_car c,car_type t   <include refid="ii"/> and c.carsxj=2
+        and c.carbrandid=t.id
         limit #{pageNumber},#{pageSize}
     </select>
 
     <select id="sumcount12"  resultType="int"   >
-        select count(*) from  t_car c,car_type t ,comment m <include refid="ii"/>  and c.carsxj=2
-    and c.carbrandid=t.id and m.id=c.carpl
+        select count(*) from  t_car c,car_type t  <include refid="ii"/>  and c.carsxj=2
+    and c.carbrandid=t.id
     </select>
 
 

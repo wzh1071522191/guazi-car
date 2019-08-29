@@ -81,4 +81,6 @@ public interface CommDao {
     Seckill chaseckill(Integer id);
 
     void update(Seckill s);
+
+
 }

@@ -45,10 +45,21 @@ public class Audit implements Serializable {
 
     private Integer status; //状态   1.待审核 2.审核已通过 3.审核不通过
 
+    private Integer qdcarprice;
+
     private User user;
 
     private String username;
     private String userphone;
+
+
+    public Integer getQdcarprice() {
+        return qdcarprice;
+    }
+
+    public void setQdcarprice(Integer qdcarprice) {
+        this.qdcarprice = qdcarprice;
+    }
 
     public User getUser() {
         return user;
