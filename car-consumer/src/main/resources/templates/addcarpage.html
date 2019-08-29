@@ -36,31 +36,61 @@
 <script type="text/javascript" src="/js/js3/bootstrap-fileinput/js/fileinput.js"></script>
 <script type="text/javascript" src="/js/js3/bootstrap-fileinput/js/locales/zh.js"></script>
 </head>
+
 <body>
 <form id="formId">
-      汽车：<select name="carbrandid" id="carbrandid"> </select><br>
+      汽车：<select name="carbrandid" id="carbrandid" class="form-control"> </select><br>
 
 
- 地区：<select name="carareaid">
+ 地区：<select name="carareaid" class="form-control">
     <option value="0">请选择</option>
         <option value="1">北京</option>
         <option value="2">上海</option>
         <option value="3">西安</option>
     </select><br>
-   车身颜色：<select name="carcolor">
+
+   车身颜色：<select name="carcolor" class="form-control">
         <option   >请选择</option>
         <option >红</option>
         <option >蓝</option>
         <option >白</option>
         <option >黑</option>
     </select><br>
-     车况：<input type="radio" value="1" name="carck"> 好
-    <input type="radio" value="2" name="carck">正常
-    <input type="radio" value="3" name="carck">一般
-    <input type="radio" value="4" name="carck">事故<br>
 
-    是否发售：<input type="radio" value="1" name="carstatus">已售
-            <input type="radio" value="2" name="carstatus">未售<br>
+     车况：<input type="radio" value="1" name="carck" > 好&nbsp;&nbsp;
+    <input type="radio" value="2" name="carck">正常&nbsp;&nbsp;
+    <input type="radio" value="3" name="carck">一般&nbsp;&nbsp;
+    <input type="radio" value="4" name="carck">事故<br><br>
+是否出售:<input type="radio" name="placecarstatu"  value="1"   class="form-group">已出售&nbsp;&nbsp;
+    <input type="radio" name="placecarstatu"  value="2"   class="form-group">未出售
+<br><br>
+是否下单:<input type="radio" name="carstatus"  value="1"   class="form-group">已下单&nbsp;&nbsp;
+<input type="radio" name="carstatus"  value="2"   class="form-group">未下单<br>
+
+    <div class="input-group">
+        <span class="input-group-addon">出售数量:</span>
+        <input type="text" name="sellcarcount" class="form-control" placeholder="数量/台">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">行驶里程:</span>
+        <input type="text" name="carlc" class="form-control" placeholder="行驶/km">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">车龄:</span>
+        <input type="text" name="carage" class="form-control" placeholder="车龄/年">
+    </div><br>
+    <div class="input-group">
+        <span class="input-group-addon">燃油:</span>
+        <input type="text" name="carranyou" class="form-control" placeholder="升/公里">
+    </div>
+
+
+
+
+
+
 <br>
     <div class="row myrow">
         <div class="col-md-2">

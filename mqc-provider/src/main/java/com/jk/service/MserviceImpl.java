@@ -9,6 +9,7 @@ import com.jk.dao.Mdao;
 import com.jk.model.*;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -87,11 +88,7 @@ public class MserviceImpl implements Mservice {
         return map;
     }
 
-    @Override
-    public void addcar(Car c) {
 
-        mdao.addcar(c);
-    }
 
     @Override
     public void ups(Integer id) {
@@ -134,6 +131,11 @@ public class MserviceImpl implements Mservice {
     public Audit querymai(Integer id) {
         Audit a=  mdao.querymai(id);
         return  a;
+    }
+
+    @RabbitListener(queues = "Rabbitmq")//添加RabbitListener注解 监听
+    public void addcar(Car c) {
+        mdao.addcar(c);
     }
 
     @Override
@@ -224,6 +226,7 @@ public class MserviceImpl implements Mservice {
     public void addjm(jiameng jm) {
         mdao.addjm(jm);
     }
+
 
 
 }

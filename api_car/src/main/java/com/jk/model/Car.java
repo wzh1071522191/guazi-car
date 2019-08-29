@@ -52,28 +52,51 @@ public class Car implements Serializable {
     private Integer purchasesum;
     //1:已曝光 2:未曝光
     private Integer expocarstatu;
-    //1:已下单 2:未下单
+   //1:已下单 2:未下单
     private Integer placecarstatu;
-    //1:已支付 3:支付中 2:未支付   默认是2未支付
+   //1:已支付 3:支付中 2:未支付   默认是2未支付
     private Integer mentcarstatu;
-    //1:未访问 2:已访问   默认是1未访问
+   //1:未访问 2:已访问   默认是1未访问
     private Integer visitcarstatu;
     //仓库总数量临时
     private Integer cangkucount;
 
-
     private String carimg;
-    private String text;
+     private String text;
+     private String carname;
+
+    public String getCarname() {
+        return carname;
+    }
+
+    public void setCarname(String carname) {
+        this.carname = carname;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getCarimg() {
+        return carimg;
+    }
+
+    public void setCarimg(String carimg) {
+        this.carimg = carimg;
+    }
 
 
     private Integer visitcount;
 
-
     private Integer expocarcount;
 
 
-    private Integer placecarcount;
 
+    private Integer placecarcount;
 
     private Integer mentcarcount;
 
@@ -283,22 +306,6 @@ public class Car implements Serializable {
 
     public void setCangkucount(Integer cangkucount) {
         this.cangkucount = cangkucount;
-    }
-
-    public String getCarimg() {
-        return carimg;
-    }
-
-    public void setCarimg(String carimg) {
-        this.carimg = carimg;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public Integer getVisitcount() {

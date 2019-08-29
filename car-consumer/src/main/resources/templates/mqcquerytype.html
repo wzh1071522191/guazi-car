@@ -53,6 +53,7 @@
 
 </head>
 <body>
+<center>
 <input type="button" value="福特" class="btn btn-warning">
 <input type="button" value="大众" class="btn btn-warning">
 <input type="button" value="现代" class="btn btn-warning">
@@ -61,10 +62,10 @@
 <input type="button" value="雪佛兰" class="btn btn-warning">
 <br>
 <br>
-<input type="button" value="请按上方提示模糊查询" class="btn btn-danger">
+<input type="button" value="请按上方提示模糊查询" class="btn btn-info">
 
 <br>
-
+<br>
 <form id="pro_from" class="form-inline">
     名字<input name="typename" id="typename">
     <br>
@@ -72,8 +73,9 @@
 
     <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
 </form>
-<input type="button" value="删除" class="btn btn-danger" onclick="deleteUserById()">
 
+</center>
+<input type="button" value="批量删除" class="btn btn-danger" onclick="deleteUserById()">
 <table id="dataGrid"></table>
 </body>
 <script type="text/javascript">

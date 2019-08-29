@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import sun.net.httpserver.HttpsServerImpl;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -37,8 +36,8 @@ import java.util.concurrent.TimeUnit;
 public class CommController {
     @Reference
     private CommService se;
-    @Autowired
-    private RedisTemplate redisTemplate;
+  @Autowired
+  private RedisTemplate redisTemplate;
     @Autowired
     private AmqpTemplate amqpTemplate;
     //订单查询全部
@@ -47,36 +46,36 @@ public class CommController {
     public Map chauxn(@RequestBody ParameUtil params){
 
 
-        return se.cha(params);
+      return se.cha(params);
     }
     //跳转订单查询页面
-    @RequestMapping("cha1")
+  @RequestMapping("cha1")
     public String cha1(){
 
         return "cha";
-    }
-    //订单待付款查询
-    @RequestMapping("daifukuan")
-    @ResponseBody
-    public Map daifukuan(@RequestBody ParameUtil param){
+  }
+ //订单待付款查询
+ @RequestMapping("daifukuan")
+ @ResponseBody
+ public Map daifukuan(@RequestBody ParameUtil param){
 
-        return se.dai(param);
-    }
+     return se.dai(param);
+ }
 
-    //订单待发货查询
-    @RequestMapping("daifahuo")
-    @ResponseBody
-    public Map daifahuo(@RequestBody ParameUtil param){
+ //订单待发货查询
+ @RequestMapping("daifahuo")
+ @ResponseBody
+ public Map daifahuo(@RequestBody ParameUtil param){
 
-        return se.fa(param);
-    }
-    //订单已发货查询
-    @RequestMapping("yifahuo")
-    @ResponseBody
-    public Map yifahuo(@RequestBody ParameUtil param){
+     return se.fa(param);
+ }
+ //订单已发货查询
+ @RequestMapping("yifahuo")
+ @ResponseBody
+ public Map yifahuo(@RequestBody ParameUtil param){
 
-        return se.yi(param);
-    }
+     return se.yi(param);
+ }
     //订单已完成查询
     @RequestMapping("yiwancheng")
     @ResponseBody
@@ -103,7 +102,7 @@ public class CommController {
 
     public String xiang(Integer id,HttpServletRequest request){
         request.getSession().setAttribute("s",id);
-        return  "xiang" ;
+ return  "xiang" ;
 
     }
 
@@ -126,7 +125,7 @@ public class CommController {
     @RequestMapping("kuan1")
     public String kuan1(){
 
-        return "kuan";
+     return "kuan";
     }
     //同意  拒绝
     @RequestMapping("tong")
@@ -138,10 +137,6 @@ public class CommController {
     @RequestMapping("pinglun")
     @ResponseBody
     public List<Comment> treeList(Integer id){
-
-        //定义默认根节点的id 0
-
-        //  List<Comment> beanList=TreeNode(id);
         List<Comment> list=se.shu(id);
         return list;
     }
@@ -154,56 +149,101 @@ public class CommController {
 
         return se.ping(param);
     }
-    @RequestMapping("ping1")
+ @RequestMapping("ping1")
     public String ping1(){
         return "ping";
-    }
+ }
     //订单新增
     @RequestMapping("dindanxin")
     @ResponseBody
-    public void  dindanxin(String carname,Integer price,String color,Integer cid,Integer uid){
+    public void  dindanxin(Order order){
+        System.out.println(order.getPrice());
+        System.out.println("++++++"+order.getCarid());
         long time =  System.currentTimeMillis();
         Random ran = new Random();
         int i = ran.nextInt(1000);
         long s= time+i;
 
+
+
+        order.setDindanhao(s+"");
+        order.setCarid(order.getCarid());
+        order.setUserid(order.getUserid());
+        order.setPrice(order.getPrice());
+        order.setCunmber(1);
+        order.setXdtime(new Date());
+        order.setStatus(2);
+        order.setShprice(order.getPrice());
+        order.setGuige(order.getGuige());
+        order.setKuaidifei(20);
+        order.setYuhui(200);
+        order.setSpprice(order.getPrice());
+        if(order.getStatus()==1){
+            String cun="order";
+
+            redisTemplate.opsForValue().set(cun,order);
+            redisTemplate.expire(cun,30,TimeUnit.MINUTES);
+        }else{
+            amqpTemplate.convertAndSend("Rabbitmq",order);
+        }
+
+
+
+    }
+ /*   @RequestMapping("dindanxin")
+    @ResponseBody
+    public void  dindanxin(HttpServletRequest request,Integer status,Integer yuhui,Integer price,String color,Integer cid){
+        Integer loginUserid = (Integer) request.getSession().getAttribute("LoginUserid");
+        long time =  System.currentTimeMillis();
+        Random ran = new Random();
+        int i = ran.nextInt(1000);
+        long s= time+i;
         Order o=new Order();
         o.setDindanhao(s+"");
         o.setCarid(cid);
-        o.setUserid(uid);
-        o.setPrice(1000);
+        o.setUserid(loginUserid);
+        o.setPrice(price);
         o.setCunmber(1);
         o.setXdtime(new Date());
-        o.setStatus(1);
-        o.setShprice(1000);
+        o.setKuaidifei(0);
+        if (yuhui==null) {
+            o.setYuhui(0);
+        }else if(yuhui==1){
+            o.setYuhui(500);
+        }else if(yuhui==2){
+            o.setYuhui(1000);
+        }else if(yuhui==3){
+            o.setYuhui(5000);
+        }
+        o.setStatus(status);
+     Integer commodity=price-o.getYuhui();
+        o.setShprice(commodity);
         o.setGuige(color);
-        o.setKuaidifei(20);
-        o.setYuhui(200);
-        o.setShprice(1200);
+       o.setSpprice(commodity);
         if(o.getStatus()==1){
             String cun="order";
 
             redisTemplate.opsForValue().set(cun,o);
-            redisTemplate.expire(cun,30,TimeUnit.MINUTES);
+            redisTemplate.expire(cun,20,TimeUnit.MINUTES);
         }else{
             amqpTemplate.convertAndSend("Rabbitmq",o);
         }
 
 
-    }
-    //回复弹框
-    @RequestMapping("huifu1")
+    }*/
+//回复弹框
+ @RequestMapping("huifu1")
     public String  huifu1(){
 
         return "huifu";
-    }
-    //评论弹框
-    @RequestMapping("pinglun1")
+ }
+ //评论弹框
+ @RequestMapping("pinglun1")
     public  String pinglun1(Integer id,HttpServletRequest request){
-        request.getSession().setAttribute("pinglun",id);
+ request.getSession().setAttribute("pinglun",id);
         return "pinglun";
-    }
-    //回复新增
+ }
+ //回复新增
     @RequestMapping("huifu")
     @ResponseBody
     public  void huifu(Integer id,Comment c) throws UnsupportedEncodingException {
@@ -211,10 +251,6 @@ public class CommController {
 
         String[] arr = {"傻","傻逼","王八蛋","猪","草","王八","智障吗","逼", "你妈","sb","SB","S B","s b"};
         String content = text;
-
-
-
-
 
         test t = new test();
 
@@ -230,93 +266,96 @@ public class CommController {
         System.out.println(result);
 
 
-        se.huifu(id,c);
+      se.huifu(id,c);
     }
+    //沙箱实现
     @RequestMapping("shaxiang")
     public String shaxiang(){
         return "aaa";
     }
-    //秒杀跳页面
+//秒杀跳页面
     String key = "youhui";
     @RequestMapping("miaosha1")
-    public  String miaosha1(HttpSession session,Integer uid,Integer status){
-        session.setAttribute("z",status);
-        session.setAttribute("y",uid);
 
+       public  String miaosha1(HttpSession session,Integer uid,Integer status,HttpServletRequest request){
+        Integer loginUserid = (Integer) request.getSession().getAttribute("LoginUserid");
+        session.setAttribute("z",status);
+        session.setAttribute("y",loginUserid);
+        Integer shuliang = (Integer) request.getSession().getAttribute("shuliang");
         if (redisTemplate.hasKey(key)) {
         } else {
-            redisTemplate.opsForValue().set(key, 50);
+            redisTemplate.opsForValue().set(key, shuliang);
             redisTemplate.expire(key,30,TimeUnit.MINUTES);
         }
 
 
-        return "tiao";
+      return "tiao";
     }
 
-    //秒杀实现
-    @RequestMapping("miaosha")
-    @ResponseBody
-    public String miaosha(Integer uid, Integer status, HttpSession session){
-        if(uid==null){
-            return "cuo";
-        }else {
-            String aa = "uid"+uid;
-            if(redisTemplate.hasKey(aa)){
-                return "you";
-            }else{
-                redisTemplate.opsForList().leftPush(aa, uid);
+//秒杀实现
+@RequestMapping("miaosha")
+@ResponseBody
+public String miaosha(Integer uid,Integer status){
+
+     if(uid==null){
+         return "cuo";
+     }else {
+         String aa = "uid"+uid;
+         if(redisTemplate.hasKey(aa)){
+             return "you";
+         }else{
+             redisTemplate.opsForList().leftPush(aa, uid);
 
                 if (redisTemplate.hasKey(key)) {
-                    Integer o = (Integer) redisTemplate.opsForValue().get(key);
-                    if (o > 0) {
-                     redisTemplate.opsForValue().decrement(key);
-                    } else {
-                        return "wan";
-                    }
-                } else {
-                    redisTemplate.opsForValue().set(key, 50);
-                    redisTemplate.expire(key,30,TimeUnit.MINUTES);
+                     Integer o = (Integer) redisTemplate.opsForValue().get(key);
+                     if (o > 0) {
+                         redisTemplate.opsForValue().decrement(key);
+                     } else {
+                         return "wan";
+                     }
+                 } else {
+                     redisTemplate.opsForValue().set(key, 50);
+                     redisTemplate.expire(key,30,TimeUnit.MINUTES);
 
-                }
+                 }
 
 
-            }
+         }
 
-        }
-        se.miaosha(uid, status);
-        return "dao";
-    }
-    //秒杀数据查询
-    @RequestMapping("miaoshacha")
-    @ResponseBody
+     }
+    se.miaosha(uid, status);
+    return "dao";
+}
+//秒杀数据查询
+@RequestMapping("miaoshacha")
+@ResponseBody
     public  Map  maoshacha(@RequestBody ParameUtil param){
         return se.miaoshacha(param);
-    }
-    //秒杀跳转页面
-    @RequestMapping("miaoshacha1")
+}
+//秒杀跳转页面
+@RequestMapping("miaoshacha1")
     public  String miaoshacha1(){
 
-        return "miaoshacha";
+ return "miaoshacha";
     }
-    //秒杀页面
-    @RequestMapping("aaa")
-    public  String aaa(){
-        return  "miaosha";
-    }
-    @RequestMapping("updateseckill")
 
+
+   @RequestMapping("updateseckill")
     public String  chaseckill(Integer id,Model model){
-        Seckill list=se.chaseckill(  id);
-        model.addAttribute("l",list);
-        return  "updateseckill";
-    }
-    @RequestMapping("update")
+       Seckill list=se.chaseckill(id);
+       model.addAttribute("l",list);
+         return  "updateseckill";
+   }
+   @RequestMapping("update")
     @ResponseBody
     public void update(Seckill s,HttpServletRequest request){
-        SimpleDateFormat c=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(s.getStime());
-        String format = c.format(s.getStime());
-        request.getSession().setAttribute("time",format);
-        se.update(s);
-    }
+       SimpleDateFormat c=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       System.out.println(s.getStime());
+       String format = c.format(s.getStime());
+      request.getSession().setAttribute("time",format);
+       request.getSession().setAttribute("shuliang",s.getZhangshu());
+       request.getSession().setAttribute("yuhui",s.getSeckillname());
+       se.update(s);
+   }
+
 }
