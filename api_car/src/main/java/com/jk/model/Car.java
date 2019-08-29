@@ -63,6 +63,15 @@ public class Car implements Serializable {
 
     private String carimg;
      private String text;
+     private String carname;
+
+    public String getCarname() {
+        return carname;
+    }
+
+    public void setCarname(String carname) {
+        this.carname = carname;
+    }
 
     public String getText() {
         return text;
