@@ -47,9 +47,6 @@
         setTimeout('myrefresh()',6000); //指定1秒刷新一次
     </script>
 </head>
-<center><font size="5px" color="green"><b>前台消费者客服系统</b></font></center>
-<button onclick="toshopping()" type="button" class="btn" style="background:#C7C7E2"><b><--返回首页</b></button>
-<button onclick="jiqiren()" type="button" class="btn" style="background:#d0d0d0"><b>机器人客服</b></button>
 <button type="button" class="btn" style="background:#FFBD9D"><b>客服热线电话:<font color="red">00-888999</font></b></button>
 <style type="text/css">
     .sendP{
@@ -83,7 +80,7 @@
 <br>
 <font size="4px" color="red"><b>客服回复您:</b></font>
 <!--查询客服发过来的消息-->
-<div id="ulul2"  style="height:350px;overflow:auto;">
+<div id="ulul2"   style="width:1900px;height:350px;overflow-x:auto;overflow-y:auto">
 </div>
 
 <!--发送消息-->
@@ -91,7 +88,7 @@
     <div data-options="region:'north'" style="height:30%;background:#FFFAF4" id="content">
         <!--查询自己发送的消息-->
         <font color="red" size="3px"><b>您的历史发送记录:</b></font>
-        <div id="ulul3" style="height:100px;overflow:auto;"></div>
+        <div id="ulul3" style="width:1900px;height:350px;overflow-x:auto;overflow-y:auto"></div>
     </div>
     <div data-options="region:'center'" style="text-align:center;background:#E8FFF5">
         <input  id="message">
@@ -176,7 +173,7 @@
             }
         });
     }
-    function toshopping(){
+    function returnshou(){
         location.href="../Perso/CusList";
     }
 </script>

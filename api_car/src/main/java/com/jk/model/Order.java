@@ -28,6 +28,14 @@ public class Order implements Serializable {
     private Integer spprice;//商品总价
     private  String dindanhao;//订单号
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getCarid() {
         return carid;
     }
@@ -50,6 +58,62 @@ public class Order implements Serializable {
 
     public void setCunmber(Integer cunmber) {
         this.cunmber = cunmber;
+    }
+
+    public Date getXdtime() {
+        return xdtime;
+    }
+
+    public void setXdtime(Date xdtime) {
+        this.xdtime = xdtime;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getShprice() {
+        return shprice;
+    }
+
+    public void setShprice(Integer shprice) {
+        this.shprice = shprice;
+    }
+
+    public Integer getDetaid() {
+        return detaid;
+    }
+
+    public void setDetaid(Integer detaid) {
+        this.detaid = detaid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getTypename() {
+        return typename;
+    }
+
+    public void setTypename(String typename) {
+        this.typename = typename;
     }
 
     public String getGuige() {
@@ -82,73 +146,6 @@ public class Order implements Serializable {
 
     public void setSpprice(Integer spprice) {
         this.spprice = spprice;
-    }
-
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getShprice() {
-        return shprice;
-    }
-
-    public void setShprice(Integer shprice) {
-        this.shprice = shprice;
-    }
-
-
-
-    public String getTypename() {
-        return typename;
-    }
-
-    public void setTypename(String typename) {
-        this.typename = typename;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Date getXdtime() {
-        return xdtime;
-    }
-
-    public void setXdtime(Date xdtime) {
-        this.xdtime = xdtime;
-    }
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getDetaid() {
-        return detaid;
-    }
-
-    public void setDetaid(Integer detaid) {
-        this.detaid = detaid;
     }
 
     public String getDindanhao() {

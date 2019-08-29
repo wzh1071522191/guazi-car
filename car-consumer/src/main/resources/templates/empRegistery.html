@@ -39,7 +39,7 @@
     <form style="margin-left:750px;margin-top:300px;" id="addForm" method="post">
         <div class="form-group">
             <label >账&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp户:  </label>
-            <input type="text" class="form-control" id="userName" name="userName" style="display:inline;width:200px;"/>
+            <input type="text" class="form-control" id="userName" name="userName" style="display:inline;width:200px;" onblur="checkName()"/>
             <span id="msg1"></span>
         </div>
         <div class="form-group">
@@ -58,7 +58,6 @@
 
 </body>
 <script>
-
     function checkName(){
        var userName= $("#userName").val();
        $.ajax({

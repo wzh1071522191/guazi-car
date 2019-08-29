@@ -3,17 +3,12 @@
 <head>
     <title>登陆聊天</title>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/mdui/dist/css/mdui.css}">
+    <script th:src="@{/webjars/mdui/dist/js/mdui.js}"></script>
     <style>
         *, *:after, *:before {
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
-        }
-        body {
-            background: #383a3c url('/img/316010G41T5.jpg');
-            font-weight: 400;
-            font-size: 1em;
-            line-height: 1.25;
-            font-family: 'Raleway', Calibri, Arial, sans-serif;
         }
         a, button {
             outline: none;
@@ -110,19 +105,21 @@
             position: absolute;
             z-index: 100;
         }
+
     </style>
+
 </head>
-<body>
+<body background="../img/ddddd.jpg" style=" background-repeat:no-repeat ; background-size:100% 100%;  background-attachment: fixed;">
 <div class="logo_box">
-    <h3>登录聊天</h3>
+    <h3><font size="5px"><b>登录聊天</b></font></h3>
     <form>
         <div class="input_outer">
             <span class="u_user"></span>
-            <input id="username" name="username" class="text" type="text" placeholder="任意中文名">
+            <input id="username" name="username" class="text" type="text" placeholder="请输入账号">
         </div>
         <div class="input_outer">
             <span class="us_uer"></span>
-            <input id="password" name="password" class="text" type="password" placeholder="任意密码">
+            <input id="password" name="password" class="text" type="password" placeholder="请输入密码">
         </div>
         <div class="mb2">
             <a class="act-but submit" onclick="login()">登录</a>
@@ -135,7 +132,7 @@
      * 登陆聊天
      */
     function login() {
-        location.href = '/index?username='+$('#username').val();
+        location.href = '../Perso/tochat?username='+$('#username').val();
     }
     /**
      * 使用ENTER登陆
@@ -145,7 +142,5 @@
         e.keyCode === 13 && login();
     };
 </script>
-
-
 </body>
 </html>

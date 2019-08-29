@@ -19,6 +19,7 @@ public class OSSClientUtil {
 
 
 
+
     private String endpoint = "oss-cn-beijing.aliyuncs.com";
     // accessKey
     private String accessKeyId = "LTAIB5IFr7msJrOL";
