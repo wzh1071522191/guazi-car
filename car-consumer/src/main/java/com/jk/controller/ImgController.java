@@ -1,13 +1,11 @@
 package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jk.log.OSSClientUtil;
 import com.jk.model.Car;
 import com.jk.model.RoundImg;
 import com.jk.service.CarService;
 import com.jk.service.ImgService;
 
-import com.jk.service.Mservice;
 import com.jk.util.AlYunOssUtil;
 import com.jk.util.ParameUtil;
 import org.springframework.stereotype.Controller;
@@ -17,16 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.awt.print.Book;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @author ： 安雅茹
