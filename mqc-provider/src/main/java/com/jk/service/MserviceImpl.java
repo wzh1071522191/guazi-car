@@ -133,9 +133,9 @@ public class MserviceImpl implements Mservice {
         return  a;
     }
 
-    @RabbitListener(queues = "Rabbitmq")//添加RabbitListener注解 监听
-    public void addcar(Car c) {
-        mdao.addcar(c);
+    public int addcar(Car c) {
+       return  mdao.addcar(c);
+
     }
 
     @Override
@@ -227,6 +227,15 @@ public class MserviceImpl implements Mservice {
         mdao.addjm(jm);
     }
 
+    @Override
+    public Integer queryId() {
+        return mdao.queryId();
+    }
+
+    @Override
+    public Car queryById(Integer id) {
+        return mdao.queryById(id);
+    }
 
 
 }

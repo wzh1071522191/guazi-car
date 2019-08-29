@@ -34,7 +34,7 @@ public interface Mdao {
     List<Car> querycar2(ParameUtil parm);
 
  @Insert("insert into t_car(carbrandid, carareaid, carcolor, carck, createdate,sellcarcount,carlc,carage,carranyou,placecarstatu, carstatus,carsxj,carimg,cardate,cartypeid,userid,carlocation,carpl,expocarstatu,mentcarstatu,visitcarstatu,cartypesonid,carvolume, visitorsum,purchasesum,carquerytypeid,carprice,buydate,carname) values(#{p.carbrandid},#{p.carareaid},#{p.carcolor},#{p.carck},now(),#{p.sellcarcount},#{p.carlc},#{p.carage},#{p.carranyou},#{p.placecarstatu},#{p.carstatus},1,#{p.carimg},now(),1,1,1,1,1,1,1,1,1,1,0,1,100,now(),#{p.carname})")
- void addcar(@Param("p") Car c);
+  int addcar(@Param("p") Car c);
 
     @Update("update t_car set carsxj=1 where carid=#{id}")
     void ups(Integer id);
@@ -89,4 +89,9 @@ public interface Mdao {
 
  @Insert("insert into jiameng(username,userphone,shengdq,shidq,sqdate,youxiang,liuyan,shenhe)values(#{username},#{userphone},#{shengdq},#{shidq},now(),#{youxiang},#{liuyan},1)")
  void addjm(jiameng jm);
+    @Select("select max(carid) from t_car")
+    Integer queryId();
+
+    @Select("select * from t_car where carid = #{id}")
+    Car queryById(Integer id);
 }

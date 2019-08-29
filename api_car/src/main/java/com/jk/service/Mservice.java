@@ -39,7 +39,7 @@ public interface Mservice {
 
     Map querymaiche(ParameUtil parm);
 
-
+  int addcar(Car c);
   Audit querymai(Integer id);
 
   void addxianxia(Audit a, String id);
@@ -65,6 +65,10 @@ public interface Mservice {
   void sh2(Integer id);
 
   void addjm(jiameng jm);
+
+  Integer queryId();
+
+  Car queryById(Integer id);
 
 
 

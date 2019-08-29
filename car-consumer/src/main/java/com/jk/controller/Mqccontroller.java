@@ -137,11 +137,79 @@ public String uploadImg(MultipartFile imgg)throws IOException {
        return "addcarpage";
    }
 
+    @Autowired
+    private EsController esController;
+
     @RequestMapping("addcar")
     @ResponseBody
     public void  addcar(Car c){
        // System.out.println(c);
-        amqpTemplate.convertAndSend("Rabbitmq",c);
+        /*amqpTemplate.convertAndSend("Rabbitmq",c);*/
+        String a = "";
+        switch (c.getCartypeid()){
+            case 21:a="大众CC"+c.getCarcolor()+"色";
+                break;
+            case 22:a="大众辉腾"+c.getCarcolor()+"色";
+                break;
+            case 23:a="大众甲壳虫"+c.getCarcolor()+"色";
+                break;
+            case 24:a="大众迈腾"+c.getCarcolor()+"色";
+                break;
+            case 25:a="大众帕萨特"+c.getCarcolor()+"色";
+                break;
+            case 26:a="大众宝来"+c.getCarcolor()+"色";
+                break;
+            case 27:a="大众朗逸"+c.getCarcolor()+"色";
+                break;
+            case 31:a="奔腾X40"+c.getCarcolor()+"色";
+                break;
+            case 32:a="奔腾B50"+c.getCarcolor()+"色";
+                break;
+            case 33:a="奔腾X80"+c.getCarcolor()+"色";
+                break;
+            case 34:a="奔腾B30"+c.getCarcolor()+"色";
+                break;
+            case 35:a="奔腾T77"+c.getCarcolor()+"色";
+                break;
+            case 36:a="奔腾T33"+c.getCarcolor()+"色";
+                break;
+            case 37:a="现代ix35"+c.getCarcolor()+"色";
+                break;
+            case 38:a="现代LAFESTA菲斯塔"+c.getCarcolor()+"色";
+                break;
+            case 39:a="现代领动"+c.getCarcolor()+"色";
+                break;
+            case 40:a="现代瑞纳"+c.getCarcolor()+"色";
+                break;
+            case 41:a="丰田YARiSL致炫"+c.getCarcolor()+"色";
+                break;
+            case 42:a="丰田逸致"+c.getCarcolor()+"色";
+                break;
+            case 43:a="丰田威驰FS"+c.getCarcolor()+"色";
+                break;
+        }
+        c.setCarname(a);
+        int i = Mservice.addcar(c);
+        if (i>0) {
+            Integer id = Mservice.queryId();
+            Car recar = Mservice.queryById(id);
+            com.jk.elastic.Car car = new com.jk.elastic.Car();
+            car.setCarid(recar.getCarid());
+            car.setCarname(recar.getCarname());
+            car.setCarcolor(recar.getCarcolor());
+            car.setCarimg(recar.getCarimg());
+            car.setCarlc(recar.getCarlc());
+            car.setCarpl(recar.getCarpl());
+            car.setCarranyou(recar.getCarranyou());
+            car.setCardate(recar.getCardate());
+            car.setCarsxj(recar.getCarsxj());
+            car.setCarprice(recar.getCarprice());
+            car.setCarstatus(recar.getCarstatus());
+            car.setUserid(recar.getUserid());
+            car.setCartypeid(recar.getCartypeid());
+            car.setTypename(recar.getTypename());
+            esController.save(car);
+        }
         // Mservice.addcar(c);
     }
 

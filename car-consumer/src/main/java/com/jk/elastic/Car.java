@@ -1,19 +1,22 @@
-package com.jk.model;
+package com.jk.elastic;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
-
+@Document(indexName = "carindex",type = "car",shards = 3,replicas = 2)
 public class Car implements Serializable {
     //id
-
-
-
+    @Id
     private Integer carid;
     //品牌id
     private Integer carbrandid;
+    @Field(type= FieldType.Text,analyzer = "ik_max_word",searchAnalyzer = "ik_max_word", copyTo = "carcopy")
     private String carname;
     //上牌时间
     private Date cardate;
@@ -26,11 +29,13 @@ public class Car implements Serializable {
     //类型id
     private Integer cartypeid;
     // 颜色
+    @Field(type= FieldType.Text,searchAnalyzer = "ik_max_word", copyTo = "carcopy")
     private String carcolor;
     //状态
     private Integer carstatus;
     //对应的客户id
     private Integer userid;
+    @Field(type= FieldType.Text,analyzer = "ik_max_word",searchAnalyzer = "ik_max_word", copyTo = "carcopy")
     private String typename;
     //发布日期
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
