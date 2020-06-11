@@ -81,10 +81,10 @@ public interface Mdao {
  int qu(ParameUtil parm);
 
  List<jiameng> jm(ParameUtil parm);
-@Update("update jiameng set shenhe=2 where id=#{id}")
+@Update("update jiameng set shenhe=2 where jmid=#{id}")
  void sh(Integer id);
 
- @Update("update jiameng set shenhe=3 where id=#{id}")
+ @Update("update jiameng set shenhe=3 where jmid=#{id}")
  void sh2(Integer id);
 
  @Insert("insert into jiameng(username,userphone,shengdq,shidq,sqdate,youxiang,liuyan,shenhe)values(#{username},#{userphone},#{shengdq},#{shidq},now(),#{youxiang},#{liuyan},1)")

@@ -85,8 +85,6 @@
 
 
 
-
-
     <select id="chamaiche" resultType="com.jk.model.Audit">
           select *
            from t_audit a,t_user u  where  a.userid=u.userid

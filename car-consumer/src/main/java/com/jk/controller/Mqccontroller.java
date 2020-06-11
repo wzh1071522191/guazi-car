@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
@@ -28,11 +29,16 @@ public class Mqccontroller {
     @Reference(version="1.0")
     private Mservice Mservice;
 
+    @Resource
+    private EsController esController;
+
    @Autowired
     private AmqpTemplate amqpTemplate;
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+
 
     //跳转到汽车页面
      @RequestMapping("query")
@@ -137,8 +143,7 @@ public String uploadImg(MultipartFile imgg)throws IOException {
        return "addcarpage";
    }
 
-    @Autowired
-    private EsController esController;
+
 
     @RequestMapping("addcar")
     @ResponseBody

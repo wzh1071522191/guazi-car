@@ -53,10 +53,10 @@
 
 </head>
 <body >
-<div>
+<!--<div>
     <iframe width="800" scrolling="no" height="220" frameborder="0"
             allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=19&color=%23&bgc=%23FFFFFF&bdc=%2300B0F0&icon=1&py=haidian&temp=1&num=5&site=13"></iframe>
-</div>
+</div>-->
 <br>
 <div>
 
@@ -116,7 +116,7 @@
             pagination:true, //是否展示分页
             pageList: [2, 4, 8, 10],//分页组件
             pageNumber: 1,
-            pageSize: 2,//默认每页条数
+            pageSize: 4,//默认每页条数
             //启动回车键做搜索功能
             searchOnEnterKey: true,
             //设置为false 将禁止所有列的排序。
@@ -148,15 +148,15 @@
                 {field: 'jmid', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
                 {field: 'username', title: '用户名称', width: 300,
                     formatter: function (value,row,index){
-                        return "<font color='blue'>value</font>";
+                        return "<font color='blue'>"+value+"</font>";
                     }
                 },
                 {field: 'userphone', title: '电话', width: 300
                 },
                 {field: 'shengdq', title: '所在省', width: 300,
                     formatter: function (value,row,index) {
-                    if (value==1){return "北京"}
-                    if (value==2){return "山西"}
+                    if (value=="1"){return "北京"}
+                    if (value=="2"){return "山西"}
                         if (value==3){return "陕西"}
 
                         if (value==4){return "西安"}

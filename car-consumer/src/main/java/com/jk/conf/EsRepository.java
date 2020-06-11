@@ -1,6 +1,7 @@
 package com.jk.conf;
 
 import com.jk.elastic.Car;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
  * @package ：com.jk.conf
  * @version:
  */
+@Configuration
 public interface EsRepository extends ElasticsearchRepository<Car,Integer> {
 
 
